@@ -87,6 +87,12 @@ const config: NuxtConfig = {
     TOKEN: process.env.TOKEN || "",
     SCOPE: process.env.SCOPE || "",
     APP_ENV: process.env.APP_ENV || "",
+    API_BASE: process.env.API_BASE || "",
+    FIAT_TOKEN: process.env.FIAT_TOKEN || "",
+    GA: process.env.GA || "",
+    LEGACY_WEB_HOST: process.env.LEGACY_WEB_HOST || "",
+    MTG_WEB_HOST: process.env.MTG_WEB_HOST || "",
+    MIXIN_CLIENT_ID: process.env.MIXIN_CLIENT_ID || "",
   },
   pwa: {
     workbox: {
