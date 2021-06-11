@@ -39,7 +39,7 @@
     "echarts": "^4.9.0",
     "hashids": "^2.2.1",
     "mockjs": "^1.0.1-beta3",
-    "msgpack5": "^4.2.1",
+    "msgpack5": "^4.5.1",
     "nuxt": "^2.0.0",
     "nuxt-i18n": "^6.4.1",
     "parse-duration": "^0.4.4",
