@@ -93,6 +93,7 @@ const config: NuxtConfig = {
     LEGACY_WEB_HOST: process.env.LEGACY_WEB_HOST || "",
     MTG_WEB_HOST: process.env.MTG_WEB_HOST || "",
     MIXIN_CLIENT_ID: process.env.MIXIN_CLIENT_ID || "",
+    WS_BASE: process.env.WS_BASE || "",
   },
   pwa: {
     workbox: {
