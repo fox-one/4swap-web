@@ -1,6 +1,6 @@
-# nuxt-ts-template
+# 4swap-web
 
-> My cat&#39;s meow Nuxt.js project
+> 4swap front end website
 
 ## Build Setup
 
@@ -20,3 +20,4 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+
