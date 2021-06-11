@@ -12,6 +12,8 @@ export const APP_TOKEN = process.env.TOKEN;
 
 export const APP_SCOPE = process.env.SCOPE;
 
+console.log(process.env);
+
 export const CONFIG = {
   API_BASE: process.env.API_BASE,
   LEGACY_WEB_HOST: process.env.LEGACY_WEB_HOST,

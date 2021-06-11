@@ -3,13 +3,7 @@ name: Build and deploy to mulsig develop.
 env:
   AWS_REGION: us-east-1
   APP_ENV: dev
-  API_BASE: ${{ secrets.DEV_API_BASE }}
-  FIAT_TOKEN: ${{ secrets.DEV_FIAT_TOKEN }}
-  GA: ${{ secrets.GA }}
-  LEGACY_WEB_HOST: ${{ secrets.DEV_LEGACY_WEB_HOST }}
-  MTG_WEB_HOST: ${{ secrets.DEV_MTG_WEB_HOST }}
-  MIXIN_CLIENT_ID: ${{ secrets.DEV_MIXIN_CLIENT_ID }}
-
+  
 on:
   push:
     branches:
@@ -34,7 +28,15 @@ jobs:
 
       - run: yarn --frozen-lockfile --non-interactive
 
-      - run: APP_ENV=${{ env.APP_ENV }} yarn build
+      - name: build
+        env:
+          API_BASE: ${{ secrets.DEV_API_BASE }}
+          FIAT_TOKEN: ${{ secrets.DEV_FIAT_TOKEN }}
+          GA: ${{ secrets.GA }}
+          LEGACY_WEB_HOST: ${{ secrets.DEV_LEGACY_WEB_HOST }}
+          MTG_WEB_HOST: ${{ secrets.DEV_MTG_WEB_HOST }}
+          MIXIN_CLIENT_ID: ${{ secrets.DEV_MIXIN_CLIENT_ID }}
+        run: APP_ENV=${{ env.APP_ENV }} yarn build
 
       # upload to aws
       - uses: aws-actions/configure-aws-credentials@v1
