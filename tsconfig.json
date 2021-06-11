@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"],
+      "@/*": ["src/*"]
+    },
+    "types": [
+      "webpack-env",
+      "nuxt-i18n",
+      "@types/node",
+      "@nuxt/types",
+      "vuetify"
+    ]
+  },
+  "include": ["types/**/*.ts", "node_modules/vuetify", "src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

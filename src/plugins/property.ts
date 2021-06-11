@@ -1,0 +1,52 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Plugin } from "@nuxt/types";
+import createHttpService from "~/services/http/create";
+import createWsService from "~/services/socket/create";
+import utils from "@/utils";
+import { CONFIG } from "~/constants";
+import Socket from "@/utils/socket";
+import Cache from "@/utils/cache";
+import { PairRoutes } from "@/utils/pair/route";
+import Fennec from "../utils/fennec";
+
+declare module "vue/types/vue" {
+  interface Vue {
+    $utils: typeof utils;
+    $http: ReturnType<typeof createHttpService>;
+    $icons: typeof utils.icons;
+    $pairRoutes: PairRoutes;
+    $cache: Cache;
+    $fennec: Fennec;
+  }
+}
+
+declare module "@nuxt/types" {
+  interface NuxtAppOptions {
+    $utils: typeof utils;
+    $http: ReturnType<typeof createHttpService>;
+    $icons: typeof utils.icons;
+    $pairRoutes: PairRoutes;
+    $cache: Cache;
+  }
+}
+
+declare module "vuex/types/index" {
+  interface Store<S> {
+    $utils: typeof utils;
+    $http: ReturnType<typeof createHttpService>;
+    $icons: typeof utils.icons;
+    $pairRoutes: PairRoutes;
+    $cache: Cache;
+  }
+}
+
+const plugin: Plugin = ({ app }, inject) => {
+  inject("http", createHttpService(app, CONFIG.API_BASE));
+  inject("cache", new Cache());
+  inject("utils", utils);
+  inject("icons", utils.icons);
+  inject("pairRoutes", new PairRoutes());
+  inject("fennec", new Fennec(app));
+};
+
+export default plugin;
