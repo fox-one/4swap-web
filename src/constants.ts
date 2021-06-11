@@ -1,5 +1,3 @@
-import CONFIG_DEV from "./configs/development";
-import CONFIG_PROD from "./configs/production";
 import pkg from "../package.json";
 
 export const IS_MTG = true;
@@ -14,11 +12,17 @@ export const APP_TOKEN = process.env.TOKEN;
 
 export const APP_SCOPE = process.env.SCOPE;
 
-export const CONFIG = isProduct ? CONFIG_PROD : CONFIG_DEV;
+export const CONFIG = {
+  API_BASE: process.env.API_BASE,
+  LEGACY_WEB_HOST: process.env.LEGACY_WEB_HOST,
+  MTG_WEB_HOST: process.env.MTG_WEB_HOST,
+  MIXIN_CLIENT_ID: process.env.MIXIN_CLIENT_ID,
+  WS_BASE: process.env.WS_BASE,
+};
 
-export const FIAT_TOKEN = CONFIG.FIAT_TOKEN;
+export const FIAT_TOKEN = process.env.FIAT_TOKEN;
 
-export const GA = CONFIG.GA;
+export const GA = process.env.GA;
 
 export const MIXIN_HOST = "https://mixin-api.zeromesh.net";
 

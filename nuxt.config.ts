@@ -1,6 +1,11 @@
 import { NuxtConfig } from "@nuxt/types";
 import i18n from "./src/i18n";
-import { isProduct, GA } from "./src/constants";
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require("dotenv").config();
+
+const isProduct = process.env.APP_ENV === "prod";
+const GA = process.env.GA;
 
 const config: NuxtConfig = {
   ssr: false,
@@ -43,7 +48,10 @@ const config: NuxtConfig = {
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/google-analytics",
-    "@nuxtjs/dotenv",
+    [
+      "@nuxtjs/dotenv",
+      { filename: isProduct ? ".env.production" : ".env.development" },
+    ],
     [
       "nuxt-i18n",
       {

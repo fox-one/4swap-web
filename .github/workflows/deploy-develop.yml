@@ -3,6 +3,12 @@ name: Build and deploy to mulsig develop.
 env:
   AWS_REGION: us-east-1
   APP_ENV: dev
+  API_BASE: ${{ secrets.DEV_API_BASE }}
+  FIAT_TOKEN: ${{ secrets.DEV_FIAT_TOKEN }}
+  GA: ${{ secrets.GA }}
+  LEGACY_WEB_HOST: ${{ secrets.DEV_LEGACY_WEB_HOST }}
+  MTG_WEB_HOST: ${{ secrets.DEV_MTG_WEB_HOST }}
+  MIXIN_CLIENT_ID: ${{ secrets.DEV_MIXIN_CLIENT_ID }}
 
 on:
   push:

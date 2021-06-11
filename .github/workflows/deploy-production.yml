@@ -4,6 +4,12 @@ env:
   OSS_ENDPOINT: oss-cn-beijing.aliyuncs.com
   AWS_REGION: us-east-1
   APP_ENV: prod
+  API_BASE: ${{ secrets.PROD_API_BASE }}
+  FIAT_TOKEN: ${{ secrets.PROD_FIAT_TOKEN }}
+  GA: ${{ secrets.GA }}
+  LEGACY_WEB_HOST: ${{ secrets.PROD_LEGACY_WEB_HOST }}
+  MTG_WEB_HOST: ${{ secrets.PROD_MTG_WEB_HOST }}
+  MIXIN_CLIENT_ID: ${{ secrets.PROD_MIXIN_CLIENT_ID }}
 
 on:
   push:
