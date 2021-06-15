@@ -76,7 +76,7 @@ import mixins from "@/mixins";
 import { Getter, State } from "vuex-class";
 import { IAsset, IPair } from "~/services/types/vo";
 import BigNumber from "bignumber.js";
-import { BTC_ASSET_ID, DEFAULT_ASSET_ID } from "~/constants";
+import { BTC_ASSET_ID, DEFAULT_ASSET_ID, PRSID } from "~/constants";
 import AddResultForecast from "@/components/particles/liquidity/AddResultForecast.vue";
 import LiqAddAction from "@/components/particles/liquidity/LiqAddAction.vue";
 import FirstLiqProviderTip from "@/components/particles/liquidity/FirstLiqProviderTip.vue";
@@ -120,14 +120,26 @@ class AddLiquidityPage extends Mixins(mixins.page) {
     if (!this.quoteAsset) {
       return this.assets;
     }
-    return this.assets.filter((x) => this.quoteAsset?.id !== x.id);
+    return this.assets.filter((x) => {
+      // @TODO prs event
+      if (x.id === PRSID) {
+        return false;
+      }
+      return this.quoteAsset?.id !== x.id;
+    });
   }
 
   get quoteAssets() {
     if (!this.baseAsset) {
       return this.assets;
     }
-    return this.assets.filter((x) => this.baseAsset?.id !== x.id);
+    return this.assets.filter((x) => {
+      // @TODO prs event
+      if (x.id === PRSID) {
+        return false;
+      }
+      return this.baseAsset?.id !== x.id;
+    });
   }
 
   get pair(): IPair | undefined {

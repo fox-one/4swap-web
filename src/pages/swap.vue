@@ -114,7 +114,7 @@ import SwapInfoPanel from "@/components/particles/swap/SwapInfoPanel.vue";
 import SwapSubmitAction from "@/components/particles/swap/SwapSubmitAction.vue";
 import RecentlyTransactions from "@/components/particles/swap/RecentlyTransactions.vue";
 import { Getter } from "vuex-class";
-import { BTC_ASSET_ID, DEFAULT_ASSET_ID } from "@/constants";
+import { BTC_ASSET_ID, DEFAULT_ASSET_ID, PRSID } from "@/constants";
 import { debounce } from "~/utils/helper";
 
 const RouteItem = Vue.extend({
@@ -216,6 +216,10 @@ class SwapPage extends Mixins(mixins.page) {
     const assets: API.Asset[] = this.$store.getters["global/getSortedAssets"];
     const pairs: API.Pair[] = this.$store.state.global.pairs;
     return assets.filter((x) => {
+      // @TODO prs event
+      if (x.id === PRSID) {
+        return false;
+      }
       return pairs.find((pair) => {
         return pair.base_asset_id === x.id || pair.quote_asset_id === x.id;
       });

@@ -165,6 +165,10 @@ class PoolsPage extends Mixins(mixins.page) {
           filteredAssetId.includes(pair.quote_asset_id)
         );
       })
+      // @TODO prs event
+      .filter((pair) => {
+        return !(pair as any).hidden;
+      })
       .map((pair) => {
         const totalValue = new BigNumber(pair.base_value)
           .plus(pair.quote_value)

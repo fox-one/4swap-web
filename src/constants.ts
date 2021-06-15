@@ -47,3 +47,5 @@ export const CHART_SCHEMES = {
   SCHEME_A: { id: "SCHEME_A", up: "#63cb49", down: "#eb4880" },
   SCHEME_B: { id: "SCHEME_B", up: "#eb4880", down: "#63cb49" },
 };
+
+export const PRSID = "3edb734c-6d6f-32ff-ab03-4eb43640c758";

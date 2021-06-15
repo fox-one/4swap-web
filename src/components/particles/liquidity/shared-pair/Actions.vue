@@ -1,6 +1,12 @@
 <template>
   <v-layout class="f-caption py-2">
-    <v-layout column align-center justify-center @click="handleAddLiq">
+    <v-layout
+      v-if="showAdd"
+      column
+      align-center
+      justify-center
+      @click="handleAddLiq"
+    >
       <i class="primary rounded-circle icons">
         <v-icon dark size="24">
           {{ $icons.mdiPlus }}
@@ -45,12 +51,22 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { PRSID } from "@/constants";
 
 @Component
 class Actions extends Vue {
   @Prop() baseAsset;
 
   @Prop() quoteAsset;
+
+  // @TODO prs event
+  showAdd = true;
+
+  mounted() {
+    if (this.baseAsset.id === PRSID || this.quoteAsset.id === PRSID) {
+      this.showAdd = false;
+    }
+  }
 
   handleAddLiq() {
     this.$router.push({

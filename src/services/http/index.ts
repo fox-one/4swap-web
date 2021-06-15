@@ -12,7 +12,7 @@ import {
 } from "../types/vo";
 import { IPreOrderParams } from "../types/dto";
 import { convertPairOrder } from "@/utils/pair/help";
-import { MIXIN_HOST, FIAT_TOKEN } from "@/constants";
+import { MIXIN_HOST, FIAT_TOKEN, PRSID } from "@/constants";
 import { fmtProfits } from "@/utils/profits";
 
 export default function (http: Http) {
@@ -42,8 +42,17 @@ export default function (http: Http) {
       return convertPairOrder(input, pair);
     },
 
-    getPairs(): Promise<API.PairsRes> {
-      return http.get("/pairs");
+    async getPairs(): Promise<API.PairsRes> {
+      // @TODO prs event
+      const resp = await http.get("/pairs");
+      const pairs = resp.pairs.map((x) => {
+        if (x?.base_asset_id === PRSID || x.quote_asset_id === PRSID) {
+          x.hidden = true;
+        }
+        return x;
+      });
+      resp.pairs = pairs;
+      return resp;
     },
 
     getDepositOrder(follow: string): Promise<API.DepositOrder> {
