@@ -12,7 +12,7 @@ import {
 } from "../types/vo";
 import { IPreOrderParams } from "../types/dto";
 import { convertPairOrder } from "@/utils/pair/help";
-import { MIXIN_HOST, FIAT_TOKEN, PRSID } from "@/constants";
+import { MIXIN_HOST, PRSID } from "@/constants";
 import { fmtProfits } from "@/utils/profits";
 
 export default function (http: Http) {
@@ -31,9 +31,9 @@ export default function (http: Http) {
       return http.get("/assets");
     },
 
-    getFiats(): Promise<{ assets: API.Fiat[] }> {
+    getFiats(opts: { token: string }): Promise<{ assets: API.Fiat[] }> {
       return http.get(`${MIXIN_HOST}/fiats`, {
-        token: FIAT_TOKEN,
+        token: opts.token,
       } as any);
     },
 
@@ -42,9 +42,9 @@ export default function (http: Http) {
       return convertPairOrder(input, pair);
     },
 
-    async getPairs(): Promise<API.PairsRes> {
+    async getPairs(opts: { brokerId?: string }): Promise<API.PairsRes> {
       // @TODO prs event
-      const resp = await http.get("/pairs");
+      const resp = await http.get("/pairs", { params: opts });
       const pairs = resp.pairs.map((x) => {
         if (x?.base_asset_id === PRSID || x.quote_asset_id === PRSID) {
           x.hidden = true;

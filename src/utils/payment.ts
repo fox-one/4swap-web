@@ -80,11 +80,16 @@ function getBaseParams(vm: Vue) {
 }
 
 export async function requestPayment(vm: Vue, params: ICreateAction) {
-  const resp = await vm.$http.createActions(params);
+  const resp = await vm.$http.createActions({
+    ...params,
+    broker_id: vm.$config.BROKER_ID,
+  });
+
   // connected to Fennec?
   if (vm.$fennec.connected) {
     return await vm.$fennec.multisigsPayment({ code: resp.code });
   }
+
   // not connected to Fennec
   if (vm.$utils.helper.isDesktop()) {
     return resp.code_url;

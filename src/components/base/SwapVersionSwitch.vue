@@ -4,7 +4,7 @@
       <div class="ml-4 mr-1">{{ title }}</div>
       <div
         v-on="on"
-        class="px-1 py-0 f-title-2 rounded-lg version-label"
+        class="px-1 py-0 f-title-2 rounded-lg version-label primary"
         style="font-size: 15px !important"
       >
         {{ current.label }}
@@ -44,7 +44,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IS_MTG, CONFIG } from "@/constants";
+import { IS_MTG } from "@/constants";
 
 @Component
 class SwapEnvSwitch extends Vue {
@@ -56,17 +56,17 @@ class SwapEnvSwitch extends Vue {
     return {
       mtg: {
         id: "mtg",
-        title: this.$t("4swap-mtg"),
+        title: this.$t("channel.name.mtg"),
         label: this.$t("mtg"),
-        host: CONFIG.MTG_WEB_HOST,
+        host: this.$config.MTG_WEB_HOST,
         description: this.$t("version.mtg.description"),
         icon: require("@/assets/images/logo_4swap_mtg.png"),
       },
       legacy: {
         id: "legacy",
-        title: this.$t("4swap-legacy"),
+        title: this.$t("channel.name.legacy"),
         label: this.$t("legacy"),
-        host: CONFIG.LEGACY_WEB_HOST,
+        host: this.$config.MTG_WEB_HOST,
         description: this.$t("version.legacy.description"),
         icon: require("@/assets/images/logo_4swap_legacy.png"),
       },
@@ -94,8 +94,8 @@ export default SwapEnvSwitch;
   line-height: 20px !important;
   height: 20px;
   color: #ffffff;
-  background-color: #ee4596;
 }
+
 .version-desc {
   max-width: 210px !important;
   font-size: 12px !important;

@@ -53,7 +53,7 @@ const icons = {
   },
 };
 
-export default function ({ store }) {
+export default function ({ store, $config }) {
   const isDark = store.state.app.dark;
 
   return {
@@ -66,8 +66,8 @@ export default function ({ store }) {
       },
       themes: {
         light: {
-          primary: "#ee4596",
-          accent: "#ee4596",
+          primary: $config.PRIMARY_COLOR_LIGHT,
+          accent: $config.PRIMARY_COLOR_LIGHT,
           // greyscale
           greyscale_1: "#000000",
           greyscale_2: "#333333",
@@ -88,8 +88,8 @@ export default function ({ store }) {
           red: "#f39086",
         },
         dark: {
-          primary: "#f16aab",
-          accent: "#f16aab",
+          primary: $config.PRIMARY_COLOR_DARK,
+          accent: $config.PRIMARY_COLOR_DARK,
           // greyscale
           greyscale_1: "#ffffff",
           greyscale_2: "#d2d3d3",

@@ -1,18 +1,20 @@
-export async function initApp(vue: Vue) {
-  if (vue.$route.name === "auth") {
+export async function initApp(vm: Vue) {
+  if (vm.$route.name === "auth") {
     return;
   }
-  const store = vue.$store;
+  const store = vm.$store;
   const inited = store.state.app.inited;
   if (!inited) {
     store.commit("app/SET_INITING", true);
   }
   try {
     await Promise.all([
-      store.dispatch("global/loadFiats"),
+      store.dispatch("global/loadFiats", { token: vm.$config.FIAT_TOKEN }),
       store.dispatch("global/loadAssets"),
-      vue.$utils.helper.loadWalletAssets(vue),
-      store.dispatch("global/getAllAddedPairs"),
+      vm.$utils.helper.loadWalletAssets(vm),
+      store.dispatch("global/getAllAddedPairs", {
+        brokerId: vm.$config.BROKER_ID,
+      }),
       store.dispatch("global/getMe"),
       store.dispatch("global/getAppInfo"),
     ]);
@@ -23,14 +25,16 @@ export async function initApp(vue: Vue) {
   }
 }
 
-export function genAppTasks(vue: Vue) {
+export function genAppTasks(vm: Vue) {
   let $interval: any = "";
 
   return {
     setUpPollingTasks() {
       this.clearPollingTasks();
       $interval = setInterval(() => {
-        vue.$store.dispatch("global/getAllAddedPairs");
+        vm.$store.dispatch("global/getAllAddedPairs", {
+          brokerId: vm.$config.BROKER_ID,
+        });
       }, 3000);
     },
     clearPollingTasks() {

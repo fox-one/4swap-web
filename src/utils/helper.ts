@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Vue from "vue";
-import { CONFIG, APP_TOKEN, NODE_ENV, APP_SCOPE } from "~/constants";
-import { initApp } from "./app";
 
 export function toast(vue: Vue, data: { message: string; color?: string }) {
   vue.$store.commit("app/SET_TOAST", data);
@@ -87,19 +85,11 @@ export function genPaymentUrl(data: {
   return `mixin://pay?recipient=${recipient}&asset=${assetId}&amount=${amount}&trace=${traceId}&memo=${memo}`;
 }
 
-export function requestLogin(vue) {
-  // if (NODE_ENV === "development" && APP_TOKEN) {
-  //   vue.$store?.commit("auth/SET_TOKEN", {
-  //     token: APP_TOKEN,
-  //     scope: APP_SCOPE,
-  //   });
-  //   initApp(vue);
-  //   return;
-  // }
+export function requestLogin(vm: Vue) {
   const host = window.location.origin;
   const redirectUrl = encodeURIComponent(host + "/#/auth/");
   localStorage.setItem("authPath", window.location.href);
-  let path = `https://mixin-oauth.firesbox.com/?client_id=${CONFIG.MIXIN_CLIENT_ID}&scope=PROFILE:READ+ASSETS:READ&response_type=code`;
+  let path = `https://mixin-oauth.firesbox.com/?client_id=${vm.$config.MIXIN_CLIENT_ID}&scope=PROFILE:READ+ASSETS:READ&response_type=code`;
   path += `&redirect_url=${redirectUrl}`;
   window.location.href = path;
 }

@@ -82,7 +82,9 @@ class LiqCompleteAction extends Vue {
 
   handleSuccessAddLiq() {
     this.$utils.helper.loadWalletAssets(this);
-    this.$store.dispatch("global/getAllAddedPairs");
+    this.$store.dispatch("global/getAllAddedPairs", {
+      brokerId: this.$config.BROKER_ID,
+    });
     const modal = this.$refs.addSuccessModal as any;
     if (modal) {
       modal.show(this.bindOrder);

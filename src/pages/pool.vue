@@ -209,7 +209,9 @@ class PoolsPage extends Mixins(mixins.page) {
   }
 
   mounted() {
-    this.$store.dispatch("global/getAllAddedPairs");
+    this.$store.dispatch("global/getAllAddedPairs", {
+      brokerId: this.$config.BROKER_ID,
+    });
   }
 }
 export default PoolsPage;

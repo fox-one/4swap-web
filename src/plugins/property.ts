@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Plugin } from "@nuxt/types";
 import createHttpService from "~/services/http/create";
-import createWsService from "~/services/socket/create";
 import utils from "@/utils";
-import { CONFIG } from "~/constants";
-import Socket from "@/utils/socket";
 import Cache from "@/utils/cache";
 import { PairRoutes } from "@/utils/pair/route";
 import Fennec from "../utils/fennec";
@@ -40,8 +37,8 @@ declare module "vuex/types/index" {
   }
 }
 
-const plugin: Plugin = ({ app }, inject) => {
-  inject("http", createHttpService(app, CONFIG.API_BASE));
+const plugin: Plugin = ({ app, $config }, inject) => {
+  inject("http", createHttpService(app, $config.API_BASE));
   inject("cache", new Cache());
   inject("utils", utils);
   inject("icons", utils.icons);

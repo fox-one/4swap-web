@@ -35,7 +35,6 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Getter } from "vuex-class";
 import { IAsset, IPair } from "~/services/types/vo";
-import { CONFIG } from "@/constants";
 import LiqCreateConfirmModal from "./LiqCreateConfirmModal.vue";
 import LiqCreateSuccessModal from "./LiqCreateSuccessModal.vue";
 
@@ -106,7 +105,7 @@ class LiqCreateAction extends Vue {
       assetId: this.costId,
       amount: this.costAmount,
       traceId: this.traceId,
-      recipient: CONFIG.MIXIN_CLIENT_ID,
+      recipient: this.$config.MIXIN_CLIENT_ID,
     });
     window.location.href = payUrl;
     this.loading = true;

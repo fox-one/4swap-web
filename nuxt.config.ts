@@ -1,12 +1,6 @@
 import { NuxtConfig } from "@nuxt/types";
 import i18n from "./src/i18n";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-require("dotenv").config();
-
-const isProduct = process.env.APP_ENV === "prod";
-const GA = process.env.GA;
-
 const config: NuxtConfig = {
   ssr: false,
   router: {
@@ -25,7 +19,7 @@ const config: NuxtConfig = {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   loading: {
-    color: "#eb70ab",
+    color: process.env.LOADING_COLOR,
   },
   css: ["~/styles/index.scss"],
   plugins: [
@@ -49,10 +43,6 @@ const config: NuxtConfig = {
     "@nuxtjs/axios",
     "@nuxtjs/google-analytics",
     [
-      "@nuxtjs/dotenv",
-      { filename: isProduct ? ".env.production" : ".env.development" },
-    ],
-    [
       "nuxt-i18n",
       {
         vueI18n: i18n,
@@ -67,12 +57,8 @@ const config: NuxtConfig = {
     "@nuxtjs/pwa",
   ],
   googleAnalytics: {
-    id: GA,
+    id: process.env.GA,
     dev: false,
-    debug: {
-      enabled: !isProduct,
-      sendHitTask: isProduct,
-    },
   },
   vuetify: {
     customVariables: ["~/styles/_variables.scss"],
@@ -83,18 +69,29 @@ const config: NuxtConfig = {
   build: {
     transpile: ["vuetify", "@foxone/uikit"],
   },
-  env: {
-    TOKEN: process.env.TOKEN || "",
-    SCOPE: process.env.SCOPE || "",
-    APP_ENV: process.env.APP_ENV || "",
+
+  publicRuntimeConfig: {
+    CHANNEL: process.env.CHANNEL || "",
+    CHANNEL_NAME: process.env.CHANNEL_NAME || "",
+    PRIMARY_COLOR_DARK: process.env.PRIMARY_COLOR_DARK || "",
+    PRIMARY_COLOR_LIGHT: process.env.PRIMARY_COLOR_LIGHT || "",
+    BROKER_ID: process.env.BROKER_ID || "",
+
     API_BASE: process.env.API_BASE || "",
+    WS_BASE: process.env.WS_BASE || "",
+    MIXIN_CLIENT_ID: process.env.MIXIN_CLIENT_ID || "",
     FIAT_TOKEN: process.env.FIAT_TOKEN || "",
     GA: process.env.GA || "",
+
     LEGACY_WEB_HOST: process.env.LEGACY_WEB_HOST || "",
     MTG_WEB_HOST: process.env.MTG_WEB_HOST || "",
-    MIXIN_CLIENT_ID: process.env.MIXIN_CLIENT_ID || "",
-    WS_BASE: process.env.WS_BASE || "",
   },
+
+  privateRuntimeConfig: {
+    TOKEN: process.env.TOKEN || "",
+    SCOPE: process.env.SCOPE || "",
+  },
+
   pwa: {
     workbox: {
       enabled: false,

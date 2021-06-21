@@ -103,7 +103,9 @@ class LiqPaymentAction extends Vue {
     } else {
       this.isLoading = false;
       this.$utils.helper.loadWalletAssets(this);
-      this.$store.dispatch("global/getAllAddedPairs");
+      this.$store.dispatch("global/getAllAddedPairs", {
+        brokerId: this.$config.BROKER_ID,
+      });
       this.$emit("onPaid", this.payment.trace_id);
     }
   }

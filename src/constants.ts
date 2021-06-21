@@ -4,26 +4,6 @@ export const IS_MTG = true;
 
 export const VERSION = pkg.version;
 
-export const isProduct = process.env.APP_ENV === "prod";
-
-export const NODE_ENV = process.env.NODE_ENV;
-
-export const APP_TOKEN = process.env.TOKEN;
-
-export const APP_SCOPE = process.env.SCOPE;
-
-export const CONFIG = {
-  API_BASE: process.env.API_BASE,
-  LEGACY_WEB_HOST: process.env.LEGACY_WEB_HOST,
-  MTG_WEB_HOST: process.env.MTG_WEB_HOST,
-  MIXIN_CLIENT_ID: process.env.MIXIN_CLIENT_ID,
-  WS_BASE: process.env.WS_BASE,
-};
-
-export const FIAT_TOKEN = process.env.FIAT_TOKEN;
-
-export const GA = process.env.GA;
-
 export const MIXIN_HOST = "https://mixin-api.zeromesh.net";
 
 export const DEFAULT_ASSET_ID = "c94ac88f-4671-3976-b60a-09064f1811e8";
@@ -43,6 +23,7 @@ export const CURRENCY = {
 };
 
 export const SUP_CHART_SCHEMES = ["SCHEME_A", "SCHEME_B"];
+
 export const CHART_SCHEMES = {
   SCHEME_A: { id: "SCHEME_A", up: "#63cb49", down: "#eb4880" },
   SCHEME_B: { id: "SCHEME_B", up: "#eb4880", down: "#63cb49" },

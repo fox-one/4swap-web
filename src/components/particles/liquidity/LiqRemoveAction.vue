@@ -83,7 +83,9 @@ class LiqRemoveAction extends Vue {
   handleRemoveSuccess(transaction: API.Transaction) {
     setTimeout(() => {
       this.$utils.helper.loadWalletAssets(this);
-      this.$store.dispatch("global/getAllAddedPairs");
+      this.$store.dispatch("global/getAllAddedPairs", {
+        brokerId: this.$config.BROKER_ID,
+      });
     }, 1000);
     const modal = this.$refs.removeSuccessModal as any;
     if (modal) {

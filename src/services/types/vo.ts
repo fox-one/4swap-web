@@ -108,6 +108,7 @@ export interface IMixinMulPaymentCodeRsp {
 export interface ICreateAction {
   action: string;
   trace_id?: string;
+  broker_id?: string;
   asset_id: string;
   amount: string;
 }

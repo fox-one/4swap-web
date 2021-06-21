@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Vue from "vue";
 import { MutationTree, GetterTree, ActionTree } from "vuex";
 import {
@@ -277,8 +276,8 @@ const actions: ActionTree<AssetsState, any> = {
     commit("SET_ASSETS", res.assets);
   },
 
-  async loadFiats({ commit }) {
-    const res = await this.$http.getFiats();
+  async loadFiats({ commit }, { token }) {
+    const res = await this.$http.getFiats({ token });
     commit("SET_FIATS", res);
   },
 
@@ -304,8 +303,8 @@ const actions: ActionTree<AssetsState, any> = {
     }
   },
 
-  async getAllAddedPairs({ commit }) {
-    const res = await this.$http.getPairs();
+  async getAllAddedPairs({ commit }, { brokerId }) {
+    const res = await this.$http.getPairs({ brokerId });
     const pairs = res.pairs || [];
     pairs.sort((a, b) => {
       const aLiquidity = Number(a.base_value) + Number(a.quote_value);

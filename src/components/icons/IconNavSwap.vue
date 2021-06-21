@@ -51,8 +51,10 @@ class IconNavSwap extends Vue {
   }
 
   get colors() {
+    const activeColor = this.$vuetify.theme.currentTheme.primary;
+
     return this.active
-      ? ["#EE4596", "#f16aab"]
+      ? [activeColor, activeColor]
       : ["rgba(0, 0, 0, .6)", "rgba(255, 255, 255, .7)"];
   }
 }
