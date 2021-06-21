@@ -29,7 +29,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IAsset, IPair } from "~/services/types/vo";
 import { State } from "vuex-class";
 import AssetAmountItem from "./AssetAmountItem.vue";
 
@@ -41,11 +40,11 @@ import AssetAmountItem from "./AssetAmountItem.vue";
 class PairLiquidityPool extends Vue {
   @State((state) => state.global.assets) assets;
 
-  @Prop() inputAsset!: IAsset | null;
+  @Prop() inputAsset!: API.Asset | null;
 
-  @Prop() outputAsset!: IAsset | null;
+  @Prop() outputAsset!: API.Asset | null;
 
-  @Prop() pair!: IPair | null;
+  @Prop() pair!: API.Pair | null;
 
   get meta() {
     const hasLiquidity = Number(this.pair?.liquidity) > 0;

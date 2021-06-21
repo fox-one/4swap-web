@@ -19,17 +19,16 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IAsset, IPair } from "~/services/types/vo";
 
 @Component
 class FirstLiqProviderTip extends Vue {
   @Prop() alreadyHasLiquidity!: boolean;
 
-  @Prop() baseAsset!: IAsset | null;
+  @Prop() baseAsset!: API.Asset | null;
 
-  @Prop() quoteAsset!: IAsset | null;
+  @Prop() quoteAsset!: API.Asset | null;
 
-  @Prop() pair!: IPair | null;
+  @Prop() pair!: API.Pair | null;
 
   get meta() {
     return {

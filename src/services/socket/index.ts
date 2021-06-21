@@ -1,5 +1,5 @@
 import Socket from "~/utils/socket";
-import { IPair, IAsset, ISwapOrder, IPairsRes } from "../types/vo";
+import { IPair, API.Asset, ISwapOrder, IPairsRes } from "../types/vo";
 import { IPreOrderParams } from "../types/dto";
 import { convertPairOrder } from "@/utils/pair/help";
 
@@ -9,7 +9,7 @@ export default function (socket: Socket) {
       socket._connect();
     },
 
-    getAssets(): Promise<{ assets: IAsset[] }> {
+    getAssets(): Promise<{ assets: API.Asset[] }> {
       return socket.get("/assets");
     },
 

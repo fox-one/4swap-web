@@ -34,7 +34,6 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Getter } from "vuex-class";
-import { IAsset, IPair } from "~/services/types/vo";
 import LiqCreateConfirmModal from "./LiqCreateConfirmModal.vue";
 import LiqCreateSuccessModal from "./LiqCreateSuccessModal.vue";
 
@@ -45,11 +44,11 @@ import LiqCreateSuccessModal from "./LiqCreateSuccessModal.vue";
   },
 })
 class LiqCreateAction extends Vue {
-  @Prop() pair!: IPair | null;
+  @Prop() pair!: API.Pair | null;
 
-  @Prop() baseAsset!: IAsset | null;
+  @Prop() baseAsset!: API.Asset | null;
 
-  @Prop() quoteAsset!: IAsset | null;
+  @Prop() quoteAsset!: API.Asset | null;
 
   @Prop() costText!: string | null;
 

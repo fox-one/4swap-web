@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { ITransaction, IAsset, IPair } from "~/services/types/vo";
 import LiqHistoryItem from "@/components/particles/liquidity/LiqHistoryItem.vue";
 
 @Component({
@@ -33,17 +32,17 @@ import LiqHistoryItem from "@/components/particles/liquidity/LiqHistoryItem.vue"
   },
 })
 class RecentlyTransactions extends Vue {
-  @Prop() inputAsset!: IAsset | null;
+  @Prop() inputAsset!: API.Asset | null;
 
-  @Prop() outputAsset!: IAsset | null;
+  @Prop() outputAsset!: API.Asset | null;
 
-  @Prop() pair!: IPair | null;
+  @Prop() pair!: API.Pair | null;
 
   loading = false;
 
   timer: any = null;
 
-  transactions: ITransaction[] = [];
+  transactions: API.Transaction[] = [];
 
   get base() {
     return this.inputAsset?.id;

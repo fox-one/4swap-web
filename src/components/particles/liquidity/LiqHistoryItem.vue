@@ -53,7 +53,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { ITransaction, TxType } from "~/services/types/vo";
 import { VIcon } from "vuetify/lib";
 import { Getter } from "vuex-class";
 import IntersectWrapper from "../../base/IntersectWrapper.vue";
@@ -76,7 +75,7 @@ const SwapText = Vue.extend({
   },
 })
 class LiqHistoryItem extends Vue {
-  @Prop() transaction!: ITransaction;
+  @Prop() transaction!: API.Transaction;
 
   @Prop({ default: "relative", type: String }) timeFormat!:
     | "relative"
@@ -124,25 +123,25 @@ class LiqHistoryItem extends Vue {
     const format = this.$utils.number.format;
     let text, baseAmountSymbol, quoteAmountSymbol;
     switch (this.transaction.type) {
-      case TxType.Add:
+      case "Add":
         text = this.$t("liquidity.add");
         baseAmountSymbol = "+";
         quoteAmountSymbol = "+";
         this.showIcon = false;
         break;
-      case TxType.Remove:
+      case "Remove":
         text = this.$t("liquidity.remove");
         baseAmountSymbol = "";
         quoteAmountSymbol = "";
         this.showIcon = false;
         break;
-      case TxType.Swap:
+      case "Swap":
         baseAmountSymbol = this.swapSymbols.isPayBaseAsset ? "+" : "";
         quoteAmountSymbol = this.swapSymbols.isPayBaseAsset ? "" : "+";
         break;
     }
     const totalValue = this.formatFiat(this.transaction.value);
-    const isSwap = this.transaction.type === TxType.Swap;
+    const isSwap = this.transaction.type === "Swap";
     const timeFormatter =
       this.timeFormat === "absolute"
         ? this.$utils.time.relativeFormat

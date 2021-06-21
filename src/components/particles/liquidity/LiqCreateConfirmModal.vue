@@ -50,7 +50,6 @@
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, Vue } from "vue-property-decorator";
-import { IAsset } from "~/services/types/vo";
 
 @Component
 class LiqCreateConfirmModal extends Vue {
@@ -59,7 +58,7 @@ class LiqCreateConfirmModal extends Vue {
   quoteAsset = {};
   costText = "";
 
-  show(baseAsset: IAsset, quoteAsset: IAsset, cost: string) {
+  show(baseAsset: API.Asset, quoteAsset: API.Asset, cost: string) {
     this.dialog = true;
     this.baseAsset = baseAsset;
     this.quoteAsset = quoteAsset;

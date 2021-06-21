@@ -1,16 +1,5 @@
 import Http from "~/utils/http";
 import { AxiosRequestConfig } from "axios";
-import {
-  AppInfo,
-  IDepositOrder,
-  ISwapOrder,
-  IMixinAsset,
-  ICreateAction,
-  ICreateActionRsp,
-  IMixinMulPaymentCodeParams,
-  IMixinMulPaymentCodeRsp,
-} from "../types/vo";
-import { IPreOrderParams } from "../types/dto";
 import { convertPairOrder } from "@/utils/pair/help";
 import { MIXIN_HOST, PRSID } from "@/constants";
 import { fmtProfits } from "@/utils/profits";
@@ -23,7 +12,7 @@ export default function (http: Http) {
       });
     },
 
-    getAppInfo(): Promise<AppInfo> {
+    getAppInfo(): Promise<API.AppInfo> {
       return http.get("/info");
     },
 
@@ -120,7 +109,7 @@ export default function (http: Http) {
       base: string;
       quote: string;
       data;
-    }): Promise<IDepositOrder> {
+    }): Promise<API.DepositOrder> {
       return http.post(`/pairs/${params.base}/${params.quote}/deposit`, {
         data: params.data,
       });
@@ -156,7 +145,7 @@ export default function (http: Http) {
       return http.get(`/transactions/${base}/${quote}/mine/${follow}`);
     },
 
-    getPreOrder(params: IPreOrderParams): Promise<ISwapOrder> {
+    getPreOrder(params: API.PreOrderParams): Promise<API.SwapOrder> {
       return http.post("/orders/pre", {
         data: params,
       });
@@ -166,21 +155,23 @@ export default function (http: Http) {
       return http.get(`/orders/${id}`);
     },
 
-    async getAssetsFromMixin(): Promise<IMixinAsset[]> {
+    async getAssetsFromMixin(): Promise<API.MixinAsset[]> {
       return await http.get(`${MIXIN_HOST}/assets`);
     },
 
-    async getAssetFromMixin(id: string): Promise<IMixinAsset> {
+    async getAssetFromMixin(id: string): Promise<API.MixinAsset> {
       return await http.get(`${MIXIN_HOST}/assets/${id}`);
     },
 
     async genMulPaymentCode(
-      data: IMixinMulPaymentCodeParams
-    ): Promise<IMixinMulPaymentCodeRsp> {
+      data: API.MixinMulPaymentCodeParams
+    ): Promise<API.MixinMulPaymentCodeRsp> {
       return await http.post(`${MIXIN_HOST}/payments`, { data });
     },
 
-    async createActions(params: ICreateAction): Promise<ICreateActionRsp> {
+    async createActions(
+      params: API.CreateAction
+    ): Promise<API.CreateActionRsp> {
       return http.post(`/actions`, {
         data: params,
       });

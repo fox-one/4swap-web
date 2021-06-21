@@ -74,7 +74,6 @@
 import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixins from "@/mixins";
 import { Getter, State } from "vuex-class";
-import { IAsset, IPair } from "~/services/types/vo";
 import BigNumber from "bignumber.js";
 import { BTC_ASSET_ID, DEFAULT_ASSET_ID, PRSID } from "~/constants";
 import AddResultForecast from "@/components/particles/liquidity/AddResultForecast.vue";
@@ -89,7 +88,7 @@ import FirstLiqProviderTip from "@/components/particles/liquidity/FirstLiqProvid
   },
 })
 class AddLiquidityPage extends Mixins(mixins.page) {
-  @Getter("global/getAssetsWithoutPairs") assets!: IAsset[];
+  @Getter("global/getAssetsWithoutPairs") assets!: API.Asset[];
 
   @Getter("global/getPair") getPair;
 
@@ -142,13 +141,13 @@ class AddLiquidityPage extends Mixins(mixins.page) {
     });
   }
 
-  get pair(): IPair | undefined {
+  get pair(): API.Pair | undefined {
     const input = this.baseAsset?.id;
     const output = this.quoteAsset?.id;
     return this.getPair({ base: input, quote: output });
   }
 
-  get baseAsset(): IAsset | null {
+  get baseAsset(): API.Asset | null {
     return this.$store.state.liquidity.baseAsset;
   }
 
@@ -159,7 +158,7 @@ class AddLiquidityPage extends Mixins(mixins.page) {
     this.$store.commit("liquidity/SET_BASE_ASSET", value);
   }
 
-  get quoteAsset(): IAsset | null {
+  get quoteAsset(): API.Asset | null {
     return this.$store.state.liquidity.quoteAsset;
   }
 

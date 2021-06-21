@@ -28,17 +28,16 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IAsset, IPair } from "@/services/types/vo";
 
 @Component
 class MyPositionTab extends Vue {
-  @Prop() baseAsset!: IAsset;
+  @Prop() baseAsset!: API.Asset;
 
-  @Prop() quoteAsset!: IAsset;
+  @Prop() quoteAsset!: API.Asset;
 
   @Prop() liquidityAsset;
 
-  @Prop() pair!: IPair;
+  @Prop() pair!: API.Pair;
 
   get baseAmount() {
     return this.pair?.base_amount;

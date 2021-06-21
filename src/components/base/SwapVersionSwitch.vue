@@ -3,7 +3,7 @@
     <template #activator="{ on }">
       <div class="ml-4 mr-1">{{ title }}</div>
       <div
-        v-on="on"
+        v-on="$config.LEGACY_WEB_HOST ? on : null"
         class="px-1 py-0 f-title-2 rounded-lg version-label primary"
         style="font-size: 15px !important"
       >
@@ -53,7 +53,7 @@ class SwapEnvSwitch extends Vue {
   dialog = false;
 
   get versions() {
-    return {
+    let versions: any = {
       mtg: {
         id: "mtg",
         title: this.$t("channel.name.mtg"),
@@ -62,15 +62,20 @@ class SwapEnvSwitch extends Vue {
         description: this.$t("version.mtg.description"),
         icon: require("@/assets/images/logo_4swap_mtg.png"),
       },
-      legacy: {
+    };
+
+    if (this.$config.LEGACY_WEB_HOST) {
+      versions.legacy = {
         id: "legacy",
         title: this.$t("channel.name.legacy"),
         label: this.$t("legacy"),
-        host: this.$config.MTG_WEB_HOST,
+        host: this.$config.LEGACY_WEB_HOST,
         description: this.$t("version.legacy.description"),
         icon: require("@/assets/images/logo_4swap_legacy.png"),
-      },
-    };
+      };
+    }
+
+    return versions;
   }
 
   get current() {

@@ -30,18 +30,16 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Getter } from "vuex-class";
-// import { ERROR_CODE } from "~/services/types/error";
-import { IAsset, IPair } from "~/services/types/vo";
 import { DepositParams } from "~/utils/payment";
 import { v4 as uuid } from "uuid";
 
 @Component
 class LiqAddAction extends Vue {
-  @Prop() pair!: IPair | null;
+  @Prop() pair!: API.Pair | null;
 
-  @Prop() baseAsset!: IAsset | null;
+  @Prop() baseAsset!: API.Asset | null;
 
-  @Prop() quoteAsset!: IAsset | null;
+  @Prop() quoteAsset!: API.Asset | null;
 
   @Prop() baseAmount!: string;
 

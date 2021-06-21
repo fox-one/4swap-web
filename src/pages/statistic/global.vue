@@ -46,7 +46,6 @@ import { Component, Mixins } from "vue-property-decorator";
 import mixins from "@/mixins";
 import BigNumber from "bignumber.js";
 import { State } from "vuex-class";
-import { ITransaction } from "~/services/types/vo";
 import LiqHistoryItem from "@/components/particles/liquidity/LiqHistoryItem.vue";
 import ChartPanel from "@/components/particles/pair-info/ChartsPanel.vue";
 
@@ -61,7 +60,7 @@ class GlobalStatistic extends Mixins(mixins.page) {
 
   loading = false;
 
-  transactions: ITransaction[] = [];
+  transactions: API.Transaction[] = [];
 
   pagination = {
     hasNext: true,

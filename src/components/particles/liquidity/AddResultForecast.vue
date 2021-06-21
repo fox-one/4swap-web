@@ -22,19 +22,18 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IAsset, IPair } from "~/services/types/vo";
 
 @Component
 class AddResultForecast extends Vue {
-  @Prop() baseAsset!: IAsset | null;
+  @Prop() baseAsset!: API.Asset | null;
 
-  @Prop() quoteAsset!: IAsset | null;
+  @Prop() quoteAsset!: API.Asset | null;
 
   @Prop() baseAmount!: string;
 
   @Prop() quoteAmount!: string;
 
-  @Prop() pair!: IPair | null;
+  @Prop() pair!: API.Pair | null;
 
   @Prop() alreadyHasLiquidity!: boolean;
 

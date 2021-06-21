@@ -22,7 +22,6 @@
 
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
-import { ITransaction } from "~/services/types/vo";
 import mixins from "@/mixins";
 import { Getter } from "vuex-class";
 import LiqHistoryItem from "@/components/particles/liquidity/LiqHistoryItem.vue";
@@ -45,7 +44,7 @@ class LiquidityHistory extends Mixins(mixins.page) {
 
   loading = false;
 
-  transactions: ITransaction[] = [];
+  transactions: API.Transaction[] = [];
 
   profits: API.PairProfits | null = null;
 

@@ -44,7 +44,6 @@
 import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixins from "@/mixins";
 import { Getter, State } from "vuex-class";
-import { IAsset, IPair } from "~/services/types/vo";
 import BigNumber from "bignumber.js";
 import { v4 as uuid } from "uuid";
 import LiqCreateAction from "@/components/particles/liquidity/LiqCreateAction.vue";
@@ -57,7 +56,7 @@ import LiqCreateRules from "@/components/particles/liquidity/LiqCreateRules.vue"
   },
 })
 class CreateLiquidityPage extends Mixins(mixins.page) {
-  @Getter("global/getAssetsWithoutPairs") assets!: IAsset[];
+  @Getter("global/getAssetsWithoutPairs") assets!: API.Asset[];
 
   @Getter("global/getPair") getPair;
 
@@ -118,7 +117,7 @@ class CreateLiquidityPage extends Mixins(mixins.page) {
     return this.assets.filter((x) => this.baseAsset?.id !== x.id);
   }
 
-  get pair(): IPair | undefined {
+  get pair(): API.Pair | undefined {
     const input = this.baseAsset?.id;
     const output = this.quoteAsset?.id;
     return this.getPair({ base: input, quote: output });

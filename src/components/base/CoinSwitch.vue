@@ -54,13 +54,12 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IAsset } from "~/services/types/vo";
 
 @Component
 class CoinSwitch extends Vue {
   @Prop({ type: String, default: "" }) defaultTitle!: string;
 
-  @Prop({ type: Array, default: [] }) assets!: IAsset[];
+  @Prop({ type: Array, default: [] }) assets!: API.Asset[];
 
   @Prop({ type: String, default: "" }) defaultId!: string;
 
@@ -81,7 +80,7 @@ class CoinSwitch extends Vue {
     });
   }
 
-  handleSwitch(asset: IAsset) {
+  handleSwitch(asset: API.Asset) {
     if (this.currentId !== asset.id) {
       this.currentId = asset.id;
       this.title = asset.symbol;

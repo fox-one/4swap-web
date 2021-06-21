@@ -81,7 +81,6 @@ import mixins from "@/mixins";
 import { State } from "vuex-class";
 import PoolPairItem from "@/components/particles/pool/PoolPairItemNew.vue";
 import GlobalLiquidity from "@/components/particles/pool/GlobalLiquidity.vue";
-import { IAsset, IPair } from "~/services/types/vo";
 import BigNumber from "bignumber.js";
 
 @Component({
@@ -91,9 +90,9 @@ import BigNumber from "bignumber.js";
   },
 })
 class PoolsPage extends Mixins(mixins.page) {
-  @State((state) => state.global.pairs) pairs!: IPair[];
+  @State((state) => state.global.pairs) pairs!: API.Pair[];
 
-  @State((state) => state.global.assets) assets!: IAsset[];
+  @State((state) => state.global.assets) assets!: API.Asset[];
 
   get ascending() {
     return this.$store.state.pool.ascending;

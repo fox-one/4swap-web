@@ -65,7 +65,6 @@
 <script lang="ts">
 import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixins from "@/mixins";
-import { IPair } from "~/services/types/vo";
 import { Getter } from "vuex-class";
 import SharedTabs from "@/components/particles/liquidity/shared-pair/SharedTabs.vue";
 import LiqRemoveAction from "@/components/particles/liquidity/LiqRemoveAction.vue";
@@ -122,7 +121,7 @@ class RemoveLiquidityPage extends Mixins(mixins.page) {
     ];
   }
 
-  get pair(): IPair | undefined {
+  get pair(): API.Pair | undefined {
     const base = this.$route.query.base;
     const quote = this.$route.query.quote;
     return this.getPair({ base, quote });

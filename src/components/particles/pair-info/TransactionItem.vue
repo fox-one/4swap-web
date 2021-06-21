@@ -24,7 +24,6 @@
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IPair, ITransaction, TxType } from "~/services/types/vo";
 import { VIcon } from "vuetify/lib";
 import { Getter } from "vuex-class";
 
@@ -45,7 +44,7 @@ const SwapText = Vue.extend({
   },
 })
 class TransactionItem extends Vue {
-  @Prop() transaction!: ITransaction;
+  @Prop() transaction!: API.Transaction;
 
   @Getter("global/getAssetById") getAssetById;
 
@@ -56,17 +55,17 @@ class TransactionItem extends Vue {
     const fiatSymbol = "$";
     const time = this.$utils.time.toRelative(transaction.created_at);
     const totalValue = `${fiatSymbol}${transaction.value}`;
-    const isSwap = transaction.type === TxType.Swap;
+    const isSwap = transaction.type === "Swap";
 
     let text, symbols;
     switch (transaction.type) {
-      case TxType.Swap:
+      case "Swap":
         symbols = this.getSwapSymbols();
         break;
-      case TxType.Add:
+      case "Add":
         text = this.$t("liquidity.add");
         break;
-      case TxType.Remove:
+      case "Remove":
         text = this.$t("liquidity.remove");
         break;
     }

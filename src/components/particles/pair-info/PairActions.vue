@@ -5,7 +5,6 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { FButton } from "@foxone/uikit/src/components/";
-import { IAsset } from "~/services/types/vo";
 
 const events = {
   swap: Symbol("swap"),
@@ -15,9 +14,9 @@ const events = {
 
 @Component
 class PairActions extends Vue {
-  @Prop() baseAsset!: IAsset;
+  @Prop() baseAsset!: API.Asset;
 
-  @Prop() quoteAsset!: IAsset;
+  @Prop() quoteAsset!: API.Asset;
 
   get btns() {
     const colorUp = this.$utils.color.colorUp(this);

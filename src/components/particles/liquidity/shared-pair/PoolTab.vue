@@ -10,15 +10,14 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IPair, IAsset } from "@/services/types/vo";
 
 @Component
 class PoolTab extends Vue {
-  @Prop() pair!: IPair;
+  @Prop() pair!: API.Pair;
 
-  @Prop() baseAsset!: IAsset;
+  @Prop() baseAsset!: API.Asset;
 
-  @Prop() quoteAsset!: IAsset;
+  @Prop() quoteAsset!: API.Asset;
 
   get meta() {
     const totalBaseAmount = Number(this.pair?.base_amount ?? 0);

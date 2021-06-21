@@ -86,7 +86,7 @@
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
 import { Getter } from "vuex-class";
-import { IAsset } from "~/services/types/vo";
+
 import mixins from "@/mixins";
 import PoolPairItem from "@/components/particles/pool/PoolPairItemNew.vue";
 import staticData from "@/assets/intro/coin-intro";
@@ -101,7 +101,7 @@ class CoinStatistic extends Mixins(mixins.page) {
 
   @Getter("global/getPairsById") getPairsById;
 
-  @Getter("global/getAssetsJustInPairs") assets!: IAsset[];
+  @Getter("global/getAssetsJustInPairs") assets!: API.Asset[];
 
   loading = false;
 

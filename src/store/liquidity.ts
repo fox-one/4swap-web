@@ -1,5 +1,5 @@
 import { MutationTree } from "vuex";
-import { IAsset } from "~/services/types/vo";
+
 import { DepositParams } from "@/utils/payment";
 
 const state = () => ({
@@ -9,8 +9,8 @@ const state = () => ({
 });
 
 export type SwapState = {
-  baseAsset: IAsset | null;
-  quoteAsset: IAsset | null;
+  baseAsset: API.Asset | null;
+  quoteAsset: API.Asset | null;
   deposits: DepositParams[];
 };
 

@@ -4,7 +4,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IAsset } from "~/services/types/vo";
 
 const events = {
   history: Symbol("history"),
@@ -14,9 +13,9 @@ const events = {
 
 @Component
 class ProfitsActions extends Vue {
-  @Prop() baseAsset!: IAsset;
+  @Prop() baseAsset!: API.Asset;
 
-  @Prop() quoteAsset!: IAsset;
+  @Prop() quoteAsset!: API.Asset;
 
   get btns() {
     const colorUp = this.$utils.color.colorUp(this);

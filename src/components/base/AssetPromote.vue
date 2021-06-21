@@ -11,11 +11,10 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IAsset } from "~/services/types/vo";
 
 @Component
 class AssetPromote extends Vue {
-  @Prop() asset!: IAsset;
+  @Prop() asset!: API.Asset;
 
   get meta() {
     const promotion = this.asset?.promotion;

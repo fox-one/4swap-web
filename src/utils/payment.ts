@@ -1,5 +1,3 @@
-import { ICreateAction } from "~/services/types/vo";
-
 export interface DepositParams {
   amount: string;
   asset_id: string;
@@ -79,7 +77,7 @@ function getBaseParams(vm: Vue) {
   };
 }
 
-export async function requestPayment(vm: Vue, params: ICreateAction) {
+export async function requestPayment(vm: Vue, params: API.CreateAction) {
   const resp = await vm.$http.createActions({
     ...params,
     broker_id: vm.$config.BROKER_ID,

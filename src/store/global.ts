@@ -1,13 +1,5 @@
 import Vue from "vue";
 import { MutationTree, GetterTree, ActionTree } from "vuex";
-import {
-  IAsset,
-  IFiat,
-  IMixinAsset,
-  IPair,
-  IMixinUser,
-  AppInfo,
-} from "~/services/types/vo";
 import { convertPairOrder } from "@/utils/pair/help";
 
 const state = () => ({
@@ -29,10 +21,10 @@ const state = () => ({
 });
 
 export type AssetsState = {
-  pairs: IPair[];
-  assets: IAsset[];
-  fiats: IFiat[];
-  walletAssets: IMixinAsset[];
+  pairs: API.Pair[];
+  assets: API.Asset[];
+  fiats: API.Fiat[];
+  walletAssets: API.MixinAsset[];
   cache: string[];
   info: {
     fee_24h: string;
@@ -41,8 +33,8 @@ export type AssetsState = {
     transaction_count_24h: number;
     ts: number;
   };
-  me: IMixinUser | null;
-  appInfo: AppInfo | null;
+  me: API.MixinUser | null;
+  appInfo: API.AppInfo | null;
   liqSums: Array<number>;
   volSums: Array<number>;
   priceRatios: Array<number>;

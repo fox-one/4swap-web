@@ -1,5 +1,4 @@
 import { MutationTree } from "vuex";
-import { IAsset } from "~/services/types/vo";
 
 const state = () => ({
   inputAsset: null,
@@ -8,8 +7,8 @@ const state = () => ({
 });
 
 export type SwapState = {
-  inputAsset: IAsset | null;
-  outputAsset: IAsset | null;
+  inputAsset: API.Asset | null;
+  outputAsset: API.Asset | null;
   expandIndex: number;
 };
 

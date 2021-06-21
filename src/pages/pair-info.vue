@@ -32,7 +32,6 @@
 <script lang="ts">
 import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixins from "@/mixins";
-import { IPair } from "~/services/types/vo";
 import { Getter, State } from "vuex-class";
 import BaseInfoPanel from "@/components/particles/pair-info/BaseInfoPanel.vue";
 import Transactions from "@/components/particles/pair-info/Transactions.vue";
@@ -56,7 +55,7 @@ class PairInfoPage extends Mixins(mixins.page) {
 
   loading = false;
 
-  get pair(): IPair | undefined {
+  get pair(): API.Pair | undefined {
     const base = this.$route.query.base;
     const quote = this.$route.query.quote;
     return this.getPair({ base, quote });

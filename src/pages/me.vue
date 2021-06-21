@@ -49,7 +49,6 @@
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
 import mixins from "@/mixins";
-import { IPair } from "@/services/types/vo";
 import BalancePanel from "@/components/particles/me/BalancePanel.vue";
 import SharedPair from "@/components/particles/liquidity/shared-pair/SharedPair.vue";
 import { VIcon, VBtn } from "vuetify/lib";
@@ -64,7 +63,7 @@ import { Getter } from "vuex-class";
 class MePage extends Mixins(mixins.page) {
   @Getter("global/getAssetById") getAssetById;
 
-  totalPairs: IPair[] = this.$store.getters["global/getSharedPairs"];
+  totalPairs: API.Pair[] = this.$store.getters["global/getSharedPairs"];
 
   searchValue = "";
 

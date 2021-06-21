@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IAsset, IPair, ITransaction } from "~/services/types/vo";
 import LiqHistoryItem from "@/components/particles/liquidity/LiqHistoryItem.vue";
 
 @Component({
@@ -30,15 +29,15 @@ import LiqHistoryItem from "@/components/particles/liquidity/LiqHistoryItem.vue"
   },
 })
 class Transactions extends Vue {
-  @Prop() pair!: IPair;
+  @Prop() pair!: API.Pair;
 
-  @Prop() baseAsset!: IAsset;
+  @Prop() baseAsset!: API.Asset;
 
-  @Prop() quoteAsset!: IAsset;
+  @Prop() quoteAsset!: API.Asset;
 
   loading = false;
 
-  transactions: ITransaction[] = [];
+  transactions: API.Transaction[] = [];
 
   pagination = {
     has_next: true,

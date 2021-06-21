@@ -26,13 +26,12 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { IAsset } from "~/services/types/vo";
 
 @Component
 class PairIcon extends Vue {
-  @Prop() baseAsset!: IAsset;
+  @Prop() baseAsset!: API.Asset;
 
-  @Prop() quoteAsset!: IAsset;
+  @Prop() quoteAsset!: API.Asset;
 
   @Prop({ default: false, type: Boolean }) small!: boolean;
 
