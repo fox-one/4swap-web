@@ -1,0 +1,49 @@
+name: Build and deploy to mulsig production.
+
+env:
+  OSS_ENDPOINT: oss-cn-beijing.aliyuncs.com
+  AWS_REGION: us-east-1
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'fox-one'
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
+
+      - run: yarn --frozen-lockfile --non-interactive
+
+      - name: Build
+        environment: lake_production
+        run: yarn build
+
+      # upload to aliyun
+      - uses: manyuanrong/setup-ossutil@v2.0
+        with:
+          endpoint: ${{ env.OSS_ENDPOINT }}
+          access-key-id: ${{ secrets.GLOBAL_OSS_ACCESS_KEY_ID }}
+          access-key-secret: ${{ secrets.GLOBAL_OSS_ACCESS_KEY_SECRET }}
+      - run: ossutil cp -r -u -f dist ${{ secrets.OSS_URL_PROD }} -e ${{ env.OSS_ENDPOINT }}
+      - run: ossutil set-meta ${{ secrets.OSS_URL_LAKE }} Cache-Control:max-age=604800 -r -f --update -e ${{ env.OSS_ENDPOINT }}
+      - run: ossutil set-meta ${{ secrets.OSS_URL_LAKE }}/index.html Cache-Control:no-cache --update -e ${{ env.OSS_ENDPOINT }}
+
+      # upload to aws
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.GLOBAL_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.GLOBAL_AWS_ACCESS_KEY_SECRET }}
+      - run: aws s3 cp --recursive dist ${{ secrets.S3_URL_LAKE }} --acl public-read --cache-control "max-age=604800"
+      - run: aws s3 cp dist/index.html ${{ secrets.S3_URL_LAKE }} --cache-control "no-cache" --acl public-read

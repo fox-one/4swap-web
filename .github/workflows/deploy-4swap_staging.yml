@@ -1,14 +1,11 @@
-name: Build and deploy to mulsig develop.
+name: Build and deploy to mulsig production.
 
 env:
+  OSS_ENDPOINT: oss-cn-beijing.aliyuncs.com
   AWS_REGION: us-east-1
-  APP_ENV: dev
 
 on:
   push:
-    branches:
-      - develop
-  pull_request:
     branches:
       - develop
 
@@ -28,20 +25,8 @@ jobs:
 
       - run: yarn --frozen-lockfile --non-interactive
 
-      - name: build
-        env:
-          CHANNEL: ${{ secrets.DEV_CHANNEL }}
-          CHANNEL_NAME: ${{ secrets.DEV_CHANNEL_NAME }}
-          BROKER_ID: ${{ secrets.DEV_BROKER_ID }}
-          LOADING_COLOR: ${{ secrets.DEV_LOADING_COLOR }}
-          PRIMARY_COLOR_DARK: ${{ secrets.DEV_PRIMARY_COLOR_DARK }}
-          PRIMARY_COLOR_LIGHT: ${{ secrets.DEV_PRIMARY_COLOR_LIGHT }}
-          MIXIN_CLIENT_ID: ${{ secrets.DEV_MIXIN_CLIENT_ID }}
-          GA: ${{ secrets.GA }}
-          API_BASE: ${{ secrets.DEV_API_BASE }}
-          FIAT_TOKEN: ${{ secrets.DEV_FIAT_TOKEN }}
-          LEGACY_WEB_HOST: ${{ secrets.DEV_LEGACY_WEB_HOST }}
-          MTG_WEB_HOST: ${{ secrets.DEV_MTG_WEB_HOST }}
+      - name: Build
+        environment: 4swap_staging
         run: yarn build
 
       # upload to aws
