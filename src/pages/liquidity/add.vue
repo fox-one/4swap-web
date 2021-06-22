@@ -73,7 +73,7 @@
 <script lang="ts">
 import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixins from "@/mixins";
-import { Getter, State } from "vuex-class";
+import { Getter } from "vuex-class";
 import BigNumber from "bignumber.js";
 import { BTC_ASSET_ID, DEFAULT_ASSET_ID, PRSID } from "~/constants";
 import AddResultForecast from "@/components/particles/liquidity/AddResultForecast.vue";
@@ -88,11 +88,9 @@ import FirstLiqProviderTip from "@/components/particles/liquidity/FirstLiqProvid
   },
 })
 class AddLiquidityPage extends Mixins(mixins.page) {
-  @Getter("global/getAssetsWithoutPairs") assets!: API.Asset[];
+  @Getter("global/getAssetsWithoutLPTokens") assets!: API.Asset[];
 
   @Getter("global/getPair") getPair;
-
-  @State((state) => state.global.pairs) pairs!: API.Pair[];
 
   baseAmount = "";
 

@@ -1,7 +1,7 @@
 import Http from "~/utils/http";
 import { AxiosRequestConfig } from "axios";
 import { convertPairOrder } from "@/utils/pair/help";
-import { MIXIN_HOST, PRSID } from "@/constants";
+import { MIXIN_HOST } from "@/constants";
 import { fmtProfits } from "@/utils/profits";
 
 export default function (http: Http) {
@@ -32,16 +32,7 @@ export default function (http: Http) {
     },
 
     async getPairs(opts: { brokerId?: string }): Promise<API.PairsRes> {
-      // @TODO prs event
-      const resp = await http.get("/pairs", { params: opts });
-      const pairs = resp.pairs.map((x) => {
-        if (x?.base_asset_id === PRSID || x.quote_asset_id === PRSID) {
-          x.hidden = true;
-        }
-        return x;
-      });
-      resp.pairs = pairs;
-      return resp;
+      return http.get("/pairs", { params: opts });
     },
 
     getDepositOrder(follow: string): Promise<API.DepositOrder> {

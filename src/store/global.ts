@@ -6,7 +6,8 @@ const state = () => ({
   pairs: [],
   assets: [],
   fiats: [],
-  walletAssets: [],
+  assetsWhiteLists: [],
+  assetsBlackLists: [],
   cache: [],
   info: {
     fee_24h: null,
@@ -23,6 +24,8 @@ const state = () => ({
 export type AssetsState = {
   pairs: API.Pair[];
   assets: API.Asset[];
+  assetsWhiteLists: string[];
+  assetsBlackLists: string[];
   fiats: API.Fiat[];
   walletAssets: API.MixinAsset[];
   cache: string[];
@@ -42,53 +45,75 @@ export type AssetsState = {
 };
 
 const getters: GetterTree<AssetsState, any> = {
-  getAssetsWithoutPairs(state) {
-    const assets = state.assets;
-    const pairs = state.pairs;
-    return assets.filter((asset) => {
-      let isPair = false;
-      for (let i = 0; i < pairs.length; i++) {
-        const pair = pairs[i];
-        if (
-          pair.liquidity_asset_id === asset.id ||
-          ~asset.name.indexOf("LP Token")
-        ) {
-          isPair = true;
-          break;
-        }
-      }
+  isPairsAvaliable(state) {
+    const diff = new Date().getTime() - state.info.ts;
+    return diff < 1000 * 60;
+  },
 
-      return !isPair;
+  getAvaliableAssets(state) {
+    const {
+      assets,
+      assetsWhiteLists: whitelists,
+      assetsBlackLists: blacklists,
+    } = state;
+    let avaliables = assets;
+
+    //  use asset only listed in whitelist
+    if (whitelists.length) {
+      avaliables = assets.filter(({ id }) => whitelists.find((x) => id === x));
+    }
+
+    // remove asset listed in blacklist
+    if (blacklists.length) {
+      avaliables = assets.filter(({ id }) => !blacklists.find((x) => id === x));
+    }
+
+    return avaliables;
+  },
+
+  getAvaliablePairs(state, getters) {
+    const pairs = state.pairs;
+    const assets = getters["getAvaliableAssets"];
+
+    return pairs.filter(({ base_asset_id, quote_asset_id }) => {
+      return (
+        assets.find(({ id }) => id === base_asset_id) &&
+        assets.find(({ id }) => id === quote_asset_id)
+      );
     });
   },
 
-  getAssetsJustInPairs(state) {
-    const assets = state.assets;
-    const pairs = state.pairs;
-    return assets.filter((asset) => {
-      let isInPairs = false;
-      for (let i = 0; i < pairs.length; i++) {
-        const pair = pairs[i];
-        if (
-          (pair.base_asset_id === asset.id ||
-            pair.quote_asset_id === asset.id) &&
-          !~asset.name.indexOf("LP Token")
-        ) {
-          isInPairs = true;
-          break;
-        }
-      }
-
-      return isInPairs;
-    });
-  },
-
-  getSortedAssets(state) {
+  getSortedAssets(state, getters) {
+    const assets: API.Asset[] = getters["getAvaliableAssets"];
     const cache = state.cache;
-    return state.assets.concat().sort((a, b) => {
+    return assets.concat().sort((a, b) => {
       const idxA = cache.indexOf(a.id);
       const idxB = cache.indexOf(b.id);
       return idxA > idxB ? -1 : idxA === idxB ? 0 : 1;
+    });
+  },
+
+  getAssetsWithoutLPTokens(state, getters) {
+    const assets: API.Asset[] = getters["getAvaliableAssets"];
+    const pairs = state.pairs;
+
+    // remove LP token
+    return assets.filter(({ id, name }) => {
+      return !pairs.find(
+        ({ liquidity_asset_id }) =>
+          liquidity_asset_id === id || name.includes("LP Token")
+      );
+    });
+  },
+
+  getAssetsJustInPairs(state, getters) {
+    const assets: API.Asset[] = getters["getAssetsWithoutLPTokens"];
+    const pairs = state.pairs;
+
+    return assets.filter(({ id }) => {
+      return pairs.find(({ base_asset_id, quote_asset_id }) => {
+        return base_asset_id === id || quote_asset_id === id;
+      });
     });
   },
 
@@ -137,11 +162,6 @@ const getters: GetterTree<AssetsState, any> = {
     };
   },
 
-  getPairsAvaliable(state) {
-    const diff = new Date().getTime() - state.info.ts;
-    return diff < 1000 * 60;
-  },
-
   getUserId(state) {
     return state.me?.user_id;
   },
@@ -183,6 +203,14 @@ const getters: GetterTree<AssetsState, any> = {
 const mutations: MutationTree<AssetsState> = {
   SET_PAIRS(state, pairs) {
     state.pairs = pairs;
+  },
+
+  SET_ASSETS_WHITE_LISTS(state, whitelists) {
+    state.assetsWhiteLists = whitelists;
+  },
+
+  SET_ASSETS_BLACK_LISTS(state, blacklists) {
+    state.assetsBlackLists = blacklists;
   },
 
   SET_INFO(state, data) {
@@ -305,6 +333,7 @@ const actions: ActionTree<AssetsState, any> = {
     });
     this.$pairRoutes.makeRoutes(pairs);
     commit("SET_PAIRS", pairs);
+    commit("SET_ASSETS_WHITE_LISTS", res.whitelists);
     commit("SET_INFO", {
       fee_24h: res.fee_24h,
       volume_24h: res.volume_24h,

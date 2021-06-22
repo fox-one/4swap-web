@@ -56,7 +56,7 @@ import LiqCreateRules from "@/components/particles/liquidity/LiqCreateRules.vue"
   },
 })
 class CreateLiquidityPage extends Mixins(mixins.page) {
-  @Getter("global/getAssetsWithoutPairs") assets!: API.Asset[];
+  @Getter("global/getAssetsWithoutLPTokens") assets!: API.Asset[];
 
   @Getter("global/getPair") getPair;
 

@@ -42,6 +42,7 @@ declare namespace API {
 
   export interface PairsRes {
     pairs: API.Pair[];
+    whitelists: string[];
     fee_24h: string;
     pair_count: number;
     transaction_count_24h: number;

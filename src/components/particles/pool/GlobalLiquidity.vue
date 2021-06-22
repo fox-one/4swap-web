@@ -29,7 +29,7 @@ class GlobalLiquidity extends Vue {
     const simplizeFiat = this.$utils.number.simplizeFiat;
 
     const info = this.$store.state.global.info;
-    const pairs = this.$store.state.global.pairs;
+    const pairs = this.$store.getters["global/getAvaliablePairs"];
 
     const totalUSDValue = pairs.reduce((total, p) => {
       return total.plus(p.base_value).plus(p.quote_value);

@@ -78,7 +78,7 @@
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
 import mixins from "@/mixins";
-import { State } from "vuex-class";
+import { Getter, State } from "vuex-class";
 import PoolPairItem from "@/components/particles/pool/PoolPairItemNew.vue";
 import GlobalLiquidity from "@/components/particles/pool/GlobalLiquidity.vue";
 import BigNumber from "bignumber.js";
@@ -90,7 +90,7 @@ import BigNumber from "bignumber.js";
   },
 })
 class PoolsPage extends Mixins(mixins.page) {
-  @State((state) => state.global.pairs) pairs!: API.Pair[];
+  @Getter("global/getAvaliablePairs") pairs!: API.Pair[];
 
   @State((state) => state.global.assets) assets!: API.Asset[];
 
@@ -163,10 +163,6 @@ class PoolsPage extends Mixins(mixins.page) {
           filteredAssetId.includes(pair.base_asset_id) ||
           filteredAssetId.includes(pair.quote_asset_id)
         );
-      })
-      // @TODO prs event
-      .filter((pair) => {
-        return !(pair as any).hidden;
       })
       .map((pair) => {
         const totalValue = new BigNumber(pair.base_value)
