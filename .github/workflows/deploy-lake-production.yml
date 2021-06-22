@@ -13,6 +13,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'fox-one'
+    environment: lake_production
     steps:
       - uses: actions/checkout@master
 
@@ -26,7 +27,6 @@ jobs:
       - run: yarn --frozen-lockfile --non-interactive
 
       - name: Build
-        environment: lake_production
         run: yarn build
 
       # upload to aliyun
