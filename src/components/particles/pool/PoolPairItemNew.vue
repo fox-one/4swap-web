@@ -1,50 +1,55 @@
 <template>
-  <f-panel class="pair-item no-border-radius">
-    <v-layout
-      align-center
-      justify-space-between
-      class="pa-0"
-      @click="handleToInfo"
-    >
-      <v-flex class="d-flex align-center">
-        <div class="pair-item-icon mr-3">
-          <base-pair-icon
-            :base-asset="meta.baseAsset"
-            :quote-asset="meta.quoteAsset"
-            small
-          />
-        </div>
-        <div class="pair-item-symbol">
+  <v-lazy min-height="65">
+    <f-panel class="pair-item no-border-radius">
+      <v-layout
+        align-center
+        justify-space-between
+        class="pa-0"
+        @click="handleToInfo"
+      >
+        <v-flex class="d-flex align-center">
+          <div class="pair-item-icon mr-3">
+            <base-pair-icon
+              :base-asset="meta.baseAsset"
+              :quote-asset="meta.quoteAsset"
+              small
+            />
+          </div>
+          <div class="pair-item-symbol">
+            <div
+              class="d-flex align-center f-title-3"
+              style="font-weight: 600 !important; line-height: 24px"
+            >
+              <span>
+                {{ meta.baseSymbol }}
+              </span>
+              <span style="margin: 0 6px"><icon-x /></span>
+              <span>
+                {{ meta.quoteSymbol }}
+              </span>
+            </div>
+            <div class="f-body-2 f-greyscale-3 mt-1 total-text">
+              {{ meta.totalValueText }}
+            </div>
+          </div>
+        </v-flex>
+        <v-flex class="d-flex flex-column justify-space-between">
           <div
-            class="d-flex align-center f-title-3"
-            style="font-weight: 600 !important; line-height: 24px"
+            class="f-title-3 volume-text"
+            style="font-weight: 600 !important"
           >
-            <span>
-              {{ meta.baseSymbol }}
-            </span>
-            <span style="margin: 0 6px"><icon-x /></span>
-            <span>
-              {{ meta.quoteSymbol }}
-            </span>
+            {{ meta.volumeText }}
           </div>
-          <div class="f-body-2 f-greyscale-3 mt-1 total-text">
-            {{ meta.totalValueText }}
+          <div class="f-body-2 pool-turnover-text f-greyscale-3 mt-1">
+            {{ meta.poolTurnoverText }}
           </div>
-        </div>
-      </v-flex>
-      <v-flex class="d-flex flex-column justify-space-between">
-        <div class="f-title-3 volume-text" style="font-weight: 600 !important">
-          {{ meta.volumeText }}
-        </div>
-        <div class="f-body-2 pool-turnover-text f-greyscale-3 mt-1">
-          {{ meta.poolTurnoverText }}
-        </div>
-      </v-flex>
-    </v-layout>
-    <i class="pair-item-chevron">
-      <icon-chevron />
-    </i>
-  </f-panel>
+        </v-flex>
+      </v-layout>
+      <i class="pair-item-chevron">
+        <icon-chevron />
+      </i>
+    </f-panel>
+  </v-lazy>
 </template>
 
 <script lang="ts">

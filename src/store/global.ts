@@ -1,13 +1,14 @@
 import Vue from "vue";
 import { MutationTree, GetterTree, ActionTree } from "vuex";
 import { convertPairOrder } from "@/utils/pair/help";
+import { PRSID } from "@/constants";
 
 const state = () => ({
   pairs: [],
   assets: [],
   fiats: [],
   assetsWhiteLists: [],
-  assetsBlackLists: [],
+  assetsBlackLists: [PRSID],
   cache: [],
   info: {
     fee_24h: null,
@@ -60,12 +61,16 @@ const getters: GetterTree<AssetsState, any> = {
 
     //  use asset only listed in whitelist
     if (whitelists.length) {
-      avaliables = assets.filter(({ id }) => whitelists.find((x) => id === x));
+      avaliables = avaliables.filter(({ id }) =>
+        whitelists.find((x) => id === x)
+      );
     }
 
     // remove asset listed in blacklist
     if (blacklists.length) {
-      avaliables = assets.filter(({ id }) => !blacklists.find((x) => id === x));
+      avaliables = avaliables.filter(
+        ({ id }) => !blacklists.find((x) => id === x)
+      );
     }
 
     return avaliables;
@@ -80,16 +85,6 @@ const getters: GetterTree<AssetsState, any> = {
         assets.find(({ id }) => id === base_asset_id) &&
         assets.find(({ id }) => id === quote_asset_id)
       );
-    });
-  },
-
-  getSortedAssets(state, getters) {
-    const assets: API.Asset[] = getters["getAvaliableAssets"];
-    const cache = state.cache;
-    return assets.concat().sort((a, b) => {
-      const idxA = cache.indexOf(a.id);
-      const idxB = cache.indexOf(b.id);
-      return idxA > idxB ? -1 : idxA === idxB ? 0 : 1;
     });
   },
 
@@ -117,6 +112,16 @@ const getters: GetterTree<AssetsState, any> = {
     });
   },
 
+  getSortedAssets(state, getters) {
+    const assets: API.Asset[] = getters["getAssetsJustInPairs"];
+    const cache = state.cache;
+    return assets.concat().sort((a, b) => {
+      const idxA = cache.indexOf(a.id);
+      const idxB = cache.indexOf(b.id);
+      return idxA > idxB ? -1 : idxA === idxB ? 0 : 1;
+    });
+  },
+
   getAssetById(state) {
     return (id) => {
       return state.assets.find((asset) => asset.id === id);
@@ -137,7 +142,7 @@ const getters: GetterTree<AssetsState, any> = {
 
   getBalanceByAssetId(state) {
     return (id) => {
-      const asset = state.walletAssets.find((asset) => asset.asset_id === id);
+      const asset = state.walletAssets?.find((asset) => asset.asset_id === id);
       return asset?.balance ?? 0;
     };
   },
@@ -333,7 +338,7 @@ const actions: ActionTree<AssetsState, any> = {
     });
     this.$pairRoutes.makeRoutes(pairs);
     commit("SET_PAIRS", pairs);
-    commit("SET_ASSETS_WHITE_LISTS", res.whitelists);
+    commit("SET_ASSETS_WHITE_LISTS", res.whitelists ?? []);
     commit("SET_INFO", {
       fee_24h: res.fee_24h,
       volume_24h: res.volume_24h,

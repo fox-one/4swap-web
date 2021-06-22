@@ -36,8 +36,8 @@ const mutations: MutationTree<AuthState> = {
 };
 
 const actions: ActionTree<AuthState, any> = {
-  async login({ commit }, code) {
-    const res = await this.$http.auth(code);
+  async login({ commit }, { code, broker_id, label }) {
+    const res = await this.$http.auth({ code, broker_id, label });
     commit("SET_TOKEN", { token: res.token, scope: res.scope });
   },
 

@@ -75,7 +75,7 @@ import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixins from "@/mixins";
 import { Getter } from "vuex-class";
 import BigNumber from "bignumber.js";
-import { BTC_ASSET_ID, DEFAULT_ASSET_ID, PRSID } from "~/constants";
+import { BTC_ASSET_ID, DEFAULT_ASSET_ID } from "~/constants";
 import AddResultForecast from "@/components/particles/liquidity/AddResultForecast.vue";
 import LiqAddAction from "@/components/particles/liquidity/LiqAddAction.vue";
 import FirstLiqProviderTip from "@/components/particles/liquidity/FirstLiqProviderTip.vue";
@@ -118,10 +118,6 @@ class AddLiquidityPage extends Mixins(mixins.page) {
       return this.assets;
     }
     return this.assets.filter((x) => {
-      // @TODO prs event
-      if (x.id === PRSID) {
-        return false;
-      }
       return this.quoteAsset?.id !== x.id;
     });
   }
@@ -131,10 +127,6 @@ class AddLiquidityPage extends Mixins(mixins.page) {
       return this.assets;
     }
     return this.assets.filter((x) => {
-      // @TODO prs event
-      if (x.id === PRSID) {
-        return false;
-      }
       return this.baseAsset?.id !== x.id;
     });
   }

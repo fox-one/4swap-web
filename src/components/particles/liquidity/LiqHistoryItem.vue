@@ -1,5 +1,5 @@
 <template>
-  <intersect-wrapper class="transaction-item py-4">
+  <v-lazy min-height="94">
     <div v-if="meta.text" class="f-greyscale-3 f-caption mb-2">
       {{ meta.text }}
     </div>
@@ -48,7 +48,7 @@
         </v-flex>
       </v-layout>
     </div>
-  </intersect-wrapper>
+  </v-lazy>
 </template>
 
 <script lang="ts">

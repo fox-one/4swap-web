@@ -8,6 +8,7 @@ const config: NuxtConfig = {
   },
   srcDir: "./src",
   head: {
+    title: process.env.CHANNEL_NAME,
     meta: [
       { charset: "utf-8" },
       {

@@ -6,9 +6,13 @@ import { fmtProfits } from "@/utils/profits";
 
 export default function (http: Http) {
   return {
-    auth(code: string): Promise<any> {
+    auth(opts: {
+      code: string;
+      broker_id: string;
+      label: string;
+    }): Promise<any> {
       return http.post("/oauth", {
-        data: { code },
+        data: opts,
       });
     },
 

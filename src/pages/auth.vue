@@ -42,7 +42,11 @@ class AuthPage extends Mixins(mixins.page) {
   }
 
   async mounted() {
-    await this.$store.dispatch("auth/login", this.code);
+    await this.$store.dispatch("auth/login", {
+      code: this.code,
+      broker_id: this.$config.BROKER_ID,
+      label: this.$config.CHANNEL,
+    });
     this.$store.dispatch("global/getMe");
     document.location.replace(this.redirect);
   }
