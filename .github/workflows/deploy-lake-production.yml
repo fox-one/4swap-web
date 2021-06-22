@@ -48,7 +48,7 @@ jobs:
           endpoint: ${{ env.OSS_ENDPOINT }}
           access-key-id: ${{ secrets.GLOBAL_OSS_ACCESS_KEY_ID }}
           access-key-secret: ${{ secrets.GLOBAL_OSS_ACCESS_KEY_SECRET }}
-      - run: ossutil cp -r -u -f dist ${{ secrets.OSS_URL_PROD }} -e ${{ env.OSS_ENDPOINT }}
+      - run: ossutil cp -r -u -f dist ${{ secrets.OSS_URL_LAKE }} -e ${{ env.OSS_ENDPOINT }}
       - run: ossutil set-meta ${{ secrets.OSS_URL_LAKE }} Cache-Control:max-age=604800 -r -f --update -e ${{ env.OSS_ENDPOINT }}
       - run: ossutil set-meta ${{ secrets.OSS_URL_LAKE }}/index.html Cache-Control:no-cache --update -e ${{ env.OSS_ENDPOINT }}
 
