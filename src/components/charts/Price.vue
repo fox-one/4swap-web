@@ -44,7 +44,6 @@ class PriceChart extends Vue {
 
   getColorUpDown(isUp?: boolean) {
     // truely -> up  falsly -> down
-    console.log(this);
     return isUp
       ? this.$utils.color.colorUp(this)
       : this.$utils.color.colorDown(this);

@@ -103,7 +103,6 @@ class SwapSuccessModal extends Vue {
   show(order) {
     this.order = order;
     this.dialog = true;
-    console.log("order", order);
   }
 
   handleClose() {

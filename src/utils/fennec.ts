@@ -39,7 +39,6 @@ export default class Fennec {
         token,
         scope: "PROFILE:READ ASSETS:READ",
       });
-      console.log(token);
       this.#token = token;
       this.connected = true;
     }

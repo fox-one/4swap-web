@@ -1,8 +1,6 @@
 import { NuxtConfig } from "@nuxt/types";
 import i18n from "./src/i18n";
 
-console.log(process.env);
-
 const config: NuxtConfig = {
   ssr: false,
   router: {
