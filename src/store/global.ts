@@ -20,6 +20,7 @@ const state = () => ({
   me: null,
   appInfo: null,
   test: "",
+  walletAssets: [],
 });
 
 export type AssetsState = {

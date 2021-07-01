@@ -79,6 +79,7 @@ import { BTC_ASSET_ID, DEFAULT_ASSET_ID } from "~/constants";
 import AddResultForecast from "@/components/particles/liquidity/AddResultForecast.vue";
 import LiqAddAction from "@/components/particles/liquidity/LiqAddAction.vue";
 import FirstLiqProviderTip from "@/components/particles/liquidity/FirstLiqProviderTip.vue";
+import { Asset } from "@/utils/assets";
 
 @Component({
   components: {
@@ -88,13 +89,17 @@ import FirstLiqProviderTip from "@/components/particles/liquidity/FirstLiqProvid
   },
 })
 class AddLiquidityPage extends Mixins(mixins.page) {
-  @Getter("global/getAssetsWithoutLPTokens") assets!: API.Asset[];
+  // @Getter("global/getAssetsWithoutLPTokens") assets!: API.Asset[];
 
   @Getter("global/getPair") getPair;
 
   baseAmount = "";
 
+  baseAssetValue: Asset | null = null;
+
   quoteAmount = "";
+
+  quoteAssetValue: Asset | null = null;
 
   locked = false;
 
@@ -111,6 +116,15 @@ class AddLiquidityPage extends Mixins(mixins.page) {
     return {
       title: this.$t("liquidity.add"),
     };
+  }
+
+  get assets(): Asset[] {
+    const { assets, walletAssets, assetsBlackLists } = this.$store.state.global;
+    return this.$utils.assets.getLiquidityAddAvaliableAssets(
+      assets,
+      walletAssets,
+      assetsBlackLists
+    );
   }
 
   get baseAssets() {
@@ -137,26 +151,26 @@ class AddLiquidityPage extends Mixins(mixins.page) {
     return this.getPair({ base: input, quote: output });
   }
 
-  get baseAsset(): API.Asset | null {
-    return this.$store.state.liquidity.baseAsset;
+  get baseAsset(): Asset | null {
+    return this.baseAssetValue;
   }
 
   set baseAsset(value) {
     if (value?.id === this.quoteAsset?.id) {
-      this.$store.commit("liquidity/SET_QUOTE_ASSET", this.baseAsset);
+      this.quoteAssetValue = this.baseAsset;
     }
-    this.$store.commit("liquidity/SET_BASE_ASSET", value);
+    this.baseAssetValue = value;
   }
 
-  get quoteAsset(): API.Asset | null {
-    return this.$store.state.liquidity.quoteAsset;
+  get quoteAsset(): Asset | null {
+    return this.quoteAssetValue;
   }
 
   set quoteAsset(value) {
     if (value?.id === this.baseAsset?.id) {
-      this.$store.commit("liquidity/SET_BASE_ASSET", this.quoteAsset);
+      this.baseAssetValue = this.quoteAsset;
     }
-    this.$store.commit("liquidity/SET_QUOTE_ASSET", value);
+    this.quoteAssetValue = value;
   }
 
   get meta() {
