@@ -89,8 +89,6 @@ import { Asset } from "@/utils/assets";
   },
 })
 class AddLiquidityPage extends Mixins(mixins.page) {
-  // @Getter("global/getAssetsWithoutLPTokens") assets!: API.Asset[];
-
   @Getter("global/getPair") getPair;
 
   baseAmount = "";

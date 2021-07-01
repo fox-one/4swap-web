@@ -48,6 +48,7 @@ import BigNumber from "bignumber.js";
 import { v4 as uuid } from "uuid";
 import LiqCreateAction from "@/components/particles/liquidity/LiqCreateAction.vue";
 import LiqCreateRules from "@/components/particles/liquidity/LiqCreateRules.vue";
+import { Asset } from "@/utils/assets";
 
 @Component({
   components: {
@@ -56,8 +57,6 @@ import LiqCreateRules from "@/components/particles/liquidity/LiqCreateRules.vue"
   },
 })
 class CreateLiquidityPage extends Mixins(mixins.page) {
-  @Getter("global/getAssetsWithoutLPTokens") assets!: API.Asset[];
-
   @Getter("global/getPair") getPair;
 
   @State((state) => state.global.pairs) pairs!: API.Pair[];
@@ -84,6 +83,15 @@ class CreateLiquidityPage extends Mixins(mixins.page) {
     return {
       align: "center",
     };
+  }
+
+  get assets(): Asset[] {
+    const { assets, walletAssets, assetsBlackLists } = this.$store.state.global;
+    return this.$utils.assets.getLiquidityAddAvaliableAssets(
+      assets,
+      walletAssets,
+      assetsBlackLists
+    );
   }
 
   get canCreate() {
