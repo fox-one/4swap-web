@@ -1,52 +1,54 @@
 <template>
   <v-lazy min-height="94">
-    <div v-if="meta.text" class="f-greyscale-3 f-caption mb-2">
-      {{ meta.text }}
-    </div>
-    <div class="f-body-2 transaction-item-wrapper">
-      <v-layout class="mb-4">
-        <v-flex>
-          <v-img
-            style="display: inline-block; vertical-align: middle"
-            width="20"
-            height="20"
-            :src="swapSymbols.inputIcon"
-          />
-          <span class="mx-1">
-            {{ swapSymbols.inputSymbol }}
-          </span>
-          <span class="f-greyscale-3">
-            {{ meta.baseAmountText }}
-          </span>
-        </v-flex>
-        <v-flex style="text-align: right" class="f-greyscale-3">
-          {{ meta.time }}
-        </v-flex>
-      </v-layout>
-      <i
-        v-if="showIcon"
-        class="icon-triangle"
-        :class="isDark && 'icon-triangle-dark'"
-      />
-      <v-layout class="d-flex align-center">
-        <v-flex>
-          <v-img
-            style="display: inline-block; vertical-align: middle"
-            width="20"
-            height="20"
-            :src="swapSymbols.outputIcon"
-          />
-          <span class="mx-1">
-            {{ swapSymbols.outputSymbol }}
-          </span>
-          <span class="f-greyscale-3">
-            {{ meta.quoteAmountText }}
-          </span>
-        </v-flex>
-        <v-flex class="f-body-1 total-value">
-          {{ meta.totalValue }}
-        </v-flex>
-      </v-layout>
+    <div>
+      <div v-if="meta.text" class="f-greyscale-3 f-caption mb-2">
+        {{ meta.text }}
+      </div>
+      <div class="f-body-2 transaction-item-wrapper">
+        <v-layout class="mb-4">
+          <v-flex>
+            <v-img
+              style="display: inline-block; vertical-align: middle"
+              width="20"
+              height="20"
+              :src="swapSymbols.inputIcon"
+            />
+            <span class="mx-1">
+              {{ swapSymbols.inputSymbol }}
+            </span>
+            <span class="f-greyscale-3">
+              {{ meta.baseAmountText }}
+            </span>
+          </v-flex>
+          <v-flex style="text-align: right" class="f-greyscale-3">
+            {{ meta.time }}
+          </v-flex>
+        </v-layout>
+        <i
+          v-if="showIcon"
+          class="icon-triangle"
+          :class="isDark && 'icon-triangle-dark'"
+        />
+        <v-layout class="d-flex align-center">
+          <v-flex>
+            <v-img
+              style="display: inline-block; vertical-align: middle"
+              width="20"
+              height="20"
+              :src="swapSymbols.outputIcon"
+            />
+            <span class="mx-1">
+              {{ swapSymbols.outputSymbol }}
+            </span>
+            <span class="f-greyscale-3">
+              {{ meta.quoteAmountText }}
+            </span>
+          </v-flex>
+          <v-flex class="f-body-1 total-value">
+            {{ meta.totalValue }}
+          </v-flex>
+        </v-layout>
+      </div>
     </div>
   </v-lazy>
 </template>

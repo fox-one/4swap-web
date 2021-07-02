@@ -16,8 +16,8 @@
         padding="0"
         class="px-4"
       >
-        <template v-for="(item, index) in transactions">
-          <div :key="index" style="overflow: hidden">
+        <div v-for="(item, index) in transactions" :key="index">
+          <div style="overflow: hidden" class="my-5">
             <liq-history-item
               timeFormat="absolute"
               :base-asset="meta.baseAsset"
@@ -27,7 +27,7 @@
               :transaction="item"
             />
           </div>
-        </template>
+        </div>
         <f-loading v-if="loading" :loading="loading" />
         <template v-else-if="transactions.length === 0">
           <base-empty-section />
