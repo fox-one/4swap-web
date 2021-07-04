@@ -52,39 +52,50 @@ class CheckLiquidityPage extends Mixins(mixins.page) {
   paidDict: { [id: string]: boolean } = {};
 
   get title() {
-    const symbol = `${this.baseAsset?.symbol}-${this.quoteAsset?.symbol}`;
+    const { baseAssetSymbol, quoteAssetSymbol } = this.meta;
+    const symbol = `${baseAssetSymbol}-${quoteAssetSymbol}`;
     return this.$t("liquidity.add.symbol.title", { symbol }) as string;
   }
 
-  get baseAsset(): API.Asset | null {
-    return this.$store.state.liquidity.baseAsset;
-  }
-
-  get quoteAsset(): API.Asset | null {
-    return this.$store.state.liquidity.quoteAsset;
-  }
-
   get hint() {
+    const { baseAssetSymbol, quoteAssetSymbol } = this.meta;
     return this.$t("liquidity.add.hint", {
-      symbol_1: this.baseAsset?.symbol,
-      symbol_2: this.quoteAsset?.symbol,
+      symbol_1: baseAssetSymbol,
+      symbol_2: quoteAssetSymbol,
     });
   }
 
   get pair(): API.Pair | undefined {
-    const base = this.baseAsset?.id;
-    const quote = this.quoteAsset?.id;
+    const base = this.$route.query.base;
+    const quote = this.$route.query.quote;
     return this.getPair({ base, quote });
   }
 
   get meta() {
+    const getAsset = this.$store.getters["global/getAssetById"];
+    const base = this.$route.query.base;
+    const quote = this.$route.query.quote;
     const deposits = this.$store.state.liquidity.deposits;
+    const baseAsset = getAsset(base);
+    const quoteAsset = getAsset(quote);
+    const baseAssetSymbol = baseAsset?.symbol ?? "";
+    const quoteAssetSymbol = quoteAsset?.symbol ?? "";
     const payments =
       deposits.concat().sort((a, b) => {
         return a.asset_id > b.asset_id ? -1 : 1;
       }) ?? [];
     const hasLPAsset = this.pair?.liquidity_asset_id;
-    return { payments, hasLPAsset };
+
+    return {
+      payments,
+      hasLPAsset,
+      baseAsset,
+      quoteAsset,
+      base,
+      quote,
+      baseAssetSymbol,
+      quoteAssetSymbol,
+    };
   }
 
   async handlePay(trace_id: string) {

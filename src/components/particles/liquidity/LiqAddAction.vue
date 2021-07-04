@@ -102,7 +102,10 @@ class LiqAddAction extends Vue {
       amount: this.quoteAmount,
     };
     this.$store.commit("liquidity/SET_DEPOSITS", [basePayment, quotePayment]);
-    this.$router.push({ name: "liquidity-check" });
+    this.$router.push({
+      name: "liquidity-check",
+      query: { base: this.baseAsset.id, quote: this.quoteAsset.id },
+    });
   }
 }
 export default LiqAddAction;
