@@ -5,7 +5,7 @@
     </div>
     <f-panel
       padding="0"
-      class="transactions px-4"
+      class="transactions pa-4"
       v-infinite-scroll="requstTransaction"
       infinite-scroll-distance="10"
     >

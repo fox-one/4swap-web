@@ -1,11 +1,11 @@
 <template>
-  <v-lazy min-height="94">
-    <div>
+  <v-lazy min-height="60">
+    <div class="mb-10">
       <div v-if="meta.text" class="f-greyscale-3 f-caption mb-2">
         {{ meta.text }}
       </div>
       <div class="f-body-2 transaction-item-wrapper">
-        <v-layout class="mb-4">
+        <v-layout class="mb-2">
           <v-flex>
             <v-img
               style="display: inline-block; vertical-align: middle"
@@ -24,12 +24,15 @@
             {{ meta.time }}
           </v-flex>
         </v-layout>
-        <i
-          v-if="showIcon"
-          class="icon-triangle"
-          :class="isDark && 'icon-triangle-dark'"
-        />
-        <v-layout class="d-flex align-center">
+        <div v-if="!meta.text" class="icon-triangle-wrapper">
+          <i
+            v-if="showIcon"
+            class="icon-triangle"
+            :class="isDark && 'icon-triangle-dark'"
+          />
+        </div>
+
+        <v-layout class="d-flex align-center mt-2">
           <v-flex>
             <v-img
               style="display: inline-block; vertical-align: middle"
@@ -187,11 +190,14 @@ export default LiqHistoryItem;
   }
 }
 
+.icon-triangle-wrapper {
+  line-height: 10px;
+  height: 10px;
+}
+
 .icon-triangle {
-  position: absolute;
-  left: 6px;
-  top: 50%;
-  transform: translate(0, -50%);
+  margin-left: 6px;
+  display: inline-block;
   width: 0;
   height: 0;
   border-left: 4px solid transparent;

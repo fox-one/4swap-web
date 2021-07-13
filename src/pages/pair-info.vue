@@ -6,7 +6,6 @@
         :base-asset="meta.baseAsset"
         :quote-asset="meta.quoteAsset"
         :pair="pair"
-        :assets="assets"
       />
       <charts-panel
         :base-asset="meta.baseAsset"
