@@ -93,15 +93,7 @@ class ConnectWalletBtn extends Vue {
         download_url: "https://mixin.one/messenger",
       },
     ];
-    if (this.$i18n.locale.includes("ja")) {
-      ret.push({
-        name: "links",
-        icon: require("@/assets/images/wallet_links.png"),
-        title: "Links",
-        subtitle: this.$t("wallet.category.mobile"),
-        download_url: "https://getlinks.jp",
-      });
-    }
+
     if (!this.isFennecDetected) {
       ret.push({
         name: "fennec",
