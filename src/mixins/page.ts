@@ -14,7 +14,8 @@ export interface Page extends Vue {
   head() {
     const vm = this as Page;
     return {
-      title: (vm.$t("channel.name") as string) + (vm.htmlTitle || vm.title),
+      title:
+        (vm.$t("channel.name") as string) + " - " + (vm.htmlTitle || vm.title),
       meta: [
         {
           hid: "theme-color",
