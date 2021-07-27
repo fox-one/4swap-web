@@ -2,7 +2,7 @@
   <f-bottom-sheet v-model="dialog">
     <template #activator="{ on }">
       <v-btn v-on="on" icon>
-        <v-icon>
+        <v-icon color="primary">
           {{ $icons.mdiCog }}
         </v-icon>
       </v-btn>

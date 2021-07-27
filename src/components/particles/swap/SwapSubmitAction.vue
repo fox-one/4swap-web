@@ -2,7 +2,7 @@
   <div class="mt-5">
     <v-layout align-center justify-center style="position: relative">
       <v-flex style="text-align: center">
-        <v-btn
+        <f-button
           rounded
           large
           depressed
@@ -13,7 +13,7 @@
           @click="handleRequestPayment"
         >
           {{ meta.submitBtnText }}
-        </v-btn>
+        </f-button>
       </v-flex>
       <div class="slippage">
         <slippage-setting />

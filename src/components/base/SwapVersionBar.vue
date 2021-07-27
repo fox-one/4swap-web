@@ -1,8 +1,8 @@
 <template>
   <v-app-bar app fixed flat :color="color">
-    <v-btn v-if="back" small icon @click="handleBack">
+    <f-button v-if="back" small icon @click="handleBack">
       <v-icon>{{ $icons.mdiArrowLeft }}</v-icon>
-    </v-btn>
+    </f-button>
     <v-toolbar-title class="d-flex align-center">
       <swap-verison-switch :title="title" />
     </v-toolbar-title>

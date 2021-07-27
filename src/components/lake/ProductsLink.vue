@@ -10,7 +10,9 @@
     <template #activator="{ on }">
       <slot name="activator" :on="{ on }">
         <div v-on="on" class="d-flex align-center">
-          <v-icon size="68" class="mr-1"> $iconPandoLake </v-icon>
+          <v-icon size="68" color="primary" class="mr-1">
+            $iconPandoLake
+          </v-icon>
           <v-icon size="16" color="primary"> $iconChevronDown </v-icon>
         </div>
       </slot>

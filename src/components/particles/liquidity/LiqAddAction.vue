@@ -1,30 +1,37 @@
 <template>
-  <v-layout justify-center>
-    <f-button
-      v-if="isLogged"
-      rounded
-      large
-      depressed
-      :disabled="!meta.valid || disabled"
-      :loading="loading"
-      color="primary"
-      class="mt-5 px-14 f-title-2"
-      @click="handleAddLiquidity"
-    >
-      {{ meta.submitBtnText }}
-    </f-button>
-    <f-button
-      v-else
-      rounded
-      large
-      depressed
-      color="primary"
-      class="mt-5 px-14 f-title-2"
-      @click="handleLogin"
-    >
-      {{ $t("connect.wallet") }}
-    </f-button>
-  </v-layout>
+  <div>
+    <div v-if="!pair" class="mt-4 pl-4 pr-6 f-caption">
+      {{ meta.hint }}
+    </div>
+
+    <v-layout justify-center>
+      <f-button
+        v-if="isLogged"
+        rounded
+        large
+        depressed
+        :disabled="meta.submitBtnDisabled"
+        :loading="loading"
+        color="primary"
+        class="mt-5 px-14 f-title-2"
+        @click="handleAddLiquidity"
+      >
+        {{ meta.submitBtnText }}
+      </f-button>
+
+      <f-button
+        v-else
+        rounded
+        large
+        depressed
+        color="primary"
+        class="mt-5 px-14 f-title-2"
+        @click="handleLogin"
+      >
+        {{ $t("connect.wallet") }}
+      </f-button>
+    </v-layout>
+  </div>
 </template>
 
 <script lang="ts">
@@ -52,20 +59,36 @@ class LiqAddAction extends Vue {
   loading = false;
 
   get meta() {
+    const isLake = this.$config.CHANNEL === "lake";
     const valid =
       !this.pair ||
       (this.baseAsset &&
         this.baseAmount &&
         this.quoteAsset &&
         this.quoteAmount);
-    const submitBtnText = !this.pair
-      ? this.$t("liquidity.create.new-pool")
-      : valid
-      ? this.$t("next")
-      : this.$t("enter.amount");
+
+    let submitBtnText: any = "";
+    let submitBtnDisabled = !valid || this.disabled;
+    let hint = this.$t("liquidity.add.create.hint");
+    if (!this.pair) {
+      if (isLake) {
+        submitBtnText = this.$t("liquidity.create.not-support");
+        submitBtnDisabled = true;
+        hint = this.$t("liquidity.create.pair.not-support");
+      } else {
+        submitBtnText = this.$t("liquidity.create.new-pool");
+      }
+    } else if (valid) {
+      submitBtnText = this.$t("next");
+    } else {
+      submitBtnText = this.$t("enter.amount");
+    }
+
     return {
       valid,
+      hint,
       submitBtnText,
+      submitBtnDisabled,
     };
   }
 

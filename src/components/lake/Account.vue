@@ -4,7 +4,8 @@
     :avatar="meta.avatar"
     :name="meta.name"
     color="primary"
-    size="32"
+    size="28"
+    @click="handleToSetting"
   />
 </template>
 
@@ -25,6 +26,10 @@ class Account extends Vue {
       avatar: avatar_url,
       name: full_name,
     };
+  }
+
+  handleToSetting() {
+    this.$router.push({ name: "settings" });
   }
 }
 export default Account;

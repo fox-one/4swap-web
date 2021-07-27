@@ -2,17 +2,18 @@
   <v-layout class="f-caption py-2">
     <v-layout column align-center justify-center @click="handleAddLiq">
       <i class="primary rounded-circle icons">
-        <v-icon dark size="24">
+        <v-icon color="greyscale_7" size="24">
           {{ $icons.mdiPlus }}
         </v-icon>
       </i>
+
       <span class="text--disabled mt-1">
         {{ $t("liquidity.add.action") }}
       </span>
     </v-layout>
     <v-layout column align-center justify-center @click="handleRemoveLiq">
       <i class="primary rounded-circle icons">
-        <v-icon dark size="24">
+        <v-icon color="greyscale_7" size="24">
           {{ $icons.mdiMinus }}
         </v-icon>
       </i>
@@ -22,7 +23,7 @@
     </v-layout>
     <v-layout column align-center justify-center @click="handleToDetail">
       <i class="primary rounded-circle icons">
-        <v-icon dark size="18">
+        <v-icon color="greyscale_7" size="18">
           {{ $icons.mdiInformationVariant }}
         </v-icon>
       </i>
@@ -32,7 +33,7 @@
     </v-layout>
     <v-layout column align-center justify-center @click="handleToHistory">
       <i class="primary rounded-circle icons">
-        <v-icon dark size="16">
+        <v-icon color="greyscale_7" size="16">
           {{ $icons.mdiChartLineVariant }}
         </v-icon>
       </i>

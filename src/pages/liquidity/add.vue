@@ -38,9 +38,7 @@
           @click:balance="quoteAmount = meta.quoteAssetBalance"
         />
       </div>
-      <div v-if="!pair" class="mt-4 pl-4 pr-6 f-caption">
-        {{ $t("liquidity.add.create.hint") }}
-      </div>
+
       <liq-add-action
         :pair="pair"
         :baseAsset="baseAsset"

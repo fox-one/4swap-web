@@ -7,12 +7,12 @@
       <v-card-text v-html="text.description"></v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn v-if="text.cancel" text @click="handleCancel">
+        <f-button v-if="text.cancel" text @click="handleCancel">
           {{ text.cancel }}
-        </v-btn>
-        <v-btn v-if="text.ok" text :color="text.okColor" @click="handleOK">
+        </f-button>
+        <f-button v-if="text.ok" text :color="text.okColor" @click="handleOK">
           {{ text.ok }}
-        </v-btn>
+        </f-button>
       </v-card-actions>
     </v-card>
   </v-dialog>

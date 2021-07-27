@@ -12,9 +12,9 @@
       </v-card-text>
       <v-divider />
       <v-card-actions class="justify-center">
-        <v-btn rounded depressed color="primary" @click="handlePaid">
+        <f-button rounded depressed color="primary" @click="handlePaid">
           {{ $t("swap.paid") }}
-        </v-btn>
+        </f-button>
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -1,6 +1,6 @@
 <template>
   <v-layout justify-center>
-    <v-btn
+    <f-button
       rounded
       large
       depressed
@@ -10,7 +10,7 @@
       @click="handleRemoveLiq"
     >
       {{ $t("next") }}
-    </v-btn>
+    </f-button>
     <remove-liq-success-modal ref="removeSuccessModal" @ok="handleToIndex" />
   </v-layout>
 </template>

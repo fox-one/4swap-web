@@ -12,7 +12,7 @@
   >
     <template #action>
       <div class="pl-2">
-        <v-btn
+        <f-button
           outlined
           rounded
           fab
@@ -25,7 +25,7 @@
           <v-icon size="16">
             {{ $icons.mdiUnfoldMoreHorizontal }}
           </v-icon>
-        </v-btn>
+        </f-button>
       </div>
     </template>
   </f-form-tips>

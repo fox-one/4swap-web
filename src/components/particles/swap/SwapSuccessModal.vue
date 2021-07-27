@@ -41,9 +41,9 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn text color="primary" @click="handleClose">
+        <f-button text color="primary" @click="handleClose">
           {{ $t("ok") }}
-        </v-btn>
+        </f-button>
       </v-card-actions>
     </v-card>
   </v-dialog>

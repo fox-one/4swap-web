@@ -8,7 +8,7 @@
           {{ $t("me.not.support") }}
         </div>
         <div class="my-8" style="text-align: center">
-          <v-btn
+          <f-button
             rounded
             depressed
             color="primary"
@@ -17,12 +17,12 @@
             style="height: 48px"
           >
             {{ $t("liquidity.add") }}
-          </v-btn>
+          </f-button>
         </div>
         <div style="text-align: center">
-          <v-btn text color="primary" @click="handle4swapDoc">
+          <f-button text color="primary" @click="handle4swapDoc">
             {{ $t("me.learn.more") }}
-          </v-btn>
+          </f-button>
         </div>
       </div>
       <div v-else class="mt-4 px-4">

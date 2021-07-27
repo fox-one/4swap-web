@@ -18,7 +18,7 @@
       <div class="f-headline">
         {{ isTotalBalance ? `${totalBalance}` : `${totalLpBalance}` }}
       </div>
-      <v-btn
+      <f-button
         text
         small
         color="primary"
@@ -26,7 +26,7 @@
         class="f-title-2"
       >
         {{ $t("liquidity.add") }}
-      </v-btn>
+      </f-button>
     </v-layout>
     <f-input
       v-model="filter"

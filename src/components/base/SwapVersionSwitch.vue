@@ -3,7 +3,8 @@
     <template #activator="{ on }">
       <div class="ml-4 mr-1">{{ title }}</div>
       <div
-        v-on="$config.LEGACY_WEB_HOST ? on : null"
+        v-if="$config.LEGACY_WEB_HOST"
+        v-on="on"
         class="px-1 py-0 f-title-2 rounded-lg version-label primary"
         style="font-size: 15px !important"
       >

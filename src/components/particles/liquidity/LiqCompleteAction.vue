@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn
+    <f-button
       block
       rounded
       large
@@ -12,7 +12,7 @@
       @click="handleCheckResult"
     >
       {{ $t("complete") }}
-    </v-btn>
+    </f-button>
     <add-liq-success-modal ref="addSuccessModal" @ok="handleToIndex" />
   </div>
 </template>

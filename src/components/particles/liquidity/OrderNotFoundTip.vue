@@ -1,9 +1,9 @@
 <template>
   <div class="text-center">
     <h4 class="my-5">{{ $t("liquidity.add.order.not-found") }}</h4>
-    <v-btn outlined rounded color="primary" @click="handleAddLiq">
+    <f-button outlined rounded color="primary" @click="handleAddLiq">
       {{ $t("liquidity.to-add") }}
-    </v-btn>
+    </f-button>
   </div>
 </template>
 

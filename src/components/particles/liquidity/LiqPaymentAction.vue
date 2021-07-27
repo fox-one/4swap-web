@@ -7,7 +7,7 @@
       :chainLogo="asset.chainLogo"
     ></f-mixin-asset-logo>
     <v-flex> {{ meta.amount }} </v-flex>
-    <v-btn
+    <f-button
       v-if="!meta.paid"
       rounded
       small
@@ -19,8 +19,8 @@
       @click="handlePayment"
     >
       {{ isLoading ? $t("paying") : $t("pay") }}
-    </v-btn>
-    <v-btn
+    </f-button>
+    <f-button
       v-else
       rounded
       small
@@ -32,7 +32,7 @@
       depressed
     >
       {{ $t("paid") }}
-    </v-btn>
+    </f-button>
   </v-layout>
 </template>
 
