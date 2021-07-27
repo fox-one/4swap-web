@@ -27,8 +27,6 @@ import { Component, Vue } from "vue-property-decorator";
 class GlobalLiquidity extends Vue {
   get meta() {
     const simplizeFiat = this.$utils.number.simplizeFiat;
-
-    const info = this.$store.state.global.info;
     const pairs = this.$store.getters["global/getAvaliablePairs"];
 
     const { totalUSDValue, volume24h } = pairs.reduce(
