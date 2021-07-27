@@ -123,15 +123,14 @@ export function isDesktop() {
 }
 
 export function isDarkTheme() {
-  return false;
-  // try {
-  //   const context = getMixinContext();
-  //   if (context?.appearance) {
-  //     return context.appearance === "dark";
-  //   }
-  // } catch (error) {}
+  try {
+    const context = getMixinContext();
+    if (context?.appearance) {
+      return context.appearance === "dark";
+    }
+  } catch (error) {}
 
-  // return window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
+  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
 }
 
 export function getAndroidVersion() {
