@@ -8,7 +8,7 @@
   >
     <path
       d="M20.9327 7.5C21.6154 8.85259 22 10.3814 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C14.7255 2 17.1962 3.09032 19 4.85857V2"
-      :stroke="colors[isDark ? 1 : 0]"
+      :stroke="colors[0]"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -23,7 +23,7 @@
     />
     <path
       d="M8 14.5L10.3455 11.0333L13.6545 12.9667L16 9.5"
-      :stroke="colors[isDark ? 1 : 0]"
+      :stroke="colors[0]"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -52,10 +52,9 @@ class IconNavSwap extends Vue {
 
   get colors() {
     const activeColor = this.$vuetify.theme.currentTheme.primary;
+    const inactiveColor = this.$vuetify.theme.currentTheme.greyscale_4;
 
-    return this.active
-      ? [activeColor, activeColor]
-      : ["rgba(0, 0, 0, .6)", "rgba(255, 255, 255, .7)"];
+    return this.active ? [activeColor] : [inactiveColor];
   }
 }
 export default IconNavSwap;

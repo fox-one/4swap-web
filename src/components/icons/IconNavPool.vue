@@ -12,7 +12,7 @@
       width="20"
       height="20"
       rx="10"
-      :stroke="colors[isDark ? 1 : 0]"
+      :stroke="colors[0]"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -31,7 +31,7 @@
     />
     <path
       d="M8 15L8 12"
-      :stroke="colors[isDark ? 1 : 0]"
+      :stroke="colors[0]"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -46,7 +46,7 @@
     />
     <path
       d="M12 15V11"
-      :stroke="colors[isDark ? 1 : 0]"
+      :stroke="colors[0]"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -61,7 +61,7 @@
     />
     <path
       d="M16 15L16 9"
-      :stroke="colors[isDark ? 1 : 0]"
+      :stroke="colors[0]"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -90,10 +90,9 @@ class IconNavPool extends Vue {
 
   get colors() {
     const activeColor = this.$vuetify.theme.currentTheme.primary;
+    const inactiveColor = this.$vuetify.theme.currentTheme.greyscale_4;
 
-    return this.active
-      ? [activeColor, activeColor]
-      : ["rgba(0, 0, 0, .6)", "rgba(255, 255, 255, .7)"];
+    return this.active ? [activeColor] : [inactiveColor];
   }
 }
 export default IconNavPool;

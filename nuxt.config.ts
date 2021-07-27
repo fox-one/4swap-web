@@ -17,7 +17,13 @@ const config: NuxtConfig = {
           "width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover",
       },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: `/${process.env.CHANNEL}.png`,
+      },
+    ],
   },
   loading: {
     color: process.env.LOADING_COLOR,
