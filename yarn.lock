@@ -935,15 +935,16 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@foxone/uikit@^2.0.52":
-  version "2.0.52"
-  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-2.0.52.tgz#6ddfc44706a4430e7faf7dc6887d712fb74a98cd"
-  integrity sha512-8pWqrZWl85KaZqVKWWrsuYzVvn2VYqqI7ONZk9xJ7vf0OtVJgXkiKAWUkpFU2/9iAhjdDxt6MvaRQILPmIT1Jg==
+"@foxone/uikit@^2.0.62":
+  version "2.0.62"
+  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-2.0.62.tgz#76668acc07667370d03a16747eb90aa041af352a"
+  integrity sha512-frfzZnh143gJX5BDhuBmEXMs+jUr1FI68LsU7QeK2uhcnoFHCarmxqTw1McTYyDxMBI0MWfi2jBp77o8Ofhoag==
   dependencies:
     animate.css "^4.1.0"
     bignumber.js "^9.0.0"
     lodash "^4.17.19"
     qrcode "^1.4.4"
+    tinycolor2 "^1.4.2"
     vue "^2.6.11"
     vue-class-component "^7.2.5"
     vue-property-decorator "^9.0.0"
@@ -10153,6 +10154,11 @@ timsort@^0.3.0:
   version "0.3.0"
   resolved "https://registry.npmjs.org/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
+
+tinycolor2@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.npmjs.org/tinycolor2/-/tinycolor2-1.4.2.tgz#3f6a4d1071ad07676d7fa472e1fac40a719d8803"
+  integrity sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==
 
 tmp@^0.0.33:
   version "0.0.33"

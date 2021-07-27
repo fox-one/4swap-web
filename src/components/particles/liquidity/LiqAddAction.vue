@@ -1,6 +1,6 @@
 <template>
   <v-layout justify-center>
-    <v-btn
+    <f-button
       v-if="isLogged"
       rounded
       large
@@ -12,8 +12,8 @@
       @click="handleAddLiquidity"
     >
       {{ meta.submitBtnText }}
-    </v-btn>
-    <v-btn
+    </f-button>
+    <f-button
       v-else
       rounded
       large
@@ -23,7 +23,7 @@
       @click="handleLogin"
     >
       {{ $t("connect.wallet") }}
-    </v-btn>
+    </f-button>
   </v-layout>
 </template>
 

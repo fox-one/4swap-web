@@ -6,17 +6,20 @@
       </f-loading>
     </template>
     <template v-else>
-      <default-layout-app-bar />
+      <lake-app-bar v-if="meta.isLake" />
+      <default-layout-app-bar v-else />
+
       <v-main
         class="pt-11"
         style="
           padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important;
         "
       >
-        <!-- <base-ws-connect-bar /> -->
         <nuxt />
       </v-main>
+
       <default-layout-bottom-nav />
+
       <default-layout-modals />
     </template>
   </v-app>
@@ -25,11 +28,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import AppBar from "./default/AppBar.vue";
+import LakeAppBar from "@/components/lake/AppBar.vue";
 import BottomNav from "./default/BottomNav.vue";
 import Modals from "./default/Modals.vue";
 
 @Component({
   components: {
+    "lake-app-bar": LakeAppBar,
     "default-layout-modals": Modals,
     "default-layout-app-bar": AppBar,
     "default-layout-bottom-nav": BottomNav,
@@ -40,6 +45,7 @@ class NuxtDefaultLayout extends Vue {
     const isIniting = this.$store.state.app.initing;
     return {
       isIniting,
+      isLake: this.$config.CHANNEL === "lake",
     };
   }
 

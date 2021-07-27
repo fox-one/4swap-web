@@ -17,6 +17,12 @@ const icons = {
     IconChevron: {
       component: "icon-chevron",
     },
+    iconChevronDown: {
+      component: "icon-chevron-down",
+    },
+    iconPandoLake: {
+      component: "icon-pando-lake",
+    },
     iconSwitch: {
       component: "icon-switch",
     },
