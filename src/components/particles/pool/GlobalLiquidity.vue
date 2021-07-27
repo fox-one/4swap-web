@@ -31,12 +31,25 @@ class GlobalLiquidity extends Vue {
     const info = this.$store.state.global.info;
     const pairs = this.$store.getters["global/getAvaliablePairs"];
 
-    const totalUSDValue = pairs.reduce((total, p) => {
-      return total.plus(p.base_value).plus(p.quote_value);
-    }, new BigNumber(0));
+    const { totalUSDValue, volume24h } = pairs.reduce(
+      ({ totalUSDValue, volume24h, fee24h, transactions }, p) => {
+        return {
+          totalUSDValue: totalUSDValue.plus(p.base_value).plus(p.quote_value),
+          volume24h: volume24h.plus(p.volume_24h),
+          fee24h: fee24h.plus(p.fee_24h),
+          transactions: transactions.plus(p.transaction_count_24h),
+        };
+      },
+      {
+        totalUSDValue: new BigNumber(0),
+        volume24h: new BigNumber(0),
+        fee24h: new BigNumber(0),
+        transactions: new BigNumber(0),
+      }
+    );
     const formatedTotalUSDValue = simplizeFiat(this, totalUSDValue, 4);
 
-    const formatedVolume = simplizeFiat(this, info.volume_24h, 4);
+    const formatedVolume = simplizeFiat(this, volume24h, 4);
 
     return {
       totalText: formatedTotalUSDValue,
