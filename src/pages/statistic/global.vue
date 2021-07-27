@@ -135,6 +135,10 @@ class GlobalStatistic extends Mixins(mixins.page) {
     };
   }
 
+  mounted() {
+    this.requestTransactions();
+  }
+
   async requestTransactions() {
     if (this.loading || !this.pagination.hasNext) {
       return;
