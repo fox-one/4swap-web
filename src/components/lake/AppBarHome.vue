@@ -35,7 +35,7 @@ export default LakeAppBarHome;
 
   .account {
     position: absolute;
-    left: 0;
+    left: 8px;
   }
 }
 </style>
