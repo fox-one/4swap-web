@@ -105,6 +105,7 @@ class LiquidityHistory extends Mixins(mixins.page) {
 
   mounted() {
     this.requestProfitData();
+    this.requestTransaction();
   }
 
   async requestProfitData() {
