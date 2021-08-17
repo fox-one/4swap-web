@@ -113,7 +113,7 @@ class GlobalStatistic extends Mixins(mixins.page) {
           totalUSDValue: totalUSDValue.plus(p.base_value).plus(p.quote_value),
           volume24h: volume24h.plus(p.volume_24h),
           fee24h: fee24h.plus(p.fee_24h),
-          transactions: transactions.plus(p.transaction_count_24h),
+          transactions: transactions.plus(p.transaction_count_24h ?? 0),
         };
       },
       {
