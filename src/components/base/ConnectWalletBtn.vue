@@ -23,7 +23,7 @@
             -> show mixin connect button
             -> show other wallets
       -->
-      <div>
+      <div v-if="show">
         <div class="text-center mb-8">
           <div v-if="isFennecDetected">
             <div class="f-body-2 mb-2">
@@ -110,7 +110,7 @@ class ConnectWalletBtn extends Vue {
   }
 
   get isFennecDetected() {
-    return this.$fennec.installed;
+    return this.$fennec.isInstalled();
   }
 
   handleLogin() {

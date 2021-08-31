@@ -9,21 +9,18 @@ export default class Fennec {
 
   #token;
 
-  installed = false;
-
   connected = false;
 
   constructor(app: NuxtAppOptions) {
     this.#app = app;
-    const ext = (window as any).__MIXIN__?.mixin_ext;
-    if (ext) {
-      this.installed = true;
-      this.#ext = ext;
-    }
   }
 
-  public available() {
-    return this.installed;
+  getExt() {
+    return (window as any).__MIXIN__?.mixin_ext;
+  }
+
+  isInstalled() {
+    return Boolean(this.getExt());
   }
 
   public async connect(origin: string) {
