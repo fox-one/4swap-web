@@ -24,10 +24,10 @@ export default class Fennec {
   }
 
   public async connect(origin: string) {
-    if (!this.#ext) {
+    if (!this.getExt()) {
       throw new Error("Browser Extension is not installed");
     }
-    this.#ctx = await this.#ext.enable(origin);
+    this.#ctx = await this.getExt().enable(origin);
     if (this.#ctx) {
       const token = await this.#ctx.wallet.signToken({
         payload: { from: origin },
@@ -42,7 +42,7 @@ export default class Fennec {
   }
 
   checkCtx() {
-    if (!this.#ctx) {
+    if (!this.getExt()) {
       throw new Error("Fennec context is not available");
     }
   }
