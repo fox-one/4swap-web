@@ -67,11 +67,9 @@ class ChartsPanel extends Vue {
 
   @Prop({ default: "168h", type: String }) defaultDuration!: API.Duration;
 
-  @Prop({ default: "liquidity", type: String }) defaultChartType!: ChartType;
-
   duration: API.Duration = this.defaultDuration;
 
-  chartType: ChartType = this.defaultChartType;
+  chartType: ChartType = "volume";
 
   marketData: API.MarketData[] = [];
 
@@ -112,19 +110,24 @@ class ChartsPanel extends Vue {
     let quote: API.Asset | null = null;
     let symbol = "";
     let cacheKey = "";
+
     if (this.baseAsset && this.quoteAsset) {
       [base, quote] = [this.baseAsset, this.quoteAsset].sort((a, b) =>
         a.id > b.id ? 1 : -1
       );
-      symbol = `${base.symbol}/${quote.symbol}`;
-      cacheKey = `${base.id}/${quote.id}`;
+
       const baseSymbol = base.symbol;
       const quoteSymbol = quote.symbol;
+
+      symbol = `${baseSymbol}/${quoteSymbol}`;
+      cacheKey = `${base.id}/${quote.id}`;
+
       chartTypes.push({
         icon: this.$icons.mdiChartLine,
         text: `${baseSymbol}/${quoteSymbol}`,
         value: "0",
       });
+
       chartTypes.push({
         icon: this.$icons.mdiChartLine,
         text: `${quoteSymbol}/${baseSymbol}`,
@@ -146,10 +149,13 @@ class ChartsPanel extends Vue {
     if (this.durationDisabled) {
       this.duration = "4320h";
     }
+
     await this.requestMarketData();
+
     if (this.meta.base && this.meta.quote) {
       await this.requestKlineData();
     }
+
     // calcualte ror
     // 7 days
     const len = this.klineData.length;
@@ -181,6 +187,26 @@ class ChartsPanel extends Vue {
     this.$store.commit("global/SET_PRICE_RATIOS", priceRatios);
     this.$store.commit("global/SET_VOL_SUMS", volSums);
     this.$store.commit("global/SET_LIQ_SUMS", liqSums);
+
+    this.handleSetDefaultChart();
+  }
+
+  handleSetDefaultChart() {
+    if (this.$route.query.type) {
+      this.chartType = this.$route.query.type as ChartType;
+
+      return;
+    }
+
+    if (this.meta.chartTypes.length > 2) {
+      const items = ["ETH", "BTC", "USDT"];
+      const baseIndex = items.findIndex((x) => x === this.meta.base?.symbol);
+      const quoteIndex = items.findIndex((x) => x === this.meta.quote?.symbol);
+
+      this.chartType = quoteIndex > baseIndex ? "0" : "1";
+
+      return;
+    }
   }
 
   async requestMarketData() {

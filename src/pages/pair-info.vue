@@ -10,7 +10,6 @@
       <charts-panel
         :base-asset="meta.baseAsset"
         :quote-asset="meta.quoteAsset"
-        :defaultChartType="$route.query.type || 'volume'"
         :defaultDuration="$route.query.duration || '720h'"
       />
       <div class="px-4">
