@@ -50,12 +50,22 @@ import { Component, Vue } from "vue-property-decorator";
 class BalancePanel extends Vue {
   isTotalBalance = false;
 
+  get totalPairs(): API.Pair[] {
+    return this.$store.getters["global/getSharedPairs"];
+  }
+
   get totalBalance() {
     return this.formatFiat(this.$store.getters["global/getUserTotalBalance"]);
   }
 
   get totalLpBalance() {
-    return this.formatFiat(this.$store.getters["global/getUserLpBalance"]);
+    const total = this.totalPairs.reduce((total, pair) => {
+      const { totalValue } = this.$utils.assets.getPairShared(this, pair);
+
+      return total + totalValue;
+    }, 0);
+
+    return this.formatFiat(total);
   }
 
   get filter() {

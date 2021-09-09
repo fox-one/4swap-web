@@ -234,6 +234,14 @@ class BaseInfoPanel extends Vue {
     };
   }
 
+  mounted() {
+    const items = ["ETH", "BTC", "USDT"];
+    const baseIndex = items.findIndex((x) => x === this.baseAsset?.symbol);
+    const quoteIndex = items.findIndex((x) => x === this.quoteAsset?.symbol);
+
+    this.isReverse = quoteIndex > baseIndex;
+  }
+
   @Watch("pair", { immediate: true })
   handleOrderChange() {
     this.setPriceText();

@@ -94,24 +94,13 @@ class LiquiditySharedPair extends Vue {
     const baseAsset = this.getAssetById(this.pair.base_asset_id);
     const quoteAsset = this.getAssetById(this.pair.quote_asset_id);
     const liquidityAsset = this.getAssetById(this.pair.liquidity_asset_id);
-    const balance = this.$store.getters["global/getBalanceByAssetId"](
-      this.pair.liquidity_asset_id
-    );
     const hasLPAsset = this.pair.liquidity_asset_id;
-    const s = liquidityAsset
-      ? Number(balance ?? 0)
-      : Number(this.pair?.share ?? 0);
-    const k = Number(this.pair?.liquidity ?? 0);
-
-    const totalBaseAmount = Number(this.pair?.base_amount ?? 0);
-    const totalQuoteAmount = Number(this.pair?.quote_amount ?? 0);
-    const percent = k > 0 ? Math.min(s / k, 1) : 0;
-
-    const sharedBaseAmount = totalBaseAmount * percent;
-    const sharedQuoteAmount = totalQuoteAmount * percent;
-    const totalValue =
-      sharedBaseAmount * Number(baseAsset?.price ?? 0) +
-      sharedQuoteAmount * Number(quoteAsset?.price ?? 0);
+    const {
+      totalValue,
+      sharedBaseAmount,
+      sharedQuoteAmount,
+      percent,
+    } = this.$utils.assets.getPairShared(this, this.pair);
     const totalValueText = this.formatFiat(totalValue);
 
     const netBaseAmount = this.profits?.netBaseAmount;

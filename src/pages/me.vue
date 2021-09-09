@@ -63,11 +63,15 @@ import { Getter } from "vuex-class";
 class MePage extends Mixins(mixins.page) {
   @Getter("global/getAssetById") getAssetById;
 
-  totalPairs: API.Pair[] = this.$store.getters["global/getSharedPairs"];
+  // totalPairs: API.Pair[] = this.$store.getters["global/getSharedPairs"];
 
   searchValue = "";
 
   // sharedPairs: IPair[] = this.totalPairs;
+
+  get totalPairs() {
+    return this.$store.getters["global/getSharedPairs"];
+  }
 
   get isLogged() {
     return this.$store.getters["auth/isLogged"];

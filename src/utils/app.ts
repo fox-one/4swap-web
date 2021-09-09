@@ -31,12 +31,15 @@ export function genAppTasks(vm: Vue) {
   return {
     setUpPollingTasks() {
       this.clearPollingTasks();
+
       $interval = setInterval(() => {
         vm.$store.dispatch("global/getAllAddedPairs", {
           brokerId: vm.$config.BROKER_ID,
         });
-      }, 3000);
+        vm.$utils.helper.loadWalletAssets(vm);
+      }, 5000);
     },
+
     clearPollingTasks() {
       clearInterval($interval);
     },
