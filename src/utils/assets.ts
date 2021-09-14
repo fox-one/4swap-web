@@ -3,6 +3,7 @@ export interface Asset {
   name: string;
   symbol: string;
   logo: string;
+  chainLogo: string;
   price: string;
 }
 
@@ -27,13 +28,29 @@ export function getLiquidityAddAvaliableAssets(
     }
   };
 
-  assets.forEach(({ id, name, symbol, logo, price }) => {
-    checkDup({ id, name, symbol, logo, price });
+  assets.forEach(({ id, name, symbol, logo, price, chainLogo }) => {
+    checkDup({ id, name, symbol, logo, price, chainLogo });
   });
 
   mixinAssets.forEach(
-    ({ asset_id: id, name, symbol, icon_url: logo, price_usd: price }) => {
-      checkDup({ id, name, symbol, logo, price });
+    ({
+      asset_id: id,
+      name,
+      symbol,
+      icon_url: logo,
+      price_usd: price,
+      chain_id,
+    }) => {
+      const chainAsset = mixinAssets.find((x) => x.asset_id === chain_id);
+
+      checkDup({
+        id,
+        name,
+        symbol,
+        logo,
+        price,
+        chainLogo: chainAsset?.icon_url ?? "",
+      });
     }
   );
 
