@@ -30,3 +30,7 @@ export const CHART_SCHEMES = {
 };
 
 export const PRSID = "3edb734c-6d6f-32ff-ab03-4eb43640c758";
+
+export const GLOBAL_EVENTS = {
+  OPEN_PAYMENT_MODAL: "OPEN_PAYMENT_MODAL",
+};

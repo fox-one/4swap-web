@@ -28,10 +28,10 @@
       :pre-order="preOrder"
       @confirm="handleRequestPayment(false)"
     />
-    <qrcode-pay-modal
+    <!-- <qrcode-pay-modal
       ref="QRCodePayModal"
       @paid="(e) => handleConfirmPaid(e)"
-    />
+    /> -->
     <swap-success-modal ref="swapSuccessModal" />
   </div>
 </template>
@@ -116,29 +116,32 @@ class SwapActionBtn extends Vue {
 
     this.loading = true;
     try {
-      const url = await this.$utils.payment.swap(this, {
-        minimum: this.meta.minReceived,
-        routes: this.preOrder!.routes,
-        pay_asset_id: this.inputAsset!.id,
-        fill_asset_id: this.outputAsset!.id,
-        follow_id: traceId,
-        amount: this.inputAmount,
-      });
-      if (url && isDesktop && !this.$fennec.connected) {
-        this.handleShowQRCodeModal(url, traceId);
-      }
+      await this.$utils.payment.swap(
+        this,
+        {
+          minimum: this.meta.minReceived,
+          routes: this.preOrder!.routes,
+          pay_asset_id: this.inputAsset!.id,
+          fill_asset_id: this.outputAsset!.id,
+          follow_id: traceId,
+          amount: this.inputAmount,
+        },
+        {
+          onPaid: () => this.handleConfirmPaid(traceId),
+        }
+      );
     } catch (error) {
       this.$utils.helper.errorHandler(this, error);
     }
     this.loading = false;
   }
 
-  handleShowQRCodeModal(text, traceId) {
-    const modal = this.$refs.QRCodePayModal as any;
-    if (modal) {
-      modal.show(text, traceId);
-    }
-  }
+  // handleShowQRCodeModal(text, traceId) {
+  //   const modal = this.$refs.QRCodePayModal as any;
+  //   if (modal) {
+  //     modal.show(text, traceId);
+  //   }
+  // }
 
   handleConfirmPaid(traceId) {
     this.requestPollingOrder(traceId);

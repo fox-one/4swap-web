@@ -91,22 +91,24 @@ class LiqCreateAction extends Vue {
    * confirm model click confirm button
    */
   async handleConfirm() {
-    const payment = this.$utils.helper.genPaymentUrl;
     const memo = this.$utils.base64.encode(
       JSON.stringify({
         t: "apply",
         p: [this.baseAsset?.id, this.quoteAsset?.id],
       })
     );
-
-    const payUrl = payment({
+    const params = {
       memo,
       assetId: this.costId,
       amount: this.costAmount,
       traceId: this.traceId,
       recipient: this.$config.MIXIN_CLIENT_ID,
+    };
+
+    this.$utils.payment.openTransferPayment(this, params, {
+      onPaid: () => this.requestOrder(),
     });
-    window.location.href = payUrl;
+
     this.loading = true;
     this.requestOrder();
   }

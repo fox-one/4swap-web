@@ -12,6 +12,7 @@
       :text="$t('payment.checking')"
       @cancel="handlePayingCancel"
     />
+    <qrcode-pay-modal />
     <base-simple-message-modal />
   </div>
 </template>
@@ -19,8 +20,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { State, Mutation } from "vuex-class";
+import QRCodePayModal from "./QRCodePayModal.vue";
 
-@Component
+@Component({
+  components: {
+    "qrcode-pay-modal": QRCodePayModal,
+  },
+})
 class DefaultLayoutModals extends Vue {
   @State((state) => state.app.toast) toast;
 
