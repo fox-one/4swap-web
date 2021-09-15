@@ -10,7 +10,7 @@
     <template #activator="{ on }">
       <slot name="activator" :on="{ on }">
         <div v-on="on" class="d-flex align-center">
-          <v-icon size="68" color="primary" class="mr-1">
+          <v-icon size="80" color="primary" class="mr-2">
             $iconPandoLake
           </v-icon>
           <v-icon size="16" color="primary"> $iconChevronDown </v-icon>
@@ -30,7 +30,7 @@
       :class="[item.disabled ? 'greyscale_4--text' : 'greyscale_1--text']"
       @click="handleToProduct(item, index)"
     >
-      <div>
+      <div class="name">
         {{ item.title }}
       </div>
       <v-spacer />
@@ -49,7 +49,7 @@ class PandoProductionNav extends Vue {
   get items() {
     return [
       {
-        title: "Pando Lakes",
+        title: "Pando Lake",
         check: true,
         disabled: false,
         href: "#",
@@ -58,13 +58,12 @@ class PandoProductionNav extends Vue {
         title: "Pando Leaf",
         check: false,
         disabled: false,
-        href: "https://leaf.pando.im/#/",
+        href: "https://leaf.pando.im",
       },
       {
-        title: "Pando Rings (Coming soon)",
+        title: "Pando Rings",
         check: false,
-        disabled: true,
-        href: "#",
+        href: "https://rings.pando.im",
       },
     ];
   }
@@ -75,3 +74,9 @@ class PandoProductionNav extends Vue {
 }
 export default PandoProductionNav;
 </script>
+
+<style lang="scss" scoped>
+.name {
+  min-width: 160px;
+}
+</style>
