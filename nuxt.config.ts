@@ -29,12 +29,7 @@ const config: NuxtConfig = {
     color: process.env.LOADING_COLOR,
   },
   css: ["~/styles/index.scss"],
-  plugins: [
-    "~/plugins/persistedstate.ts",
-    "~/plugins/components.ts",
-    "~/plugins/property.ts",
-    "~/plugins/lib.ts",
-  ],
+  plugins: ["~/plugins/property.ts", "~/plugins/lib.ts"],
   buildModules: [
     "@nuxtjs/eslint-module",
     [
@@ -80,8 +75,6 @@ const config: NuxtConfig = {
   publicRuntimeConfig: {
     CHANNEL: process.env.CHANNEL || "",
     CHANNEL_NAME: process.env.CHANNEL_NAME || "",
-    PRIMARY_COLOR_DARK: process.env.PRIMARY_COLOR_DARK || "",
-    PRIMARY_COLOR_LIGHT: process.env.PRIMARY_COLOR_LIGHT || "",
     BROKER_ID: process.env.BROKER_ID || "",
 
     API_BASE: process.env.API_BASE || "",
@@ -89,9 +82,6 @@ const config: NuxtConfig = {
     MIXIN_CLIENT_ID: process.env.MIXIN_CLIENT_ID || "",
     FIAT_TOKEN: process.env.FIAT_TOKEN || "",
     GA: process.env.GA || "",
-
-    LEGACY_WEB_HOST: process.env.LEGACY_WEB_HOST || "",
-    MTG_WEB_HOST: process.env.MTG_WEB_HOST || "",
   },
 
   privateRuntimeConfig: {

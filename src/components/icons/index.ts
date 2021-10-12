@@ -7,5 +7,8 @@ requireComponent.keys().forEach((fileName) => {
   const componentName = upperFirst(
     fileName.replace(/^\.\//, "").replace(/\.\w+$/, "")
   );
-  Vue.component(componentName, componentConfig.default || componentConfig);
+  Vue.component(
+    "Icon" + componentName,
+    componentConfig.default || componentConfig
+  );
 });

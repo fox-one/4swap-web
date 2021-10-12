@@ -1,4 +1,4 @@
-import { format, toPercent } from "./number";
+import { format, toPercent } from "@foxone/utils/number";
 
 export function fmtProfits(
   pair: API.Pair,
@@ -81,19 +81,19 @@ export function fmtProfits(
     },
     netBaseAmount: netBaseAmount + "",
     netQuoteAmount: netQuoteAmount + "",
-    currentBaseAmount: format({ n: currentBaseAmount, p: 8 }),
-    currentQuoteAmount: format({ n: currentQuoteAmount, p: 8 }),
-    fiatProfit: format({ n: fiatProfit, p: 2 }),
-    originFiatProfit: format({ n: originFiatProfit, p: 2 }),
-    baseProfit: format({ n: baseProfit, p: 8 }),
-    quoteProfit: format({ n: quoteProfit, p: 8 }),
-    baseProfitRate: toPercent(baseProfitRate, true),
+    currentBaseAmount: format({ n: currentBaseAmount, dp: 8 }),
+    currentQuoteAmount: format({ n: currentQuoteAmount, dp: 8 }),
+    fiatProfit: format({ n: fiatProfit, dp: 2 }),
+    originFiatProfit: format({ n: originFiatProfit, dp: 2 }),
+    baseProfit: format({ n: baseProfit, dp: 8 }),
+    quoteProfit: format({ n: quoteProfit, dp: 8 }),
+    baseProfitRate: toPercent({ n: baseProfitRate, symbol: true }),
     baseProfitRateValue: baseProfitRate,
-    quoteProfitRate: toPercent(quoteProfitRate, true),
+    quoteProfitRate: toPercent({ n: quoteProfitRate, symbol: true }),
     quoteProfitRateValue: quoteProfitRate,
-    fiatProfitRate: toPercent(fiatProfitRate, true),
+    fiatProfitRate: toPercent({ n: fiatProfitRate, symbol: true }),
     fiatProfitRateValue: fiatProfitRate,
-    originFiatProfitRate: toPercent(originFiatProfitRate, true),
+    originFiatProfitRate: toPercent({ n: originFiatProfitRate, symbol: true }),
     originFiatProfitRateValue: originFiatProfitRate,
   };
 }

@@ -1,0 +1,16 @@
+export const prefix = "pool/";
+
+export const MutationTypes = {
+  PUT_CACHE: "PUT_CACHE",
+  SET_ASSETS: "SET_ASSETS",
+  SET_PAIRS: "SET_PAIRS",
+  SET_ASSETS_WHITE_LISTS: "SET_ASSETS_WHITE_LISTS",
+  SET_PAIRS_INFO: "SET_PAIRS_INFO",
+  SET_FIATS: "SET_FIATS",
+};
+
+export const ActionTypes = {
+  LOAD_POOL_ASSETS: "LOAD_POOL_ASSETS",
+  LOAD_FIATS: "LOAD_FIATS",
+  LOAD_POOL_PAIRS: "LOAD_PAIRS",
+};

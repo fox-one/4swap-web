@@ -32,14 +32,10 @@ jobs:
           CHANNEL_NAME: ${{ secrets.CHANNEL_NAME }}
           BROKER_ID: ${{ secrets.BROKER_ID }}
           LOADING_COLOR: ${{ secrets.LOADING_COLOR }}
-          PRIMARY_COLOR_DARK: ${{ secrets.PRIMARY_COLOR_DARK }}
-          PRIMARY_COLOR_LIGHT: ${{ secrets.PRIMARY_COLOR_LIGHT }}
           MIXIN_CLIENT_ID: ${{ secrets.MIXIN_CLIENT_ID }}
           API_BASE: ${{ secrets.API_BASE }}
           FIAT_TOKEN: ${{ secrets.FIAT_TOKEN }}
           GA: ${{ secrets.GA }}
-          LEGACY_WEB_HOST: ${{ secrets.LEGACY_WEB_HOST }}
-          MTG_WEB_HOST: ${{ secrets.MTG_WEB_HOST }}
         run: yarn build
 
       # upload to aliyun

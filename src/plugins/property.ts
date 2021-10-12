@@ -4,7 +4,7 @@ import createHttpService from "~/services/http/create";
 import utils from "@/utils";
 import Cache from "@/utils/cache";
 import { PairRoutes } from "@/utils/pair/route";
-import Fennec from "../utils/fennec";
+import Fennec from "@foxone/fennec-dapp";
 
 declare module "vue/types/vue" {
   interface Vue {
@@ -41,9 +41,8 @@ const plugin: Plugin = ({ app, $config }, inject) => {
   inject("http", createHttpService(app, $config.API_BASE));
   inject("cache", new Cache());
   inject("utils", utils);
-  inject("icons", utils.icons);
   inject("pairRoutes", new PairRoutes());
-  inject("fennec", new Fennec(app));
+  inject("fennec", new Fennec());
 };
 
 export default plugin;

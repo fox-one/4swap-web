@@ -1,28 +1,16 @@
-import Vue, { VNode } from "vue";
-import { Component } from "vue-property-decorator";
-import { Mutation } from "vuex-class";
+import Vue from "vue";
+import { Component, Watch } from "vue-property-decorator";
 import dayjs from "dayjs";
-
-export interface Page extends Vue {
-  title: string | VNode;
-  htmlTitle?: string;
-  setLang: () => void;
-  setPageConfig: () => void;
-}
+import { GlobalMutations } from "~/store/types";
 
 @Component({
   head() {
-    const vm = this as Page;
+    const vm = this as any;
+    const name = vm.$t("channel.name");
+    const title = vm.htmlTitle || vm.title;
+
     return {
-      title:
-        (vm.$t("channel.name") as string) + " - " + (vm.htmlTitle || vm.title),
-      meta: [
-        {
-          hid: "theme-color",
-          name: "theme-color",
-          content: vm.$store.state.app.dark ? "#000000" : "#FFFFFF",
-        },
-      ],
+      title: name + " - " + title,
     };
   },
   beforeRouteEnter(_to, _from, next) {
@@ -33,10 +21,6 @@ export interface Page extends Vue {
   },
 })
 export default class PageView extends Vue {
-  @Mutation("app/SET_APPBAR") setAppbar;
-
-  @Mutation("app/SET_BOTTOM_NAV") setBottomNav;
-
   get title() {
     return "";
   }
@@ -51,16 +35,22 @@ export default class PageView extends Vue {
 
   setLang() {
     const locale = this.$utils.helper.getLocale();
+
     this.$i18n.locale = locale;
     this.$vuetify.lang.current = locale;
+
     dayjs.locale(locale);
   }
 
+  @Watch("appbar", { deep: true })
   setPageConfig() {
-    this.setBottomNav(this.bottomNav);
-    this.setAppbar({ title: this.title, ...this.appbar });
-    setTimeout(() => {
-      this.$utils.helper.loadMixinTheme();
-    }, 50);
+    this.$store.commit(GlobalMutations.SET_BOTTOM_NAV, {
+      value: this.bottomNav,
+    });
+
+    this.$store.commit(GlobalMutations.SET_APPBAR, {
+      title: this.title,
+      ...this.appbar,
+    });
   }
 }

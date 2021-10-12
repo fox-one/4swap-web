@@ -2,6 +2,7 @@ export function convertPairOrder(base, pair) {
   if (base === pair.base_asset_id) {
     return pair;
   }
+
   return {
     ...pair,
     base_amount: pair.quote_amount,
