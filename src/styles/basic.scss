@@ -5,13 +5,23 @@ a {
   user-select: none;
 }
 
-.v-application {
-  .v-main,
-  .v-toolbar {
-    transition: none !important;
-  }
+.label-1 {
+  font-size: 18px;
+  font-weight: 600;
 }
 
-.theme--light.v-application {
-  background-color: #fcfcfc !important;
+.label-2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--v-greyscale_3-base);
+}
+
+.label-3 {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--v-greyscale_3-base);
+}
+
+.number {
+  font-feature-settings: "salt" on;
 }

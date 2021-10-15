@@ -7,8 +7,8 @@
     <template #activator="{ on }">
       <slot name="activator" :on="{ on }">
         <div v-on="on" class="d-flex align-center">
-          <v-icon size="80" class="icon mr-1"> $FIconRingsBrand </v-icon>
-          <v-icon size="16" color="primary"> $FIconChevronDown4P </v-icon>
+          <v-icon size="80" class="icon mr-1"> $FIconLakeBrand </v-icon>
+          <v-icon size="16"> $FIconChevronDown4P </v-icon>
         </div>
       </slot>
     </template>

@@ -27,19 +27,19 @@ class BottomNav extends Vue {
     return [
       {
         text: this.$t("pools"),
-        icon: "$vuetify.icon.iconNavPool",
+        icon: "$FIconHomeFill",
         path: "pool",
         value: "pool",
       },
       {
         text: this.$t("swap"),
-        icon: "$vuetify.icon.iconNavSwap",
+        icon: "$FIconSwapFill",
         path: "swap",
         value: "swap",
       },
       {
         text: this.$t("me"),
-        icon: "$vuetify.icon.iconNavMe",
+        icon: "$FIconPersonFill",
         path: "me",
         value: "me",
       },

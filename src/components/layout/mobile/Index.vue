@@ -1,8 +1,11 @@
 <template>
   <div>
+    <app-bar />
+
     <v-main>
       <nuxt />
     </v-main>
+
     <bottom-nav />
   </div>
 </template>

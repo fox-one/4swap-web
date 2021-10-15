@@ -5,6 +5,7 @@ import { AxiosRequestConfig } from "axios";
 import Http from "./http";
 import createApis from "./index";
 import { v4 as uuid } from "uuid";
+import { logout } from "@/utils/account";
 
 function generateStructureInterceptor(app: NuxtAppOptions) {
   return [
@@ -25,7 +26,7 @@ function generateStructureInterceptor(app: NuxtAppOptions) {
       }
 
       if (res?.data?.error?.code === 401) {
-        app.store?.dispatch("auth/logout");
+        logout({ store: app.store });
 
         return Promise.reject(res.data.error);
       }
@@ -37,7 +38,7 @@ function generateStructureInterceptor(app: NuxtAppOptions) {
         const status = error.response.status;
 
         if (status === 401) {
-          app.store?.dispatch("auth/logout");
+          logout({ store: app.store });
         }
 
         const { code, msg } = error.response.data;

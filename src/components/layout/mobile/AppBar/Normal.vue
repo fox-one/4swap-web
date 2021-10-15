@@ -43,6 +43,14 @@ class NormalAppBar extends Vue {
   handleColorChange(value: string) {
     this.$utils.mixin.setMixinTheme(value);
   }
+
+  handleBack() {
+    if (window.history.length <= 2) {
+      this.$router.replace({ name: "index" });
+    } else {
+      this.$router.back();
+    }
+  }
 }
 export default NormalAppBar;
 </script>

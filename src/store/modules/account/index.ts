@@ -32,6 +32,7 @@ const actions: ActionTree<State.AccountState, any> = {
 };
 
 export default {
+  namespaced: true,
   state,
   getters,
   mutations,

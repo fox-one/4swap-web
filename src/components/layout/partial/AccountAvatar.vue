@@ -18,12 +18,15 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Get } from "vuex-pathify";
+import { GlobalGetters } from "~/store/types";
 
 @Component
 class AccountAvatar extends Vue {
   @Get("account/profile") profile!: API.MixinUser | null;
 
-  @Get("auth/isLogged") isLogged!: boolean;
+  @Get(GlobalGetters.LOGGED) isLogged!: boolean;
+
+  dialog = false;
 
   get meta() {
     return {

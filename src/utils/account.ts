@@ -1,4 +1,3 @@
-import type { Store } from "vuex";
 import { GlobalActions, GlobalMutations } from "~/store/types";
 
 const scope = "['PROFILE:READ', 'ASSETS:READ', 'SNAPSHOTS:READ']";
@@ -64,7 +63,7 @@ export async function authFennec(vm: Vue) {
  * @export
  * @param {{ store: Store<any> }} opts
  */
-export function logout(opts: { store: Store<any> }) {
+export function logout(opts: any) {
   const { commit } = opts.store;
 
   commit(GlobalMutations.CLEAR_AUTH);

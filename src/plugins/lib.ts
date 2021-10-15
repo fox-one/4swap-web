@@ -13,8 +13,10 @@ import {
   LegendPlainComponent,
   AxisPointerComponent,
 } from "echarts/components";
+
 import { use } from "echarts/core";
 
+import "sticksy";
 import "@/components";
 
 import "@foxone/uikit/build/index.min.css";

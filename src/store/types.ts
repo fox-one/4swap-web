@@ -21,6 +21,7 @@ import {
 import {
   MutationTypes as PoolMutationTypes,
   ActionTypes as PoolActionTypes,
+  GetterTypes as PoolGetterTypes,
   prefix as PoolPrefix,
 } from "./modules/pool/types";
 
@@ -51,4 +52,5 @@ export const GlobalActions = {
 export const GlobalGetters = {
   ...getGlobalTypes(AuthGetterTypes, AuthPrefix),
   ...getGlobalTypes(AccountGetterTypes, AccountPrefix),
+  ...getGlobalTypes(PoolGetterTypes, PoolPrefix),
 };

@@ -42,6 +42,14 @@ const mutations = {
     state.paying = { ...state.paying, ...data };
   },
 
+  [MutationTypes.SET_APP_INITING](state, value) {
+    state.initing = value;
+  },
+
+  [MutationTypes.SET_SETTINGS](state, data) {
+    state.settings = { ...state.settings, ...data };
+  },
+
   [MutationTypes.SET_APPBAR](state, data) {
     state.appbar = {
       title: "",
@@ -62,6 +70,7 @@ const actions: ActionTree<State.AppState, any> = {
 };
 
 export default {
+  namespaced: true,
   state,
   mutations,
   actions,

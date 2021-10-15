@@ -1,4 +1,4 @@
-import { GlobalMutations, GlobalActions } from "@/store/types";
+import { GlobalMutations, GlobalActions, GlobalGetters } from "@/store/types";
 import { loadAccountData } from "./account";
 
 export async function init(vm: Vue) {
@@ -39,8 +39,11 @@ export const tasks = {
     interval = setInterval(() => {
       vm.$store.dispatch(GlobalActions.LOAD_POOL_PAIRS, {
         brokerId: vm.$config.BROKER_ID,
-      }),
+      });
+
+      if (vm.$store.getters[GlobalGetters.LOGGED]) {
         vm.$utils.assets.getAssets(vm);
+      }
     }, 5000);
   },
 

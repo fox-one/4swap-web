@@ -6,6 +6,5 @@ declare namespace State {
     assetsBlackLists: string[];
     fiats: API.Fiat[];
     cache: string[];
-    pairsInfo: API.PairsInfo;
   }
 }

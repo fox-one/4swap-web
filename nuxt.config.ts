@@ -23,6 +23,7 @@ const config: NuxtConfig = {
         type: "image/x-icon",
         href: `/${process.env.CHANNEL}.png`,
       },
+      { rel: "stylesheet", href: "/fonts/inter/style.css" },
     ],
   },
   loading: {

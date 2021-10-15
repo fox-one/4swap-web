@@ -10,7 +10,6 @@ declare module "vue/types/vue" {
   interface Vue {
     $utils: typeof utils;
     $http: ReturnType<typeof createHttpService>;
-    $icons: typeof utils.icons;
     $pairRoutes: PairRoutes;
     $cache: Cache;
     $fennec: Fennec;
@@ -21,7 +20,6 @@ declare module "@nuxt/types" {
   interface NuxtAppOptions {
     $utils: typeof utils;
     $http: ReturnType<typeof createHttpService>;
-    $icons: typeof utils.icons;
     $pairRoutes: PairRoutes;
     $cache: Cache;
   }
@@ -31,7 +29,6 @@ declare module "vuex/types/index" {
   interface Store<S> {
     $utils: typeof utils;
     $http: ReturnType<typeof createHttpService>;
-    $icons: typeof utils.icons;
     $pairRoutes: PairRoutes;
     $cache: Cache;
   }

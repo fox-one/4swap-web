@@ -978,7 +978,16 @@
     vue-class-component "^7.2.3"
     vue-property-decorator "^9.1.2"
 
-"@foxone/utils@^0.2.12", "@foxone/utils@^0.2.6":
+"@foxone/utils@^0.2.14":
+  version "0.2.14"
+  resolved "https://registry.npmjs.org/@foxone/utils/-/utils-0.2.14.tgz#060151557abd8d8d099e01a3374dbaa8b41d42fa"
+  integrity sha512-lsCaC5SaIG+RtGEWKy7S/8wkpnUHZycIBF0md6D9rdQulpSS/I69FxxXv8AmJaep4Lo3R4fOBdphLWGXSaFG/Q==
+  dependencies:
+    axios "^0.21.1"
+    bignumber.js "^9.0.1"
+    dayjs "^1.10.4"
+
+"@foxone/utils@^0.2.6":
   version "0.2.12"
   resolved "https://registry.npmjs.org/@foxone/utils/-/utils-0.2.12.tgz#4caa774885ada9475cc75db1de0f4060a8c288e1"
   integrity sha512-2M9YWEJKWOtUDvLNMtkGuxy9//afEtqRs6BzEOIjpm6a0lPbdlZV4iynD2Ouz8u+IAjoLUgIHjaApymGXbVwsQ==
@@ -9876,6 +9885,11 @@ std-env@^2.2.1:
   dependencies:
     ci-info "^1.6.0"
 
+sticksy@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/sticksy/-/sticksy-0.2.0.tgz#aa5a6e329644f87452b39239c8bb68be6d0e4ff1"
+  integrity sha512-Mds9geS+z9dSS1XXiSdccmOuqL7C5il+5mQwoOErlDo21fLKnkLsAlGXbw8wp4qEC4WwDgmhnmOXZg4g02/MDA==
+
 stream-browserify@^2.0.1:
   version "2.0.2"
   resolved "https://registry.npmjs.org/stream-browserify/-/stream-browserify-2.0.2.tgz#87521d38a44aa7ee91ce1cd2a47df0cb49dd660b"
@@ -10871,11 +10885,6 @@ vue-no-ssr@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
-
-vue-property-decorator@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.npmjs.org/vue-property-decorator/-/vue-property-decorator-9.0.0.tgz#0a5f6d47d33ca62a8876108ccfa65c2c4fb7325a"
-  integrity sha512-oegTNPItuHOkW0AP1MnbdNwkmyhfsUIIXvIRHpgC18tVoEo21/i6kItyeekjMs8JgZJeuHzsaTc/DZaJFH4IWQ==
 
 vue-property-decorator@^9.1.2:
   version "9.1.2"

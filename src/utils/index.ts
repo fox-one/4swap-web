@@ -4,6 +4,7 @@ import * as app from "./app";
 import * as payment from "./payment";
 import * as color from "./color";
 import * as assets from "./assets";
+import * as currency from "./currency";
 
 export default {
   assets,
@@ -12,6 +13,7 @@ export default {
   app,
   color,
   mixin,
+  currency,
   time: { ...utils.time },
   number: { ...utils.number },
 };

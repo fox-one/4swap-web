@@ -30,3 +30,13 @@ export function getLocale() {
   }
   return locale;
 }
+
+export function getLangCode(value) {
+  const data = {
+    zh: "zh-CN",
+    ja: "ja-JP",
+    en: "en-US",
+  };
+
+  return data[value];
+}
