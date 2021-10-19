@@ -1,32 +1,11 @@
-export default class Cache {
-  cache = {};
+export function updateCache(cache: string[], value: string) {
+  const index = cache.indexOf(value);
 
-  keys: string[] = [];
-
-  max = 20;
-
-  set(key: string, value: unknown) {
-    if (this.keys.length > this.max) {
-      this.delete(this.keys.shift() || "");
-    }
-    this.cache[key] = value;
-    this.keys.push(key);
+  if (index > -1) {
+    cache.splice(index, 1);
+  } else if (cache.length >= 20) {
+    cache.shift();
   }
 
-  get(key: string) {
-    return this.cache[key];
-  }
-
-  delete(key: string) {
-    key && this.delete(key);
-  }
-
-  clear() {
-    this.cache = {};
-  }
-
-  likeClear(s: string) {
-    const keys = Object.keys(this.cache).filter((k) => k.indexOf(s) > -1);
-    keys.forEach((k) => this.delete(k));
-  }
+  cache.push(value);
 }

@@ -5,14 +5,19 @@
       :asset2.sync="asset2"
       :pair="pair"
     />
+
+    <f-divider class="mt-6 mx-n4" />
+
+    <introductions class="mt-4" />
   </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
-import LiquidityAddForm from "@/components/liquidity/AddForm.vue";
 import mixin from "@/mixins";
-import { GlobalGetters } from "~/store/types";
+import { GlobalGetters } from "@/store/types";
+import LiquidityAddForm from "@/components/liquidity/AddForm.vue";
+import Introductions from "@/components/particles/Introductions.vue";
 
 import { Asset } from "@/utils/assets";
 
@@ -24,6 +29,7 @@ type AssetData = {
 @Component({
   components: {
     LiquidityAddForm,
+    Introductions,
   },
 })
 class LiquidityAdd extends Mixins(mixin.page) {

@@ -15,6 +15,7 @@ declare namespace State {
       sortby: string;
       filter: string;
       ascending: boolean;
+      searchHistory: string[];
     };
 
     mine: {

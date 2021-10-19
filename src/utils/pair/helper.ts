@@ -55,6 +55,13 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
   };
 }
 
+/**
+ * switch base and quote asset data
+ *
+ * @export
+ * @param {API.Pair} pair
+ * @return {*}
+ */
 export function getReversePair(pair: API.Pair) {
   return {
     ...pair,
@@ -65,4 +72,27 @@ export function getReversePair(pair: API.Pair) {
     quote_asset_id: pair.base_asset_id,
     quote_value: pair.base_value,
   };
+}
+
+/**
+ * filter pair by given filter string
+ *
+ * @export
+ * @param {string} str
+ * @param {PairMeta} pair
+ * @return {*}
+ */
+export function filterFn(str: string, pair: PairMeta) {
+  const baseSymbol = pair.baseAsset.symbol.toLowerCase();
+  const quoteSymbol = pair.quoteAsset.symbol.toLowerCase();
+  const pairSymbol = pair.symbol.toLowerCase();
+  const filter = str.toLowerCase();
+
+  if (!str) return false;
+
+  return (
+    baseSymbol.includes(filter) ||
+    quoteSymbol.includes(filter) ||
+    pairSymbol.includes(filter)
+  );
 }

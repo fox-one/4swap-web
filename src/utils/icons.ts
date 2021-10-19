@@ -8,6 +8,7 @@ import {
   FIconAdd4P,
   FIconUpRight,
   FIconSearch,
+  FIconTrash,
 } from "@foxone/icons";
 
 const ficons = {
@@ -20,6 +21,7 @@ const ficons = {
   FIconAdd4P: { component: FIconAdd4P },
   FIconUpRight: { component: FIconUpRight },
   FIconSearch: { component: FIconSearch },
+  FIconTrash: { component: FIconTrash },
 };
 
 const icons = [

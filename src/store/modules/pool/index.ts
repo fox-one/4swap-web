@@ -1,6 +1,7 @@
 import { make } from "vuex-pathify";
 import { MutationTypes, ActionTypes, GetterTypes } from "./types";
 import { PRSID } from "@/constants";
+import { updateCache } from "@/utils/cache";
 import BigNumber from "bignumber.js";
 
 import type { ActionTree } from "vuex";
@@ -18,16 +19,7 @@ const mutations = {
   ...make.mutations(state),
 
   [MutationTypes.PUT_CACHE](state, key) {
-    const cache = state.cache;
-    const index = cache.indexOf(key);
-
-    if (index > -1) {
-      state.cache.splice(index, 1);
-    } else if (cache.length >= 20) {
-      state.cache.shift();
-    }
-
-    state.cache.push(key);
+    updateCache(state.cache, key);
   },
 };
 

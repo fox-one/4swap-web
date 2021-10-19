@@ -2,7 +2,6 @@
 import { Plugin } from "@nuxt/types";
 import createHttpService from "~/services/http/create";
 import utils from "@/utils";
-import Cache from "@/utils/cache";
 import { PairRoutes } from "@/utils/pair/route";
 import Fennec from "@foxone/fennec-dapp";
 
@@ -11,7 +10,6 @@ declare module "vue/types/vue" {
     $utils: typeof utils;
     $http: ReturnType<typeof createHttpService>;
     $pairRoutes: PairRoutes;
-    $cache: Cache;
     $fennec: Fennec;
   }
 }
@@ -21,7 +19,6 @@ declare module "@nuxt/types" {
     $utils: typeof utils;
     $http: ReturnType<typeof createHttpService>;
     $pairRoutes: PairRoutes;
-    $cache: Cache;
   }
 }
 
@@ -30,13 +27,11 @@ declare module "vuex/types/index" {
     $utils: typeof utils;
     $http: ReturnType<typeof createHttpService>;
     $pairRoutes: PairRoutes;
-    $cache: Cache;
   }
 }
 
 const plugin: Plugin = ({ app, $config }, inject) => {
   inject("http", createHttpService(app, $config.API_BASE));
-  inject("cache", new Cache());
   inject("utils", utils);
   inject("pairRoutes", new PairRoutes());
   inject("fennec", new Fennec());

@@ -25,6 +25,11 @@ import {
   prefix as PoolPrefix,
 } from "./modules/pool/types";
 
+import {
+  MutationTypes as PageMutationTypes,
+  prefix as PagePrefix,
+} from "./modules/page/types";
+
 import { GetterTypes as GlobalGetterTypes } from "./getters/types";
 
 function getGlobalTypes<T>(types: T, prefix: string) {
@@ -42,6 +47,7 @@ export const GlobalMutations = {
   ...getGlobalTypes(AccountMutaionTypes, AccountPrefix),
   ...getGlobalTypes(AuthMutationTypes, AuthPrefix),
   ...getGlobalTypes(PoolMutationTypes, PoolPrefix),
+  ...getGlobalTypes(PageMutationTypes, PagePrefix),
 };
 
 export const GlobalActions = {
