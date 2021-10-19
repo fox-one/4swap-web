@@ -2,6 +2,7 @@ export const prefix = "account/";
 
 export const GetterTypes = {
   USER_ID: "USER_ID",
+  GET_BALANCE_BY_ID: "GET_BALANCE_BY_ID",
 };
 
 export const MutationTypes = {

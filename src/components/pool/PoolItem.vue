@@ -31,19 +31,11 @@ class PoolItem extends Vue {
   dimension!: string;
 
   get meta() {
-    const format = this.$utils.number.format;
     const toPercent = this.$utils.number.toPercent;
     const toFiat = this.$utils.currency.toFiat;
 
     const meta = getPairMeta(this, this.pair, false);
-    const { baseAsset, quoteAsset, price, symbol } = meta;
-    const baseSymbol = baseAsset.symbol;
-    const quoteSymbol = quoteAsset.symbol;
-
-    const priceFormat = format({ n: price, fixed: true });
-    const reversePriceFormat = format({ n: 1 / price, fixed: true });
-    const priceText = `1 ${baseSymbol} ≈ ${priceFormat} ${quoteSymbol}`;
-    const reversePriceText = `1 ${quoteSymbol} ≈ ${reversePriceFormat} ${baseSymbol}`;
+    const { baseAsset, quoteAsset, symbol, priceText, reversePriceText } = meta;
 
     const data = meta[this.dimension];
     const dataFormat =

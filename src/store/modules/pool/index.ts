@@ -94,6 +94,17 @@ const getters = {
   [GetterTypes.GET_ASSET_BY_ID](state) {
     return (id: string) => state.assets.find((x) => x.id === id);
   },
+
+  [GetterTypes.GET_PAIR_BY_IDS](state) {
+    return (id1: string, id2: string) => {
+      // pair's base id is smaller than quote id
+      const [base, quote] = id1 < id2 ? [id1, id2] : [id2, id1];
+
+      return state.pairs.find(({ base_asset_id, quote_asset_id }) => {
+        return base === base_asset_id && quote === quote_asset_id;
+      });
+    };
+  },
 };
 
 const actions: ActionTree<State.AuthState, any> = {

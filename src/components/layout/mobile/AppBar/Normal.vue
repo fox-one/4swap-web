@@ -59,4 +59,10 @@ export default NormalAppBar;
 .appbar--shadow {
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.06) !important;
 }
+
+::v-deep {
+  .f-app-bar__title {
+    letter-spacing: -0.014em;
+  }
+}
 </style>

@@ -25,6 +25,8 @@ import {
   prefix as PoolPrefix,
 } from "./modules/pool/types";
 
+import { GetterTypes as GlobalGetterTypes } from "./getters/types";
+
 function getGlobalTypes<T>(types: T, prefix: string) {
   return Object.keys(types).reduce(
     (m, k) => ({
@@ -53,4 +55,5 @@ export const GlobalGetters = {
   ...getGlobalTypes(AuthGetterTypes, AuthPrefix),
   ...getGlobalTypes(AccountGetterTypes, AccountPrefix),
   ...getGlobalTypes(PoolGetterTypes, PoolPrefix),
+  ...getGlobalTypes(GlobalGetterTypes, ""),
 };

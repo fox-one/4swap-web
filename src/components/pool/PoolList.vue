@@ -61,10 +61,6 @@ class PoolList extends Vue {
     return { sorted };
   }
 
-  mounted() {
-    //
-  }
-
   handleSwitch() {
     this.reverse = !this.reverse;
   }

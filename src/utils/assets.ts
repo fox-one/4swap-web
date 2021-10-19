@@ -9,7 +9,18 @@ export interface Asset {
   price: string;
 }
 
-export function getLiquidityAddAvaliableAssets(
+/**
+ * get assets that could be seleted in liquidity add page
+ * which assets pool support and listed in mixin wallet
+ * specially assets listed in blacklist is banned
+ *
+ * @export
+ * @param {API.Asset[]} assets
+ * @param {API.MixinAsset[]} mixinAssets
+ * @param {string[]} blacklist
+ * @return {*}
+ */
+export function getAvaliableAddAssets(
   assets: API.Asset[],
   mixinAssets: API.MixinAsset[],
   blacklist: string[]
@@ -59,6 +70,15 @@ export function getLiquidityAddAvaliableAssets(
   return Array.from(assetsMap.values());
 }
 
+/**
+ * method to calc a single pair share amount and percent in pool
+ * percent equals balance of liquidity asset / pair liquidity
+ *
+ * @export
+ * @param {Vue} vm
+ * @param {API.Pair} pair
+ * @return {*}
+ */
 export function getPairShared(vm: Vue, pair: API.Pair) {
   const getAssetById = vm.$store.getters["global/getAssetById"];
   const getBalanceById = vm.$store.getters["global/getBalanceByAssetId"];
@@ -66,9 +86,8 @@ export function getPairShared(vm: Vue, pair: API.Pair) {
   const quoteAsset = getAssetById(pair.quote_asset_id);
   const balance = getBalanceById(pair.liquidity_asset_id) ?? 0;
 
-  const s = balance;
-  const k = Number(pair?.liquidity ?? 0);
-  const percent = k > 0 ? Math.min(s / k, 1) : 0;
+  const liquidity = Number(pair?.liquidity ?? 0);
+  const percent = liquidity > 0 ? Math.min(balance / liquidity, 1) : 0;
 
   const totalBaseAmount = Number(pair?.base_amount ?? 0);
   const totalQuoteAmount = Number(pair?.quote_amount ?? 0);
@@ -82,6 +101,13 @@ export function getPairShared(vm: Vue, pair: API.Pair) {
   return { totalValue, sharedBaseAmount, sharedQuoteAmount, percent };
 }
 
+/**
+ * get wallet assets by mixin api or fennec
+ * depend on which method user authed
+ *
+ * @export
+ * @param {Vue} vm
+ */
 export async function getAssets(vm: Vue) {
   let assets: API.MixinAsset[] = [];
 
@@ -98,6 +124,13 @@ export async function getAssets(vm: Vue) {
   }
 }
 
+/**
+ * get wallet asset by mixin api or fennec
+ * depend on which method user authed
+ *
+ * @export
+ * @param {Vue} vm
+ */
 export async function getAsset(vm: Vue, id: string) {
   let asset: API.MixinAsset;
 

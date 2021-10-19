@@ -12,6 +12,12 @@ const getters: GetterTree<State.AccountState, any> = {
   [GetterTypes.USER_ID](state) {
     return state.profile?.user_id;
   },
+
+  [GetterTypes.GET_BALANCE_BY_ID](state) {
+    return (id: string) => {
+      return state.assets?.find((asset) => asset.asset_id === id)?.balance ?? 0;
+    };
+  },
 };
 
 const mutations = {

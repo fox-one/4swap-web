@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import modules from "./modules";
+import getters from "./getters";
 import pathify from "vuex-pathify";
 import createPersistedState from "vuex-persistedstate";
 
@@ -13,6 +14,7 @@ export default function () {
 
   return new Vuex.Store({
     modules,
+    getters,
     plugins: [
       pathify.plugin,
       createPersistedState({

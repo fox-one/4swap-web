@@ -19,7 +19,7 @@
     <f-divider opacity="0.1" />
 
     <div class="pa-4 text-center">
-      <f-button text small color="secondary">
+      <f-button text small color="secondary" @click="handleToAddLiquidity">
         <v-icon size="16" class="mr-1">$FIconAdd4P</v-icon>
         <span>{{ $t("liquidity.add") }}</span>
       </f-button>
@@ -62,6 +62,10 @@ class PoolOverview extends Vue {
       overview: true,
       "overview--lake": this.$config.CHANNEL === "lake",
     };
+  }
+
+  handleToAddLiquidity() {
+    this.$router.push({ name: "liquidity-add" });
   }
 }
 export default PoolOverview;

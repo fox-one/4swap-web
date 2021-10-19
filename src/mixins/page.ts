@@ -21,7 +21,7 @@ import { GlobalMutations } from "~/store/types";
   },
 })
 export default class PageView extends Vue {
-  get title() {
+  get title(): any {
     return "";
   }
 

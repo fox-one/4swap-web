@@ -1,6 +1,8 @@
 import { GlobalGetters } from "@/store/types";
+import { format } from "@foxone/utils/number";
 
 export type PairMeta = ReturnType<typeof getPairMeta>;
+
 /**
  * get pair meta items
  * base and quote should be ajusted by priorities
@@ -32,7 +34,25 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
   const volume = +pair.quote_value + +pair.base_value;
   const turnOver = (volume && +pair.volume_24h / +volume) || 0;
 
-  return { ...sorted, price, symbol, volume, turnOver, isReverse };
+  // price format
+  const baseSymbol = baseAsset.symbol;
+  const quoteSymbol = quoteAsset.symbol;
+
+  const priceFormat = format({ n: price, fixed: true });
+  const reversePriceFormat = format({ n: 1 / price, fixed: true });
+  const priceText = `1 ${baseSymbol} ≈ ${priceFormat} ${quoteSymbol}`;
+  const reversePriceText = `1 ${quoteSymbol} ≈ ${reversePriceFormat} ${baseSymbol}`;
+
+  return {
+    ...sorted,
+    price,
+    symbol,
+    volume,
+    turnOver,
+    isReverse,
+    priceText,
+    reversePriceText,
+  };
 }
 
 export function getReversePair(pair: API.Pair) {
