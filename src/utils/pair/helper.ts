@@ -35,8 +35,8 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
   const turnOver = (volume && +pair.volume_24h / +volume) || 0;
 
   // price format
-  const baseSymbol = baseAsset.symbol;
-  const quoteSymbol = quoteAsset.symbol;
+  const baseSymbol = sorted.baseAsset.symbol;
+  const quoteSymbol = sorted.quoteAsset.symbol;
 
   const priceFormat = format({ n: price, fixed: true });
   const reversePriceFormat = format({ n: 1 / price, fixed: true });

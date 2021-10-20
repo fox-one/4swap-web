@@ -2,7 +2,7 @@ declare namespace API {
   export type Duration = "168h" | "720h" | "4320h" | "1440h";
 
   export interface PaginationParams {
-    limit: string;
+    limit: string | number;
     cursor: string;
   }
 

@@ -16,7 +16,7 @@
       </template>
     </div>
 
-    <empty-place-holder v-if="meta.empty" :searchable="searchables" />
+    <empty-place-holder v-if="meta.empty" :searchable="searchable" />
 
     <pool-item
       v-for="(item, index) in meta.items"

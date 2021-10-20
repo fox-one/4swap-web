@@ -5,6 +5,8 @@ import * as payment from "./payment";
 import * as color from "./color";
 import * as assets from "./assets";
 import * as currency from "./currency";
+import * as pair from "./pair/helper";
+import { simplize } from "./number";
 
 export default {
   assets,
@@ -14,6 +16,7 @@ export default {
   color,
   mixin,
   currency,
+  pair,
   time: { ...utils.time },
-  number: { ...utils.number },
+  number: { ...utils.number, simplize },
 };

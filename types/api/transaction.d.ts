@@ -4,7 +4,7 @@ declare namespace API {
   export type GetTransactionsParams = {
     base: string;
     quote: string;
-    type: string;
+    type?: string;
   } & API.PaginationParams;
 
   export interface GetTransactionParams {
@@ -30,5 +30,7 @@ declare namespace API {
     type: TransactionType;
     value: string;
     priceImpact?: number;
+    liquidity: string;
+    follow_id: string;
   }
 }

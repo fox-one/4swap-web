@@ -166,7 +166,7 @@
   "paying": "Paying",
   "payment.checking": "Checking Payment Result...",
   "pool": "Pool",
-  "pool.added-assets": "Assets pool",
+  "pool.added-assets": "Assets Pool",
   "pool_turnover.24hours": "Turnover 24H",
   "pool_turnover.24hours_short": "24h🔥",
   "pool_turnover.tooltip": "The rate that assets sold and replaced in the pool during 24 hours",
@@ -258,5 +258,11 @@
   "website": "Website",
   "websocket.connecting": "Connecting",
   "websocket.disconnected": "Disconnected",
-  "websocket.reconnect": "Reconnect"
+  "websocket.reconnect": "Reconnect",
+  "24h.vol": "24h Vol",
+  "24h.trades": "24h Trades",
+  "24h.fees": "24h Fees",
+  "24h.pool-turnover": "24h Pool Turnover",
+  "24h.ror": "24h ROR",
+  "24h.price-change": "24h Price Change"
 }

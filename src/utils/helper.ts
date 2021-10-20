@@ -1,14 +1,6 @@
 import Vue from "vue";
 
-export function errorHandler(
-  vm: Vue,
-  error: {
-    status?: number;
-    message?: string;
-    msg?: string;
-    code?: string | number;
-  }
-) {
+export function errorHandler(vm: Vue, error) {
   const code = error.code;
 
   let locale = "";

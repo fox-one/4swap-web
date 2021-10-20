@@ -33,7 +33,7 @@ class PairIcon extends Vue {
   @Prop({ default: false, type: Boolean }) small!: boolean;
 
   get size() {
-    return this.small ? 24 : 40;
+    return this.small ? 24 : 32;
   }
 }
 export default PairIcon;
@@ -46,6 +46,7 @@ export default PairIcon;
   &__base,
   &__quote {
     display: flex;
+    padding: 2px;
   }
 
   &__quote {

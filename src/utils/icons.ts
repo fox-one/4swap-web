@@ -9,6 +9,10 @@ import {
   FIconUpRight,
   FIconSearch,
   FIconTrash,
+  FIconInfo4P,
+  FIconRefresh4P,
+  FIconConvertDirection4PBold,
+  FIconChevronRight4PBold,
 } from "@foxone/icons";
 
 const ficons = {
@@ -22,6 +26,10 @@ const ficons = {
   FIconUpRight: { component: FIconUpRight },
   FIconSearch: { component: FIconSearch },
   FIconTrash: { component: FIconTrash },
+  FIconInfo4P: { component: FIconInfo4P },
+  FIconRefresh4P: { component: FIconRefresh4P },
+  FIconConvertDirection4PBold: { component: FIconConvertDirection4PBold },
+  FIconChevronRight4PBold: { component: FIconChevronRight4PBold },
 };
 
 const icons = [
@@ -30,6 +38,7 @@ const icons = [
   "IconSortAsce",
   "IconSortDesc",
   "IconSortNone",
+  "IconSwitcher4P",
 ].reduce((m, k) => ({ ...m, [k]: { component: k } }), {});
 
 export default {

@@ -1,36 +1,68 @@
 <template>
-  <v-container> asdf </v-container>
+  <v-container v-if="meta.pair">
+    <pair-price :pair="meta.pair" />
+
+    <f-divider class="my-6 mx-n3" />
+
+    <pair-informations :pair="meta.pair" />
+
+    <div class="label-1 mt-8">{{ $t("pool.added-assets") }}</div>
+    <pair-assets :pair="meta.pair" class="mt-4" />
+
+    <div class="label-1 mt-8">{{ $t("chart") }}</div>
+
+    <div class="label-1 mt-8">{{ $t("transactions") }}</div>
+    <pair-transactions :pair="meta.pair" />
+  </v-container>
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from "vue-property-decorator";
+import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixins from "@/mixins";
+import { GlobalGetters } from "@/store/types";
+import PairPrice from "@/components/pair/PairPrice.vue";
+import PairInformations from "@/components/pair/PairInformations.vue";
+import PairAssets from "@/components/pair/PairAssets.vue";
+import PairTransactions from "@/components/pair/PairTransactions.vue";
 
-@Component
+@Component({
+  components: {
+    PairPrice,
+    PairAssets,
+    PairInformations,
+    PairTransactions,
+  },
+})
 class PairDetailPage extends Mixins(mixins.page) {
-  get htmlTitle() {
-    // return this.meta.symbol;
-    return "asdfa";
-  }
-
   get title() {
-    return "asdfa";
-    // return this.$createElement("base-pair-icon", {
-    //   staticStyle: {
-    //     "justify-content": "center",
-    //   },
-    //   props: {
-    //     "base-asset": this.meta.baseAsset,
-    //     "quote-asset": this.meta.quoteAsset,
-    //     small: true,
-    //   },
-    // }) as any;
+    return this.meta.symbol;
   }
 
   get appbar() {
     return {
       align: "center",
     };
+  }
+
+  get meta() {
+    const getPair = this.$store.getters[GlobalGetters.GET_PAIR_BY_IDS];
+    const getPairMeta = this.$utils.pair.getPairMeta;
+    const id1 = this.$route.query.base;
+    const id2 = this.$route.query.quote;
+    const pair = getPair(id1, id2);
+
+    if (pair) {
+      const { baseAsset, quoteAsset, symbol } = getPairMeta(this, pair);
+
+      return { pair, baseAsset, quoteAsset, symbol };
+    }
+
+    return { pair };
+  }
+
+  @Watch("meta.pair", { immediate: true })
+  handlePairChange() {
+    this.setPageConfig();
   }
 }
 export default PairDetailPage;
