@@ -4,6 +4,7 @@
       :asset1.sync="asset1"
       :asset2.sync="asset2"
       :pair="pair"
+      :order.sync="order"
     />
 
     <f-divider class="mt-6 mx-n4" />
@@ -19,7 +20,7 @@ import { GlobalGetters } from "@/store/types";
 import LiquidityAddForm from "@/components/liquidity/AddForm.vue";
 import Introductions from "@/components/particles/Introductions.vue";
 
-import { Asset } from "@/utils/assets";
+import type { Asset } from "@/utils/assets";
 
 type AssetData = {
   asset: Asset | null;

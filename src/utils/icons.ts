@@ -11,6 +11,7 @@ import {
   FIconTrash,
   FIconInfo4P,
   FIconRefresh4P,
+  FIconSetting,
   FIconConvertDirection4PBold,
   FIconChevronRight4PBold,
 } from "@foxone/icons";
@@ -28,6 +29,7 @@ const ficons = {
   FIconTrash: { component: FIconTrash },
   FIconInfo4P: { component: FIconInfo4P },
   FIconRefresh4P: { component: FIconRefresh4P },
+  FIconSetting: { component: FIconSetting },
   FIconConvertDirection4PBold: { component: FIconConvertDirection4PBold },
   FIconChevronRight4PBold: { component: FIconChevronRight4PBold },
 };

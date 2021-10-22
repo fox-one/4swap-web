@@ -9,3 +9,7 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.v-btn-toggle.f-segment-control > .v-btn:not(.v-btn--active) {
+  background-color: transparent !important;
+}

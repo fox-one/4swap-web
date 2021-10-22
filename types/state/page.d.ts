@@ -1,4 +1,9 @@
 declare namespace State {
+  export interface SwapAssetData {
+    asset: API.Asset | null;
+    amount: string;
+  }
+
   export interface PageState {
     liqAdd: {
       base: API.Asset | null;
@@ -7,8 +12,8 @@ declare namespace State {
     };
 
     swap: {
-      inputAsset: API.Asset | null;
-      outputAsset: API.Asset | null;
+      input: SwapAssetData;
+      output: SwapAssetData;
     };
 
     pool: {

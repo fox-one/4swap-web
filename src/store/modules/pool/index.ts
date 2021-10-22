@@ -24,6 +24,7 @@ const mutations = {
 };
 
 const getters = {
+  // filter assets by whitelist and blacklist
   [GetterTypes.AVALIABLE_ASSETS](state) {
     const {
       assets,
@@ -49,6 +50,7 @@ const getters = {
     return avaliables;
   },
 
+  // filter pairs only contain assets in avaliable assets
   [GetterTypes.AVALIABLE_PAIRS](state, getters) {
     const pairs = state.pairs;
     const assets = getters[GetterTypes.AVALIABLE_ASSETS];
@@ -58,6 +60,29 @@ const getters = {
         assets.find(({ id }) => id === base_asset_id) &&
         assets.find(({ id }) => id === quote_asset_id)
       );
+    });
+  },
+
+  // remove LP token in avaliable assets
+  // LP token not support on swap list
+  [GetterTypes.AVALIABLE_SWAP_ASSETS](state, getters) {
+    const assets: API.Asset[] = getters[GetterTypes.AVALIABLE_ASSETS];
+    const pairs = state.pairs;
+    const cache = state.cache;
+
+    const filted = assets.filter(({ id, name }) => {
+      const isLPToken =
+        pairs.find(({ liquidity_asset_id }) => liquidity_asset_id === id) ||
+        name.includes("LP Token");
+
+      return !isLPToken;
+    });
+
+    return filted.concat().sort((a, b) => {
+      const idxA = cache.indexOf(a.id);
+      const idxB = cache.indexOf(b.id);
+
+      return idxA > idxB ? -1 : idxA === idxB ? 0 : 1;
     });
   },
 

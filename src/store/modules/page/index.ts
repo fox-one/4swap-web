@@ -2,7 +2,7 @@ import { make } from "vuex-pathify";
 import { MutationTypes } from "./types";
 import { updateCache } from "@/utils/cache";
 
-const state: State.PageState = {
+const state = {
   liqAdd: {
     base: null,
     quote: null,
@@ -10,8 +10,14 @@ const state: State.PageState = {
   },
 
   swap: {
-    inputAsset: null,
-    outputAsset: null,
+    input: {
+      asset: null,
+      amount: "",
+    },
+    output: {
+      asset: null,
+      amount: "",
+    },
   },
 
   pool: {
