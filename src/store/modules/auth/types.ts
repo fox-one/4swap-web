@@ -9,6 +9,4 @@ export const MutationTypes = {
   CLEAR_AUTH: "CLEAR_AUTH",
 };
 
-export const ActionTypes = {
-  LOGIN: "LOGIN",
-};
+export const ActionTypes = {};

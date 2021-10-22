@@ -7,6 +7,7 @@ import {
   FIconLakeBrand,
   FIconAdd4P,
   FIconUpRight,
+  FIconUpRight4P,
   FIconSearch,
   FIconTrash,
   FIconInfo4P,
@@ -32,6 +33,7 @@ const ficons = {
   FIconSetting: { component: FIconSetting },
   FIconConvertDirection4PBold: { component: FIconConvertDirection4PBold },
   FIconChevronRight4PBold: { component: FIconChevronRight4PBold },
+  FIconUpRight4P: { component: FIconUpRight4P },
 };
 
 const icons = [

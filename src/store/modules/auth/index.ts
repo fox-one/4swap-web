@@ -1,5 +1,5 @@
 import { make } from "vuex-pathify";
-import { MutationTypes, ActionTypes, GetterTypes } from "./types";
+import { MutationTypes, GetterTypes } from "./types";
 
 import type { ActionTree, GetterTree } from "vuex";
 
@@ -21,6 +21,7 @@ const mutations = {
   [MutationTypes.SET_TOKEN](state, data) {
     state.token = data.token;
     state.scope = data.scope;
+    state.channel = data.channel;
   },
 
   [MutationTypes.CLEAR_AUTH](state) {
@@ -30,13 +31,7 @@ const mutations = {
   },
 };
 
-const actions: ActionTree<State.AuthState, any> = {
-  async [ActionTypes.LOGIN]({ commit }, { code, broker_id, label }) {
-    const resp = await this.$http.auth({ code, broker_id, label });
-
-    commit(MutationTypes.SET_TOKEN, { token: resp.token, scope: resp.scope });
-  },
-};
+const actions: ActionTree<State.AuthState, any> = {};
 
 export default {
   namespaced: true,

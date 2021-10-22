@@ -155,6 +155,8 @@
   "liquidity.usd": "Liquidity(USD)",
   "login": "Login",
   "logout": "Logout",
+  "assets.pool": "Assets Pool",
+  "pool.details": "Pool Details",
   "me": "Me",
   "me.learn.more": "Learn More",
   "me.not.support": "You haven’t support any pool yet",

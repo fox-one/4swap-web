@@ -75,6 +75,91 @@ export function getReversePair(pair: API.Pair) {
 }
 
 /**
+ * calc price, fee, min receive... by prediction order
+ *
+ * @export
+ * @param {Vue} vm
+ * @param {{
+ *     input: API.Asset;
+ *     output: API.Asset;
+ *     order: API.SwapOrder;
+ *   }} {
+ *     input,
+ *     output,
+ *     order,
+ *   }
+ * @return {*}
+ */
+export function getPreOrderMeta(
+  vm: Vue,
+  {
+    input,
+    output,
+    order,
+  }: {
+    input: API.Asset;
+    output: API.Asset;
+    order: API.SwapOrder;
+  }
+) {
+  const format = vm.$utils.number.format;
+  const getPairByIds = vm.$store.getters[GlobalGetters.GET_PAIR_BY_IDS];
+
+  const inputSymbol = input.symbol;
+  const outputSymbol = output.symbol;
+  const slippage = vm.$store.state.app.settings.slippage || 0.99;
+  const { amount = 0, funds = 0, route_assets = [] } = order;
+
+  // calc price and reverse price text
+  let price = "";
+  let priceText = "";
+  let reversePrice = "";
+  let reversePriceText = "";
+
+  if (amount && funds) {
+    price = (+amount / +funds).toString();
+    reversePrice = (+funds / +amount).toString();
+    priceText = `1 ${inputSymbol} ≈ ${format({ n: price })} ${outputSymbol}`;
+    reversePriceText = `1 ${outputSymbol} ≈ ${format({
+      n: reversePrice,
+    })} ${inputSymbol}`;
+  }
+
+  // calc fee and fee text
+  let fee = 0;
+  let feeText = "";
+  let receivePercent = 1;
+
+  route_assets.forEach((asset, index) => {
+    const pair = getPairByIds({
+      base: asset,
+      quote: route_assets?.[index + 1],
+    });
+
+    receivePercent *= 1 - (pair?.fee_percent ?? 0);
+  });
+
+  fee = +funds - receivePercent * +funds;
+  feeText = format({ n: fee, dp: 8 });
+
+  // calc min recevied
+  const minReceived = +amount * +slippage;
+  const minReceivedText = format({ n: minReceived });
+
+  return {
+    ...order,
+    price,
+    priceText,
+    reversePrice,
+    reversePriceText,
+    fee,
+    feeText,
+    minReceived,
+    minReceivedText,
+  };
+}
+
+/**
  * filter pair by given filter string
  *
  * @export

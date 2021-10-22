@@ -13,15 +13,20 @@
     <v-spacer />
 
     <div>
-      <span class="ml-2"> {{ value }} </span>
+      <span class="ml-2">
+        <Render :nodes="value" />
+      </span>
     </div>
   </v-layout>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import Render from "./Render";
 
-@Component
+@Component({
+  components: { Render },
+})
 class InformationItem extends Vue {
   @Prop() title!: string;
 

@@ -10,6 +10,8 @@ export async function init(vm: Vue) {
 
   commit(GlobalMutations.SET_APP_INITING, true);
 
+  await vm.$utils.account.checkFennecAuth(vm);
+
   try {
     await Promise.all([
       // load basic application data

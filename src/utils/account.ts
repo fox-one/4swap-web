@@ -1,3 +1,4 @@
+import { GLOBAL_EVENTS } from "~/constants";
 import { GlobalActions, GlobalMutations } from "~/store/types";
 
 const scope = "['PROFILE:READ', 'ASSETS:READ', 'SNAPSHOTS:READ']";
@@ -8,7 +9,7 @@ const scope = "['PROFILE:READ', 'ASSETS:READ', 'SNAPSHOTS:READ']";
  * @export
  * @param {Vue} vm
  */
-export function requestLogin(vm: Vue) {
+export function requestAuthMixin(vm: Vue) {
   const host = window.location.origin;
   const redirectUrl = encodeURIComponent(host + "/#/auth/");
   const path = `https://mixin-oauth.fox.one/?client_id=${vm.$config.MIXIN_CLIENT_ID}&scope=PROFILE:READ+ASSETS:READ&response_type=code&redirect_url=${redirectUrl}`;
@@ -107,7 +108,7 @@ export async function updateAuth(
   vm: Vue,
   payload: { token: string; scope: string; channel: string }
 ) {
-  vm.$store.commit("auth/SET_OAUTH_INFO", payload);
+  vm.$store.commit(GlobalMutations.SET_TOKEN, payload);
 
   await loadAccountData(vm);
 }
@@ -120,4 +121,15 @@ export async function updateAuth(
 export async function loadAccountData(vm: Vue) {
   vm.$store.dispatch(GlobalActions.LOAD_PROFILE);
   vm.$utils.assets.getAssets(vm);
+}
+
+/**
+ * open auth methods modal
+ * which user choose use mixin auth or fennec auth
+ *
+ * @export
+ * @param {Vue} vm
+ */
+export function openAuth(vm: Vue) {
+  vm.$root.$emit(GLOBAL_EVENTS.OPEN_AUTH);
 }

@@ -7,18 +7,22 @@
     />
 
     <payment-modal />
+
+    <auth-modal />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import PaymentModal from "./PaymentModal.vue";
+import AuthModal from "./AuthModal.vue";
 import { Sync } from "vuex-pathify";
 import { GlobalMutations } from "~/store/types";
 
 @Component({
   components: {
     PaymentModal,
+    AuthModal,
   },
 })
 class Modals extends Vue {

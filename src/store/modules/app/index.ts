@@ -32,7 +32,7 @@ const state: State.AppState = {
 
   bottomNav: "",
 
-  initing: false,
+  initing: true,
 };
 
 const mutations = {

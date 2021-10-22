@@ -19,7 +19,12 @@ export default function () {
       pathify.plugin,
       createPersistedState({
         key: "vuex",
-        paths: ["app.settings", "auth", "page"],
+        paths: [
+          "app.settings",
+          "auth",
+          "page.swap.input.asset",
+          "page.swap.output.asset",
+        ],
       }),
     ],
   });

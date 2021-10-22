@@ -13,6 +13,7 @@
         :balance="meta.balanceText"
         :fiat-amount="meta.amountFiatText"
         :messages="messages"
+        @connect-wallet="handleConnectWallet"
         @fill="handleFill"
       />
     </template>
@@ -57,6 +58,10 @@ class AssetAmountInput extends Vue {
 
   handleFill() {
     this.bindData.amount = this.meta.balance;
+  }
+
+  handleConnectWallet() {
+    this.$utils.account.openAuth(this);
   }
 }
 export default AssetAmountInput;

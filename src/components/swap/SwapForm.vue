@@ -1,34 +1,59 @@
 <template>
-  <f-asset-swap-form :hide-switch="meta.hideSwitch" @switch="handleSwitch">
-    <template #input>
-      <base-asset-amount-input
-        :data="bindInput"
-        :assets="assets"
-        :placeholder="$t('sell')"
-        @update:asset="(v) => handleUpdateAsset('input', v)"
-        @input="(v) => handleInput('input', v)"
-      />
-    </template>
+  <div>
+    <f-asset-swap-form :hide-switch="meta.hideSwitch" @switch="handleSwitch">
+      <template #input>
+        <base-asset-amount-input
+          :data="bindInput"
+          :assets="assets"
+          :placeholder="$t('sell')"
+          @update:asset="(v) => handleUpdateAsset('input', v)"
+          @input="(v) => handleInput('input', v)"
+        />
+      </template>
 
-    <template #output>
-      <base-asset-amount-input
-        :data="bindOutput"
-        :assets="assets"
-        :placeholder="$t('received')"
-        @update:asset="(v) => handleUpdateAsset('output', v)"
-        @input="(v) => handleInput('output', v)"
-      />
-    </template>
-  </f-asset-swap-form>
+      <template #output>
+        <base-asset-amount-input
+          :data="bindOutput"
+          :assets="assets"
+          :placeholder="$t('received')"
+          @update:asset="(v) => handleUpdateAsset('output', v)"
+          @input="(v) => handleInput('output', v)"
+        />
+      </template>
+    </f-asset-swap-form>
+
+    <swap-form-informations
+      :pair="pair"
+      :order="order"
+      :input-asset="input.asset"
+      :output-asset="output.asset"
+      class="mt-6"
+    />
+
+    <div class="text-center">
+      <swap-action class="mt-6" />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, PropSync } from "vue-property-decorator";
+import { Component, Vue, PropSync, Prop } from "vue-property-decorator";
 import { GlobalGetters } from "@/store/types";
 import { debounce } from "@foxone/utils/helper";
+import SwapFormInformations from "./SwapFormInformations.vue";
+import SwapAction from "./SwapAction.vue";
 
-@Component
+@Component({
+  components: {
+    SwapFormInformations,
+    SwapAction,
+  },
+})
 class SwapForm extends Vue {
+  @Prop() pair!: API.Pair;
+
+  @Prop() order!: API.SwapOrder;
+
   @PropSync("input") bindInput;
 
   @PropSync("output") bindOutput;
@@ -139,6 +164,8 @@ class SwapForm extends Vue {
         vm.handleUpdateInput({ amount: order.funds });
       }
     } catch (error) {
+      this.$emit("update:order", null);
+
       if (params.inputAmount !== undefined) {
         vm.handleUpdateOutput({ amount: "" });
       } else {

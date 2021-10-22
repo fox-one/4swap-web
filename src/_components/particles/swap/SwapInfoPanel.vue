@@ -57,7 +57,7 @@ class SwapInfoPanel extends Vue {
         amountSymbol,
         price,
         fundsSymbol,
-        text: ` 1 ${amountSymbol} ≈ ${price} ${fundsSymbol}`,
+        text: `1 ${amountSymbol} ≈ ${price} ${fundsSymbol}`,
       };
     };
 

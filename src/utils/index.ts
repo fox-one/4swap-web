@@ -1,5 +1,6 @@
 import utils, { mixin } from "@foxone/utils";
 import * as helper from "./helper";
+import * as account from "./account";
 import * as app from "./app";
 import * as payment from "./payment";
 import * as color from "./color";
@@ -9,6 +10,7 @@ import * as pair from "./pair/helper";
 import { simplize } from "./number";
 
 export default {
+  account,
   assets,
   helper,
   payment,

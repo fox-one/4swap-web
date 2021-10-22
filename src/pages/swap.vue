@@ -9,27 +9,43 @@
     </v-layout>
 
     <swap-form
+      :pair="pair"
+      :order="order"
       :input.sync="input"
       :output.sync="output"
       class="mt-4"
       @update:order="handleUpdateOrder"
     />
+
+    <template v-if="pair">
+      <f-divider class="mt-6 mx-n3" />
+
+      <div class="label-1 mt-8">{{ $t("assets.pool") }}</div>
+      <pair-assets show-detail-link :pair="pair" class="mt-4" />
+
+      <div class="label-1 mt-8">{{ $t("history") }}</div>
+      <pair-transactions :pair="pair" class="mt-2" />
+    </template>
   </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Mixins, Watch } from "vue-property-decorator";
-import mixins from "@/mixins";
 import { GlobalGetters, GlobalMutations } from "@/store/types";
+import { DEFAULT_ASSET_ID, BTC_ASSET_ID } from "@/constants";
+import mixins from "@/mixins";
 import { Sync } from "vuex-pathify";
 import SwapForm from "@/components/swap/SwapForm.vue";
 import SlippageSetting from "@/components/swap/SlippageSetting.vue";
-import { DEFAULT_ASSET_ID, BTC_ASSET_ID } from "@/constants";
+import PairAssets from "@/components/pair/PairAssets.vue";
+import PairTransactions from "@/components/pair/PairTransactions.vue";
 
 @Component({
   components: {
     SwapForm,
     SlippageSetting,
+    PairAssets,
+    PairTransactions,
   },
 })
 class SwapPage extends Mixins(mixins.page) {
@@ -79,7 +95,6 @@ class SwapPage extends Mixins(mixins.page) {
   }
 
   mounted() {
-    console.log(this.$store);
     this.setInitialAsset();
   }
 
