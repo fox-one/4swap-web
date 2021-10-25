@@ -3,7 +3,9 @@
     <app-bar />
 
     <v-main>
-      <nuxt />
+      <v-container class="pa-4">
+        <nuxt />
+      </v-container>
     </v-main>
 
     <bottom-nav />

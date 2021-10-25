@@ -3,6 +3,7 @@ export const prefix = "account/";
 export const GetterTypes = {
   USER_ID: "USER_ID",
   GET_BALANCE_BY_ID: "GET_BALANCE_BY_ID",
+  GET_PROFIT_BY_PAIR: "GET_PROFIT_BY_PAIR",
 };
 
 export const MutationTypes = {
@@ -10,10 +11,12 @@ export const MutationTypes = {
   SET_WALLET_ASSET: "SET_WALLET_ASSET",
   SET_WALLET_ASSETS: "SET_WALLET_ASSETS",
   CLEAR_ACCOUNT: "CLEAR_ACCOUNT",
+  SET_PROFIT: "SET_PROFIT",
 };
 
 export const ActionTypes = {
   LOAD_PROFILE: "LOAD_PROFILE",
+  LOAD_PROFIT: "LOAD_PROFITS",
   LOAD_WALLET_ASSETS: "LOAD_WALLET_ASSETS",
   LOAD_WALLET_ASSET: "LOAD_WALLET_ASSET",
 };

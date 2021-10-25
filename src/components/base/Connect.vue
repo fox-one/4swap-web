@@ -13,10 +13,11 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Get } from "vuex-pathify";
+import { GlobalGetters } from "@/store/types";
 
 @Component
 export default class ConnectWalletBtn extends Vue {
-  @Get("auth/isLogged") isLogged!: boolean;
+  @Get(GlobalGetters.LOGGED) isLogged!: boolean;
 
   handleOpenAuth() {
     this.$utils.account.openAuth(this);

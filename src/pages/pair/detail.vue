@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="meta.pair">
+  <div v-if="meta.pair">
     <pair-price :pair="meta.pair" />
 
     <f-divider class="my-6 mx-n3" />
@@ -13,7 +13,7 @@
 
     <div class="label-1 mt-8">{{ $t("transactions") }}</div>
     <pair-transactions :pair="meta.pair" />
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

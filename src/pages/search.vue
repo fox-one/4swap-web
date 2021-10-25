@@ -1,11 +1,11 @@
 <template>
-  <v-container>
+  <div>
     <f-search-input v-model="filter" clearable />
 
     <search-history v-if="meta.showHistory" />
 
     <pool-list v-else :searchable="true" :filter="filter" />
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

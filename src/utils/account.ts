@@ -1,5 +1,5 @@
 import { GLOBAL_EVENTS } from "~/constants";
-import { GlobalActions, GlobalMutations } from "~/store/types";
+import { GlobalActions, GlobalGetters, GlobalMutations } from "~/store/types";
 
 const scope = "['PROFILE:READ', 'ASSETS:READ', 'SNAPSHOTS:READ']";
 
@@ -9,7 +9,17 @@ const scope = "['PROFILE:READ', 'ASSETS:READ', 'SNAPSHOTS:READ']";
  * @export
  * @param {Vue} vm
  */
-export function requestAuthMixin(vm: Vue) {
+export async function requestAuthMixin(vm: Vue) {
+  if (vm.$config.NODE_ENV === "development" && vm.$config.TOKEN) {
+    await updateAuth(vm, {
+      token: vm.$config.TOKEN,
+      scope,
+      channel: "mixin",
+    });
+
+    return;
+  }
+
   const host = window.location.origin;
   const redirectUrl = encodeURIComponent(host + "/#/auth/");
   const path = `https://mixin-oauth.fox.one/?client_id=${vm.$config.MIXIN_CLIENT_ID}&scope=PROFILE:READ+ASSETS:READ&response_type=code&redirect_url=${redirectUrl}`;
@@ -113,14 +123,25 @@ export async function updateAuth(
   await loadAccountData(vm);
 }
 /**
- * load account data: profile, wallet assets
+ * load account data: profile, wallet assets, shared pair profits
  *
  * @export
  * @param {Vue} vm
  */
 export async function loadAccountData(vm: Vue) {
-  vm.$store.dispatch(GlobalActions.LOAD_PROFILE);
-  vm.$utils.assets.getAssets(vm);
+  await Promise.all([
+    vm.$store.dispatch(GlobalActions.LOAD_PROFILE),
+    vm.$utils.assets.getAssets(vm),
+  ]);
+
+  const shared = vm.$store.getters[GlobalGetters.ACCOUNT_PAIRS];
+
+  shared.forEach((pair) => {
+    vm.$store.dispatch(GlobalActions.LOAD_PROFIT, {
+      base: pair.base_asset_id,
+      quote: pair.quote_asset_id,
+    });
+  });
 }
 
 /**

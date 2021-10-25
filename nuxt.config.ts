@@ -83,6 +83,8 @@ const config: NuxtConfig = {
     MIXIN_CLIENT_ID: process.env.MIXIN_CLIENT_ID || "",
     FIAT_TOKEN: process.env.FIAT_TOKEN || "",
     GA: process.env.GA || "",
+    TOKEN: process.env.TOKEN || "",
+    NODE_ENV: process.env.NODE_ENV,
   },
 
   privateRuntimeConfig: {

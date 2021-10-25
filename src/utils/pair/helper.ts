@@ -20,6 +20,7 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
 
   const baseAsset: API.Asset = getAssetById(pair.base_asset_id);
   const quoteAsset: API.Asset = getAssetById(pair.quote_asset_id);
+  const liquidityAsset: API.Asset = getAssetById(pair.liquidity_asset_id);
   const baseIndex = priorities.findIndex((x) => x === baseAsset?.symbol);
   const quoteIndex = priorities.findIndex((x) => x === quoteAsset?.symbol);
 
@@ -45,6 +46,7 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
 
   return {
     ...sorted,
+    liquidityAsset,
     price,
     symbol,
     volume,
@@ -53,6 +55,41 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
     priceText,
     reversePriceText,
   };
+}
+
+/**
+ * method to calc a single pair share amount and percent in pool
+ * percent equals balance of liquidity asset / pair liquidity
+ *
+ * @export
+ * @param {Vue} vm
+ * @param {API.Pair} pair
+ * @return {*}
+ */
+export function getPairShared(getters, pair: API.Pair) {
+  const getAssetById = getters[GlobalGetters.GET_ASSET_BY_ID];
+  const getBalanceById = getters[GlobalGetters.GET_BALANCE_BY_ID];
+  const baseAsset = getAssetById(pair.base_asset_id);
+  const quoteAsset = getAssetById(pair.quote_asset_id);
+  const balance = getBalanceById(pair.liquidity_asset_id) ?? 0;
+
+  if (!balance) {
+    return null;
+  }
+
+  const liquidity = Number(pair?.liquidity ?? 0);
+  const percent = liquidity > 0 ? Math.min(balance / liquidity, 1) : 0;
+
+  const totalBaseAmount = Number(pair?.base_amount ?? 0);
+  const totalQuoteAmount = Number(pair?.quote_amount ?? 0);
+
+  const sharedBaseAmount = totalBaseAmount * percent;
+  const sharedQuoteAmount = totalQuoteAmount * percent;
+  const totalValue =
+    sharedBaseAmount * Number(baseAsset?.price ?? 0) +
+    sharedQuoteAmount * Number(quoteAsset?.price ?? 0);
+
+  return { totalValue, sharedBaseAmount, sharedQuoteAmount, percent };
 }
 
 /**

@@ -1,5 +1,3 @@
-import { format, toPercent } from "@foxone/utils/number";
-
 export function fmtProfits(
   pair: API.Pair,
   data: API.ProfitsData
@@ -79,21 +77,17 @@ export function fmtProfits(
       fiatProfit,
       fiatProfitRate,
     },
-    netBaseAmount: netBaseAmount + "",
-    netQuoteAmount: netQuoteAmount + "",
-    currentBaseAmount: format({ n: currentBaseAmount, dp: 8 }),
-    currentQuoteAmount: format({ n: currentQuoteAmount, dp: 8 }),
-    fiatProfit: format({ n: fiatProfit, dp: 2 }),
-    originFiatProfit: format({ n: originFiatProfit, dp: 2 }),
-    baseProfit: format({ n: baseProfit, dp: 8 }),
-    quoteProfit: format({ n: quoteProfit, dp: 8 }),
-    baseProfitRate: toPercent({ n: baseProfitRate, symbol: true }),
-    baseProfitRateValue: baseProfitRate,
-    quoteProfitRate: toPercent({ n: quoteProfitRate, symbol: true }),
-    quoteProfitRateValue: quoteProfitRate,
-    fiatProfitRate: toPercent({ n: fiatProfitRate, symbol: true }),
-    fiatProfitRateValue: fiatProfitRate,
-    originFiatProfitRate: toPercent({ n: originFiatProfitRate, symbol: true }),
-    originFiatProfitRateValue: originFiatProfitRate,
+    netBaseAmount,
+    netQuoteAmount,
+    currentBaseAmount,
+    currentQuoteAmount,
+    fiatProfit,
+    originFiatProfit,
+    baseProfit,
+    quoteProfit,
+    baseProfitRate,
+    quoteProfitRate,
+    fiatProfitRate,
+    originFiatProfitRate,
   };
 }

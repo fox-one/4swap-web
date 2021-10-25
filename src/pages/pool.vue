@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-layout align-center>
       <v-flex class="label-1">Overview</v-flex>
       <v-btn icon small height="24">
@@ -10,7 +10,7 @@
     <pool-overview class="mt-3" />
 
     <pool-list class="mt-8" />
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

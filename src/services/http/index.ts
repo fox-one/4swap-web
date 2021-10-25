@@ -50,22 +50,16 @@ export default function (http: Http) {
       return http.get(url, { params: { dur: params.dur } });
     },
 
-    async getProfits(params: API.GetProfitsParams): Promise<API.PairProfits> {
-      const url = `/stats/profits/${params.base}/${params.quote}`;
-      const data: API.ProfitsData = await http.get(url);
-
-      return fmtProfits(params.pair, data);
+    async getProfits(params: API.GetProfitsParams): Promise<API.ProfitsData> {
+      return http.get(`/stats/profits/${params.base}/${params.quote}`);
     },
 
     async getProfitsHistory(
       params: API.GetProfitsHistoryParams
-    ): Promise<API.PairProfits[]> {
+    ): Promise<API.ProfitsData[]> {
       const url = `/stats/profits/${params.base}/${params.quote}/history`;
-      const data: API.ProfitsData[] = await http.get(url, {
-        params: { dur: params.dur },
-      });
 
-      return data.map((x) => fmtProfits(params.pair, x));
+      return await http.get(url, { params: { dur: params.dur } });
     },
 
     requestDeposit(

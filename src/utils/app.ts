@@ -13,18 +13,18 @@ export async function init(vm: Vue) {
   await vm.$utils.account.checkFennecAuth(vm);
 
   try {
+    // load basic application data
     await Promise.all([
-      // load basic application data
       dispatch(GlobalActions.LOAD_APP_INFO),
       dispatch(GlobalActions.LOAD_FIATS, { token: vm.$config.FIAT_TOKEN }),
       dispatch(GlobalActions.LOAD_POOL_ASSETS),
       dispatch(GlobalActions.LOAD_POOL_PAIRS, {
         brokerId: vm.$config.BROKER_ID,
       }),
-
-      // load account data
-      loadAccountData(vm),
     ]);
+
+    // load account data
+    await loadAccountData(vm);
 
     commit(GlobalMutations.SET_APP_INITING, false);
   } catch (error) {

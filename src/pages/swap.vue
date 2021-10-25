@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-layout class="label-1">
       <span>{{ $t("swap") }}</span>
 
@@ -26,7 +26,7 @@
       <div class="label-1 mt-8">{{ $t("history") }}</div>
       <pair-transactions :pair="pair" class="mt-2" />
     </template>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

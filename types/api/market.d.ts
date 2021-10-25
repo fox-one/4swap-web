@@ -21,7 +21,6 @@ declare namespace API {
   export interface GetProfitsParams {
     base: string;
     quote: string;
-    pair: API.Pair;
   }
 
   export interface GetProfitsHistoryParams {
@@ -74,21 +73,17 @@ declare namespace API {
       fiatProfit: number;
       fiatProfitRate: number;
     };
-    netBaseAmount: string;
-    netQuoteAmount: string;
-    currentBaseAmount: string;
-    currentQuoteAmount: string;
-    baseProfit: string;
-    quoteProfit: string;
-    baseProfitRate: string;
-    baseProfitRateValue: number;
-    quoteProfitRate: string;
-    quoteProfitRateValue: number;
-    fiatProfitRate: string;
-    fiatProfitRateValue: number;
-    originFiatProfitRate: string;
-    originFiatProfitRateValue: number;
-    fiatProfit: string;
-    originFiatProfit: string;
+    netBaseAmount: number;
+    netQuoteAmount: number;
+    currentBaseAmount: number;
+    currentQuoteAmount: number;
+    baseProfit: number;
+    quoteProfit: number;
+    baseProfitRate: number;
+    quoteProfitRate: number;
+    fiatProfitRate: number;
+    originFiatProfitRate: number;
+    fiatProfit: number;
+    originFiatProfit: number;
   }
 }

@@ -71,37 +71,6 @@ export function getAvaliableAddAssets(
 }
 
 /**
- * method to calc a single pair share amount and percent in pool
- * percent equals balance of liquidity asset / pair liquidity
- *
- * @export
- * @param {Vue} vm
- * @param {API.Pair} pair
- * @return {*}
- */
-export function getPairShared(vm: Vue, pair: API.Pair) {
-  const getAssetById = vm.$store.getters["global/getAssetById"];
-  const getBalanceById = vm.$store.getters["global/getBalanceByAssetId"];
-  const baseAsset = getAssetById(pair.base_asset_id);
-  const quoteAsset = getAssetById(pair.quote_asset_id);
-  const balance = getBalanceById(pair.liquidity_asset_id) ?? 0;
-
-  const liquidity = Number(pair?.liquidity ?? 0);
-  const percent = liquidity > 0 ? Math.min(balance / liquidity, 1) : 0;
-
-  const totalBaseAmount = Number(pair?.base_amount ?? 0);
-  const totalQuoteAmount = Number(pair?.quote_amount ?? 0);
-
-  const sharedBaseAmount = totalBaseAmount * percent;
-  const sharedQuoteAmount = totalQuoteAmount * percent;
-  const totalValue =
-    sharedBaseAmount * Number(baseAsset?.price ?? 0) +
-    sharedQuoteAmount * Number(quoteAsset?.price ?? 0);
-
-  return { totalValue, sharedBaseAmount, sharedQuoteAmount, percent };
-}
-
-/**
  * get wallet assets by mixin api or fennec
  * depend on which method user authed
  *

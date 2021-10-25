@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <liquidity-add-form
       :asset1.sync="asset1"
       :asset2.sync="asset2"
@@ -10,7 +10,7 @@
     <f-divider class="mt-6 mx-n4" />
 
     <introductions class="mt-4" />
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">
