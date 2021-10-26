@@ -16,6 +16,8 @@ import {
   FIconAdd4PBold,
   FIconConvertDirection4PBold,
   FIconChevronRight4PBold,
+  FIconMinusBold,
+  FIconAddBold,
 } from "@foxone/icons";
 
 const ficons = {
@@ -36,6 +38,8 @@ const ficons = {
   FIconChevronRight4PBold: { component: FIconChevronRight4PBold },
   FIconUpRight4P: { component: FIconUpRight4P },
   FIconAdd4PBold: { component: FIconAdd4PBold },
+  FIconMinusBold: { component: FIconMinusBold },
+  FIconAddBold: { component: FIconAddBold },
 };
 
 const icons = [

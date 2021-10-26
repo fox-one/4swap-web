@@ -22,7 +22,7 @@ import TransactionItem from "@/components/transaction/Index.vue";
     TransactionItem,
   },
 })
-class PairTransactions extends Vue {
+class AccountTransactions extends Vue {
   @Prop() pair!: API.Pair;
 
   loading = false;
@@ -44,7 +44,7 @@ class PairTransactions extends Vue {
     this.loading = true;
 
     try {
-      const res = await this.$http.getTransactions({
+      const res = await this.$http.getMyTransactions({
         base: this.pair.base_asset_id,
         quote: this.pair.quote_asset_id,
         limit: 20,
@@ -62,5 +62,5 @@ class PairTransactions extends Vue {
     }
   }
 }
-export default PairTransactions;
+export default AccountTransactions;
 </script>

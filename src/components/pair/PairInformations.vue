@@ -26,7 +26,7 @@ class PairInformations extends Vue {
       transaction_count_24h,
       fee_24h,
       turnOver,
-    } = getPairMeta(this, this.pair);
+    } = getPairMeta(this, this.pair)!;
 
     const items = [
       {

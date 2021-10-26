@@ -14,6 +14,8 @@
       <div class="label-1 mb-4">{{ $t("my.pools") }}</div>
 
       <f-search-input v-model="filter" :placeholder="$t('search.pools')" />
+
+      <account-pool-list />
     </template>
   </div>
 </template>
@@ -24,11 +26,13 @@ import mixins from "@/mixins";
 import { GlobalGetters } from "@/store/types";
 import LiquidityEmptyPlaceholder from "@/components/account/LiquidityEmptyPlaceholder.vue";
 import AccountOverview from "@/components/account/AccountOverview.vue";
+import AccountPoolList from "@/components/account/PoolList.vue";
 
 @Component({
   components: {
     LiquidityEmptyPlaceholder,
     AccountOverview,
+    AccountPoolList,
   },
 })
 class MePage extends Mixins(mixins.page) {

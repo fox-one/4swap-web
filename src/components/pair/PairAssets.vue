@@ -33,10 +33,8 @@ class PairAssets extends Vue {
 
   get meta() {
     const getPairMeta = this.$utils.pair.getPairMeta;
-    const { baseAsset, quoteAsset, base_amount, quote_amount } = getPairMeta(
-      this,
-      this.pair
-    );
+    const { baseAsset, quoteAsset, base_amount, quote_amount } =
+      getPairMeta(this, this.pair) || {};
 
     return { baseAsset, quoteAsset, base_amount, quote_amount };
   }

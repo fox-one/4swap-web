@@ -1,11 +1,9 @@
 <template>
   <div :class="classes">
-    <information-item
-      v-for="(item, index) in items"
-      :key="index"
-      :small="small"
-      v-bind="item"
-    />
+    <template v-for="(item, index) in items">
+      <f-divider v-if="item === 'divider'" :key="index" class="my-6" />
+      <information-item v-else :key="index" :small="small" v-bind="item" />
+    </template>
   </div>
 </template>
 

@@ -40,5 +40,6 @@ export default AssetAmount;
 <style lang="scss" scoped>
 .asset-amount {
   font-size: 12px;
+  font-weight: 500;
 }
 </style>

@@ -6,7 +6,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { getPairMeta } from "@/utils/pair/helper";
 
 @Component
 class AddFormInformations extends Vue {
@@ -20,9 +19,9 @@ class AddFormInformations extends Vue {
 
   get items() {
     const toPercent = this.$utils.number.toPercent;
-    const meta = getPairMeta(this, this.pair);
-
-    const { priceText, reversePriceText, base_amount, quote_amount } = meta;
+    const getPairMeta = this.$utils.pair.getPairMeta;
+    const { priceText, reversePriceText, base_amount, quote_amount } =
+      getPairMeta(this, this.pair) || {};
     const hasLiquidity = base_amount && quote_amount;
 
     let shares = "";

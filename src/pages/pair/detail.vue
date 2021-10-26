@@ -1,18 +1,8 @@
 <template>
-  <div v-if="meta.pair">
-    <pair-price :pair="meta.pair" />
-
-    <f-divider class="my-6 mx-n3" />
-
-    <pair-informations :pair="meta.pair" />
-
-    <div class="label-1 mt-8">{{ $t("pool.added-assets") }}</div>
-    <pair-assets :pair="meta.pair" class="mt-4" />
-
-    <div class="label-1 mt-8">{{ $t("chart") }}</div>
-
-    <div class="label-1 mt-8">{{ $t("transactions") }}</div>
-    <pair-transactions :pair="meta.pair" />
+  <div v-if="meta.pair" class="page">
+    <account-panel v-show="tabIndex === 0" :pair="meta.pair" />
+    <market-panel v-show="tabIndex === 1" :pair="meta.pair" />
+    <page-bottom-action :added="meta.isAdded" :pair="meta.pair" />
   </div>
 </template>
 
@@ -20,44 +10,51 @@
 import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixins from "@/mixins";
 import { GlobalGetters } from "@/store/types";
-import PairPrice from "@/components/pair/PairPrice.vue";
-import PairInformations from "@/components/pair/PairInformations.vue";
-import PairAssets from "@/components/pair/PairAssets.vue";
-import PairTransactions from "@/components/pair/PairTransactions.vue";
+import MarketPanel from "@/components/pair/MarketPanel.vue";
+import AccountPanel from "@/components/pair/AccountPanel.vue";
+import PageBottomAction from "@/components/pair/page-bottom-action/Index.vue";
+import PageTabs from "@/components/pair/PageTabs.vue";
+import { Sync } from "vuex-pathify";
 
 @Component({
   components: {
-    PairPrice,
-    PairAssets,
-    PairInformations,
-    PairTransactions,
+    MarketPanel,
+    AccountPanel,
+    PageBottomAction,
   },
 })
 class PairDetailPage extends Mixins(mixins.page) {
+  @Sync("page/pairDetail@tabIndex") tabIndex!: number;
+
   get title() {
     return this.meta.symbol;
   }
 
   get appbar() {
-    return {
-      align: "center",
-    };
+    if (this.meta.isAdded) {
+      return {
+        align: "center",
+        extensionHight: 56,
+        extension: this.$createElement(PageTabs),
+      };
+    }
+
+    return { align: "center" };
   }
 
   get meta() {
-    const getPair = this.$store.getters[GlobalGetters.GET_PAIR_BY_IDS];
+    const getters = this.$store.getters;
+    const getPair = getters[GlobalGetters.GET_PAIR_BY_IDS];
+    const getIsLiquidityAdded = getters[GlobalGetters.GET_IS_LIQUIDITY_ADDED];
     const getPairMeta = this.$utils.pair.getPairMeta;
+
     const id1 = this.$route.query.base;
     const id2 = this.$route.query.quote;
     const pair = getPair(id1, id2);
+    const pairMeta = getPairMeta(this, pair);
+    const isAdded = getIsLiquidityAdded(pair);
 
-    if (pair) {
-      const { baseAsset, quoteAsset, symbol } = getPairMeta(this, pair);
-
-      return { pair, baseAsset, quoteAsset, symbol };
-    }
-
-    return { pair };
+    return { pair, symbol: pairMeta?.symbol ?? "", isAdded };
   }
 
   @Watch("meta.pair", { immediate: true })
@@ -67,3 +64,9 @@ class PairDetailPage extends Mixins(mixins.page) {
 }
 export default PairDetailPage;
 </script>
+
+<style lang="scss" scoped>
+.page {
+  padding-bottom: 160px;
+}
+</style>

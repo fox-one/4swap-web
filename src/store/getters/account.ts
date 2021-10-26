@@ -12,6 +12,20 @@ export default {
     return getAvaliableAddAssets(assets, walletAssets, assetsBlackLists);
   },
 
+  [GetterTypes.GET_IS_LIQUIDITY_ADDED](state, getters) {
+    return (pair) => {
+      const accountPairs = getters[GetterTypes.ACCOUNT_PAIRS];
+      const found = accountPairs.find((x) => {
+        return (
+          x.base_asset_id === pair.base_asset_id &&
+          x.quote_asset_id === pair.quote_asset_id
+        );
+      });
+
+      return Boolean(found);
+    };
+  },
+
   [GetterTypes.GET_ACCOUNT_PAIR](state, getters) {
     return (pair) => {
       const shared = getPairShared(getters, pair);

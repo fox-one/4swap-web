@@ -1,7 +1,6 @@
 import Http from "./http";
 import { AxiosRequestConfig } from "axios";
 import { MIXIN_HOST } from "@/constants";
-import { fmtProfits } from "@/utils/profits";
 
 export default function (http: Http) {
   return {

@@ -9,6 +9,10 @@ const state = {
     deposits: [],
   },
 
+  pairDetail: {
+    tabIndex: "",
+  },
+
   swap: {
     input: {
       asset: null,

@@ -3,6 +3,13 @@ import { format } from "@foxone/utils/number";
 
 export type PairMeta = ReturnType<typeof getPairMeta>;
 
+export type PairShared = ReturnType<typeof getPairShared>;
+
+export type AccountPair = API.Pair & {
+  profit: API.PairProfits;
+  shared: PairShared;
+};
+
 /**
  * get pair meta items
  * base and quote should be ajusted by priorities
@@ -15,6 +22,10 @@ export type PairMeta = ReturnType<typeof getPairMeta>;
  * @return {*}
  */
 export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
+  if (!pair) {
+    return null;
+  }
+
   const getAssetById = vm.$store.getters[GlobalGetters.GET_ASSET_BY_ID];
   const priorities = ["XIN", "ETH", "BTC", "DAI", "USDC", "pUSD", "USDT"];
 
@@ -89,7 +100,7 @@ export function getPairShared(getters, pair: API.Pair) {
     sharedBaseAmount * Number(baseAsset?.price ?? 0) +
     sharedQuoteAmount * Number(quoteAsset?.price ?? 0);
 
-  return { totalValue, sharedBaseAmount, sharedQuoteAmount, percent };
+  return { balance, totalValue, sharedBaseAmount, sharedQuoteAmount, percent };
 }
 
 /**
@@ -205,9 +216,9 @@ export function getPreOrderMeta(
  * @return {*}
  */
 export function filterFn(str: string, pair: PairMeta) {
-  const baseSymbol = pair.baseAsset.symbol.toLowerCase();
-  const quoteSymbol = pair.quoteAsset.symbol.toLowerCase();
-  const pairSymbol = pair.symbol.toLowerCase();
+  const baseSymbol = pair?.baseAsset.symbol.toLowerCase() ?? "";
+  const quoteSymbol = pair?.quoteAsset.symbol.toLowerCase() ?? "";
+  const pairSymbol = pair?.symbol.toLowerCase() ?? "";
   const filter = str.toLowerCase();
 
   if (!str) return false;
