@@ -104,8 +104,9 @@ const getters = {
         transactions: new BigNumber(0),
       }
     );
+    const turnover24h = volume24h / totalUSDValue;
 
-    return { totalUSDValue, volume24h, fee24h, transactions };
+    return { totalUSDValue, volume24h, fee24h, transactions, turnover24h };
   },
 
   [GetterTypes.GET_ASSET_BY_ID](state) {

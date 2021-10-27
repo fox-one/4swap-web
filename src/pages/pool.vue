@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-layout align-center>
-      <v-flex class="label-1">Overview</v-flex>
-      <v-btn icon small height="24">
+      <v-flex class="label-1">{{ $t("overview") }}</v-flex>
+      <v-btn icon small height="24" @click="handleToOverview">
         <v-icon>$FIconUpRight</v-icon>
       </v-btn>
     </v-layout>
@@ -40,6 +40,10 @@ class PoolPage extends Mixins(mixins.page) {
 
   get bottomNav() {
     return "pool";
+  }
+
+  handleToOverview() {
+    this.$router.push({ name: "market-overview" });
   }
 }
 export default PoolPage;
