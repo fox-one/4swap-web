@@ -1,13 +1,17 @@
 <template>
   <div :class="classes">
-    <span class="action action__remove">
+    <span class="action action__remove" @click="handleRemove">
       <v-icon>$FIconMinusBold</v-icon>
     </span>
-    <div class="account">
-      <div class="amount">{{ meta.totalValueText }}</div>
-      <div class="label-3 mt-1">{{ $t("my.liquidity") }}</div>
-    </div>
-    <span class="action action__add">
+
+    <v-fade-transition>
+      <div v-if="tabIndex === 1" class="account">
+        <div class="amount">{{ meta.totalValueText }}</div>
+        <div class="label-3 mt-1">{{ $t("my.liquidity") }}</div>
+      </div>
+    </v-fade-transition>
+
+    <span class="action action__add" @click="handleAdd">
       <v-icon color="greyscale_7">$FIconAddBold</v-icon>
     </span>
   </div>
@@ -25,10 +29,13 @@ class LiquidityPageAction extends Vue {
 
   @Prop() pair;
 
+  animated = false;
+
   get classes() {
     return {
       "liquidity-actions": true,
       "liquidity-actions--dense": this.tabIndex === 0,
+      "liquidity-actions--animated": this.animated,
     };
   }
 
@@ -41,6 +48,14 @@ class LiquidityPageAction extends Vue {
     const totalValueText = toFiat(this, { n: totalValue });
 
     return { totalValueText };
+  }
+
+  handleRemove() {
+    this.$emit("remove");
+  }
+
+  handleAdd() {
+    this.$emit("add");
   }
 }
 export default LiquidityPageAction;
@@ -59,6 +74,7 @@ export default LiquidityPageAction;
   padding: 4px;
   display: flex;
   align-items: center;
+  transition: width 0.2s ease;
 
   &--dense {
     width: 144px;

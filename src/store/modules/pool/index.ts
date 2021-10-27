@@ -122,6 +122,14 @@ const getters = {
       });
     };
   },
+
+  [GetterTypes.GET_PAIR_BY_LIQUIDIY_ID](state) {
+    return (id: string) => {
+      return state.pairs.find(({ liquidity_asset_id }) => {
+        return liquidity_asset_id === id;
+      });
+    };
+  },
 };
 
 const actions: ActionTree<State.AuthState, any> = {

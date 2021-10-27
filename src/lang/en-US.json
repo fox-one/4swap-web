@@ -46,6 +46,8 @@
   "profits": "Profits",
   "market": "Market",
   "sell": "Sell",
+  "asset1": "Asset 1",
+  "asset2": "Asset 2",
   "received": "Received",
   "token-not-found": "Token Not Found",
   "enter.amount": "Enter Amount",
@@ -90,7 +92,7 @@
   "liquidity.add.symbol": "Add {symbol}",
   "liquidity.add.symbol.title": "Add Liquidity - {symbol}",
   "liquidity.added.success": "Liquidity added successfully",
-  "liquidity.create.alreay.exists": "The pool you intend to create already exists. Go to the liquidity pool info page by clicking <strong>here</strong>.",
+  "liquidity.create.alreay.exists": "The pool you intend to create already exists. Go to the liquidity pool info page by clicking <span class='link'>here</span>.",
   "liquidity.create.new-liquidity-pool": "Create A New Pool",
   "liquidity.create.new-pool": "Create a New Pool",
   "liquidity.create.not-support": "Not Support",
@@ -172,6 +174,7 @@
   "paid": "Paid",
   "pay": "Pay",
   "paying": "Paying",
+  "remove": "Remove",
   "payment.checking": "Checking Payment Result...",
   "pool": "Pool",
   "pool.added-assets": "Assets Pool",
@@ -272,5 +275,8 @@
   "24h.fees": "24h Fees",
   "24h.pool-turnover": "24h Pool Turnover",
   "24h.ror": "24h ROR",
-  "24h.price-change": "24h Price Change"
+  "24h.price-change": "24h Price Change",
+  "wallet.assets": "Wallet Assets",
+  "disconnect": "Disconnect",
+  "price.alert.hint": "When the price impact exceeds 80%, a countdown will occur to protect the trade"
 }

@@ -77,8 +77,7 @@ class SwapPage extends Mixins(mixins.page) {
     }
 
     const getPairMeta = this.$utils.pair.getPairMeta;
-    const pairMeta = getPairMeta(this, this.pair);
-    const { symbol } = pairMeta;
+    const { symbol } = getPairMeta(this, this.pair)!;
 
     return {
       symbol,
@@ -110,7 +109,9 @@ class SwapPage extends Mixins(mixins.page) {
           output: this.output.asset?.id,
         },
       })
-      .catch((e) => console.log(e));
+      .catch(() => {
+        // ignore
+      });
   }
 
   setInitialAsset() {

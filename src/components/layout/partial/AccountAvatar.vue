@@ -1,5 +1,5 @@
 <template>
-  <f-bottom-sheet v-model="dialog" :title="$t('common.account')">
+  <f-bottom-sheet v-model="dialog">
     <template #activator="{ on }">
       <base-user-avatar
         v-show="isLogged"
@@ -11,16 +11,21 @@
       />
     </template>
 
-    <div>account settings</div>
+    <account-setting-overview />
   </f-bottom-sheet>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Get } from "vuex-pathify";
-import { GlobalGetters } from "~/store/types";
+import { GlobalGetters } from "@/store/types";
+import AccountSettingOverview from "@/components/account/AccountSettingOverview.vue";
 
-@Component
+@Component({
+  components: {
+    AccountSettingOverview,
+  },
+})
 class AccountAvatar extends Vue {
   @Get("account/profile") profile!: API.MixinUser | null;
 

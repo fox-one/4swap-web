@@ -16,6 +16,12 @@ const getters: GetterTree<State.AccountState, any> = {
     return state.profile?.user_id;
   },
 
+  [GetterTypes.GET_WALLET_BALANCE](state) {
+    return state.assets.reduce((total, next) => {
+      return total + +next.price_usd * +next.balance;
+    }, 0);
+  },
+
   [GetterTypes.GET_BALANCE_BY_ID](state) {
     return (id: string) => {
       return state.assets?.find((asset) => asset.asset_id === id)?.balance ?? 0;

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <liquidity-added v-if="added" v-bind="$attrs" />
-    <liquidity-not-added v-else />
+    <liquidity-added v-if="added" v-bind="$attrs" v-on="$listeners" />
+    <liquidity-not-added v-else v-on="$listeners" />
   </div>
 </template>
 

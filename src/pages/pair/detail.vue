@@ -1,8 +1,23 @@
 <template>
   <div v-if="meta.pair" class="page">
-    <account-panel v-show="tabIndex === 0" :pair="meta.pair" />
-    <market-panel v-show="tabIndex === 1" :pair="meta.pair" />
-    <page-bottom-action :added="meta.isAdded" :pair="meta.pair" />
+    <template v-if="meta.isAdded">
+      <v-tabs-items v-model="tabIndex">
+        <v-tab-item>
+          <account-panel :pair="meta.pair" />
+        </v-tab-item>
+        <v-tab-item>
+          <market-panel :pair="meta.pair" />
+        </v-tab-item>
+      </v-tabs-items>
+    </template>
+    <market-panel v-else :pair="meta.pair" />
+
+    <page-bottom-action
+      :added="meta.isAdded"
+      :pair="meta.pair"
+      @remove="handleRemove"
+      @add="handleAdd"
+    />
   </div>
 </template>
 
@@ -60,6 +75,25 @@ class PairDetailPage extends Mixins(mixins.page) {
   @Watch("meta.pair", { immediate: true })
   handlePairChange() {
     this.setPageConfig();
+  }
+
+  handleRemove() {
+    this.$router.push({
+      name: "liquidity-remove",
+      query: {
+        liquidity_asset: this.meta.pair?.liquidity_asset_id,
+      },
+    });
+  }
+
+  handleAdd() {
+    this.$router.push({
+      name: "liquidity-add",
+      query: {
+        base: this.meta.pair?.base_asset_id,
+        quote: this.meta.pair?.quote_asset_id,
+      },
+    });
   }
 }
 export default PairDetailPage;

@@ -32,5 +32,15 @@ export default FiatDivision;
 <style lang="scss" scoped>
 .fiat-division {
   display: inline-block;
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: bold;
+
+  ::v-deep {
+    .symbol {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
 }
 </style>

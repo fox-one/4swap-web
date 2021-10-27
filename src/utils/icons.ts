@@ -18,6 +18,8 @@ import {
   FIconChevronRight4PBold,
   FIconMinusBold,
   FIconAddBold,
+  FIconSettingFill,
+  FIconDocumentFill,
 } from "@foxone/icons";
 
 const ficons = {
@@ -40,6 +42,8 @@ const ficons = {
   FIconAdd4PBold: { component: FIconAdd4PBold },
   FIconMinusBold: { component: FIconMinusBold },
   FIconAddBold: { component: FIconAddBold },
+  FIconSettingFill: { component: FIconSettingFill },
+  FIconDocumentFill: { component: FIconDocumentFill },
 };
 
 const icons = [
@@ -49,6 +53,8 @@ const icons = [
   "IconSortDesc",
   "IconSortNone",
   "IconSwitcher4P",
+  "IconSchemeA",
+  "IconSchemeB",
 ].reduce((m, k) => ({ ...m, [k]: { component: k } }), {});
 
 export default {

@@ -56,6 +56,8 @@ const mutations = {
       style: "",
       show: true,
       back: true,
+      extension: null,
+      extensionHeight: 48,
       ...data,
     };
   },

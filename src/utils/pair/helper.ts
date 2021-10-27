@@ -50,8 +50,8 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
   const baseSymbol = sorted.baseAsset.symbol;
   const quoteSymbol = sorted.quoteAsset.symbol;
 
-  const priceFormat = format({ n: price, fixed: true });
-  const reversePriceFormat = format({ n: 1 / price, fixed: true });
+  const priceFormat = format({ n: price, fixed: true, dp: 8 });
+  const reversePriceFormat = format({ n: 1 / price, fixed: true, dp: 8 });
   const priceText = `1 ${baseSymbol} ≈ ${priceFormat} ${quoteSymbol}`;
   const reversePriceText = `1 ${quoteSymbol} ≈ ${reversePriceFormat} ${baseSymbol}`;
 

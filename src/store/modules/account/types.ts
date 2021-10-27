@@ -4,6 +4,7 @@ export const GetterTypes = {
   USER_ID: "USER_ID",
   GET_BALANCE_BY_ID: "GET_BALANCE_BY_ID",
   GET_PROFIT_BY_PAIR: "GET_PROFIT_BY_PAIR",
+  GET_WALLET_BALANCE: "GET_WALLET_BALANCE",
 };
 
 export const MutationTypes = {
