@@ -5,10 +5,17 @@
     :duration.sync="duration"
   >
     <template #thumb-title>
-      <chart-title-thumb />
+      <chart-title-thumb :pair="pair" :current="thumbCurrent" :type="type" />
     </template>
     <template #thumb-chart>
-      <profit-chart-thumb :data="thumbData" />
+      <profit-chart-thumb
+        :loading="loading"
+        :data="thumbData"
+        :current.sync="thumbCurrent"
+        :type="type"
+        :colors="colors"
+        :pair="pair"
+      />
     </template>
     <template #title>
       <chart-title :pair="pair" :current="current" :type="type" />
@@ -53,6 +60,8 @@ class ProfitChartPanel extends Vue {
   type = 0;
 
   current = null;
+
+  thumbCurrent = null;
 
   duration = "168h";
 

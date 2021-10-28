@@ -57,6 +57,7 @@ class ChartTitle extends Vue {
 }
 export default ChartTitle;
 </script>
+
 <style lang="scss" scoped>
 .chart-title {
   font-size: 25px;
