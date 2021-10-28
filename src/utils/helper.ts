@@ -1,4 +1,5 @@
 import Vue from "vue";
+import parse from "parse-duration";
 
 export function errorHandler(vm: Vue, error) {
   const code = error.code;
@@ -31,4 +32,13 @@ export function getLangCode(value) {
   };
 
   return data[value];
+}
+
+export function getDurationData(data, duration, fn) {
+  const end = fn(data[data.length - 1]);
+  const start = end - (parse(duration, "s") || 0);
+
+  if (!start) return [];
+
+  return data.filter((x) => fn(x) >= start);
 }

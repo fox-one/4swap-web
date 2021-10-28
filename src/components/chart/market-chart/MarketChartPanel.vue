@@ -1,13 +1,14 @@
 <template>
-  <div class="chart-panel pa-4">
-    <div class="chart-type">
-      <type-select :pair="pair" :value.sync="chartType" />
-    </div>
-    <div class="chart-title mb-10">
+  <base-chart-panel-layout
+    :types="types"
+    :type.sync="chartType"
+    :duration.sync="duration"
+  >
+    <template name="title">
       <price-title-section v-if="isPriceChart" :current="current" />
       <market-title-section v-else :current="current" />
-    </div>
-    <div class="chart">
+    </template>
+    <template name="chart">
       <component
         :is="component"
         :data="chartData"
@@ -16,48 +17,35 @@
         :current.sync="current"
         :chart-type="chartType"
       />
-    </div>
-    <div class="chart-duration">
-      <duration-select :value.sync="duration" />
-    </div>
-    <div v-if="isPriceChart" class="chart-action">
-      <route-to-swap-action
-        :pair="pair"
-        :reverse="isPriceReverse"
-        class="mt-4"
-      />
-    </div>
-  </div>
+      <template name="foot">
+        <route-to-swap-action
+          v-if="isPriceChart"
+          :pair="pair"
+          :reverse="isPriceReverse"
+          class="mt-4"
+        />
+      </template>
+    </template>
+  </base-chart-panel-layout>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import TypeSelect from "../TypeSelect.vue";
-import DurationSelect from "../DurationSelect.vue";
 import PriceChart from "./PriceChart.vue";
 import LiquidityChart from "./LiquidityChart.vue";
 import VolumeChart from "./VolumeChart.vue";
 import MarketTitleSection from "./MarketTitleSection.vue";
 import PriceTitleSection from "./PriceTitleSection.vue";
 import RouteToSwapAction from "../../liquidity/RouteToSwapAction.vue";
-import parse from "parse-duration";
+import BaseChartPanelLayout from "../BaseChartPanelLayout.vue";
 
 export type ChartType = "liquidity" | "volume" | "0" | "1";
 
-const getDurationData = (data, duration, fn) => {
-  const end = fn(data[data.length - 1]);
-  const start = end - (parse(duration, "s") || 0);
-  if (!start) return [];
-
-  return data.filter((x) => fn(x) >= start);
-};
-
 @Component({
   components: {
+    BaseChartPanelLayout,
     MarketTitleSection,
     PriceTitleSection,
-    TypeSelect,
-    DurationSelect,
     PriceChart,
     LiquidityChart,
     VolumeChart,
@@ -89,6 +77,8 @@ class MarketChartPanel extends Vue {
   }
 
   get durationData() {
+    const getDurationData = this.$utils.helper.getDurationData;
+
     return {
       market: getDurationData(this.data.market, this.duration, (x) => x?.ts),
       kline: getDurationData(this.data.kline, this.duration, (x) => x?.[0]),
@@ -130,6 +120,28 @@ class MarketChartPanel extends Vue {
     return [primary, disabled, text];
   }
 
+  get types() {
+    const baseItems = [
+      { text: this.$t("chart.chart-type.volume"), value: "volume" },
+      { text: this.$t("chart.chart-type.liquidity"), value: "liquidity" },
+    ];
+
+    if (this.pair) {
+      const pairMeta = this.$utils.pair.getPairMeta(this, this.pair)!;
+      const { baseAsset, quoteAsset } = pairMeta;
+      const symbol = `${baseAsset.symbol} / ${quoteAsset.symbol}`;
+      const reverseSymbol = `${quoteAsset.symbol} / ${baseAsset.symbol}`;
+      const priceItems = [
+        { text: this.$t("price") + ` (${symbol})`, value: "0" },
+        { text: this.$t("price") + ` (${reverseSymbol})`, value: "1" },
+      ];
+
+      return [...baseItems, ...priceItems];
+    }
+
+    return baseItems;
+  }
+
   mounted() {
     this.requestChartData();
   }
@@ -158,14 +170,3 @@ class MarketChartPanel extends Vue {
 }
 export default MarketChartPanel;
 </script>
-
-<style lang="scss" scoped>
-.chart-panel {
-  background: #edfbfc;
-  border-radius: 8px;
-
-  .chart {
-    height: 195px;
-  }
-}
-</style>

@@ -19,7 +19,7 @@ export const CURRENCY = {
 
 export function toFiat(
   vm: Vue,
-  opts: { n: BigNumber.Value; short?: boolean },
+  opts: { n: BigNumber.Value; short?: boolean; intl?: boolean },
   part = false
 ) {
   const to = vm.$store.state.app.settings.currency;
@@ -32,6 +32,7 @@ export function toFiat(
         notation: "compact",
       }
     : {};
+  const intl = opts.intl ?? true;
 
-  return currency.toFiat({ n: opts.n, configs, to, rates, locale }, part);
+  return currency.toFiat({ n: opts.n, configs, to, rates, locale, intl }, part);
 }

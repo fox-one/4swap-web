@@ -26,7 +26,6 @@ declare namespace API {
   export interface GetProfitsHistoryParams {
     base: string;
     quote: string;
-    pair: API.Pair;
     dur: API.Duration;
   }
 

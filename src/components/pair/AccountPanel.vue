@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="text-center">
+    <div class="text-center top-section">
       <base-fiat-division :parts="meta.totalValueParts" class="liquidity" />
       <div class="share mt-3">{{ meta.shareText }}</div>
+
+      <account-profits-chart :pair="pair" class="mt-8 text-left" />
     </div>
 
     <account-profit-informations :pair="pair" class="mt-8" />
@@ -20,11 +22,13 @@ import { GlobalGetters } from "@/store/types";
 import { AccountPair } from "@/utils/pair/helper";
 import AccountProfitInformations from "./AccountProfitInformations.vue";
 import AccountTransactions from "./AccountTransactions.vue";
+import AccountProfitsChart from "./AccountProfitsChart.vue";
 
 @Component({
   components: {
     AccountProfitInformations,
     AccountTransactions,
+    AccountProfitsChart,
   },
 })
 class AccountPanel extends Vue {

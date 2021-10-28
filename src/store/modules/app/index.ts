@@ -14,6 +14,8 @@ const state: State.AppState = {
     extensionHeight: 48,
   },
 
+  contentClass: "",
+
   settings: {
     slippage: 0.99,
     currency: "USD",

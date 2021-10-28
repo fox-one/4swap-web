@@ -44,6 +44,6 @@ export default DurationSelect;
 .f-segment-control {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  background: #def3f4 !important;
+  background: var(--v-forth-base) !important;
 }
 </style>

@@ -29,6 +29,8 @@ class BaseLineChart extends Vue {
 
   @Prop() data;
 
+  @Prop() loading;
+
   @Ref("chart") chart;
 
   get option(): EChartsOption {

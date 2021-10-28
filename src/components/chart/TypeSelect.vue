@@ -8,7 +8,7 @@
     </template>
 
     <base-select-item
-      v-for="(item, index) in items"
+      v-for="(item, index) in types"
       :key="index"
       :title="item.text"
       :value="item.value"
@@ -25,34 +25,12 @@ import { Component, Prop, PropSync, Vue } from "vue-property-decorator";
 class TypeSelect extends Vue {
   @PropSync("value") bindValue;
 
-  @Prop() pair;
+  @Prop() types;
 
   dialog = false;
 
   get display() {
-    return this.items.find((x) => x.value === this.bindValue)?.text;
-  }
-
-  get items() {
-    const baseItems = [
-      { text: this.$t("chart.chart-type.volume"), value: "volume" },
-      { text: this.$t("chart.chart-type.liquidity"), value: "liquidity" },
-    ];
-
-    if (this.pair) {
-      const pairMeta = this.$utils.pair.getPairMeta(this, this.pair)!;
-      const { baseAsset, quoteAsset } = pairMeta;
-      const symbol = `${baseAsset.symbol} / ${quoteAsset.symbol}`;
-      const reverseSymbol = `${quoteAsset.symbol} / ${baseAsset.symbol}`;
-      const priceItems = [
-        { text: this.$t("price") + ` (${symbol})`, value: "0" },
-        { text: this.$t("price") + ` (${reverseSymbol})`, value: "1" },
-      ];
-
-      return [...baseItems, ...priceItems];
-    }
-
-    return baseItems;
+    return this.types.find((x) => x.value === this.bindValue)?.text;
   }
 
   handleSelect(value) {
@@ -70,7 +48,7 @@ export default TypeSelect;
   font-size: 12px;
   line-height: 15px;
   padding: 8px 12px;
-  background: #def3f4;
+  background: var(--v-forth-base);
   border-radius: 8px;
 }
 </style>

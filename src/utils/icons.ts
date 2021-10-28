@@ -20,6 +20,7 @@ import {
   FIconAddBold,
   FIconSettingFill,
   FIconDocumentFill,
+  FIconExchange4P,
 } from "@foxone/icons";
 
 const ficons = {
@@ -44,6 +45,7 @@ const ficons = {
   FIconAddBold: { component: FIconAddBold },
   FIconSettingFill: { component: FIconSettingFill },
   FIconDocumentFill: { component: FIconDocumentFill },
+  FIconExchange4P: { component: FIconExchange4P },
 };
 
 const icons = [

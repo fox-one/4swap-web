@@ -21,6 +21,7 @@ declare namespace State {
   }
 
   export interface AppState {
+    contentClass: string;
     appbar: AppBarState;
     settings: SettingsState;
     paying: PayingState;

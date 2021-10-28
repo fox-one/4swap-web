@@ -57,6 +57,10 @@ class PairDetailPage extends Mixins(mixins.page) {
     return { align: "center" };
   }
 
+  get contentClass() {
+    return this.meta.isAdded && this.tabIndex === 0 ? "linear-page" : "";
+  }
+
   get meta() {
     const getters = this.$store.getters;
     const getPair = getters[GlobalGetters.GET_PAIR_BY_IDS];

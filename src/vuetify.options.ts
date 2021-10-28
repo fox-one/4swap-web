@@ -7,6 +7,7 @@ const themesLake = {
     primary: "#000000",
     secondary: "#0FC2FC",
     third: "#EDFBFC",
+    forth: "#DEF3F4",
     risk_emphasize: "#75080a",
   },
   dark: {
@@ -22,6 +23,7 @@ const themeFSwap = {
     primary: "#000000",
     secondary: "#EDFBFC",
     third: "#FDF4F8",
+    forth: "#1D7D9B",
     risk_emphasize: "#75080a",
   },
   dark: {

@@ -25,3 +25,18 @@ a {
 .number {
   font-feature-settings: "salt" on;
 }
+
+.v-tabs-items {
+  background-color: transparent !important;
+}
+
+.v-main.linear-page {
+  background: linear-gradient(
+    180deg,
+    #f5f5f5 0%,
+    rgba(245, 245, 245, 0.520699) 89.4%,
+    rgba(245, 245, 245, 0) 100%
+  );
+  background-size: 100% 350px;
+  background-repeat: no-repeat;
+}
