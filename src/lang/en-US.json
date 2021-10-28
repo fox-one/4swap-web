@@ -20,9 +20,9 @@
   "chart.chart-type.title": "Select Chart Type",
   "chart.chart-type.volume": "Volume",
   "chart.duration.all": "All",
-  "chart.duration.m": "M",
-  "chart.duration.w": "W",
-  "chart.duration.y": "Y",
+  "chart.duration.m": "Month",
+  "chart.duration.w": "Week",
+  "chart.duration.y": "Year",
   "chart.label.as-marketer": "Market making",
   "chart.label.not-as-marketer": "No market making",
   "chart_scheme.scheme_a": "Scheme A",
@@ -279,5 +279,6 @@
   "wallet.assets": "Wallet Assets",
   "disconnect": "Disconnect",
   "price.alert.hint": "When the price impact exceeds 80%, a countdown will occur to protect the trade",
-  "overview": "Overview"
+  "overview": "Overview",
+  "go.to.swap": "Go to swap"
 }

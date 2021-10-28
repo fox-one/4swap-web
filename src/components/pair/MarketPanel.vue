@@ -10,6 +10,7 @@
     <pair-assets :pair="pair" class="mt-4" />
 
     <div class="label-1 mt-8">{{ $t("chart") }}</div>
+    <market-chart-panel :pair="pair" class="mt-4" />
 
     <div class="label-1 mt-8">{{ $t("transactions") }}</div>
     <pair-transactions :pair="pair" />
@@ -22,6 +23,7 @@ import PairPrice from "@/components/pair/PairPrice.vue";
 import PairInformations from "@/components/pair/PairInformations.vue";
 import PairAssets from "@/components/pair/PairAssets.vue";
 import PairTransactions from "@/components/pair/PairTransactions.vue";
+import MarketChartPanel from "@/components/chart/market-chart/MarketChartPanel.vue";
 
 @Component({
   components: {
@@ -29,6 +31,7 @@ import PairTransactions from "@/components/pair/PairTransactions.vue";
     PairAssets,
     PairInformations,
     PairTransactions,
+    MarketChartPanel,
   },
 })
 class MarketPanel extends Vue {

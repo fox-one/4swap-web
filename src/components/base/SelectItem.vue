@@ -36,6 +36,7 @@ export default SelectItem;
     ::v-deep {
       .f-list-item__body {
         color: var(--v-greyscale_3-base);
+        padding-right: 40px;
       }
     }
   }

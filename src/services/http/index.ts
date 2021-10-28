@@ -34,9 +34,13 @@ export default function (http: Http) {
     },
 
     getMarketData(params: API.GetMarketDataParams): Promise<API.MarketData[]> {
-      return http.get(`/stats/markets/${params.base}/${params.quote}`, {
-        params: { dur: params.dur },
-      });
+      let url = "/stats/markets/";
+
+      if (params.base && params.quote) {
+        url = `/stats/markets/${params.base}/${params.quote}`;
+      }
+
+      return http.get(url, { params: { dur: params.dur } });
     },
 
     getAllMarketData(params: { dur: API.Duration }): Promise<API.MarketData[]> {
@@ -44,7 +48,11 @@ export default function (http: Http) {
     },
 
     getKlineData(params: API.GetKlineDataParams): Promise<API.KlineData[]> {
-      const url = `/stats/markets/${params.base}/${params.quote}/kline/v2`;
+      let url = `/stats/markets/kline/v2`;
+
+      if (params.base && params.quote) {
+        url = `/stats/markets/${params.base}/${params.quote}/kline/v2`;
+      }
 
       return http.get(url, { params: { dur: params.dur } });
     },
