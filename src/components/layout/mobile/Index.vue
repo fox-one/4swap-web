@@ -2,7 +2,7 @@
   <div>
     <app-bar />
 
-    <v-main :class="classes">
+    <v-main :class="classes" :style="styles">
       <v-container class="pa-4">
         <nuxt />
       </v-container>
@@ -25,6 +25,10 @@ import BottomNav from "./BottomNav.vue";
   },
 })
 class MobileLayout extends Vue {
+  get styles() {
+    return this.$store.state.app.contentStyle;
+  }
+
   get classes() {
     const contentClass = this.$store.state.app.contentClass;
 

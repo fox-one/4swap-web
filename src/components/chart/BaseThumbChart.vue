@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Ref, Prop } from "vue-property-decorator";
+import { Component, Vue, Ref, Prop, Watch } from "vue-property-decorator";
 import BaseChart from "./BaseChart.vue";
 import { getBaseOption } from "./BaseChart.vue";
 
@@ -44,6 +44,11 @@ class BaseChartThumb extends Vue {
         },
       ],
     };
+  }
+
+  @Watch("data")
+  handleDataChange() {
+    this.chart?.setOption({ dataset: { source: this.data } });
   }
 }
 export default BaseChartThumb;

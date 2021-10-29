@@ -33,9 +33,12 @@ class BaseLineChart extends Vue {
 
   @Ref("chart") chart;
 
+  @Prop({ type: Array, default: () => [] }) customOption;
+
   get option(): EChartsOption {
     return {
       ...getBaseOption(this, this.data, this.colors),
+      ...this.customOption,
       series: [
         {
           type: "line",

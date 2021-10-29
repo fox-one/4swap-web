@@ -14,53 +14,38 @@
     </span>
 
     <div v-if="!expand" class="profit-panel--thumb">
-      <div class="chart-title">
-        <type-select-thumb :types="types" :value.sync="bindType" class="mb-4" />
-        <slot name="thumb-title" />
-      </div>
-      <div class="chart">
-        <slot name="thumb-chart" />
-      </div>
+      <chart-thumb-layout v-bind="$attrs" v-on="$listeners">
+        <template #thumb>
+          <slot name="thumb" />
+        </template>
+      </chart-thumb-layout>
     </div>
     <div v-else class="profit-panel--full">
-      <base-chart-panel-layout
-        :types="types"
-        :type.sync="bindType"
-        :duration.sync="bindDuration"
-      >
-        <template #title>
-          <slot name="title" />
-        </template>
+      <chart-layout v-bind="$attrs" v-on="$listeners">
         <template #chart>
           <slot name="chart" />
         </template>
-      </base-chart-panel-layout>
+      </chart-layout>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, PropSync, Vue } from "vue-property-decorator";
-import TypeSelectThumb from "./TypeSelectThumb.vue";
-import BaseChartPanelLayout from "./BaseChartPanelLayout.vue";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import ChartLayout from "./ChartLayout.vue";
+import ChartThumbLayout from "./ChartThumbLayout.vue";
 
 @Component({
   components: {
-    TypeSelectThumb,
-    BaseChartPanelLayout,
+    ChartLayout,
+    ChartThumbLayout,
   },
 })
 class ProfitPanelLayout extends Vue {
-  @Prop() types;
-
-  @PropSync("type") bindType;
-
-  @PropSync("duration") bindDuration;
-
-  expand = false;
+  @Prop() expand;
 
   handleToggle() {
-    this.expand = !this.expand;
+    this.$emit("toggle");
   }
 }
 export default ProfitPanelLayout;
@@ -80,26 +65,6 @@ export default ProfitPanelLayout;
 
 .profit-panel {
   position: relative;
-}
-
-.profit-panel--thumb {
-  border-radius: 8px;
-  padding: 16px;
-  padding-right: 48px;
-  background: var(--v-greyscale_7-base);
-  display: flex;
-  align-items: center;
-
-  .chart-title {
-    flex: 1;
-  }
-
-  .chart {
-    min-width: 88px;
-    max-width: 88px;
-    width: 88px;
-    height: 55px;
-  }
 }
 
 .toggle-icon {

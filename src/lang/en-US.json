@@ -280,5 +280,6 @@
   "disconnect": "Disconnect",
   "price.alert.hint": "When the price impact exceeds 80%, a countdown will occur to protect the trade",
   "overview": "Overview",
-  "go.to.swap": "Go to swap"
+  "go.to.swap": "Go to swap",
+  "profits.rate": "Profits Rate"
 }

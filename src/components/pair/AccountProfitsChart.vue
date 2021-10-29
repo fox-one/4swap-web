@@ -1,6 +1,13 @@
 <template>
   <div>
     <profit-chart-panel :loading="loading" :pair="pair" :data="formatedData" />
+
+    <profit-rate-chart-panel
+      :loading="loading"
+      :pair="pair"
+      :data="formatedData"
+      class="mt-4"
+    />
   </div>
 </template>
 
@@ -8,10 +15,12 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { fmtProfits } from "@/utils/profits";
 import ProfitChartPanel from "@/components/chart/profit-chart/ProfitChartPanel.vue";
+import ProfitRateChartPanel from "@/components/chart/profit-rate-chart/ProfitRateChartPanel.vue";
 
 @Component({
   components: {
     ProfitChartPanel,
+    ProfitRateChartPanel,
   },
 })
 class AccountProfitChart extends Vue {

@@ -4,7 +4,7 @@
       <type-select :types="types" :value.sync="bindType" />
     </div>
     <div class="chart-title mb-10">
-      <slot name="title" />
+      <chart-title :title="title" :subtitle="subtitle" />
     </div>
     <div class="chart">
       <slot name="chart" />
@@ -23,21 +23,27 @@
 import { Component, Vue, Prop, PropSync } from "vue-property-decorator";
 import TypeSelect from "./TypeSelect.vue";
 import DurationSelect from "./DurationSelect.vue";
+import ChartTitle from "./ChartTitle.vue";
 
 @Component({
   components: {
     TypeSelect,
     DurationSelect,
+    ChartTitle,
   },
 })
-class BaseChartPanelLayout extends Vue {
+class ChartLayout extends Vue {
   @Prop() types;
+
+  @Prop() title;
+
+  @Prop() subtitle;
 
   @PropSync("type") bindType;
 
   @PropSync("duration") bindDuration;
 }
-export default BaseChartPanelLayout;
+export default ChartLayout;
 </script>
 
 <style lang="scss" scoped>

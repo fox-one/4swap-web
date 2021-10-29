@@ -16,6 +16,8 @@ const state: State.AppState = {
 
   contentClass: "",
 
+  contentStyle: {},
+
   settings: {
     slippage: 0.99,
     currency: "USD",
@@ -46,6 +48,10 @@ const mutations = {
 
   [MutationTypes.SET_APP_INITING](state, value) {
     state.initing = value;
+  },
+
+  [MutationTypes.SET_CONTENT_STYLE](state, value) {
+    state.contentStyle = value;
   },
 
   [MutationTypes.SET_SETTINGS](state, data) {

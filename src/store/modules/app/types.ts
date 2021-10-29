@@ -8,6 +8,7 @@ export const MutationTypes = {
   SET_APP_INITING: "SET_APP_INITING",
   SET_BOTTOM_NAV: "SET_BOTTOM_NAV",
   SET_CONTENT_CLASS: "SET_CONTENT_CLASS",
+  SET_CONTENT_STYLE: "SET_CONTENT_STYLE",
 };
 
 export const ActionTypes = {

@@ -6,12 +6,12 @@
     :title="titles.title"
     :subtitle="titles.subtitle"
     :thumb-title="titles.thumbTitle"
-    :expand="expand1"
+    :expand="expand2"
     :loading="loading"
-    @toggle="togggleExpand1"
+    @toggle="togggleExpand2"
   >
     <template #thumb>
-      <profit-chart-thumb
+      <profit-rate-chart-thumb
         :loading="loading"
         :data="thumbData"
         :current.sync="thumbCurrent"
@@ -21,7 +21,7 @@
       />
     </template>
     <template #chart>
-      <profit-chart
+      <profit-rate-chart
         :loading="loading"
         :data="durationData"
         :current.sync="current"
@@ -38,21 +38,21 @@ import {
   Component,
   Vue,
   Prop,
-  Inject,
   InjectReactive,
+  Inject,
 } from "vue-property-decorator";
 import ProfitChartPanelLayout from "../ProfitChartPanelLayout.vue";
-import ProfitChart from "./ProfitChart.vue";
-import ProfitChartThumb from "./ProfitChartThumb.vue";
+import ProfitRateChart from "./ProfitRateChart.vue";
+import ProfitRateChartThumb from "./ProfitRateChartThumb.vue";
 
 @Component({
   components: {
-    ProfitChart,
-    ProfitChartThumb,
     ProfitChartPanelLayout,
+    ProfitRateChart,
+    ProfitRateChartThumb,
   },
 })
-class ProfitChartPanel extends Vue {
+class ProfitRateChartPanel extends Vue {
   @Prop() data!: API.PairProfits[];
 
   @Prop() loading;
@@ -60,10 +60,10 @@ class ProfitChartPanel extends Vue {
   @Prop() pair;
 
   @InjectReactive()
-  expand1;
+  expand2;
 
   @Inject()
-  togggleExpand1;
+  togggleExpand2;
 
   type = 0;
 
@@ -108,50 +108,29 @@ class ProfitChartPanel extends Vue {
   get types() {
     return [
       {
-        text: this.$t("profits") + ` (${this.meta.baseAssetSymbol})`,
+        text: this.$t("profits.rate") + ` (${this.meta.baseAssetSymbol})`,
         value: 0,
       },
       {
-        text: this.$t("profits") + ` (${this.meta.quoteAssetSymbol})`,
+        text: this.$t("profits.rate") + ` (${this.meta.quoteAssetSymbol})`,
         value: 1,
       },
       {
-        text: this.$t("profits") + ` (${this.meta.currency})`,
+        text: this.$t("profits.rate") + ` (${this.meta.currency})`,
         value: 2,
       },
     ];
   }
 
   get titles() {
-    const getPairMeta = this.$utils.pair.getPairMeta;
-    const format = this.$utils.number.format;
-    const toFiat = this.$utils.currency.toFiat;
+    const toPercent = this.$utils.number.toPercent;
 
     const time = this.current?.[0] ?? 0;
     const data = this.current?.[1] ?? 0;
     const thumbData = this.thumbCurrent?.[1] ?? 0;
 
-    const { baseAsset, quoteAsset } = getPairMeta(this, this.pair)!;
-    const baseAssetSymbol = baseAsset.symbol;
-    const quoteAssetSymbol = quoteAsset.symbol;
-    const sign = +data >= 0 ? "+" : "-";
-
-    const formatData = (data, type) => {
-      if (this.type === 2) {
-        return `${sign} ${toFiat(this, { n: Math.abs(data) })}`;
-      } else {
-        const symbol = type === 0 ? baseAssetSymbol : quoteAssetSymbol;
-        const h = this.$createElement;
-
-        return h("span", [
-          `${sign} ${format({ n: Math.abs(data) })}`,
-          h("span", { staticClass: "symbol ml-1" }, [symbol]),
-        ]);
-      }
-    };
-
-    const title = (data && formatData(data, this.type)) || "";
-    const thumbTitle = (thumbData && formatData(thumbData, this.type)) || "";
+    const title = (data && `${toPercent({ n: data })}`) || "";
+    const thumbTitle = (thumbData && `${toPercent({ n: thumbData })}`) || "";
     const subtitle =
       (time && this.$utils.time.format(time, "MMM DD HH:mm A Z")) || "";
 
@@ -162,5 +141,5 @@ class ProfitChartPanel extends Vue {
     };
   }
 }
-export default ProfitChartPanel;
+export default ProfitRateChartPanel;
 </script>

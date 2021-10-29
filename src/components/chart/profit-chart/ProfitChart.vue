@@ -11,6 +11,28 @@
 import { Component, Vue, Prop, Watch, PropSync } from "vue-property-decorator";
 import BaseLineChart from "../BaseLineChart.vue";
 
+export function getChartData(vm: Vue, data, pair, type) {
+  const toFiat = vm.$utils.currency.toFiat;
+  const getPairMeta = vm.$utils.pair.getPairMeta;
+  const { isReverse } = getPairMeta(vm, pair)!;
+
+  let fn = (x) => {
+    let [baseProfit, quoteProfit] = [x.baseProfit, x.quoteProfit];
+
+    if (isReverse) {
+      [baseProfit, quoteProfit] = [quoteProfit, baseProfit];
+    }
+
+    return type === 0
+      ? baseProfit
+      : type === 1
+      ? quoteProfit
+      : toFiat(vm, { n: x.fiatProfit, intl: false });
+  };
+
+  return data.map((x) => [x.ts * 1000, fn(x)]);
+}
+
 @Component({
   components: {
     BaseLineChart,
@@ -28,25 +50,7 @@ class ProfitChart extends Vue {
   point = null;
 
   get chartData() {
-    const toFiat = this.$utils.currency.toFiat;
-    const getPairMeta = this.$utils.pair.getPairMeta;
-    const { isReverse } = getPairMeta(this, this.pair)!;
-
-    let fn = (x) => {
-      let [baseProfit, quoteProfit] = [x.baseProfit, x.quoteProfit];
-
-      if (isReverse) {
-        [baseProfit, quoteProfit] = [quoteProfit, baseProfit];
-      }
-
-      return this.type === 0
-        ? baseProfit
-        : this.type === 1
-        ? quoteProfit
-        : toFiat(this, { n: x.fiatProfit, intl: false });
-    };
-
-    return this.data.map((x) => [x.ts * 1000, fn(x)]);
+    return getChartData(this, this.data, this.pair, this.type);
   }
 
   @Watch("chartData", { immediate: true })

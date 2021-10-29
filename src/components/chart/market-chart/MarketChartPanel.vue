@@ -1,14 +1,12 @@
 <template>
-  <base-chart-panel-layout
+  <chart-layout
     :types="types"
     :type.sync="chartType"
     :duration.sync="duration"
+    :title="titles.title"
+    :subtitle="titles.subtitle"
   >
-    <template name="title">
-      <price-title-section v-if="isPriceChart" :current="current" />
-      <market-title-section v-else :current="current" />
-    </template>
-    <template name="chart">
+    <template #chart>
       <component
         :is="component"
         :data="chartData"
@@ -17,16 +15,17 @@
         :current.sync="current"
         :chart-type="chartType"
       />
-      <template name="foot">
-        <route-to-swap-action
-          v-if="isPriceChart"
-          :pair="pair"
-          :reverse="isPriceReverse"
-          class="mt-4"
-        />
-      </template>
     </template>
-  </base-chart-panel-layout>
+
+    <template #foot>
+      <route-to-swap-action
+        v-if="isPriceChart"
+        :pair="pair"
+        :reverse="isPriceReverse"
+        class="mt-4"
+      />
+    </template>
+  </chart-layout>
 </template>
 
 <script lang="ts">
@@ -34,18 +33,14 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import PriceChart from "./PriceChart.vue";
 import LiquidityChart from "./LiquidityChart.vue";
 import VolumeChart from "./VolumeChart.vue";
-import MarketTitleSection from "./MarketTitleSection.vue";
-import PriceTitleSection from "./PriceTitleSection.vue";
 import RouteToSwapAction from "../../liquidity/RouteToSwapAction.vue";
-import BaseChartPanelLayout from "../BaseChartPanelLayout.vue";
+import ChartLayout from "../ChartLayout.vue";
 
 export type ChartType = "liquidity" | "volume" | "0" | "1";
 
 @Component({
   components: {
-    BaseChartPanelLayout,
-    MarketTitleSection,
-    PriceTitleSection,
+    ChartLayout,
     PriceChart,
     LiquidityChart,
     VolumeChart,
@@ -140,6 +135,30 @@ class MarketChartPanel extends Vue {
     }
 
     return baseItems;
+  }
+
+  get titles() {
+    const time = this.current?.[0] ?? 0;
+    const data = this.current?.[1] ?? 0;
+    const h = this.$createElement;
+
+    if (!time) {
+      return { title: "", subtitle: "" };
+    }
+
+    if (this.isPriceChart) {
+      return {
+        title: this.$utils.number.format({ n: data }),
+        subtitle: this.$utils.time.format(time, "MMM DD HH:mm A Z"),
+      };
+    }
+
+    return {
+      title: h("base-fiat-division", {
+        props: { parts: this.$utils.currency.toFiat(this, { n: data }, true) },
+      }),
+      subtitle: this.$utils.time.format(time, "MMM DD, YYYY"),
+    };
   }
 
   mounted() {

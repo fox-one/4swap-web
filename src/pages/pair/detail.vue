@@ -22,7 +22,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Watch } from "vue-property-decorator";
+import {
+  Component,
+  Mixins,
+  ProvideReactive,
+  Provide,
+  Watch,
+} from "vue-property-decorator";
 import mixins from "@/mixins";
 import { GlobalGetters } from "@/store/types";
 import MarketPanel from "@/components/pair/MarketPanel.vue";
@@ -40,6 +46,22 @@ import { Sync } from "vuex-pathify";
 })
 class PairDetailPage extends Mixins(mixins.page) {
   @Sync("page/pairDetail@tabIndex") tabIndex!: number;
+
+  @ProvideReactive()
+  expand1 = false;
+
+  @ProvideReactive()
+  expand2 = false;
+
+  @Provide()
+  togggleExpand1() {
+    this.expand1 = !this.expand1;
+  }
+
+  @Provide()
+  togggleExpand2() {
+    this.expand2 = !this.expand2;
+  }
 
   get title() {
     return this.meta.symbol;
@@ -59,6 +81,21 @@ class PairDetailPage extends Mixins(mixins.page) {
 
   get contentClass() {
     return this.meta.isAdded && this.tabIndex === 0 ? "linear-page" : "";
+  }
+
+  get contentStyle() {
+    const { expand1, expand2 } = this;
+    const size = expand1 && expand2 ? 2 : !expand1 && !expand2 ? 0 : 1;
+    return this.meta.isAdded && this.tabIndex === 0
+      ? {
+          "background-size":
+            size === 2
+              ? "100% 1200px"
+              : size === 1
+              ? "100% 800px"
+              : "100% 450px",
+        }
+      : {};
   }
 
   get meta() {

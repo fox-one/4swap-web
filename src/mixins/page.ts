@@ -37,6 +37,10 @@ export default class PageView extends Vue {
     return "";
   }
 
+  get contentStyle() {
+    return {};
+  }
+
   setLang() {
     const locale = this.$utils.helper.getLocale();
 
@@ -47,12 +51,14 @@ export default class PageView extends Vue {
   }
 
   @Watch("contentClass")
+  @Watch("contentStyle")
   setPageConfig() {
     this.$store.commit(GlobalMutations.SET_BOTTOM_NAV, {
       value: this.bottomNav,
     });
 
     this.$store.commit(GlobalMutations.SET_CONTENT_CLASS, this.contentClass);
+    this.$store.commit(GlobalMutations.SET_CONTENT_STYLE, this.contentStyle);
 
     this.$store.commit(GlobalMutations.SET_APPBAR, {
       title: this.title,

@@ -5,6 +5,7 @@
 <script lang="ts">
 import { Component, Vue, PropSync, Prop, Watch } from "vue-property-decorator";
 import BaseThumbChart from "../BaseThumbChart.vue";
+import { getChartData } from "./ProfitChart.vue";
 
 @Component({
   components: {
@@ -21,25 +22,7 @@ class ProfitChartThumb extends Vue {
   @Prop() data!: API.PairProfits[];
 
   get chartData() {
-    const toFiat = this.$utils.currency.toFiat;
-    const getPairMeta = this.$utils.pair.getPairMeta;
-    const { isReverse } = getPairMeta(this, this.pair)!;
-
-    let fn = (x) => {
-      let [baseProfit, quoteProfit] = [x.baseProfit, x.quoteProfit];
-
-      if (isReverse) {
-        [baseProfit, quoteProfit] = [quoteProfit, baseProfit];
-      }
-
-      return this.type === 0
-        ? baseProfit
-        : this.type === 1
-        ? quoteProfit
-        : toFiat(this, { n: x.fiatProfit, intl: false });
-    };
-
-    return this.data.map((x) => [x.ts * 1000, fn(x)]);
+    return getChartData(this, this.data, this.pair, this.type);
   }
 
   @Watch("chartData", { immediate: true })
