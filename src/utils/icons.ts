@@ -61,6 +61,8 @@ const icons = [
   "IconSwitcher4P",
   "IconSchemeA",
   "IconSchemeB",
+  "IconUpPolygon",
+  "IconDownPolygon",
 ].reduce((m, k) => ({ ...m, [k]: { component: k } }), {});
 
 export default {

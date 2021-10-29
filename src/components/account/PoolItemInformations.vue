@@ -34,7 +34,7 @@ export default PoolItemInformations;
 
 .value {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 17px;
   letter-spacing: -0.006em;
 }

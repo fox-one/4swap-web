@@ -126,6 +126,8 @@ class ProfitChartPanel extends Vue {
     const getPairMeta = this.$utils.pair.getPairMeta;
     const format = this.$utils.number.format;
     const toFiat = this.$utils.currency.toFiat;
+    const h = this.$createElement;
+    const getColor = this.$utils.color.getColor;
 
     const time = this.current?.[0] ?? 0;
     const data = this.current?.[1] ?? 0;
@@ -137,13 +139,16 @@ class ProfitChartPanel extends Vue {
     const sign = +data >= 0 ? "+" : "-";
 
     const formatData = (data, type) => {
+      const style = { color: getColor(this, data) };
+
       if (this.type === 2) {
-        return `${sign} ${toFiat(this, { n: Math.abs(data) })}`;
+        return h("span", { staticStyle: style }, [
+          `${sign} ${toFiat(this, { n: Math.abs(data) })}`,
+        ]);
       } else {
         const symbol = type === 0 ? baseAssetSymbol : quoteAssetSymbol;
-        const h = this.$createElement;
 
-        return h("span", [
+        return h("span", { staticStyle: style }, [
           `${sign} ${format({ n: Math.abs(data) })}`,
           h("span", { staticClass: "symbol ml-1" }, [symbol]),
         ]);

@@ -44,6 +44,7 @@ import {
 import ProfitChartPanelLayout from "../ProfitChartPanelLayout.vue";
 import ProfitRateChart from "./ProfitRateChart.vue";
 import ProfitRateChartThumb from "./ProfitRateChartThumb.vue";
+import { VIcon } from "vuetify/lib";
 
 @Component({
   components: {
@@ -124,13 +125,25 @@ class ProfitRateChartPanel extends Vue {
 
   get titles() {
     const toPercent = this.$utils.number.toPercent;
+    const h = this.$createElement;
 
     const time = this.current?.[0] ?? 0;
     const data = this.current?.[1] ?? 0;
     const thumbData = this.thumbCurrent?.[1] ?? 0;
 
-    const title = (data && `${toPercent({ n: data })}`) || "";
-    const thumbTitle = (thumbData && `${toPercent({ n: thumbData })}`) || "";
+    const formatData = (value) => {
+      const text = toPercent({ n: thumbData });
+      const icon =
+        +value > 0 ? "$IconUpPolygon" : +value < 0 ? "$IconDownPolygon" : "";
+
+      return h("span", { staticClass: "d-flex align-center" }, [
+        h(VIcon, { staticClass: "mr-1", props: { size: 16 } }, [icon]),
+        text,
+      ]);
+    };
+
+    const title = (data && formatData(data)) || "";
+    const thumbTitle = (thumbData && formatData(thumbData)) || "";
     const subtitle =
       (time && this.$utils.time.format(time, "MMM DD HH:mm A Z")) || "";
 

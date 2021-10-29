@@ -4,7 +4,7 @@
 
     <div class="mt-6">
       <base-fiat-division :parts="meta.parts" class="balance" />
-      <span class="profit ml-3">
+      <span :style="{ color: meta.color }" class="profit ml-3">
         {{ meta.profitSymbol + " " + meta.totalProfitText }}
       </span>
     </div>
@@ -23,10 +23,18 @@ class AccountOverview extends Vue {
 
     const { totalUsd, totalProfit } = getters[GlobalGetters.ACCOUNT_OVERVIEW];
     const parts = toFiat(this, { n: totalUsd }, true);
-    const totalProfitText = toFiat(this, { n: totalProfit });
+    const totalProfitText = toFiat(this, { n: Math.abs(totalProfit) });
     const profitSymbol = +totalProfit > 0 ? "+" : "";
+    const sign = +totalProfit > 0 ? "+" : +totalProfit < 0 ? "-" : "";
+    const color = this.$utils.color.getColor(this, totalProfit);
 
-    return { parts, totalProfit, totalProfitText, profitSymbol };
+    return {
+      parts,
+      totalProfit,
+      color,
+      totalProfitText: sign + " " + totalProfitText,
+      profitSymbol,
+    };
   }
 }
 export default AccountOverview;

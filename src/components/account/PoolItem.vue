@@ -47,7 +47,7 @@ class PoolItem extends Vue {
     const { baseAsset, quoteAsset, symbol } = pairMeta || {};
 
     const fiatProfit = profit?.fiatProfit ?? 0;
-    const fiatProfitText = toFiat(this, { n: +fiatProfit });
+    const fiatProfitText = toFiat(this, { n: Math.abs(fiatProfit) });
     const totalValue = shared?.totalValue ?? 0;
     const totalValuetext = toFiat(this, { n: totalValue });
     const percent = shared?.percent ?? 0;
@@ -62,6 +62,8 @@ class PoolItem extends Vue {
       quoteAsset,
       symbol,
       totalValue,
+      fiatProfit,
+      fiatProfitSign: +fiatProfit > 0 ? "+" : +fiatProfit < 0 ? "-" : "",
       fiatProfitText,
       totalValuetext,
       percentText,
@@ -71,10 +73,21 @@ class PoolItem extends Vue {
   }
 
   get informations() {
+    const h = this.$createElement;
+    const fiatText = this.meta.fiatProfitSign + " " + this.meta.fiatProfitText;
+
     return [
       {
         title: this.$t("profits"),
-        value: this.meta.fiatProfitText,
+        value: h(
+          "span",
+          {
+            staticStyle: {
+              color: this.$utils.color.getColor(this, this.meta.fiatProfit),
+            },
+          },
+          [fiatText]
+        ),
       },
       {
         title: this.$t("liquidity.percent.abbr"),
