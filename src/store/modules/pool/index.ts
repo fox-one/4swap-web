@@ -131,6 +131,16 @@ const getters = {
       });
     };
   },
+
+  [GetterTypes.GET_PAIRS_BY_ASSET](state, getters) {
+    const pairs = getters[GetterTypes.AVALIABLE_PAIRS];
+
+    return (id: string) => {
+      return pairs.filter((x) => {
+        return x.base_asset_id === id || x.quote_asset_id === id;
+      });
+    };
+  },
 };
 
 const actions: ActionTree<State.AuthState, any> = {

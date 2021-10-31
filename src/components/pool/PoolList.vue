@@ -1,22 +1,16 @@
 <template>
   <div>
     <div ref="headers" class="pool-headers">
-      <v-layout v-if="!searchable" align-center>
-        <v-flex class="label-1">All Pools</v-flex>
+      <slot name="header" />
 
-        <v-btn icon small height="24" @click="handleSearch">
-          <v-icon>$FIconSearch</v-icon>
-        </v-btn>
-      </v-layout>
-
-      <template v-if="!searchable || !meta.empty">
+      <template v-if="!isSearch || !meta.empty">
         <pool-dimension-list v-model="dimension" class="my-4" />
 
         <pool-header @switch="handleSwitch" @sort="handleSort" />
       </template>
     </div>
 
-    <empty-place-holder v-if="meta.empty" :searchable="searchable" />
+    <empty-place-holder v-if="meta.empty" :is-search="isSearch" />
 
     <pool-item
       v-for="(item, index) in meta.items"
@@ -63,21 +57,24 @@ class PoolList extends Vue {
   filter!: string;
 
   @Prop({ type: Boolean, default: false })
-  searchable!: string;
+  isSearch!: string;
+
+  @Prop() pairs;
 
   get meta() {
     const { getters } = this.$store;
-    const pairs: API.Pair[] = getters[GlobalGetters.AVALIABLE_PAIRS];
+    const pairs: API.Pair[] =
+      this.pairs || getters[GlobalGetters.AVALIABLE_PAIRS];
 
     const sorted = pairs
-      .map((x) => getPairMeta(this, x))
+      .map((x) => getPairMeta(this, x)!)
       .sort((a, b) => {
         const v = Number(b[this.dimension]) - Number(a[this.dimension]);
 
         return this.sort === "asce" ? -v : v;
       });
 
-    const items = this.searchable
+    const items = this.isSearch
       ? sorted.filter((x) => filterFn(this.filter, x))
       : sorted;
 
@@ -92,17 +89,13 @@ class PoolList extends Vue {
       query: { base: item.base_asset_id, quote: item.quote_asset_id },
     });
 
-    if (this.searchable) {
+    if (this.isSearch) {
       this.$store.commit(GlobalMutations.SET_POOL_SEARCH_HISTORY, this.filter);
     }
   }
 
   handleSwitch() {
     this.reverse = !this.reverse;
-  }
-
-  handleSearch() {
-    this.$router.push({ name: "search" });
   }
 
   handleSort() {

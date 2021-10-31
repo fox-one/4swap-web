@@ -9,7 +9,19 @@
 
     <pool-overview class="mt-3" />
 
-    <pool-list class="mt-8" />
+    <pool-list class="mt-8">
+      <template #header>
+        <v-layout align-center>
+          <v-flex class="label-1">
+            {{ $t("all.pools") }}
+          </v-flex>
+
+          <v-btn icon small height="24" @click="handleSearch">
+            <v-icon>$FIconSearch</v-icon>
+          </v-btn>
+        </v-layout>
+      </template>
+    </pool-list>
   </div>
 </template>
 
@@ -44,6 +56,10 @@ class PoolPage extends Mixins(mixins.page) {
 
   handleToOverview() {
     this.$router.push({ name: "market-overview" });
+  }
+
+  handleSearch() {
+    this.$router.push({ name: "search" });
   }
 }
 export default PoolPage;

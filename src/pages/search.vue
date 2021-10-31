@@ -4,7 +4,7 @@
 
     <search-history v-if="meta.showHistory" />
 
-    <pool-list v-else :searchable="true" :filter="filter" />
+    <pool-list v-else :is-search="true" :filter="filter" />
   </div>
 </template>
 
