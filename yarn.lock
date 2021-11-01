@@ -952,12 +952,12 @@
   dependencies:
     "@foxone/fennec-base" "0.3.8"
 
-"@foxone/icons@3.0.1-33", "@foxone/icons@^3.0.1-33":
-  version "3.0.1-33"
-  resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.0.1-33.tgz#47eebf5ef34397fac11c6414ad1e6d899abc4777"
-  integrity sha512-+0D6bjqicHspYbj7wIKlBHocLslImQv0rbKUTfeXmR9NyGHooreu7Wuo7lNfIU0iP9xs+gB9LxpmMWjNBVaVvg==
+"@foxone/icons@3.0.1-36", "@foxone/icons@^3.0.1-36":
+  version "3.0.1-36"
+  resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.0.1-36.tgz#b23d1c5fd4b27970a7f58b62819341f325068ecb"
+  integrity sha512-nrUu+x1Da4swnX9Oc/38ImSAHhOWQmKK5PCcp3RF8b1qXtpKIQv7r3EdFp2LDMk9KkYzcmNurUODVWlMxetjdw==
   dependencies:
-    "@foxone/uikit" "3.0.1-33"
+    "@foxone/uikit" "3.0.1-36"
     vue "^2.6.12"
     vue-class-component "^7.2.3"
     vue-property-decorator "^9.1.2"
@@ -965,12 +965,12 @@
     vuetify "^2.5.6"
     vuex "^3.4.0"
 
-"@foxone/uikit@3.0.1-33", "@foxone/uikit@^3.0.1-33":
-  version "3.0.1-33"
-  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.0.1-33.tgz#028c2082fec6a83b307668bfe1dffa7876e760ff"
-  integrity sha512-SMNKoV3/wTk7Y9N10RW0BeF5xgy6kq9Q6ZrAWYx/84rAvVQTatEoVxBetq/gpUkqu0X3XEzF75NZE9su8dC1Mg==
+"@foxone/uikit@3.0.1-36", "@foxone/uikit@^3.0.1-36":
+  version "3.0.1-36"
+  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.0.1-36.tgz#111482b2271bb67743049fad48b20bab6a68623d"
+  integrity sha512-xvMW5LMv7rxrv7oct9rbWPTUT0BcbKzJsSHV3KTKqjobT6IWJYzVocZMql+DdllIiqmqnaLvsD8Tiw8PR0dBGA==
   dependencies:
-    "@foxone/icons" "3.0.1-33"
+    "@foxone/icons" "3.0.1-36"
     "@foxone/utils" "^0.2.6"
     bignumber.js "^9.0.1"
     qrcode "^1.4.4"

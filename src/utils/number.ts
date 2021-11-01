@@ -6,3 +6,9 @@ export function simplize(vm: Vue, opts: { n: number }) {
 
   return number.simplize({ ...opts, locale });
 }
+
+export function attchSign({ n, text }: { n: number; text: string }) {
+  const sign = +n >= 0 ? "+" : "-";
+
+  return `${sign} ${text}`;
+}

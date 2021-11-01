@@ -18,7 +18,7 @@
     />
 
     <template v-if="pair">
-      <f-divider class="mt-6 mx-n3" />
+      <f-divider class="mt-6 mx-n4" />
 
       <div class="label-1 mt-8">{{ $t("assets.pool") }}</div>
       <pair-assets show-detail-link :pair="pair" class="mt-4" />
@@ -46,6 +46,11 @@ import PairTransactions from "@/components/pair/PairTransactions.vue";
     SlippageSetting,
     PairAssets,
     PairTransactions,
+  },
+  beforeRouteLeave(_to, _from, next) {
+    (this as any).handleClearAmount();
+
+    next();
   },
 })
 class SwapPage extends Mixins(mixins.page) {
@@ -112,6 +117,11 @@ class SwapPage extends Mixins(mixins.page) {
       .catch(() => {
         // ignore
       });
+  }
+
+  handleClearAmount() {
+    this.input.amount = "";
+    this.output.amount = "";
   }
 
   setInitialAsset() {

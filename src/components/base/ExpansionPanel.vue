@@ -23,7 +23,7 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 class ExpansionPanel extends Vue {
-  expand = false;
+  expand = true;
 
   get classes() {
     return {

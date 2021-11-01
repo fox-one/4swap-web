@@ -8,13 +8,19 @@ const themesLake = {
     secondary: "#0FC2FC",
     third: "#EDFBFC",
     forth: "#DEF3F4",
-    risk_emphasize: "#75080a",
+    warning_bg: "#FCF8F0",
+    warning_emphsize: "#75080A",
+    error_bg: "#FBF2F2",
+    error_emphsize: "#75080A",
   },
   dark: {
     primary: "#FFFFFF",
     secondary: "#46CFFB",
     third: "#075973",
-    risk_emphasize: "#f34a4d",
+    warning_bg: "#5C3A13",
+    warning_emphsize: "#FFE08F",
+    error_bg: "#4A2222",
+    error_emphsize: "#F34A4D",
   },
 };
 
@@ -24,13 +30,19 @@ const themeFSwap = {
     secondary: "#EDFBFC",
     third: "#FDF4F8",
     forth: "#1D7D9B",
-    risk_emphasize: "#75080a",
+    warning_bg: "#FCF8F0",
+    warning_emphsize: "#75080A",
+    error_bg: "#FBF2F2",
+    error_emphsize: "#75080A",
   },
   dark: {
     primary: "#FFFFFF",
     secondary: "#EE4596",
     third: "#88305A",
-    risk_emphasize: "#f34a4d",
+    warning_bg: "#5C3A13",
+    warning_emphsize: "#FFE08F",
+    error_bg: "#4A2222",
+    error_emphsize: "#F34A4D",
   },
 };
 

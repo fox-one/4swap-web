@@ -4,6 +4,7 @@
       :data="bindData"
       :assets="assets"
       :placeholder="$t('liquidity.amount')"
+      :rules="rules"
       fullfilled
       @update:asset="handleUpdateAsset"
       @input="handleInput"
@@ -38,6 +39,14 @@ class RemoveForm extends Vue {
     return accountPairs.map((x) => {
       return getAssetById(x.liquidity_asset_id);
     });
+  }
+
+  get rules() {
+    return [
+      () => !!this.bindData.asset || "Asset is required",
+      (v) => !!v || "Amount is required",
+      (v) => +v > 0 || "Amount is not valid",
+    ];
   }
 
   handleUpdateAsset(asset) {

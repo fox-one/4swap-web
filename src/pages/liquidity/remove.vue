@@ -6,7 +6,7 @@
       </template>
 
       <template #action="{ valid }">
-        <remove-action :valid="valid" />
+        <remove-action :valid="valid" :pair="pair" :data="asset" />
       </template>
     </remove-form>
 

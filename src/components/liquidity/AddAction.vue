@@ -1,5 +1,12 @@
 <template>
   <div class="mt-6 text-center">
+    <add-liquidity-payment-modal
+      ref="paymentModal"
+      :asset1="asset1"
+      :asset2="asset2"
+      :pair="pair"
+    />
+
     <template v-if="meta.isNotSupport">
       <div class="label-3 mb-6 text-left">
         {{ $t("liquidity.create.pair.not-support") }}
@@ -8,7 +15,12 @@
       <route-to-create-action :pair="pair" />
     </template>
 
-    <f-button v-else :disabled="meta.disabled" color="primary">
+    <f-button
+      v-else
+      :disabled="meta.disabled"
+      color="primary"
+      @click="handleNext"
+    >
       {{ $t("next") }}
     </f-button>
   </div>
@@ -17,10 +29,12 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import RouteToCreateAction from "./RouteToCreateAction.vue";
+import AddLiquidityPaymentModal from "./add-liquidity-payment-modal/AddLiquidityPaymentModal.vue";
 
 @Component({
   components: {
     RouteToCreateAction,
+    AddLiquidityPaymentModal,
   },
 })
 class AddAction extends Vue {
@@ -42,6 +56,16 @@ class AddAction extends Vue {
       disabled,
       isNotSupport,
     };
+  }
+
+  handleNext() {
+    this.handleShowPaymentModal();
+  }
+
+  handleShowPaymentModal() {
+    const modal: any = this.$refs.paymentModal;
+
+    modal.show();
   }
 }
 export default AddAction;

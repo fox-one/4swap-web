@@ -89,6 +89,7 @@
   "liquidity.add.ready": "Ok, ready to add",
   "liquidity.add.result.forecast": "Add result prediction",
   "liquidity.add.success": "Add Successfully",
+  "liquidity.add.fail": "Add Failed",
   "liquidity.add.symbol": "Add {symbol}",
   "liquidity.add.symbol.title": "Add Liquidity - {symbol}",
   "liquidity.added.success": "Liquidity added successfully",
@@ -171,6 +172,7 @@
   "mtg": "MTG",
   "next": "Next",
   "ok": "OK",
+  "okay": "Okay",
   "paid": "Paid",
   "pay": "Pay",
   "paying": "Paying",
@@ -282,5 +284,12 @@
   "overview": "Overview",
   "go.to.swap": "Go to swap",
   "profits.rate": "Profits Rate",
-  "all.pools": "All Pools"
+  "all.pools": "All Pools",
+  "confirmation": "Confirmation",
+  "warning": "Warning",
+  "warn.price.impact": "Price impact reached <p>{value}</p> This transaction carries a high risk of loss.",
+  "continue": "Continue",
+  "step2": "Step 2",
+  "add.liquidity.payment.subtitle": "You need to pay {asset1} & {asset2}",
+  "add.liquidity.payment.hint": "You will receive the corresponding LP Token as proof of liquidity. <br/> You will get refunds in 10 minutes if it failed to add liquidity."
 }

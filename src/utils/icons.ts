@@ -24,6 +24,7 @@ import {
   FIconMax4P,
   FIconMin4P,
   FIconLink4P,
+  FIconWarningFill,
 } from "@foxone/icons";
 
 const ficons = {
@@ -52,6 +53,7 @@ const ficons = {
   FIconMax4P: { component: FIconMax4P },
   FIconMin4P: { component: FIconMin4P },
   FIconLink4P: { component: FIconLink4P },
+  FIconWarningFill: { component: FIconWarningFill },
 };
 
 const icons = [
@@ -65,6 +67,8 @@ const icons = [
   "IconSchemeB",
   "IconUpPolygon",
   "IconDownPolygon",
+  "IconCheck",
+  "IconTick",
 ].reduce((m, k) => ({ ...m, [k]: { component: k } }), {});
 
 export default {

@@ -4,6 +4,7 @@
       :data="bindAsset1"
       :assets="assets"
       :placeholder="$t('liquidity.amount')"
+      :rules="rules.asset1"
       fullfilled
       @update:asset="(v) => handleUpdateAsset('base', v)"
       @input="(v) => handleInput('base', v)"
@@ -13,6 +14,7 @@
       :data="bindAsset2"
       :assets="assets"
       :placeholder="$t('liquidity.amount')"
+      :rules="rules.asset2"
       fullfilled
       class="mt-4"
       @update:asset="(v) => handleUpdateAsset('quote', v)"
@@ -78,6 +80,21 @@ class LiquidityAddForm extends Vue {
 
   get assets() {
     return this.$store.getters[GlobalGetters.AVALIABLE_ADD_ASSETS];
+  }
+
+  get rules() {
+    return {
+      asset1: [
+        () => !!this.bindAsset1.asset || "Asset is required",
+        (v) => !!v || "Amount is required",
+        (v) => +v > 0 || "Amount is not valid",
+      ],
+      asset2: [
+        () => !!this.bindAsset2.asset || "Asset is required",
+        (v) => !!v || "Amount is required",
+        (v) => +v > 0 || "Amount is not valid",
+      ],
+    };
   }
 
   handleUpdateAsset(side: "base" | "quote", asset) {

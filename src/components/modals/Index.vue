@@ -3,6 +3,7 @@
     <f-paying-modal
       :show="paying.visible"
       :text="$t('payment.checking')"
+      z-index="1001"
       @cancel="handlePayingCancel"
     />
 

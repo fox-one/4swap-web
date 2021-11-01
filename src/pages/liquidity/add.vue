@@ -1,5 +1,7 @@
 <template>
   <div>
+    <first-liquidity-provider-tip :pair="pair" />
+
     <add-form :asset1.sync="asset1" :asset2.sync="asset2" :pair="pair">
       <template #information>
         <add-form-informations :asset1="asset1" :asset2="asset2" :pair="pair" />
@@ -29,6 +31,7 @@ import AddForm from "@/components/liquidity/AddForm.vue";
 import AddFormInformations from "@/components/liquidity/AddFormInformations.vue";
 import AddAction from "@/components/liquidity/AddAction.vue";
 import Introductions from "@/components/particles/Introductions.vue";
+import FirstLiquidityProviderTip from "@/components/liquidity/FirstLiquidityProviderTip.vue";
 
 import type { Asset } from "@/utils/assets";
 
@@ -43,6 +46,7 @@ type AssetData = {
     AddFormInformations,
     AddAction,
     Introductions,
+    FirstLiquidityProviderTip,
   },
 })
 class LiquidityAdd extends Mixins(mixin.page) {

@@ -31,7 +31,15 @@
     />
 
     <div class="text-center">
-      <swap-action class="mt-6" />
+      <swap-action
+        :valid="valid"
+        :order="order"
+        :input-asset="input.asset"
+        :output-asset="output.asset"
+        :input-amount="input.amount"
+        :output-amount="output.amount"
+        class="mt-6"
+      />
     </div>
   </div>
 </template>
@@ -68,6 +76,16 @@ class SwapForm extends Vue {
     const hideSwitch = !this.bindInput.asset && !this.bindOutput.asset;
 
     return { hideSwitch };
+  }
+
+  get valid() {
+    return (
+      this.order &&
+      this.bindInput.asset &&
+      this.bindInput.amount &&
+      this.bindOutput.asset &&
+      this.bindOutput.amount
+    );
   }
 
   handleInput(side: "input" | "output", amount) {

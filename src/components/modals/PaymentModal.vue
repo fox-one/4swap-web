@@ -5,7 +5,7 @@
         {{ $t("swap.scan-to-pay") }}
       </v-card-title>
       <v-card-text>
-        <f-qr-code :text="text" :size="200" class="my-5" />
+        <f-qr-code v-if="text" :text="text" :size="200" class="my-5" />
         <p class="caption ma-0">
           {{ $t("swap.use-mixin") }}
         </p>

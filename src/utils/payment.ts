@@ -2,11 +2,11 @@ import { GLOBAL_EVENTS } from "~/constants";
 import { GlobalGetters, GlobalMutations } from "~/store/types";
 
 export interface Callbacks {
-  success?: (...args: any) => void;
-  error?: (...args: any) => void;
-  checker?: (...args: any) => Promise<"success" | "error" | "pending">;
-  start?: (...args: any) => void;
-  end?: (...args: any) => void;
+  onSuccess?: (...args: any) => void;
+  onError?: (...args: any) => void;
+  checker?: (...args: any) => Promise<"success" | "reject" | "pending">;
+  onStart?: (...args: any) => void;
+  onEnd?: (...args: any) => void;
 }
 
 /**
@@ -39,7 +39,7 @@ function getBaseParams(vm: Vue) {
 export async function addLiquidity(
   vm: Vue,
   params: API.DepositParams,
-  cbs = {}
+  cbs: Callbacks = {}
 ) {
   const baseParams = getBaseParams(vm);
 
@@ -76,7 +76,7 @@ export async function addLiquidity(
 export async function removeLiquidity(
   vm: Vue,
   params: API.RemoveParams,
-  cbs = {}
+  cbs: Callbacks = {}
 ) {
   const baseParams = getBaseParams(vm);
 
@@ -107,7 +107,11 @@ export async function removeLiquidity(
  * @param {*} [cbs={}]
  * @return {*}
  */
-export async function swap(vm: Vue, params: API.SwapParams, cbs = {}) {
+export async function swap(
+  vm: Vue,
+  params: API.SwapParams,
+  cbs: Callbacks = {}
+) {
   const baseParams = getBaseParams(vm);
 
   if (!baseParams) return;
@@ -164,7 +168,9 @@ export async function requestPayment(
     startCheckTransaction(vm, opts.cbs);
     window.location.href = `${opts.url}`;
   } else {
-    vm.$root.$emit(GLOBAL_EVENTS.OPEN_PAYMENT_MODAL, opts.url, opts.cbs);
+    vm.$root.$emit(GLOBAL_EVENTS.OPEN_PAYMENT_MODAL, opts.url, {
+      onPaid: () => startCheckTransaction(vm, opts.cbs),
+    });
   }
 }
 
@@ -177,7 +183,7 @@ export async function requestPayment(
  */
 export function startCheckTransaction(vm: Vue, cbs: Callbacks) {
   showPaying(vm);
-  typeof cbs.start === "function" && cbs.start();
+  typeof cbs.onStart === "function" && cbs.onStart();
 
   pollingTransactionResult(vm, cbs);
 }
@@ -195,15 +201,19 @@ export async function pollingTransactionResult(vm: Vue, cbs: Callbacks) {
   if (typeof cbs.checker === "function") {
     const result = await cbs.checker();
 
+    if (!vm.$store.state.app.paying.visible) {
+      return;
+    }
+
     if (result !== "pending") {
-      typeof cbs.end === "function" && cbs.end();
+      typeof cbs.onEnd === "function" && cbs.onEnd();
       hidePaying(vm);
     }
 
     if (result === "success") {
-      typeof cbs.success === "function" && cbs.success();
-    } else if (result === "error") {
-      typeof cbs.error === "function" && cbs.error();
+      typeof cbs.onSuccess === "function" && cbs.onSuccess();
+    } else if (result === "reject") {
+      typeof cbs.onError === "function" && cbs.onError();
     } else {
       const timer = setTimeout(() => {
         pollingTransactionResult(vm, cbs);
@@ -246,14 +256,17 @@ export async function checkSwapOrder(vm: Vue, traceId: string) {
  * @param {string} traceId
  * @return {*}
  */
-export async function checkDepositOrder(vm: Vue, traceId: string) {
+export async function checkDepositOrder(
+  vm: Vue,
+  traceId: string,
+  isBase: boolean
+) {
   try {
     const order = await vm.$http.getDepositOrder(traceId);
+    const amount = isBase ? order.base_amount ?? 0 : order.quote_amount ?? 0;
 
-    if (order.state === "Done") {
+    if (+amount > 0) {
       return "success";
-    } else if (order.state === "Cancelled") {
-      return "reject";
     } else {
       return "pending";
     }

@@ -57,7 +57,7 @@ class AssetAmountInput extends Vue {
   }
 
   handleFill() {
-    this.bindData.amount = this.meta.balance;
+    this.$emit("input", this.meta.balance);
   }
 
   handleConnectWallet() {

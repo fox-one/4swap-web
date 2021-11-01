@@ -8,7 +8,6 @@
 
     <div class="pa-3 px-5">
       <f-segment-control
-        v-model="durationValue"
         borderless
         mandatory
         color="greyscale_7"

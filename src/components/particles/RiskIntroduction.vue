@@ -11,7 +11,9 @@
     </template>
 
     <template #content>
-      {{ $t("swap.introduction.risk.content") }}
+      <div class="ml-8">
+        {{ $t("swap.introduction.risk.content") }}
+      </div>
     </template>
   </base-expansion-panel>
 </template>
