@@ -58,6 +58,8 @@ class HomeAppBar extends Vue {
 
   @Watch("appbar.color", { immediate: true })
   handleColorChange(value: string) {
+    console.log("handleColorChange", value);
+
     this.$utils.mixin.setMixinTheme(value);
   }
 }

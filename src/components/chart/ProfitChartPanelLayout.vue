@@ -54,12 +54,12 @@ export default ProfitPanelLayout;
 <style lang="scss" scoped>
 ::v-deep {
   .chart-panel {
-    background: var(--v-greyscale_7-base);
+    background: var(--v-greyscale_6-base);
   }
 
   .f-segment-control,
   .type-field {
-    background: var(--v-greyscale_6-base) !important;
+    background: var(--v-greyscale_5-base) !important;
   }
 }
 

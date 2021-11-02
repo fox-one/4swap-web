@@ -1,6 +1,6 @@
 <template>
   <div :class="classes">
-    <v-row>
+    <v-row class="ma-0">
       <v-col
         v-for="(item, index) in items"
         :key="index"

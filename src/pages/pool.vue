@@ -7,7 +7,7 @@
       </v-btn>
     </v-layout>
 
-    <pool-overview class="mt-3" />
+    <pool-overview class="mt-4" />
 
     <pool-list class="mt-8">
       <template #header>

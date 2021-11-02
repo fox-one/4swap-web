@@ -79,25 +79,6 @@ class PairDetailPage extends Mixins(mixins.page) {
     return { align: "center" };
   }
 
-  get contentClass() {
-    return this.meta.isAdded && this.tabIndex === 0 ? "linear-page" : "";
-  }
-
-  get contentStyle() {
-    const { expand1, expand2 } = this;
-    const size = expand1 && expand2 ? 2 : !expand1 && !expand2 ? 0 : 1;
-    return this.meta.isAdded && this.tabIndex === 0
-      ? {
-          "background-size":
-            size === 2
-              ? "100% 1200px"
-              : size === 1
-              ? "100% 800px"
-              : "100% 420px",
-        }
-      : {};
-  }
-
   get meta() {
     const getters = this.$store.getters;
     const getPair = getters[GlobalGetters.GET_PAIR_BY_IDS];
@@ -143,5 +124,11 @@ export default PairDetailPage;
 <style lang="scss" scoped>
 .page {
   padding-bottom: 160px;
+}
+
+::v-deep {
+  .v-window {
+    overflow: visible;
+  }
 }
 </style>

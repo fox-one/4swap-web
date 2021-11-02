@@ -1,7 +1,7 @@
 <template>
   <div :class="classes">
     <span class="action action__remove" @click="handleRemove">
-      <v-icon>$FIconMinusBold</v-icon>
+      <v-icon color="black">$FIconMinusBold</v-icon>
     </span>
 
     <v-fade-transition>
@@ -115,6 +115,12 @@ export default LiquidityPageAction;
     &__add {
       background-color: var(--v-secondary-base);
     }
+  }
+}
+
+.theme--dark {
+  .liquidity-actions .action.action__remove {
+    background-color: var(--v-greyscale_2-base);
   }
 }
 </style>

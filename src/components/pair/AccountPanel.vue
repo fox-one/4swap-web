@@ -9,7 +9,9 @@
 
     <account-profit-informations :pair="pair" class="mt-8" />
 
-    <div class="pt-2 greyscale_6 mx-n4" />
+    <div class="mx-n4">
+      <div class="pt-2 greyscale_6" />
+    </div>
 
     <div class="label-1 mt-8">{{ $t("history") }}</div>
     <account-transactions :pair="pair" />

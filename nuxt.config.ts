@@ -26,9 +26,7 @@ const config: NuxtConfig = {
       { rel: "stylesheet", href: "/fonts/inter/style.css" },
     ],
   },
-  loading: {
-    color: process.env.LOADING_COLOR,
-  },
+  loading: false,
   css: ["~/styles/index.scss"],
   plugins: ["~/plugins/property.ts", "~/plugins/lib.ts"],
   buildModules: [
@@ -90,18 +88,6 @@ const config: NuxtConfig = {
   privateRuntimeConfig: {
     TOKEN: process.env.TOKEN || "",
     SCOPE: process.env.SCOPE || "",
-  },
-
-  pwa: {
-    workbox: {
-      enabled: false,
-      runtimeCaching: [
-        {
-          urlPattern: /^(https:\/\/images\.mixin\.one\/|https:\/\/mixin-images\.zeromesh\.net\/).*$/,
-          handler: "CacheFirst",
-        },
-      ],
-    },
   },
 };
 

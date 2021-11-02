@@ -10,6 +10,10 @@
       "port": "3005"
     }
   },
+  "resolutions": {
+    "vuetify": "2.5.8",
+    "nuxt": "2.15.8"
+  },
   "scripts": {
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "yarn lint",
@@ -37,25 +41,22 @@
     "@nuxtjs/google-analytics": "^2.2.2",
     "@nuxtjs/pwa": "^3.0.2",
     "animate.css": "^3.7.2",
-    "base64-js": "^1.3.1",
     "bignumber.js": "^9.0.0",
     "dayjs": "^1.8.36",
     "echarts": "^5.2.1",
     "hashids": "^2.2.1",
     "mockjs": "^1.0.1-beta3",
     "msgpack5": "^4.5.1",
-    "nuxt": "^2.0.0",
+    "nuxt": "2.15.8",
     "nuxt-i18n": "^6.4.1",
     "parse-duration": "^0.4.4",
     "sticksy": "^0.2.0",
     "typescript": "^4.0.3",
     "uuid": "^8.3.0",
-    "v-charts": "^1.19.0",
     "vconsole": "^3.5.0",
     "vue-class-component": "^7.1.0",
     "vue-infinite-scroll": "^2.0.2",
     "vue-property-decorator": "^9.1.2",
-    "vuex-class": "^0.3.2",
     "vuex-pathify": "^1.5.1",
     "vuex-persistedstate": "^3.0.1"
   },
