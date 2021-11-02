@@ -9,28 +9,24 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { GlobalGetters } from "~/store/types";
-
-const fee = {
-  amount: 0.2,
-  asset_id: "43d61dcd-e413-450d-80b8-101d5e903357",
-};
+import { GlobalGetters } from "@/store/types";
+import { CREATE_FEE } from "@/constants";
 
 @Component
 class CreateFee extends Vue {
   get meta() {
     const toFiat = this.$utils.currency.toFiat;
     const getAssetById = this.$store.getters[GlobalGetters.GET_ASSET_BY_ID];
-    const asset = getAssetById(fee.asset_id);
+    const asset = getAssetById(CREATE_FEE.asset_id);
 
     const logo = asset?.logo ?? "";
     const symbol = asset?.symbol ?? "";
     const price = asset?.price ?? 0;
-    const fiatText = toFiat(this, { n: +price * fee.amount });
+    const fiatText = toFiat(this, { n: +price * CREATE_FEE.amount });
 
     return {
       logo,
-      text: `${fee.amount} ${symbol}`,
+      text: `${CREATE_FEE.amount} ${symbol}`,
       fiatText,
     };
   }

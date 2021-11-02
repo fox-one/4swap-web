@@ -1,10 +1,18 @@
 <template>
   <v-form v-model="valid">
     <div class="label mb-4">{{ $t("asset1") }}</div>
-    <f-asset-select v-model="bindAsset1" :assets="assets" :rounded="false" />
+    <f-asset-select
+      :asset="bindAsset1"
+      :assets="assets"
+      @input="handleChangeAsset1"
+    />
 
     <div class="label mt-6 mb-4">{{ $t("asset2") }}</div>
-    <f-asset-select v-model="bindAsset2" :assets="assets" />
+    <f-asset-select
+      :asset="bindAsset2"
+      :assets="assets"
+      @input="handleChangeAsset2"
+    />
 
     <div class="label mt-6 mb-4">{{ $t("tip.label.fee") }}</div>
     <create-fee />
@@ -47,6 +55,29 @@ class CreateForm extends Vue {
 
   get assets() {
     return this.$store.getters[GlobalGetters.AVALIABLE_ADD_ASSETS];
+  }
+
+  handleChangeAsset1(asset) {
+    if (asset === this.bindAsset2) {
+      this.handleSwitchAsset();
+    } else {
+      this.bindAsset1 = asset;
+    }
+  }
+
+  handleChangeAsset2(asset) {
+    if (asset === this.bindAsset1) {
+      this.handleSwitchAsset();
+    } else {
+      this.bindAsset2 = asset;
+    }
+  }
+
+  handleSwitchAsset() {
+    const tmp = this.bindAsset1;
+
+    this.bindAsset1 = this.bindAsset2;
+    this.bindAsset2 = tmp;
   }
 
   handleToDetail() {

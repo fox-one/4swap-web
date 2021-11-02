@@ -219,6 +219,8 @@ export function filterFn(str: string, pair: PairMeta) {
   const baseSymbol = pair?.baseAsset.symbol.toLowerCase() ?? "";
   const quoteSymbol = pair?.quoteAsset.symbol.toLowerCase() ?? "";
   const pairSymbol = pair?.symbol.toLowerCase() ?? "";
+  const baseName = pair?.baseAsset.name.toLocaleLowerCase() ?? "";
+  const quoteName = pair?.quoteAsset.name.toLocaleLowerCase() ?? "";
   const filter = str.toLowerCase();
 
   if (!str) return false;
@@ -226,6 +228,8 @@ export function filterFn(str: string, pair: PairMeta) {
   return (
     baseSymbol.includes(filter) ||
     quoteSymbol.includes(filter) ||
-    pairSymbol.includes(filter)
+    pairSymbol.includes(filter) ||
+    baseName.includes(filter) ||
+    quoteName.includes(filter)
   );
 }

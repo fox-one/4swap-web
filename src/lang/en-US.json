@@ -291,5 +291,6 @@
   "continue": "Continue",
   "step2": "Step 2",
   "add.liquidity.payment.subtitle": "You need to pay {asset1} & {asset2}",
-  "add.liquidity.payment.hint": "You will receive the corresponding LP Token as proof of liquidity. <br/> You will get refunds in 10 minutes if it failed to add liquidity."
+  "add.liquidity.payment.hint": "You will receive the corresponding LP Token as proof of liquidity. <br/> You will get refunds in 10 minutes if it failed to add liquidity.",
+  "create": "Create"
 }

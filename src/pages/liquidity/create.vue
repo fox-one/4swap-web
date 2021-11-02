@@ -2,7 +2,12 @@
   <div>
     <create-form :asset1.sync="asset1" :asset2.sync="asset2" :pair="pair">
       <template #action="{ valid }">
-        <create-action :valid="valid" />
+        <create-action
+          :valid="valid"
+          :pair="pair"
+          :asset1="asset1"
+          :asset2="asset2"
+        />
       </template>
     </create-form>
 
@@ -12,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from "vue-property-decorator";
+import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixins from "@/mixins";
 import { GlobalGetters } from "@/store/types";
 import CreateForm from "@/components/liquidity/CreateForm.vue";
@@ -49,6 +54,21 @@ class CreatePoolPage extends Mixins(mixins.page) {
 
   mounted() {
     this.setInitialAsset();
+  }
+
+  @Watch("asset1")
+  @Watch("asset2")
+  handleAssetChange() {
+    this.$router
+      .replace({
+        query: {
+          base: this.asset1?.id,
+          quote: this.asset2?.id,
+        },
+      })
+      .catch(() => {
+        // ignore
+      });
   }
 
   setInitialAsset() {

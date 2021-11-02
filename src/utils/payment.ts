@@ -1,5 +1,6 @@
-import { GLOBAL_EVENTS } from "~/constants";
-import { GlobalGetters, GlobalMutations } from "~/store/types";
+import { GLOBAL_EVENTS, CREATE_FEE } from "@/constants";
+import { GlobalGetters, GlobalMutations } from "@/store/types";
+import { Base64 } from "@foxone/utils";
 
 export interface Callbacks {
   onSuccess?: (...args: any) => void;
@@ -99,6 +100,37 @@ export async function removeLiquidity(
 }
 
 /**
+ * excute payment to create pool
+ *
+ * @export
+ * @param {Vue} vm
+ * @param {API.CreatePoolParams} params
+ * @param {Callbacks} [cbs={}]
+ */
+export async function createPool(
+  vm: Vue,
+  params: API.CreatePoolParams,
+  cbs: Callbacks = {}
+) {
+  const memo = Base64.encode(
+    JSON.stringify({
+      t: "apply",
+      p: [params.asset1_id, params.asset2_id],
+    })
+  );
+
+  const data = {
+    memo,
+    assetId: CREATE_FEE.asset_id,
+    amount: CREATE_FEE.amount,
+    traceId: params.trace_id,
+    recipient: vm.$config.MIXIN_CLIENT_ID,
+  };
+
+  requestPayment(vm, { params: data, cbs });
+}
+
+/**
  * execute payment to swap asset
  *
  * @export
@@ -151,11 +183,13 @@ export async function requestPayment(
   opts: {
     code?: string;
     url?: string;
-    traceId: string;
+    traceId?: string;
     params?: any;
     cbs: Callbacks;
   }
 ) {
+  const url = opts.url || vm.$utils.mixin.genPaymentUrl(opts.params);
+
   if (vm.$fennec.connected) {
     if (opts.code) {
       await vm.$fennec.ctx?.wallet?.multisigsPayment({ code: opts.code });
@@ -166,9 +200,9 @@ export async function requestPayment(
     }
   } else if (vm.$utils.mixin.isMixin()) {
     startCheckTransaction(vm, opts.cbs);
-    window.location.href = `${opts.url}`;
+    window.location.href = `${url}`;
   } else {
-    vm.$root.$emit(GLOBAL_EVENTS.OPEN_PAYMENT_MODAL, opts.url, {
+    vm.$root.$emit(GLOBAL_EVENTS.OPEN_PAYMENT_MODAL, url, {
       onPaid: () => startCheckTransaction(vm, opts.cbs),
     });
   }
@@ -275,6 +309,16 @@ export async function checkDepositOrder(
   }
 }
 
+export async function checkApplieOrder(vm: Vue, traceId: string) {
+  try {
+    const resp = await vm.$http.getApplieOrderInfo(traceId);
+
+    return resp ? "success" : "pending";
+  } catch (error) {
+    return "pending";
+  }
+}
+
 /**
  * check transaction success or not
  *
@@ -292,9 +336,9 @@ export async function checkTransaction(
   follow: string
 ) {
   try {
-    const res = await vm.$http.getMyTransaction({ base, quote, follow });
+    const resp = await vm.$http.getMyTransaction({ base, quote, follow });
 
-    return res ? "success" : "pending";
+    return resp ? "success" : "pending";
   } catch (error) {
     return "pending";
   }

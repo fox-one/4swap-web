@@ -16,6 +16,11 @@ export const PRSID = "3edb734c-6d6f-32ff-ab03-4eb43640c758";
 
 export const SUP_CHART_SCHEMES = ["SCHEME_A", "SCHEME_B"];
 
+export const CREATE_FEE = {
+  amount: 0.2,
+  asset_id: "43d61dcd-e413-450d-80b8-101d5e903357",
+};
+
 export const GLOBAL_EVENTS = {
   OPEN_PAYMENT_MODAL: "OPEN_PAYMENT_MODAL",
   OPEN_AUTH: "OPEN_AUTH",

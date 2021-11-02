@@ -22,6 +22,12 @@ declare namespace API {
     follow_id: string;
   }
 
+  export interface CreatePoolParams {
+    asset1_id: string;
+    asset2_id: string;
+    trace_id: string;
+  }
+
   export interface OpponentMultisig {
     receivers: string[];
     threshold: number;

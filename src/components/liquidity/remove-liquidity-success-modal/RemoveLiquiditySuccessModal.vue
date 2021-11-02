@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" max-width="450">
     <f-panel class="pa-8">
-      <div class="dialog-title">
+      <div class="label-1 d-flex align-center">
         <v-icon class="mr-1"> $IconCheck </v-icon>
 
         {{ $t("liquidity.remove.success") }}
