@@ -10,15 +10,17 @@
       @confirm="requestSwap"
     />
 
-    <f-button
-      :disabled="meta.disabled"
-      :loading="loading"
-      color="primary"
-      v-bind="$attrs"
-      @click="handleSwap"
-    >
-      {{ $t("swap") }}
-    </f-button>
+    <base-connect>
+      <f-button
+        :disabled="meta.disabled"
+        :loading="loading"
+        color="primary"
+        v-bind="$attrs"
+        @click="handleSwap"
+      >
+        {{ $t("swap") }}
+      </f-button>
+    </base-connect>
   </div>
 </template>
 

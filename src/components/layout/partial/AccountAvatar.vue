@@ -11,7 +11,7 @@
       />
     </template>
 
-    <account-setting-overview />
+    <account-setting-overview @disconnected="handleDisconnected" />
   </f-bottom-sheet>
 </template>
 
@@ -38,6 +38,11 @@ class AccountAvatar extends Vue {
       avatar: this.profile?.avatar_url ?? "",
       name: this.profile?.full_name ?? "",
     };
+  }
+
+  handleDisconnected() {
+    this.$router.push({ name: "pool" });
+    this.dialog = false;
   }
 }
 export default AccountAvatar;

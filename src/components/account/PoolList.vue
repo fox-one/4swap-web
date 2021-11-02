@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import { GlobalGetters } from "@/store/types";
 import PoolItem from "./PoolItem.vue";
 
@@ -15,8 +15,24 @@ import PoolItem from "./PoolItem.vue";
   },
 })
 class PoolList extends Vue {
+  @Prop() filter;
+
   get meta() {
-    const pairs = this.$store.getters[GlobalGetters.ACCOUNT_PAIRS];
+    const accountPairs = this.$store.getters[GlobalGetters.ACCOUNT_PAIRS];
+    const fitlerFn = this.$utils.pair.filterFn;
+    const getPairMeta = this.$utils.pair.getPairMeta;
+
+    const pairs = accountPairs
+      .filter((x) => {
+        if (this.filter) {
+          return fitlerFn(this.filter, getPairMeta(this, x));
+        }
+
+        return true;
+      })
+      .sort((a, b) => {
+        return b.shared.totalValue - a.shared.totalValue;
+      });
 
     return {
       pairs,

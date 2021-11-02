@@ -15,14 +15,13 @@
       <route-to-create-action :pair="pair" />
     </template>
 
-    <f-button
-      v-else
-      :disabled="meta.disabled"
-      color="primary"
-      @click="handleNext"
-    >
-      {{ $t("next") }}
-    </f-button>
+    <template v-else>
+      <base-connect>
+        <f-button :disabled="meta.disabled" color="primary" @click="handleNext">
+          {{ $t("next") }}
+        </f-button>
+      </base-connect>
+    </template>
   </div>
 </template>
 

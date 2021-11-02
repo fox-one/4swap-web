@@ -75,7 +75,7 @@ export async function authFennec(vm: Vue) {
  * @param {{ store: Store<any> }} opts
  */
 export function logout(opts: any) {
-  const { commit } = opts.store;
+  const { commit } = opts.$store;
 
   commit(GlobalMutations.CLEAR_AUTH);
   commit(GlobalMutations.CLEAR_ACCOUNT);

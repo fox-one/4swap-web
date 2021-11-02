@@ -3,7 +3,7 @@
     <slot v-if="isLogged" name="action" :on="{ click: handleDisconnect }">
       <f-button
         depressed
-        color="#FBF2F2"
+        color="error_bg"
         class="error--text"
         @click="handleDisconnect"
       >
@@ -25,7 +25,19 @@ export default class ConnectWalletBtn extends Vue {
   @Get(GlobalGetters.LOGGED) isLogged!: boolean;
 
   handleDisconnect() {
-    this.$utils.account.logout(this);
+    this.$uikit.dialog.show({
+      title: "Confirm",
+      text: "Confirm to disconnect your wallet?",
+      type: "warning",
+      confirm: {
+        text: "Disconnect",
+        callback: () => {
+          this.$utils.account.logout(this);
+
+          this.$emit("disconnected");
+        },
+      },
+    });
   }
 }
 </script>

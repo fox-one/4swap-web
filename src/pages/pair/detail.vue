@@ -93,7 +93,7 @@ class PairDetailPage extends Mixins(mixins.page) {
               ? "100% 1200px"
               : size === 1
               ? "100% 800px"
-              : "100% 450px",
+              : "100% 420px",
         }
       : {};
   }

@@ -15,7 +15,7 @@
 
       <f-search-input v-model="filter" :placeholder="$t('search.pools')" />
 
-      <account-pool-list />
+      <account-pool-list :filter="filter" />
     </template>
   </div>
 </template>

@@ -22,7 +22,7 @@ class AssetInformations extends Vue {
     const simplize = this.$utils.number.simplize;
 
     const total = this.info?.total ?? 0;
-    const totalText = (total && format({ n: total })) || "-";
+    const totalText = (total && simplize(this, { n: total })) || "-";
 
     const price = this.asset?.price ?? 0;
     const priceText = toFiat(this, { n: price });
@@ -30,7 +30,7 @@ class AssetInformations extends Vue {
     const circulation = this.info?.circulation ?? "";
 
     const marketCap = circulation * price;
-    const marketCapText = toFiat(this, { n: marketCap });
+    const marketCapText = toFiat(this, { n: marketCap, short: true });
 
     const [liquidity, volume, trades] = this.pairs.reduce(
       (prev, curr) => {

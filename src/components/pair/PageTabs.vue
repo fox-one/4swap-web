@@ -2,6 +2,7 @@
   <f-tabs
     v-model="tabIndex"
     :ripple="false"
+    :show-arrows="false"
     active-class="transparent"
     disable-slider-length
     slider-size="2"
@@ -37,3 +38,11 @@ class PageTabs extends Vue {
 }
 export default PageTabs;
 </script>
+
+<style lang="scss" scoped>
+.tab-divider {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+</style>

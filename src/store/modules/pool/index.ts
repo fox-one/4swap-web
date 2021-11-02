@@ -161,7 +161,7 @@ const actions: ActionTree<State.AuthState, any> = {
     const pairs = resp.pairs || [];
 
     commit(MutationTypes.SET_PAIRS, pairs);
-    commit(MutationTypes.SET_ASSETS_WHITE_LISTS, resp.whitelists);
+    commit(MutationTypes.SET_ASSETS_WHITE_LISTS, resp.whitelists ?? []);
 
     this.$pairRoutes.makeRoutes(pairs);
   },

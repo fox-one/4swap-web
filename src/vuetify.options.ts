@@ -8,6 +8,7 @@ const themesLake = {
     secondary: "#0FC2FC",
     third: "#EDFBFC",
     forth: "#DEF3F4",
+    fifth: "#F6F8FC",
     warning_bg: "#FCF8F0",
     warning_emphsize: "#75080A",
     error_bg: "#FBF2F2",
@@ -17,6 +18,8 @@ const themesLake = {
     primary: "#FFFFFF",
     secondary: "#46CFFB",
     third: "#075973",
+    forth: "#DEF3F4",
+    fifth: "#F6F8FC",
     warning_bg: "#5C3A13",
     warning_emphsize: "#FFE08F",
     error_bg: "#4A2222",
@@ -27,9 +30,10 @@ const themesLake = {
 const themeFSwap = {
   light: {
     primary: "#000000",
-    secondary: "#EDFBFC",
+    secondary: "#EE4596",
     third: "#FDF4F8",
-    forth: "#1D7D9B",
+    forth: "#f9e5ee",
+    fifth: "#fff6fa",
     warning_bg: "#FCF8F0",
     warning_emphsize: "#75080A",
     error_bg: "#FBF2F2",
@@ -39,6 +43,8 @@ const themeFSwap = {
     primary: "#FFFFFF",
     secondary: "#EE4596",
     third: "#88305A",
+    forth: "#6f2649",
+    fifth: "#763f59",
     warning_bg: "#5C3A13",
     warning_emphsize: "#FFE08F",
     error_bg: "#4A2222",
@@ -48,7 +54,7 @@ const themeFSwap = {
 
 export default function ({ store, $config }) {
   // const isDark = store.state.app.dark;
-  const isDark = false;
+  const isDark = true;
 
   const options = {
     icons: {

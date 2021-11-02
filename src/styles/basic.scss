@@ -41,6 +41,17 @@ a {
   background-repeat: no-repeat;
 }
 
+.theme--dark .v-main.linear-page {
+  background: linear-gradient(
+    180deg,
+    #414141 0%,
+    rgba(65, 65, 65, 0.520699) 89.4%,
+    rgba(65, 65, 65, 0) 100%
+  );
+  background-size: 100% 350px;
+  background-repeat: no-repeat;
+}
+
 .f-input-search svg {
   width: 12px !important;
 }

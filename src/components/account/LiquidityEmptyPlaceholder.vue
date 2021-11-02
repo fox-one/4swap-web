@@ -8,14 +8,20 @@
       {{ $t("liquidity.mine.empty") }}
     </div>
 
-    <f-button color="primary" class="mt-8">
-      <v-icon size="16">$FIconAdd4PBold</v-icon>
-      <span class="ml-2">{{ $t("liquidity.add") }}</span>
-    </f-button>
+    <div>
+      <div>
+        <f-button color="primary" class="mt-8">
+          <v-icon size="16">$FIconAdd4PBold</v-icon>
+          <span class="ml-2">{{ $t("liquidity.add") }}</span>
+        </f-button>
+      </div>
 
-    <f-button text class="mt-4">
-      {{ $t("me.learn.more") }}
-    </f-button>
+      <div>
+        <f-button text class="mt-4">
+          {{ $t("me.learn.more") }}
+        </f-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,7 +30,10 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 class LiquidityEmptyPlaceholder extends Vue {
-  logo = require("@/assets/images/image_empty_liquidity.png");
+  logo =
+    this.$config.channel === "lake"
+      ? require("@/assets/images/image_empty_liquidity_lake.png")
+      : require("@/assets/images/image_empty_liquidity_fswap.png");
 }
 export default LiquidityEmptyPlaceholder;
 </script>

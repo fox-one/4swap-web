@@ -30,9 +30,9 @@
     </div>
 
     <div class="text-center mb-8">
-      <base-disconnect />
+      <base-disconnect @disconnected="$emit('disconnected')" />
 
-      <div class="label-3 mt-8">{{ $t("channel.name.mtg") }} {{ version }}</div>
+      <div class="label-3 mt-8">{{ $t("channel.name") }} v{{ version }}</div>
     </div>
   </div>
 </template>
@@ -77,6 +77,6 @@ export default AccountSettingOverview;
 .header {
   padding: 54px 16px;
   background: url("../../assets/images/bg_coins.png") 100% 100% no-repeat,
-    #f6f8fc;
+    var(--v-fifth-base);
 }
 </style>

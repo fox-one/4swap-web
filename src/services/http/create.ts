@@ -26,7 +26,7 @@ function generateStructureInterceptor(app: NuxtAppOptions) {
       }
 
       if (res?.data?.error?.code === 401) {
-        logout({ store: app.store });
+        logout({ $store: app.store });
 
         return Promise.reject(res.data.error);
       }
@@ -38,7 +38,7 @@ function generateStructureInterceptor(app: NuxtAppOptions) {
         const status = error.response.status;
 
         if (status === 401) {
-          logout({ store: app.store });
+          logout({ $store: app.store });
         }
 
         const { code, msg } = error.response.data;

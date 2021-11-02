@@ -1,5 +1,5 @@
 <template>
-  <v-icon>$IconFSwapLogo</v-icon>
+  <v-icon size="90">$IconFSwapLogo</v-icon>
 </template>
 
 <script lang="ts">

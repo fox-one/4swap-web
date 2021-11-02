@@ -12,7 +12,7 @@
     </v-fade-transition>
 
     <span class="action action__add" @click="handleAdd">
-      <v-icon color="greyscale_7">$FIconAddBold</v-icon>
+      <v-icon color="white">$FIconAddBold</v-icon>
     </span>
   </div>
 </template>

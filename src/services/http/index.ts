@@ -16,9 +16,10 @@ export default function (http: Http) {
       return http.get("/assets");
     },
 
-    // TODO: change fiat api
     getFiats(opts: { token: string }): Promise<{ assets: API.Fiat[] }> {
-      return http.get(`${MIXIN_HOST}/fiats`, { token: opts.token } as any);
+      return http.get(`${MIXIN_HOST}/external/fiats`, {
+        token: opts.token,
+      } as any);
     },
 
     getPair(data: API.GetPairParams): Promise<API.Pair> {
