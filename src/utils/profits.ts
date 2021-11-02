@@ -1,5 +1,3 @@
-import { format, toPercent } from "./number";
-
 export function fmtProfits(
   pair: API.Pair,
   data: API.ProfitsData
@@ -79,21 +77,17 @@ export function fmtProfits(
       fiatProfit,
       fiatProfitRate,
     },
-    netBaseAmount: netBaseAmount + "",
-    netQuoteAmount: netQuoteAmount + "",
-    currentBaseAmount: format({ n: currentBaseAmount, p: 8 }),
-    currentQuoteAmount: format({ n: currentQuoteAmount, p: 8 }),
-    fiatProfit: format({ n: fiatProfit, p: 2 }),
-    originFiatProfit: format({ n: originFiatProfit, p: 2 }),
-    baseProfit: format({ n: baseProfit, p: 8 }),
-    quoteProfit: format({ n: quoteProfit, p: 8 }),
-    baseProfitRate: toPercent(baseProfitRate, true),
-    baseProfitRateValue: baseProfitRate,
-    quoteProfitRate: toPercent(quoteProfitRate, true),
-    quoteProfitRateValue: quoteProfitRate,
-    fiatProfitRate: toPercent(fiatProfitRate, true),
-    fiatProfitRateValue: fiatProfitRate,
-    originFiatProfitRate: toPercent(originFiatProfitRate, true),
-    originFiatProfitRateValue: originFiatProfitRate,
+    netBaseAmount,
+    netQuoteAmount,
+    currentBaseAmount,
+    currentQuoteAmount,
+    fiatProfit,
+    originFiatProfit,
+    baseProfit,
+    quoteProfit,
+    baseProfitRate,
+    quoteProfitRate,
+    fiatProfitRate,
+    originFiatProfitRate,
   };
 }

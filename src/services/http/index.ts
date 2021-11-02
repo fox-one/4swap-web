@@ -1,19 +1,11 @@
-import Http from "~/utils/http";
+import Http from "./http";
 import { AxiosRequestConfig } from "axios";
-import { convertPairOrder } from "@/utils/pair/help";
 import { MIXIN_HOST } from "@/constants";
-import { fmtProfits } from "@/utils/profits";
 
 export default function (http: Http) {
   return {
-    auth(opts: {
-      code: string;
-      broker_id: string;
-      label: string;
-    }): Promise<any> {
-      return http.post("/oauth", {
-        data: opts,
-      });
+    auth(data: API.AuthParams): Promise<any> {
+      return http.post("/oauth", { data });
     },
 
     getAppInfo(): Promise<API.AppInfo> {
@@ -25,125 +17,95 @@ export default function (http: Http) {
     },
 
     getFiats(opts: { token: string }): Promise<{ assets: API.Fiat[] }> {
-      return http.get(`${MIXIN_HOST}/fiats`, {
+      return http.get(`${MIXIN_HOST}/external/fiats`, {
         token: opts.token,
       } as any);
     },
 
-    async getPair({ input, output }): Promise<API.Pair> {
-      const pair = await http.get(`/pairs/${input}/${output}`);
-      return convertPairOrder(input, pair);
+    getPair(data: API.GetPairParams): Promise<API.Pair> {
+      return http.get(`/pairs/${data.base}/${data.quote}`);
     },
 
-    async getPairs(opts: { brokerId?: string }): Promise<API.PairsRes> {
-      return http.get("/pairs", { params: opts });
+    getPairs(params: API.GetPairsParams): Promise<API.PairsRes> {
+      return http.get("/pairs", { params });
     },
 
     getDepositOrder(follow: string): Promise<API.DepositOrder> {
       return http.get(`/deposits/${follow}`);
     },
 
-    getMarketData(params: {
-      base: string;
-      quote: string;
-      dur: API.Duration;
-    }): Promise<API.MarketData[]> {
-      return http.get(`/stats/markets/${params.base}/${params.quote}`, {
-        params: { dur: params.dur },
-      });
+    getMarketData(params: API.GetMarketDataParams): Promise<API.MarketData[]> {
+      let url = "/stats/markets/";
+
+      if (params.base && params.quote) {
+        url = `/stats/markets/${params.base}/${params.quote}`;
+      }
+
+      return http.get(url, { params: { dur: params.dur } });
     },
 
     getAllMarketData(params: { dur: API.Duration }): Promise<API.MarketData[]> {
       return http.get("/stats/markets", { params: { dur: params.dur } });
     },
 
-    getKlineData(params: {
-      base: string;
-      quote: string;
-      dur: API.Duration;
-    }): Promise<API.KlineData[]> {
-      return http.get(
-        `/stats/markets/${params.base}/${params.quote}/kline/v2`,
-        {
-          params: { dur: params.dur },
-        }
-      );
+    getKlineData(params: API.GetKlineDataParams): Promise<API.KlineData[]> {
+      let url = `/stats/markets/kline/v2`;
+
+      if (params.base && params.quote) {
+        url = `/stats/markets/${params.base}/${params.quote}/kline/v2`;
+      }
+
+      return http.get(url, { params: { dur: params.dur } });
     },
 
-    async getProfits(
-      pair: API.Pair,
-      params: {
-        base: string;
-        quote: string;
-      }
-    ): Promise<API.PairProfits> {
-      const data: API.ProfitsData = await http.get(
-        `/stats/profits/${params.base}/${params.quote}`
-      );
-      return fmtProfits(pair, data);
+    async getProfits(params: API.GetProfitsParams): Promise<API.ProfitsData> {
+      return http.get(`/stats/profits/${params.base}/${params.quote}`);
     },
 
     async getProfitsHistory(
-      pair: API.Pair,
-      params: {
-        base: string;
-        quote: string;
-        dur: API.Duration;
-      }
-    ): Promise<API.PairProfits[]> {
-      const data: API.ProfitsData[] = await http.get(
-        `/stats/profits/${params.base}/${params.quote}/history`,
-        {
-          params: { dur: params.dur },
-        }
-      );
-      return data.map((x) => fmtProfits(pair, x));
+      params: API.GetProfitsHistoryParams
+    ): Promise<API.ProfitsData[]> {
+      const url = `/stats/profits/${params.base}/${params.quote}/history`;
+
+      return await http.get(url, { params: { dur: params.dur } });
     },
 
-    requestDeposit(params: {
-      base: string;
-      quote: string;
-      data;
-    }): Promise<API.DepositOrder> {
-      return http.post(`/pairs/${params.base}/${params.quote}/deposit`, {
-        data: params.data,
-      });
+    requestDeposit(
+      params: API.RequestDepositParams
+    ): Promise<API.DepositOrder> {
+      const url = `/pairs/${params.base}/${params.quote}/deposit`;
+
+      return http.post(url, { data: params.data });
     },
 
-    getTransaction(id): Promise<API.Transaction> {
+    getTransaction(id: string): Promise<API.Transaction> {
       return http.get(`/transactions/${id}`);
     },
 
-    getGloabalTransactions({ limit, cursor }): Promise<any> {
-      return http.get(`/transactions`, { params: { limit, cursor } });
+    getGloabalTransactions(params: API.PaginationParams): Promise<any> {
+      return http.get(`/transactions`, { params });
     },
 
-    getTransactions({
-      base = "",
-      quote = "",
-      limit = 10,
-      cursor = "",
-      type = "",
-    }) {
-      return http.get(
-        `/transactions/${base}/${quote}?limit=${limit}&cursor=${cursor}&type=${type}`
-      );
+    getTransactions(params: API.GetTransactionsParams) {
+      const url = `/transactions/${params.base}/${params.quote}`;
+
+      return http.get(url, { params });
     },
 
-    getMyTransactions({ base, quote, type, limit = 10, cursor = "" }) {
-      return http.get(`/transactions/${base}/${quote}/mine`, {
-        params: { type, limit, cursor },
-      });
+    getMyTransactions(params: API.GetTransactionsParams) {
+      const url = `/transactions/${params.base}/${params.quote}/mine`;
+
+      return http.get(url, { params });
     },
 
-    getMyTransaction({ base, quote, follow }): Promise<any> {
-      return http.get(`/transactions/${base}/${quote}/mine/${follow}`);
+    getMyTransaction(params: API.GetTransactionParams): Promise<any> {
+      const url = `/transactions/${params.base}/${params.quote}/mine/${params.follow}`;
+
+      return http.get(url);
     },
 
     getPreOrder(params: API.PreOrderParams): Promise<API.SwapOrder> {
-      return http.post("/orders/pre", {
-        data: params,
-      });
+      return http.post("/orders/pre", { data: params });
     },
 
     getOrder(id: string): Promise<API.SwapOrder> {
@@ -158,30 +120,12 @@ export default function (http: Http) {
       return await http.get(`${MIXIN_HOST}/assets/${id}`);
     },
 
-    async genMulPaymentCode(
-      data: API.MixinMulPaymentCodeParams
-    ): Promise<API.MixinMulPaymentCodeRsp> {
-      return await http.post(`${MIXIN_HOST}/payments`, { data });
-    },
-
-    async createActions(
-      params: API.CreateAction
-    ): Promise<API.CreateActionRsp> {
-      return http.post(`/actions`, {
-        data: params,
-      });
+    async createActions(data: API.CreateAction): Promise<API.CreateActionRsp> {
+      return http.post(`/actions`, { data });
     },
 
     async getMe() {
       return await http.get(`${MIXIN_HOST}/me`);
-    },
-
-    getHeartCheck() {
-      return http.get("/hc");
-    },
-
-    config(options: AxiosRequestConfig) {
-      http.config(options);
     },
 
     async getApplieInfo() {
@@ -190,6 +134,14 @@ export default function (http: Http) {
 
     async getApplieOrderInfo(trace_id: string) {
       return await http.get(`/applies/${trace_id}`);
+    },
+
+    getHeartCheck() {
+      return http.get("/hc");
+    },
+
+    config(options: AxiosRequestConfig) {
+      http.config(options);
     },
   };
 }

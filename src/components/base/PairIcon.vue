@@ -50,7 +50,10 @@ export default PairIcon;
   }
 
   &__quote {
-    margin-left: -4px;
+    margin-left: -8px;
+  }
+
+  &__base {
     z-index: 1;
   }
 

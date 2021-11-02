@@ -41,10 +41,13 @@ export class PairRoutes {
       const quoteAmount = Number(p.quote_amount);
       const fillPercent = new BigNumber(1).minus(p.fee_percent).toNumber();
       const isCurve = p.swap_method === "curve";
+
       let d = 0;
+
       if (isCurve) {
         d = curve.getD([baseAmount * 10e8, quoteAmount * 10e8]);
       }
+
       return {
         ...p,
         baseAmount,
@@ -54,6 +57,7 @@ export class PairRoutes {
         D: d,
       };
     });
+
     for (const pair of this.pairs) {
       this.setAssetRoute(pair.base_asset_id, pair);
       this.setAssetRoute(pair.quote_asset_id, pair);
@@ -63,6 +67,7 @@ export class PairRoutes {
   setAssetRoute(asset: string, pair: RoutePair) {
     const routes = this.routes.get(asset) || [];
     const opposit = this.getOppositeAsset(pair, asset);
+
     if (!routes.includes(opposit)) {
       this.routes.set(asset, [...routes, opposit]);
     }
@@ -125,21 +130,25 @@ export class PairRoutes {
           .toString();
       } else {
         reject("swap.error.need-input-or-output");
+
         return;
       }
 
       if (!bestRoute) {
         reject("swap.error.no-pair-route-found");
+
         return;
       }
 
       if (!amount || !funds) {
         reject("swap.error.swap-amount-not-support");
+
         return;
       }
 
       if (+amount <= 0 || +funds <= 0) {
         reject("swap.error.swap-amount-not-support");
+
         return;
       }
 
@@ -160,6 +169,7 @@ export class PairRoutes {
   getRoutes(inputAsset: string, outputAsset: string, inputAmount: number) {
     const deep = 4;
     const queue: { key: string; ctx: RouteCtx }[] = [];
+
     let bestRoute: RouteCtx | null = null;
 
     queue.push({
@@ -187,10 +197,12 @@ export class PairRoutes {
         }
 
         const pair = this.getPair(current.key, neibor)!;
+
         if (!pair) continue;
         if (current.ctx.routeIds.includes(pair.route_id)) continue;
 
         const transaction = this.swap(pair, current.key, +stepInputAmount);
+
         if (!transaction) continue;
 
         const newCtx: RouteCtx = {
@@ -206,6 +218,7 @@ export class PairRoutes {
           if (!bestRoute || Number(bestRoute.amount) < Number(newCtx.amount)) {
             bestRoute = newCtx;
           }
+
           continue;
         }
 
@@ -249,10 +262,12 @@ export class PairRoutes {
         }
 
         const pair = this.getPair(current.key, neibor)!;
+
         if (!pair) continue;
         if (current.ctx.routeIds.includes(pair.route_id)) continue;
 
         const transaction = this.swapReverse(pair, neibor, stepOutputAmount);
+
         if (!transaction) continue;
 
         const newCtx: RouteCtx = {
@@ -268,6 +283,7 @@ export class PairRoutes {
           if (!bestRoute || Number(bestRoute.funds) > Number(newCtx.funds)) {
             bestRoute = newCtx;
           }
+
           continue;
         }
 
@@ -290,7 +306,9 @@ export class PairRoutes {
 
     let x = pair.baseAmount;
     let y = pair.quoteAmount;
+
     const inputBaseAsset = inputAsset === pair.base_asset_id;
+
     if (!inputBaseAsset) {
       [x, y] = [y, x];
     }
@@ -321,11 +339,14 @@ export class PairRoutes {
   swapReverse(pair: RoutePair, inputAsset: string, outputAmount: number) {
     let dx = 0;
     let priceImpact = 0;
+
     const dy = outputAmount;
 
     let x = pair.baseAmount;
     let y = pair.quoteAmount;
+
     const inputBaseAsset = inputAsset === pair.base_asset_id;
+
     if (!inputBaseAsset) {
       [x, y] = [y, x];
     }

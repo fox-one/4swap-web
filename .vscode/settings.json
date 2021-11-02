@@ -1,6 +1,6 @@
 {
   "eslint.validate": ["javascript", "javascriptreact", "vue"],
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "off",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "vetur.format.defaultFormatter.js": "prettier-eslint",
@@ -14,8 +14,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "i18n-ally.localesPaths": [
-    "src/lang"
-  ],
+  "i18n-ally.localesPaths": ["src/lang"],
   "i18n-ally.keystyle": "nested"
 }

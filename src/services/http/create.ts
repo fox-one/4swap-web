@@ -2,15 +2,17 @@
 /* eslint-disable prefer-promise-reject-errors */
 import { NuxtAppOptions } from "@nuxt/types";
 import { AxiosRequestConfig } from "axios";
-import Http from "~/utils/http";
+import Http from "./http";
 import createApis from "./index";
 import { v4 as uuid } from "uuid";
+import { logout } from "@/utils/account";
 
 function generateStructureInterceptor(app: NuxtAppOptions) {
   return [
     (res) => {
       const reqId = res?.headers?.["x-request-id"];
       const resId = res?.config?.headers?.["x-request-id"];
+
       if (reqId && resId && reqId !== resId) {
         return Promise.reject(
           new Error(
@@ -18,23 +20,27 @@ function generateStructureInterceptor(app: NuxtAppOptions) {
           )
         );
       }
+
       if (res?.data?.code) {
         return Promise.reject(res.data);
       }
+
       if (res?.data?.error?.code === 401) {
-        if (res.data.error.code === 401) {
-          app.store?.dispatch("auth/logout");
-        }
+        logout({ $store: app.store });
+
         return Promise.reject(res.data.error);
       }
+
       return res.data.data;
     },
     (error) => {
       if (error.response && error.response.data) {
         const status = error.response.status;
+
         if (status === 401) {
-          app.store?.dispatch("auth/logout");
+          logout({ $store: app.store });
         }
+
         const { code, msg } = error.response.data;
         return Promise.reject({ code, msg });
       } else {
@@ -48,19 +54,19 @@ function generateAuthInterceptor(app: NuxtAppOptions) {
   return [
     (configs) => {
       let token = "";
+
       if (configs.token) {
         token = configs.token;
       } else {
-        if (app.$fennec.connected) {
-          token = app.$fennec.getToken();
-        } else {
-          token = app.$utils.helper.getToken(app.store);
-        }
+        token = app.store?.state.auth.token;
       }
+
       if (token) {
         configs.headers.Authorization = `Bearer ${token}`;
       }
+
       configs.headers["x-request-id"] = uuid();
+
       return configs;
     },
   ];

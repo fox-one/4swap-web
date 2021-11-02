@@ -1,25 +1,24 @@
+import utils, { mixin } from "@foxone/utils";
 import * as helper from "./helper";
+import * as account from "./account";
 import * as app from "./app";
-import * as time from "./time";
 import * as payment from "./payment";
-import * as enums from "./enums";
-import * as number from "./number";
 import * as color from "./color";
-import * as fennec from "./fennec";
 import * as assets from "./assets";
-import icons from "./icons";
-import base64 from "./base64";
+import * as currency from "./currency";
+import * as pair from "./pair/helper";
+import { simplize, attachSign } from "./number";
 
 export default {
+  account,
   assets,
   helper,
   payment,
   app,
-  icons,
-  base64,
-  number,
   color,
-  time,
-  enums,
-  fennec,
+  mixin,
+  currency,
+  pair,
+  time: { ...utils.time },
+  number: { ...utils.number, simplize, attachSign },
 };

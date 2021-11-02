@@ -1,3 +1,5 @@
+import { GlobalGetters, GlobalMutations } from "@/store/types";
+
 export interface Asset {
   id: string;
   name: string;
@@ -7,7 +9,18 @@ export interface Asset {
   price: string;
 }
 
-export function getLiquidityAddAvaliableAssets(
+/**
+ * get assets that could be seleted in liquidity add page
+ * which assets pool support and listed in mixin wallet
+ * specially assets listed in blacklist is banned
+ *
+ * @export
+ * @param {API.Asset[]} assets
+ * @param {API.MixinAsset[]} mixinAssets
+ * @param {string[]} blacklist
+ * @return {*}
+ */
+export function getAvaliableAddAssets(
   assets: API.Asset[],
   mixinAssets: API.MixinAsset[],
   blacklist: string[]
@@ -57,25 +70,48 @@ export function getLiquidityAddAvaliableAssets(
   return Array.from(assetsMap.values());
 }
 
-export function getPairShared(vm: Vue, pair: API.Pair) {
-  const getAssetById = vm.$store.getters["global/getAssetById"];
-  const getBalanceById = vm.$store.getters["global/getBalanceByAssetId"];
-  const baseAsset = getAssetById(pair.base_asset_id);
-  const quoteAsset = getAssetById(pair.quote_asset_id);
-  const balance = getBalanceById(pair.liquidity_asset_id) ?? 0;
+/**
+ * get wallet assets by mixin api or fennec
+ * depend on which method user authed
+ *
+ * @export
+ * @param {Vue} vm
+ */
+export async function getAssets(vm: Vue) {
+  let assets: API.MixinAsset[] = [];
 
-  const s = balance;
-  const k = Number(pair?.liquidity ?? 0);
-  const percent = k > 0 ? Math.min(s / k, 1) : 0;
+  if (vm.$fennec.connected) {
+    assets = (await vm.$fennec.ctx?.wallet.getAssets()) ?? [];
+  } else {
+    const resp = await vm.$http.getAssetsFromMixin();
 
-  const totalBaseAmount = Number(pair?.base_amount ?? 0);
-  const totalQuoteAmount = Number(pair?.quote_amount ?? 0);
+    assets = resp;
+  }
 
-  const sharedBaseAmount = totalBaseAmount * percent;
-  const sharedQuoteAmount = totalQuoteAmount * percent;
-  const totalValue =
-    sharedBaseAmount * Number(baseAsset?.price ?? 0) +
-    sharedQuoteAmount * Number(quoteAsset?.price ?? 0);
+  if (vm.$store.getters[GlobalGetters.LOGGED]) {
+    vm.$store.commit(GlobalMutations.SET_WALLET_ASSETS, assets);
+  }
+}
 
-  return { totalValue, sharedBaseAmount, sharedQuoteAmount, percent };
+/**
+ * get wallet asset by mixin api or fennec
+ * depend on which method user authed
+ *
+ * @export
+ * @param {Vue} vm
+ */
+export async function getAsset(vm: Vue, id: string) {
+  let asset: API.MixinAsset;
+
+  if (vm.$fennec.connected) {
+    asset = (await vm.$fennec.ctx?.wallet.getAsset(id)) ?? [];
+  } else {
+    const resp = await vm.$http.getAssetFromMixin(id);
+
+    asset = resp;
+  }
+
+  if (vm.$store.getters[GlobalGetters.LOGGED]) {
+    vm.$store.commit(GlobalMutations.SET_WALLET_ASSET, asset);
+  }
 }

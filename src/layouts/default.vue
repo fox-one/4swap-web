@@ -1,59 +1,40 @@
 <template>
   <v-app id="app">
-    <template v-if="meta.isIniting">
-      <f-loading :loading="true" fullscreen>
-        <template #text> {{ $t("initing") }} </template>
-      </f-loading>
-    </template>
+    <f-loading v-if="initing" :loading="initing" color="primary" fullscreen />
+
     <template v-else>
-      <lake-app-bar v-if="meta.isLake" />
-      <default-layout-app-bar v-else />
-
-      <v-main
-        class="pt-11"
-        style="
-          padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important;
-        "
-      >
-        <nuxt />
-      </v-main>
-
-      <default-layout-bottom-nav />
-
-      <default-layout-modals />
+      <mobile-layout />
+      <modals />
     </template>
   </v-app>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import AppBar from "./default/AppBar.vue";
-import LakeAppBar from "@/components/lake/AppBar.vue";
-import BottomNav from "./default/BottomNav.vue";
-import Modals from "./default/Modals.vue";
+import MobileLayout from "@/components/layout/mobile/Index.vue";
+import Modals from "@/components/modals/Index.vue";
+import { Sync } from "vuex-pathify";
 
 @Component({
   components: {
-    "lake-app-bar": LakeAppBar,
-    "default-layout-modals": Modals,
-    "default-layout-app-bar": AppBar,
-    "default-layout-bottom-nav": BottomNav,
+    MobileLayout,
+    Modals,
   },
 })
 class NuxtDefaultLayout extends Vue {
-  get meta() {
-    const isIniting = this.$store.state.app.initing;
-    return {
-      isIniting,
-      isLake: this.$config.CHANNEL === "lake",
-    };
+  @Sync("app/initing") initing!: boolean;
+
+  get desktop() {
+    return this.$vuetify.breakpoint.mdAndUp;
   }
 
-  mounted() {
-    this.$utils.app.initApp(this);
-    this.$pairRoutes.makeRoutes(this.$store.state.global.pairs);
-    const tasks = this.$utils.app.genAppTasks(this);
-    tasks.setUpPollingTasks();
+  async mounted() {
+    try {
+      await this.$utils.app.init(this);
+      // this.$utils.app.tasks.setUpPollingTasks(this);
+    } catch (error) {
+      this.$utils.helper.errorHandler(this, error);
+    }
   }
 }
 export default NuxtDefaultLayout;

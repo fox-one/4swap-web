@@ -1,47 +1,55 @@
-export async function initApp(vm: Vue) {
+import { GlobalMutations, GlobalActions, GlobalGetters } from "@/store/types";
+import { loadAccountData } from "./account";
+
+export async function init(vm: Vue) {
+  const { commit, dispatch } = vm.$store;
+
   if (vm.$route.name === "auth") {
     return;
   }
-  const store = vm.$store;
-  const inited = store.state.app.inited;
-  if (!inited) {
-    store.commit("app/SET_INITING", true);
-  }
+
+  commit(GlobalMutations.SET_APP_INITING, true);
+
+  await vm.$utils.account.checkFennecAuth(vm);
+
   try {
+    // load basic application data
     await Promise.all([
-      store.dispatch("global/loadFiats", { token: vm.$config.FIAT_TOKEN }),
-      store.dispatch("global/loadAssets"),
-      vm.$utils.helper.loadWalletAssets(vm),
-      store.dispatch("global/getAllAddedPairs", {
+      dispatch(GlobalActions.LOAD_APP_INFO),
+      dispatch(GlobalActions.LOAD_FIATS, { token: vm.$config.FIAT_TOKEN }),
+      dispatch(GlobalActions.LOAD_POOL_ASSETS),
+      dispatch(GlobalActions.LOAD_POOL_PAIRS, {
         brokerId: vm.$config.BROKER_ID,
       }),
-      store.dispatch("global/getMe"),
-      store.dispatch("global/getAppInfo"),
     ]);
-    store.commit("app/SET_INITING", false);
-    store.commit("app/SET_INITED", true);
+
+    // load account data
+    await loadAccountData(vm);
+
+    commit(GlobalMutations.SET_APP_INITING, false);
   } catch (error) {
-    store.commit("app/SET_INITING", false);
+    commit(GlobalMutations.SET_APP_INITING, false);
   }
 }
 
-export function genAppTasks(vm: Vue) {
-  let $interval: any = "";
+let interval: any = "";
 
-  return {
-    setUpPollingTasks() {
-      this.clearPollingTasks();
+export const tasks = {
+  setUpPollingTasks(vm: Vue) {
+    this.clearPollingTasks();
 
-      $interval = setInterval(() => {
-        vm.$store.dispatch("global/getAllAddedPairs", {
-          brokerId: vm.$config.BROKER_ID,
-        });
-        vm.$utils.helper.loadWalletAssets(vm);
-      }, 5000);
-    },
+    interval = setInterval(() => {
+      vm.$store.dispatch(GlobalActions.LOAD_POOL_PAIRS, {
+        brokerId: vm.$config.BROKER_ID,
+      });
 
-    clearPollingTasks() {
-      clearInterval($interval);
-    },
-  };
-}
+      if (vm.$store.getters[GlobalGetters.LOGGED]) {
+        vm.$utils.assets.getAssets(vm);
+      }
+    }, 5000);
+  },
+
+  clearPollingTasks() {
+    clearInterval(interval);
+  },
+};

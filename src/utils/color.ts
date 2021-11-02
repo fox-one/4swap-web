@@ -1,16 +1,15 @@
-import { CHART_SCHEMES } from "~/constants";
-
-export const colorUp = (vm: Vue) => {
+export function getColor(vm: Vue, value) {
   const scheme = vm.$store.state.app.settings.chartScheme;
-  return CHART_SCHEMES[scheme].up;
-};
 
-export const colorDown = (vm: Vue) => {
-  const scheme = vm.$store.state.app.settings.chartScheme;
-  return CHART_SCHEMES[scheme].down;
-};
+  const red = vm.$vuetify.theme.currentTheme.error;
+  const green = vm.$vuetify.theme.currentTheme.success;
+  const grey = vm.$vuetify.theme.currentTheme.greyscale_3;
 
-export const colorPrimary = (isDark: boolean) =>
-  isDark ? "#f16aab" : "#ee4596";
+  let [up, down] = [green, red];
 
-export const colorGery3 = (isDark: boolean) => (isDark ? "#9b9c9d" : "#666666");
+  if (scheme === "SCHEME_B") {
+    [up, down] = [down, up];
+  }
+
+  return +value > 0 ? up : +value < 0 ? down : grey;
+}
