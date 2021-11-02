@@ -233,3 +233,52 @@ export function filterFn(str: string, pair: PairMeta) {
     quoteName.includes(filter)
   );
 }
+
+/**
+ * get ROR data by kline and market data
+ *
+ * @export
+ * @param {API.Pair} pair
+ * @param {{ kline: API.KlineData[]; market: API.MarketData[] }} data
+ * @param {number} days
+ * @return {*}
+ */
+export function getNetRORInDuration(
+  pair: API.Pair,
+  data: { kline: API.KlineData[]; market: API.MarketData[] },
+  days: number
+) {
+  // kline data is recorded by 1 hour interval
+  // market data is recorded by 1 day interval
+  const kline = data.kline.slice(data.kline.length - days * 24);
+  const market = data.market.slice(data.market.length - days);
+
+  const ratio = +kline[kline.length - 1][2] / +kline[0][2];
+  const volume = market.reduce((total, next) => total + +next.volume, 0);
+  const totalLiquidity = +pair.base_value + +pair.quote_value;
+  const losses = (2 * Math.sqrt(ratio)) / (1 + ratio) - 1;
+  const margins = (volume * +pair.fee_percent) / totalLiquidity;
+
+  return losses + margins;
+}
+
+/**
+ * get price change in duration
+ *
+ * @export
+ * @param {{ kline: API.KlineData[]; market: API.MarketData[] }} data
+ * @param {number} days
+ * @return {*}
+ */
+export function getPriceChangeInDuration(kline: API.KlineData[], days: number) {
+  const current = kline?.[kline.length - 1]?.[2] ?? 0;
+
+  const startIndex = kline.length >= days * 24 ? kline.length - days * 24 : 0;
+  const start = kline?.[startIndex]?.[2] ?? 0;
+
+  if (!start) {
+    return 0;
+  }
+
+  return +current / +start - 1;
+}

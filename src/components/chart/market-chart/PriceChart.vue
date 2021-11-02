@@ -29,6 +29,7 @@ class PriceChart extends Vue {
     return this.chartType === "1";
   }
 
+  @Watch("reverse")
   @Watch("data", { immediate: true })
   @Watch("point", { immediate: true })
   handlePointChange() {

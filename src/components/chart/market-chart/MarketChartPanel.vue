@@ -181,6 +181,8 @@ class MarketChartPanel extends Vue {
 
       this.data.market = market;
       this.data.kline = kline;
+
+      this.$emit("loaded", this.data);
     } catch (error) {
       this.$utils.helper.errorHandler(this, error);
     }

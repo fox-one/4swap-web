@@ -1,7 +1,7 @@
 <template>
   <v-layout :class="classes">
     <div>
-      <span class="label-3 mr-1">{{ title }}</span>
+      <span class="label-3 mr-1" @click="handleTitleClick">{{ title }}</span>
 
       <v-icon v-if="icon" size="12" class="mr-1" @click="handleTitleClick">
         {{ icon }}

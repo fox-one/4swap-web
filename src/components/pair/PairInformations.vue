@@ -16,10 +16,36 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 class PairInformations extends Vue {
   @Prop() pair!: API.Pair;
 
+  @Prop() data;
+
+  rorIndex = 0;
+
+  get rorItems() {
+    const getNetRORInDuration = this.$utils.pair.getNetRORInDuration;
+    const toPercent = this.$utils.number.toPercent;
+
+    const getRORText = (days: number) => {
+      if (this.data.kline.length === 0 && this.data.market.length === 0) {
+        return "-";
+      }
+
+      const value = getNetRORInDuration(this.pair, this.data, days);
+
+      return toPercent({ n: value, dp: 2, symbol: true });
+    };
+
+    return [
+      { title: this.$t("recent_ror.24hours"), value: getRORText(1) },
+      { title: this.$t("recent_ror.7days"), value: getRORText(7) },
+      { title: this.$t("recent_ror.30days"), value: getRORText(30) },
+    ];
+  }
+
   get meta() {
     const toFiat = this.$utils.currency.toFiat;
     const toPercent = this.$utils.number.toPercent;
     const getPairMeta = this.$utils.pair.getPairMeta;
+    const getPriceChangeInDuration = this.$utils.pair.getPriceChangeInDuration;
     const {
       volume,
       volume_24h,
@@ -27,6 +53,8 @@ class PairInformations extends Vue {
       fee_24h,
       turnOver,
     } = getPairMeta(this, this.pair)!;
+    const priceChange = getPriceChangeInDuration(this.data.kline, 1);
+    const priceChangeText = toPercent({ n: priceChange, dp: 2, symbol: true });
 
     const items = [
       {
@@ -48,20 +76,19 @@ class PairInformations extends Vue {
       {
         title: this.$t("24h.pool-turnover"),
         value: toPercent({ n: turnOver }),
-        icon: "$IconSwitcher",
-        titleFn: () => {
-          //
-        },
         hint: "24H Pool Turnover",
       },
       {
-        title: this.$t("24h.ror"),
-        value: "",
+        ...this.rorItems[this.rorIndex],
+        icon: "$IconSwitcher",
+        titleFn: () => {
+          this.rorIndex = (this.rorIndex + 1) % 3;
+        },
         hint: "24H ROR",
       },
       {
         title: this.$t("24h.price-change"),
-        value: "",
+        value: priceChangeText,
       },
     ];
 

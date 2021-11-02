@@ -28,12 +28,12 @@ class ModalAssetItem extends Vue {
 
   get meta() {
     const format = this.$utils.number.format;
-    const attchSign = this.$utils.number.attchSign;
+    const attachSign = this.$utils.number.attachSign;
 
     const amountValue = this.isInput
       ? -Math.abs(+this.amount)
       : +Math.abs(+this.amount);
-    const amountText = attchSign({
+    const amountText = attachSign({
       n: amountValue,
       text: format({ n: Math.abs(+this.amount), dp: 8 }),
     });

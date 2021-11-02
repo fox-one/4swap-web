@@ -7,7 +7,7 @@ import * as color from "./color";
 import * as assets from "./assets";
 import * as currency from "./currency";
 import * as pair from "./pair/helper";
-import { simplize, attchSign } from "./number";
+import { simplize, attachSign } from "./number";
 
 export default {
   account,
@@ -20,5 +20,5 @@ export default {
   currency,
   pair,
   time: { ...utils.time },
-  number: { ...utils.number, simplize, attchSign },
+  number: { ...utils.number, simplize, attachSign },
 };
