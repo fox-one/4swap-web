@@ -76,13 +76,13 @@ class ProfitChartPanel extends Vue {
   get durationData() {
     const getDurationData = this.$utils.helper.getDurationData;
 
-    return getDurationData(this.data, this.duration, (x) => x?.ts);
+    return getDurationData(this.data, this.duration, (x) => x?.ts, 100);
   }
 
   get thumbData() {
     const getDurationData = this.$utils.helper.getDurationData;
 
-    return getDurationData(this.data, "24h", (x) => x?.ts);
+    return getDurationData(this.data, "168h", (x) => x?.ts);
   }
 
   get meta() {

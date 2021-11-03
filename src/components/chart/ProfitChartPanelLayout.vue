@@ -36,6 +36,7 @@ import ChartLayout from "./ChartLayout.vue";
 import ChartThumbLayout from "./ChartThumbLayout.vue";
 
 @Component({
+  inheritAttrs: false,
   components: {
     ChartLayout,
     ChartThumbLayout,

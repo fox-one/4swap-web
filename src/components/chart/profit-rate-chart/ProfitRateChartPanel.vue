@@ -77,13 +77,13 @@ class ProfitRateChartPanel extends Vue {
   get durationData() {
     const getDurationData = this.$utils.helper.getDurationData;
 
-    return getDurationData(this.data, this.duration, (x) => x?.ts);
+    return getDurationData(this.data, this.duration, (x) => x?.ts, 100);
   }
 
   get thumbData() {
     const getDurationData = this.$utils.helper.getDurationData;
 
-    return getDurationData(this.data, "24h", (x) => x?.ts);
+    return getDurationData(this.data, "168h", (x) => x?.ts);
   }
 
   get meta() {
@@ -132,7 +132,7 @@ class ProfitRateChartPanel extends Vue {
     const thumbData = this.thumbCurrent?.[1] ?? 0;
 
     const formatData = (value) => {
-      const text = toPercent({ n: thumbData });
+      const text = toPercent({ n: value });
       const icon =
         +value > 0 ? "$IconUpPolygon" : +value < 0 ? "$IconDownPolygon" : "";
 

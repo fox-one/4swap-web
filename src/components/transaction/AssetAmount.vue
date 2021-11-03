@@ -5,6 +5,7 @@
         :size="16"
         :logo="meta.logo"
         :chain-logo="meta.chainLogo"
+        :chain-size="6"
       />
 
       <span class="ml-2">{{ meta.symbol }}</span>
@@ -29,7 +30,7 @@ class AssetAmount extends Vue {
     return {
       symbol: this.asset.symbol,
       logo: this.asset.logo,
-      chainLogo: this.asset.chainLogo,
+      chainLogo: this.asset.chain.logo,
       amount: this.$utils.number.format({ n: this.amount, dp: 8 }),
     };
   }

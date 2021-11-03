@@ -34,11 +34,26 @@ export function getLangCode(value) {
   return data[value];
 }
 
-export function getDurationData(data, duration, fn) {
+export function getDurationData(
+  data,
+  duration,
+  fn,
+  size: number | undefined = undefined
+) {
   const end = fn(data[data.length - 1]);
   const start = end - (parse(duration, "s") || 0);
 
   if (!start) return [];
 
-  return data.filter((x) => fn(x) >= start);
+  return data
+    .filter((x) => fn(x) >= start)
+    .filter((x, index, array) => {
+      if (!size) {
+        return true;
+      }
+
+      const interval = Math.floor(array.length / size);
+
+      return (array.length - 1 - index) % interval === 0;
+    });
 }

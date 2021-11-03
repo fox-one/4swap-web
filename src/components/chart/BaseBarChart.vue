@@ -39,6 +39,7 @@ class BaseBarChart extends Vue {
   get option(): EChartsOption {
     return {
       ...getBaseOption(this, this.data, this.colors),
+      grid: [{ top: 20, bottom: 40, left: 16, right: 16 }],
       series: [{ type: "bar" }],
     };
   }

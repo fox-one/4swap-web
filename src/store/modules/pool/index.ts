@@ -158,12 +158,14 @@ const actions: ActionTree<State.AuthState, any> = {
 
   async [ActionTypes.LOAD_POOL_PAIRS]({ commit }, { brokerId }) {
     const resp = await this.$http.getPairs({ brokerId });
-    const pairs = resp.pairs || [];
+    const pairs = resp?.pairs ?? [];
 
-    commit(MutationTypes.SET_PAIRS, pairs);
-    commit(MutationTypes.SET_ASSETS_WHITE_LISTS, resp.whitelists ?? []);
+    if (pairs.length > 0) {
+      commit(MutationTypes.SET_PAIRS, pairs);
+      commit(MutationTypes.SET_ASSETS_WHITE_LISTS, resp.whitelists ?? []);
 
-    this.$pairRoutes.makeRoutes(pairs);
+      this.$pairRoutes.makeRoutes(pairs);
+    }
   },
 };
 

@@ -26,6 +26,7 @@ import DurationSelect from "./DurationSelect.vue";
 import ChartTitle from "./ChartTitle.vue";
 
 @Component({
+  inheritAttrs: false,
   components: {
     TypeSelect,
     DurationSelect,
@@ -53,6 +54,7 @@ export default ChartLayout;
 
   .chart {
     height: 195px;
+    margin: 0 -16px;
   }
 }
 </style>

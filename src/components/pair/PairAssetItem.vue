@@ -4,6 +4,7 @@
       :size="24"
       :logo="meta.logo"
       :chain-logo="meta.chainLogo"
+      :chain-size="8"
       class="mr-4"
     />
 
@@ -32,7 +33,7 @@ class PairAssetItem extends Vue {
     return {
       amountText: simplize(this, { n: +this.amount }),
       logo: this.asset.logo,
-      chainLogo: this.asset.chainLogo,
+      chainLogo: this.asset.chain.logo,
       symbol: this.asset.symbol,
     };
   }

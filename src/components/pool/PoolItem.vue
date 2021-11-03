@@ -34,7 +34,7 @@ class PoolItem extends Vue {
     const toPercent = this.$utils.number.toPercent;
     const toFiat = this.$utils.currency.toFiat;
 
-    const meta = getPairMeta(this, this.pair, false);
+    const meta = getPairMeta(this, this.pair, false)!;
     const { baseAsset, quoteAsset, symbol, priceText, reversePriceText } = meta;
 
     const data = meta[this.dimension];

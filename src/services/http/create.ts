@@ -37,7 +37,7 @@ function generateStructureInterceptor(app: NuxtAppOptions) {
       if (error.response && error.response.data) {
         const status = error.response.status;
 
-        if (status === 401) {
+        if (!error.response.config.skipCheckAuth && status === 401) {
           logout({ $store: app.store });
         }
 

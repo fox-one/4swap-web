@@ -34,7 +34,7 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 class CreatePoolSuccessModal extends Vue {
-  dialog = true;
+  dialog = false;
 
   show() {
     this.dialog = true;

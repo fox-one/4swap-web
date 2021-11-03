@@ -54,8 +54,8 @@ class PoolItem extends Vue {
     const percentText = toPercent({ n: percent });
     const sharedBaseAmount = shared?.sharedBaseAmount ?? 0;
     const sharedQuoteAmount = shared?.sharedQuoteAmount ?? 0;
-    const sharedBaseAmountText = format({ n: sharedBaseAmount });
-    const sharedQuoteAmountText = format({ n: sharedQuoteAmount });
+    const sharedBaseAmountText = format({ n: sharedBaseAmount, dp: 8 });
+    const sharedQuoteAmountText = format({ n: sharedQuoteAmount, dp: 8 });
 
     return {
       baseAsset,

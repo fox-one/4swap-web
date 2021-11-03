@@ -56,7 +56,7 @@ class BriefIntroduction extends Vue {
     return {
       name: this.asset?.name ?? "",
       logo: this.asset?.logo ?? "",
-      chainLogo: this.asset?.chainLogo ?? "",
+      chainLogo: this.asset?.chain.logo ?? "",
       website: this.info?.website ?? "",
       intro,
       isIntroEmpty,

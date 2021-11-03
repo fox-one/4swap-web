@@ -8,14 +8,14 @@
       <f-mixin-asset-logo
         :size="size"
         :logo="baseAsset.logo"
-        :chain-logo="baseAsset.chainLogo"
+        :chain-logo="getChainLogo(baseAsset)"
       />
     </v-sheet>
     <v-sheet class="pair-icon__quote rounded-circle">
       <f-mixin-asset-logo
         :size="size"
         :logo="quoteAsset.logo"
-        :chain-logo="quoteAsset.chainLogo"
+        :chain-logo="getChainLogo(quoteAsset)"
       />
     </v-sheet>
   </div>
@@ -34,6 +34,10 @@ class PairIcon extends Vue {
 
   get size() {
     return this.small ? 24 : 32;
+  }
+
+  getChainLogo(asset) {
+    return asset?.chainLogo || (asset?.chain?.logo ?? "");
   }
 }
 export default PairIcon;

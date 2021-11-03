@@ -39,6 +39,7 @@ class BaseLineChart extends Vue {
     return {
       ...getBaseOption(this, this.data, this.colors),
       ...this.customOption,
+      grid: [{ top: 20, bottom: 40, left: 0, right: 16 }],
       series: [
         {
           type: "line",
@@ -46,6 +47,7 @@ class BaseLineChart extends Vue {
           symbolSize: 0.1,
           symbol: "circle",
           animation: false,
+          sampling: "average",
           lineStyle: {
             width: 2,
           },

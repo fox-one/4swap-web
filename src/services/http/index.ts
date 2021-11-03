@@ -59,7 +59,9 @@ export default function (http: Http) {
     },
 
     async getProfits(params: API.GetProfitsParams): Promise<API.ProfitsData> {
-      return http.get(`/stats/profits/${params.base}/${params.quote}`);
+      return http.get(`/stats/profits/${params.base}/${params.quote}`, {
+        skipCheckAuth: true,
+      } as any);
     },
 
     async getProfitsHistory(

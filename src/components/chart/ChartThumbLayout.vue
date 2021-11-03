@@ -20,6 +20,7 @@ import ChartTitle from "./ChartTitle.vue";
 import TypeSelectThumb from "./TypeSelectThumb.vue";
 
 @Component({
+  inheritAttrs: false,
   components: {
     ChartTitle,
     TypeSelectThumb,

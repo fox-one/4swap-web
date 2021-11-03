@@ -44,7 +44,7 @@ export async function authMixin(vm: Vue, code: string) {
   const redirect = localStorage.getItem("authPath") || "/";
 
   await updateAuth(vm, {
-    token: res.access_token,
+    token: res.token,
     scope: res.scope,
     channel: "mixin",
   });

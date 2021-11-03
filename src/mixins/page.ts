@@ -68,8 +68,6 @@ export default class PageView extends Vue {
     const defaultThemeColor = this.$vuetify.theme.dark ? "#000000" : "#ffffff";
     const color = (this.appbar as any).color || defaultThemeColor;
 
-    console.log("set mixin theme");
-
     this.$utils.mixin.setMixinTheme(color);
   }
 }

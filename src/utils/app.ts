@@ -4,16 +4,10 @@ import { loadAccountData } from "./account";
 export async function init(vm: Vue) {
   const { commit, dispatch } = vm.$store;
 
-  if (vm.$route.name === "auth") {
-    return;
-  }
-
   commit(GlobalMutations.SET_APP_INITING, true);
 
-  await vm.$utils.account.checkFennecAuth(vm);
-
   try {
-    // load basic application data
+    // load public application data
     await Promise.all([
       dispatch(GlobalActions.LOAD_APP_INFO),
       dispatch(GlobalActions.LOAD_FIATS, { token: vm.$config.FIAT_TOKEN }),
@@ -22,6 +16,14 @@ export async function init(vm: Vue) {
         brokerId: vm.$config.BROKER_ID,
       }),
     ]);
+
+    if (vm.$route.name === "auth") {
+      commit(GlobalMutations.SET_APP_INITING, false);
+
+      return;
+    }
+
+    await vm.$utils.account.checkFennecAuth(vm);
 
     // load account data
     await loadAccountData(vm);
