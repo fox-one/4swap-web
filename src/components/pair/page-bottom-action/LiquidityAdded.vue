@@ -7,7 +7,7 @@
     <v-fade-transition>
       <div v-if="tabIndex === 1" class="account">
         <div class="amount">{{ meta.totalValueText }}</div>
-        <div class="label-3 mt-1">{{ $t("my.liquidity") }}</div>
+        <div class="label-3 mt-1">{{ $t("liquidity.my") }}</div>
       </div>
     </v-fade-transition>
 

@@ -6,7 +6,7 @@
 
     <pair-informations :pair="pair" :data="data" />
 
-    <div class="label-1 mt-8">{{ $t("pool.added-assets") }}</div>
+    <div class="label-1 mt-8">{{ $t("pool.assets") }}</div>
     <pair-assets :pair="pair" class="mt-4" />
 
     <div class="label-1 mt-8">{{ $t("chart") }}</div>

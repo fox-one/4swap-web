@@ -14,7 +14,7 @@
       @input="handleChangeAsset2"
     />
 
-    <div class="label mt-6 mb-4">{{ $t("tip.label.fee") }}</div>
+    <div class="label mt-6 mb-4">{{ $t("fee") }}</div>
     <create-fee />
 
     <div

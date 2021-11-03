@@ -16,7 +16,7 @@ import DimensionItem from "./DimensionItem.vue";
 export const dimensions = [
   { text: "volume", value: "volume" },
   { text: "volume.24hours", value: "volume_24h" },
-  { text: "pool_turnover.24hours", value: "turnOver" },
+  { text: "turnover.24hours", value: "turnOver" },
 ];
 
 @Component({

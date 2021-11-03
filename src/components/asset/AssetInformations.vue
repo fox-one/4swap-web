@@ -104,15 +104,15 @@ class AssetInformations extends Vue {
 
     return [
       {
-        title: this.$t("statistic.coin.total.supply"),
+        title: this.$t("coin.total.supply"),
         value: totalText,
       },
       {
-        title: this.$t("statistic.coin.market.cap"),
+        title: this.$t("coin.market.cap"),
         value: marketCapText,
       },
       {
-        title: this.$t("statistic.coin.liquidity"),
+        title: this.$t("coin.liquidity"),
         value: liquidityText,
       },
       {
@@ -128,7 +128,7 @@ class AssetInformations extends Vue {
         value: tradeText,
       },
       {
-        title: this.$t("statistic.coin.issue.time"),
+        title: this.$t("coin.issue.time"),
         value: issueTime,
       },
     ];

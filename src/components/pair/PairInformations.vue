@@ -35,9 +35,9 @@ class PairInformations extends Vue {
     };
 
     return [
-      { title: this.$t("recent_ror.24hours"), value: getRORText(1) },
-      { title: this.$t("recent_ror.7days"), value: getRORText(7) },
-      { title: this.$t("recent_ror.30days"), value: getRORText(30) },
+      { title: this.$t("ror.24hours"), value: getRORText(1) },
+      { title: this.$t("ror.7days"), value: getRORText(7) },
+      { title: this.$t("ror.30days"), value: getRORText(30) },
     ];
   }
 

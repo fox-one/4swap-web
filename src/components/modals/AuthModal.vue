@@ -2,7 +2,7 @@
   <f-auth-method-modal
     ref="authModal"
     :fennec="fennec"
-    :title="$t('common.connect-wallet')"
+    :title="$t('connect-wallet')"
     @auth="handleLogin"
   />
 </template>

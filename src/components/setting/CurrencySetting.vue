@@ -1,9 +1,9 @@
 <template>
-  <f-bottom-sheet v-model="dialog" :title="$t('currency.title')">
+  <f-bottom-sheet v-model="dialog" :title="$t('currency')">
     <template #activator="{ on }">
       <f-list-item
         v-on="on"
-        :title="$t('currency.title')"
+        :title="$t('currency')"
         :subtitle="currency"
         class="pa-0"
       />

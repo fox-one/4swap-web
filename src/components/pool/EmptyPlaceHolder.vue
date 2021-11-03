@@ -28,7 +28,7 @@ class EmptyPlaceHolder extends Vue {
       : require("@/assets/images/image_empty_pool_fswap.png");
 
   get text() {
-    return this.searchable ? this.$t("token-not-found") : this.$t("empty");
+    return this.searchable ? this.$t("token.not-found") : this.$t("empty");
   }
 }
 export default EmptyPlaceHolder;

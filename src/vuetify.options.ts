@@ -53,8 +53,7 @@ const themeFSwap = {
 };
 
 export default function ({ store, $config }) {
-  // const isDark = store.state.app.dark;
-  const isDark = true;
+  const isDark = store.state.app.dark;
 
   const options = {
     icons: {

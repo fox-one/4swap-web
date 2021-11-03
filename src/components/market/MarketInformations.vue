@@ -51,7 +51,7 @@ class MarketInformations extends Vue {
 
     return [
       {
-        title: this.$t("statistic.label.global-liquidity"),
+        title: this.$t("liquidity.total"),
         value: h("base-fiat-division", {
           props: { parts: this.meta.totalFiatText },
         }),
@@ -73,7 +73,7 @@ class MarketInformations extends Vue {
         }),
       },
       {
-        title: this.$t("pool_turnover.24hours"),
+        title: this.$t("turnover.24hours"),
         value: h("base-percent-division", {
           props: { value: this.meta.turnover24h },
         }),

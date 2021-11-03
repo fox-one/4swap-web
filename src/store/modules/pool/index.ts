@@ -147,7 +147,13 @@ const actions: ActionTree<State.AuthState, any> = {
   async [ActionTypes.LOAD_POOL_ASSETS]({ commit }) {
     const resp = await this.$http.getAssets();
 
-    commit(MutationTypes.SET_ASSETS, resp.assets);
+    commit(
+      MutationTypes.SET_ASSETS,
+      resp.assets.map((x) => ({
+        ...x,
+        chainLogo: x.chain.logo,
+      }))
+    );
   },
 
   async [ActionTypes.LOAD_FIATS]({ commit }, { token }) {

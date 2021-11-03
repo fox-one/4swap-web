@@ -5,7 +5,7 @@
     color="primary"
     @click="handleToCreate"
   >
-    {{ $t("liquidity.create.new-liquidity-pool") }}
+    {{ $t("liquidity.create.new-pool") }}
   </f-button>
 </template>
 

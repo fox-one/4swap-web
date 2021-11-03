@@ -39,7 +39,7 @@ import PoolList from "@/components/pool/PoolList.vue";
 })
 class PoolPage extends Mixins(mixins.page) {
   get htmlTitle() {
-    return this.$t("pools-mtg") as string;
+    return this.$t("pools.mtg") as string;
   }
 
   get appbar() {

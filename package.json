@@ -23,7 +23,8 @@
     "build:prod": "APP_ENV=prod nuxt-ts build",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
-    "test": "ts-mocha src/**/*.spec.ts"
+    "test": "ts-mocha src/**/*.spec.ts",
+    "i18n": "node ./scripts/i18n.js"
   },
   "dependencies": {
     "@bugsnag/js": "^7.5.1",

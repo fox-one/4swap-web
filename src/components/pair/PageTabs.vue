@@ -28,7 +28,7 @@ class PageTabs extends Vue {
   get tabs() {
     return [
       {
-        text: this.$t("my.liquidity"),
+        text: this.$t("liquidity.my"),
       },
       {
         text: this.$t("market"),

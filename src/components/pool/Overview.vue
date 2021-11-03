@@ -46,11 +46,11 @@ class PoolOverview extends Vue {
   get items() {
     return [
       {
-        text: this.$t("statistic.label.global-liquidity"),
+        text: this.$t("liquidity.total"),
         value: this.meta.liquidity,
       },
       {
-        text: this.$t("statistic.label.global-volume-24h"),
+        text: this.$t("volume.global.24h"),
         value: this.meta.volume,
       },
     ];
