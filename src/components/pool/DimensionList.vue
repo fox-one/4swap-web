@@ -14,7 +14,7 @@ import { Component, Vue, ProvideReactive, Model } from "vue-property-decorator";
 import DimensionItem from "./DimensionItem.vue";
 
 export const dimensions = [
-  { text: "volume", value: "volume" },
+  { text: "liquidity", value: "volume" },
   { text: "volume.24hours", value: "volume_24h" },
   { text: "turnover.24hours", value: "turnOver" },
 ];

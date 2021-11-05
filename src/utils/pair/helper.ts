@@ -282,3 +282,12 @@ export function getPriceChangeInDuration(kline: API.KlineData[], days: number) {
 
   return +current / +start - 1;
 }
+
+export function getMostLiquidityPair(vm: Vue) {
+  return vm.$store.getters[GlobalGetters.AVALIABLE_PAIRS].sort((a, b) => {
+    const va = getPairMeta(vm, a)?.volume ?? 0;
+    const vb = getPairMeta(vm, b)?.volume ?? 0;
+
+    return vb - va;
+  })[0];
+}

@@ -3,11 +3,13 @@
     v-if="!paid"
     color="primary"
     :loading="loading"
+    width="95"
+    class="btn"
     @click="handlePayment"
   >
     {{ $t("pay") }}
   </f-button>
-  <f-button v-else depressed color="greyscale_6">
+  <f-button v-else depressed color="greyscale_6" width="95" class="btn">
     <v-icon size="16">$IconTick</v-icon>
   </f-button>
 </template>
@@ -66,3 +68,9 @@ class PaymentAction extends Vue {
 }
 export default PaymentAction;
 </script>
+
+<style lang="scss" scoped>
+.btn {
+  width: 95px;
+}
+</style>

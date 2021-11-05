@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div ref="headers" class="pool-headers">
+    <div ref="headers" class="pool-headers mb-5">
       <slot name="header" />
 
-      <template v-if="!isSearch || !meta.empty">
+      <template v-if="!hideHeaders">
         <pool-dimension-list v-model="dimension" class="my-4" />
 
         <pool-header @switch="handleSwitch" @sort="handleSort" />
       </template>
     </div>
 
-    <empty-place-holder v-if="meta.empty" :is-search="isSearch" />
+    <empty-place-holder v-if="meta.empty" :searchable="searchable" />
 
     <pool-item
       v-for="(item, index) in meta.items"
@@ -29,11 +29,6 @@ import PoolHeader from "./PoolHeader.vue";
 import PoolItem from "./PoolItem.vue";
 import EmptyPlaceHolder from "./EmptyPlaceHolder.vue";
 import { getPairMeta, filterFn } from "@/utils/pair/helper";
-
-export const sorts = [
-  { value: "asce", icon: "$IconSortAsce" },
-  { value: "desc", icon: "$IconSortDesc" },
-];
 
 @Component({
   components: {
@@ -57,26 +52,40 @@ class PoolList extends Vue {
   filter!: string;
 
   @Prop({ type: Boolean, default: false })
-  isSearch!: string;
+  searchable!: string;
+
+  @Prop({ type: Boolean, default: false })
+  recordable!: string;
+
+  @Prop({ type: Boolean, default: true })
+  sortable!: boolean;
+
+  @Prop({ type: Boolean, default: false })
+  hideHeaders!: string;
 
   @Prop() pairs;
 
   get meta() {
     const { getters } = this.$store;
-    const pairs: API.Pair[] =
-      this.pairs || getters[GlobalGetters.AVALIABLE_PAIRS];
+    const pairs = this.pairs || getters[GlobalGetters.AVALIABLE_PAIRS];
 
-    const sorted = pairs
-      .map((x) => getPairMeta(this, x)!)
-      .sort((a, b) => {
+    let items = pairs.map((x) => getPairMeta(this, x)!);
+
+    if (this.sortable) {
+      items = items.sort((a, b) => {
+        if (this.sort === "none") {
+          return Number(b.volume) - Number(a.volume);
+        }
+
         const v = Number(b[this.dimension]) - Number(a[this.dimension]);
 
         return this.sort === "asce" ? -v : v;
       });
+    }
 
-    const items = this.isSearch
-      ? sorted.filter((x) => filterFn(this.filter, x))
-      : sorted;
+    if (this.searchable) {
+      items = items.filter((x) => filterFn(this.filter, x));
+    }
 
     const empty = items.length === 0;
 
@@ -89,8 +98,11 @@ class PoolList extends Vue {
       query: { base: item.base_asset_id, quote: item.quote_asset_id },
     });
 
-    if (this.isSearch) {
-      this.$store.commit(GlobalMutations.SET_POOL_SEARCH_HISTORY, this.filter);
+    if (this.recordable) {
+      this.$store.commit(
+        GlobalMutations.SET_POOL_SEARCH_HISTORY,
+        JSON.stringify({ base: item.base_asset_id, quote: item.quote_asset_id })
+      );
     }
   }
 
@@ -98,11 +110,8 @@ class PoolList extends Vue {
     this.reverse = !this.reverse;
   }
 
-  handleSort() {
-    const currentIndex = sorts.findIndex((x) => x.value === this.sort);
-    const next = (currentIndex + 1) % sorts.length;
-
-    this.sort = sorts[next].value;
+  handleSort(value) {
+    this.sort = value;
   }
 }
 export default PoolList;

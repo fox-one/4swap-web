@@ -27,10 +27,10 @@ export default class ConnectWalletBtn extends Vue {
   handleDisconnect() {
     this.$uikit.dialog.show({
       title: this.$t("confirm") as string,
-      text: "Confirm to disconnect your wallet?",
+      text: this.$t("disconnect.confrirm") as string,
       type: "warning",
       confirm: {
-        text: "Disconnect",
+        text: this.$t("disconnect") as string,
         callback: () => {
           this.$utils.account.logout(this);
 

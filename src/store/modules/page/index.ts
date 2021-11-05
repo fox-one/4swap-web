@@ -38,7 +38,7 @@ const state = {
 
 const mutations = {
   [MutationTypes.SET_POOL_SEARCH_HISTORY](state, value) {
-    updateCache(state, value);
+    updateCache(state.pool.searchHistory, value);
   },
   ...make.mutations(state),
 };

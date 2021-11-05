@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" max-width="450">
-    <f-panel class="pa-8">
+    <f-panel class="pa-8 pb-2">
       <div class="label-1 text-center">
         {{ $t("liquidity.create.new-pool") }}
       </div>
@@ -10,7 +10,9 @@
         <span class="ml-3">{{ meta.symbol }}</span>
       </div>
 
-      <div class="mt-6 fee">You need to pay fee: {{ meta.feeText }}</div>
+      <div class="mt-6 fee">
+        {{ $t("fee.create", { amount: meta.feeText }) }}
+      </div>
 
       <v-layout justify-space-around class="mt-6">
         <f-button text color="greyscale_3" @click="handleCancel">

@@ -9,7 +9,7 @@
       />
     </template>
 
-    <div>
+    <div class="items">
       <base-select-item
         v-for="(item, index) in items"
         :key="index"
@@ -48,3 +48,10 @@ class CurrencySetting extends Vue {
 }
 export default CurrencySetting;
 </script>
+
+<style lang="scss" scoped>
+.items {
+  max-height: 60vh;
+  overflow: auto;
+}
+</style>

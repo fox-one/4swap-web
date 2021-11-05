@@ -19,6 +19,7 @@
           :key="index"
           :ripple="false"
           :value="item.value"
+          class="btn"
         >
           <span>{{ item.text }}</span>
         </f-button>
@@ -128,5 +129,9 @@ export default SlippageSetting;
 .f-segment-control {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.btn {
+  padding: 0 !important;
 }
 </style>

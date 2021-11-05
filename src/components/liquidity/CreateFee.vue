@@ -1,6 +1,11 @@
 <template>
   <v-layout class="fee">
-    <f-mixin-asset-logo :logo="meta.logo" :size="24" />
+    <f-mixin-asset-logo
+      :logo="meta.logo"
+      :chainLogo="meta.chainLogo"
+      :size="24"
+      :chain-size="10"
+    />
     <span class="ml-2">{{ meta.text }}</span>
     <v-spacer />
     <span class="hint"> ≈ {{ meta.fiatText }} </span>
@@ -20,12 +25,14 @@ class CreateFee extends Vue {
     const asset = getAssetById(CREATE_FEE.asset_id);
 
     const logo = asset?.logo ?? "";
+    const chainLogo = asset?.chain?.logo ?? "";
     const symbol = asset?.symbol ?? "";
     const price = asset?.price ?? 0;
     const fiatText = toFiat(this, { n: +price * CREATE_FEE.amount });
 
     return {
       logo,
+      chainLogo,
       text: `${CREATE_FEE.amount} ${symbol}`,
       fiatText,
     };

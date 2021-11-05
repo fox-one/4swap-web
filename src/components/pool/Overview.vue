@@ -5,9 +5,9 @@
         v-for="(item, index) in items"
         :key="index"
         cols="6"
-        class="text-center pa-4"
+        class="text-center py-4 px-0"
       >
-        <div class="label-3 mb-4">
+        <div class="label mb-4">
           {{ item.text }}
         </div>
         <div class="value number">
@@ -65,7 +65,12 @@ class PoolOverview extends Vue {
   }
 
   handleToAddLiquidity() {
-    this.$router.push({ name: "liquidity-add" });
+    const pair = this.$utils.pair.getMostLiquidityPair(this);
+
+    this.$router.push({
+      name: "liquidity-add",
+      query: { base: pair.base_asset_id, quote: pair.quote_asset_id },
+    });
   }
 }
 export default PoolOverview;
@@ -93,6 +98,14 @@ export default PoolOverview;
       );
     }
   }
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  color: var(--v-greyscale_1-base);
+  opacity: 0.4;
 }
 
 .value {

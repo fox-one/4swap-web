@@ -1,5 +1,5 @@
 <template>
-  <div v-if="info">
+  <div>
     <div class="text-center">
       <f-mixin-asset-logo
         :size="40"
@@ -87,7 +87,7 @@ export default BriefIntroduction;
 
 .intro {
   font-size: 12px;
-  line-height: 15px;
+  line-height: 1.5;
   color: var(--v-greyscale_3-base);
 }
 </style>

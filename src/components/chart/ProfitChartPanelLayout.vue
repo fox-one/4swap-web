@@ -5,7 +5,7 @@
         fab
         width="24"
         height="24"
-        color="greyscale_5"
+        :color="colors.toggle"
         @click="handleToggle"
       >
         <v-icon v-if="expand" size="16"> $FIconMin4P</v-icon>
@@ -44,6 +44,14 @@ import ChartThumbLayout from "./ChartThumbLayout.vue";
 })
 class ProfitPanelLayout extends Vue {
   @Prop() expand;
+
+  get colors() {
+    const dark = this.$vuetify.theme.dark;
+
+    return {
+      toggle: dark ? "greyscale_5" : "greyscale_7",
+    };
+  }
 
   handleToggle() {
     this.$emit("toggle");

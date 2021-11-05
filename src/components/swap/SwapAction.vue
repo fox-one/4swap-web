@@ -82,10 +82,14 @@ class SwapAction extends Vue {
       await this.$utils.payment.swap(this, params, {
         onSuccess: () => {
           // this.handleShowSuccessModal();
-          this.$uikit.toast.success({ message: "Swap Successfully" });
+          this.$uikit.toast.success({
+            message: this.$t("swap.sccuess") as string,
+          });
         },
         onError: () => {
-          this.$utils.helper.errorHandler(this, { message: "Rejected" });
+          this.$utils.helper.errorHandler(this, {
+            message: this.$t("rejected") as string,
+          });
         },
         checker: () => this.$utils.payment.checkSwapOrder(this, traceId),
       });

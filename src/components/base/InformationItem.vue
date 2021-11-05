@@ -59,8 +59,8 @@ export default InformationItem;
 <style lang="scss" scoped>
 .information-item {
   font-weight: 500;
-  margin: 12px 0;
-  line-height: 1.5;
+  margin: 24px 0;
+  line-height: 12px;
   font-size: 13px;
 
   &--small {

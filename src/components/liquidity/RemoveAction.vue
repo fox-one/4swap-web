@@ -8,7 +8,7 @@
       color="primary"
       @click="handleRemove"
     >
-      {{ $t("next") }}
+      {{ $t("liquidity.remove.action") }}
     </f-button>
   </div>
 </template>

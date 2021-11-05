@@ -24,6 +24,7 @@ export default function () {
           "auth",
           "page.swap.input.asset",
           "page.swap.output.asset",
+          "page.pool.searchHistory",
         ],
       }),
     ],

@@ -3,7 +3,7 @@
     <div class="mt-3">
       <render :nodes="title" />
     </div>
-    <div v-if="!thumb" class="mt-3 label-3 subtitle">
+    <div v-if="!thumb" class="mt-3 subtitle">
       <render :nodes="subtitle" />
     </div>
   </div>
@@ -67,5 +67,10 @@ export default ChartTitle;
 
 .subtitle {
   font-weight: 500;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--v-greyscale_1-base);
+  opacity: 0.4;
 }
 </style>

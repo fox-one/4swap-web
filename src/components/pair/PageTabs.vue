@@ -12,8 +12,6 @@
     <v-tab v-for="(tab, index) in tabs" :key="index" :ripple="false">
       <span>{{ tab.text }}</span>
     </v-tab>
-
-    <f-divider v-if="$vuetify.theme.dark" class="tab-divider" />
   </f-tabs>
 </template>
 

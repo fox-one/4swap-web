@@ -1,7 +1,7 @@
 <template>
   <div class="greyscale_6 rounded pa-6 mb-4">
     <v-layout align-center>
-      <v-layout>
+      <v-layout class="left">
         <base-pair-icon
           size="40"
           :base-asset="meta.baseAsset"
@@ -14,7 +14,7 @@
         </div>
       </v-layout>
 
-      <v-btn fab width="40" height="40" @click="handleToDetail">
+      <v-btn fab width="32" height="32" @click="handleToDetail">
         <v-icon size="16">$FIconChevronRight4PBold</v-icon>
       </v-btn>
     </v-layout>
@@ -115,6 +115,11 @@ export default PoolItem;
 </script>
 
 <style lang="scss" scoped>
+.left {
+  margin-top: -2px;
+  padding-top: -2px;
+}
+
 .value {
   font-weight: 600;
   font-size: 16px;

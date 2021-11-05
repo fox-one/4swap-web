@@ -27,8 +27,8 @@ export function toFiat(
   const locale = getLangCode(vm.$store.$i18n.locale);
   const configs = opts.short
     ? {
-        maximumFractionDigits: 0,
-        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
         notation: "compact",
       }
     : {};

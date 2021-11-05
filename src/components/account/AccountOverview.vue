@@ -4,8 +4,13 @@
 
     <div class="mt-6">
       <base-fiat-division :parts="meta.parts" class="balance" />
-      <span :style="{ color: meta.color }" class="profit ml-3">
-        {{ meta.profitSymbol + " " + meta.totalProfitText }}
+
+      <span
+        v-if="!meta.hideProfit"
+        :style="{ color: meta.color }"
+        class="profit ml-3"
+      >
+        {{ meta.totalProfitText }}
       </span>
     </div>
   </div>
@@ -19,21 +24,24 @@ import { GlobalGetters } from "~/store/types";
 class AccountOverview extends Vue {
   get meta() {
     const toFiat = this.$utils.currency.toFiat;
+    const attachSign = this.$utils.number.attachSign;
     const getters = this.$store.getters;
 
     const { totalUsd, totalProfit } = getters[GlobalGetters.ACCOUNT_OVERVIEW];
     const parts = toFiat(this, { n: totalUsd }, true);
-    const totalProfitText = toFiat(this, { n: Math.abs(totalProfit) });
-    const profitSymbol = +totalProfit > 0 ? "+" : "";
-    const sign = +totalProfit > 0 ? "+" : +totalProfit < 0 ? "-" : "";
+    const totalProfitText = attachSign({
+      n: +totalProfit,
+      text: toFiat(this, { n: Math.abs(totalProfit) }) as string,
+    });
     const color = this.$utils.color.getColor(this, totalProfit);
+    const hideProfit = +totalProfit === 0;
 
     return {
       parts,
       totalProfit,
       color,
-      totalProfitText: sign + " " + totalProfitText,
-      profitSymbol,
+      totalProfitText,
+      hideProfit,
     };
   }
 }

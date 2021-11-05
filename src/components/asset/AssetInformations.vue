@@ -1,7 +1,7 @@
 <template>
   <div v-if="asset">
     <base-information-list :items="items1" />
-    <base-information-list reactive :items="items2" />
+    <base-information-list reactive :items="items2" class="mt-n3" />
   </div>
 </template>
 
@@ -73,9 +73,10 @@ class AssetInformations extends Vue {
   get items1() {
     const h = this.$createElement;
     const website = this.meta.website;
+    const items: any = [];
 
-    return [
-      website && {
+    if (website) {
+      items.push({
         title: this.$t("website"),
         value: h(
           "a",
@@ -87,8 +88,10 @@ class AssetInformations extends Vue {
           },
           [this.meta.website]
         ),
-      },
-    ];
+      });
+    }
+
+    return items;
   }
 
   get items2() {

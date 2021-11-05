@@ -111,11 +111,4 @@ export default CreateForm;
     }
   }
 }
-
-::v-deep {
-  .f-asset-select-field {
-    border-radius: 8px !important;
-    height: 56px !important;
-  }
-}
 </style>

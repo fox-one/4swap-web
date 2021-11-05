@@ -38,5 +38,9 @@ export default InformationList;
   display: grid;
   column-gap: 24px;
   grid-template-columns: 1fr 1fr;
+
+  .information-item {
+    margin: 12px 0;
+  }
 }
 </style>

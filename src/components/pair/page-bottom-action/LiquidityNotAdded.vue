@@ -23,5 +23,10 @@ export default PageActionNotAdded;
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.theme--dark .liuquidtiy-action {
+  box-shadow: 0px 8px 32px rgba(255, 255, 255, 0.12);
 }
 </style>

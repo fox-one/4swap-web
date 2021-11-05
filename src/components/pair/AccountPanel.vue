@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="text-center top-section">
+    <div class="text-center top-section mt-4">
       <base-fiat-division :parts="meta.totalValueParts" class="liquidity" />
       <div class="share mt-3">{{ meta.shareText }}</div>
 
       <account-profits-chart :pair="pair" class="mt-8 text-left" />
     </div>
 
-    <account-profit-informations :pair="pair" class="mt-8" />
+    <account-profit-informations :pair="pair" class="mt-6" />
 
     <div class="mx-n4">
       <div class="pt-2 greyscale_6" />

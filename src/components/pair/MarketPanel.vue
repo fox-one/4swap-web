@@ -1,8 +1,8 @@
 <template>
   <div v-if="pair">
-    <pair-price :pair="pair" />
+    <pair-price :pair="pair" class="mt-4" />
 
-    <f-divider class="my-6 mx-n3" />
+    <f-divider class="mt-6 mb-3 mx-n3" />
 
     <pair-informations :pair="pair" :data="data" />
 

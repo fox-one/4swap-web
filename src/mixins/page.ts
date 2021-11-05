@@ -45,7 +45,7 @@ export default class PageView extends Vue {
     const locale = this.$utils.helper.getLocale();
 
     this.$i18n.locale = locale;
-    this.$vuetify.lang.current = locale;
+    this.$vuetify.lang.current = locale === "zh" ? "zhHans" : locale;
 
     dayjs.locale(locale);
   }

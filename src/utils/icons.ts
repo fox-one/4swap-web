@@ -25,6 +25,7 @@ import {
   FIconMin4P,
   FIconLink4P,
   FIconWarningFill,
+  FIconChevronRight4P,
 } from "@foxone/icons";
 
 const ficons = {
@@ -54,6 +55,7 @@ const ficons = {
   FIconMin4P: { component: FIconMin4P },
   FIconLink4P: { component: FIconLink4P },
   FIconWarningFill: { component: FIconWarningFill },
+  FIconChevronRight4P: { component: FIconChevronRight4P },
 };
 
 const icons = [

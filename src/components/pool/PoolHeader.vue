@@ -7,7 +7,7 @@
 
     <v-spacer />
 
-    <div @click="$emit('sort')">
+    <div @click="handleSort">
       <span class="label-3">{{ $t(meta.dimension.text) }}</span>
       <v-icon size="12">{{ meta.sort.icon }}</v-icon>
     </div>
@@ -15,9 +15,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, InjectReactive } from "vue-property-decorator";
+import { Component, Vue, InjectReactive, Watch } from "vue-property-decorator";
 import { dimensions } from "./DimensionList.vue";
-import { sorts } from "./PoolList.vue";
 
 @Component
 class PoolHeader extends Vue {
@@ -30,11 +29,40 @@ class PoolHeader extends Vue {
   @InjectReactive()
   sort!: string;
 
+  get sorts() {
+    const sorts = [
+      { value: "desc", icon: "$IconSortDesc" },
+      { value: "asce", icon: "$IconSortAsce" },
+      { value: "none", icon: "$IconSortNone" },
+    ];
+
+    if (this.dimension === "volume") {
+      return sorts.slice(0, 2);
+    }
+
+    return sorts;
+  }
+
   get meta() {
     const dimension = dimensions.find((x) => x.value === this.dimension);
-    const sort = sorts.find((x) => x.value === this.sort);
+    const sort = this.sorts.find((x) => x.value === this.sort);
 
     return { dimension, sort };
+  }
+
+  @Watch("dimension")
+  handleDimensionChange() {
+    if (this.dimension === "volume" && this.sort === "none") {
+      this.$emit("sort", "desc");
+    }
+  }
+
+  handleSort() {
+    const currentIndex = this.sorts.findIndex((x) => x.value === this.sort);
+    const next = (currentIndex + 1) % this.sorts.length;
+    const value = this.sorts[next].value;
+
+    this.$emit("sort", value);
   }
 }
 export default PoolHeader;

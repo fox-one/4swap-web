@@ -25,7 +25,13 @@ export function getBaseOption(vm, data, colors): EChartsOption {
       axisLabel: {
         inside: false,
         showMinLabel: false,
-        color: colors[2],
+        margin: 16,
+        color: () => {
+          const isDark = vm.$vuetify.theme.dark;
+
+          return isDark ? "rgba(255, 255, 255, 0.4)" : "rgba(0, 0, 0, 0.4)";
+        },
+        rich: {},
       },
       axisPointer: {
         show: true,

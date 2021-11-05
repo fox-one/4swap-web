@@ -1,5 +1,5 @@
 <template>
-  <f-bottom-sheet v-model="dialog">
+  <f-bottom-sheet v-model="dialog" hide-close-icon>
     <template #activator="{ on }">
       <base-user-avatar
         v-show="isLogged"
@@ -11,7 +11,10 @@
       />
     </template>
 
-    <account-setting-overview @disconnected="handleDisconnected" />
+    <account-setting-overview
+      @disconnected="handleDisconnected"
+      @close="handleClose"
+    />
   </f-bottom-sheet>
 </template>
 
@@ -38,6 +41,10 @@ class AccountAvatar extends Vue {
       avatar: this.profile?.avatar_url ?? "",
       name: this.profile?.full_name ?? "",
     };
+  }
+
+  handleClose() {
+    this.dialog = false;
   }
 
   handleDisconnected() {

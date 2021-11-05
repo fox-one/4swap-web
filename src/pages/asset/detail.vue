@@ -4,7 +4,7 @@
 
     <f-divider opacity="0.05" class="mb-8 mx-n4" />
 
-    <div class="label-1">{{ $t("overview") }}</div>
+    <div class="label-1 mb-6">{{ $t("overview") }}</div>
     <asset-informations :asset="meta.asset" :info="info" :pairs="meta.pairs" />
 
     <f-divider opacity="0.05" class="mb-8 mt-6 mx-n4" />

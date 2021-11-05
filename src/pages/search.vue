@@ -1,10 +1,10 @@
 <template>
   <div>
-    <f-search-input v-model="filter" clearable />
+    <f-search-input v-model="filter" clearable hide-details />
 
     <search-history v-if="meta.showHistory" />
 
-    <pool-list v-else :is-search="true" :filter="filter" />
+    <pool-list v-else searchable recordable :filter="filter" class="mt-6" />
   </div>
 </template>
 

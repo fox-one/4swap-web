@@ -2,8 +2,8 @@
   <div>
     <market-informations />
 
-    <f-divider class="my-8 mx-n4" />
-    <div class="label-1 mt-8">{{ $t("chart") }}</div>
+    <f-divider opacity="0.2" class="mt-5 mb-8" />
+    <div class="label-1">{{ $t("chart") }}</div>
     <market-chart-panel class="mt-4" />
 
     <div class="label-1 mt-8">{{ $t("transactions") }}</div>

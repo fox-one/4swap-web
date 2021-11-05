@@ -1,6 +1,8 @@
 <template>
   <div class="text-center">
-    <div class="label-3">No information about Reborn Coin</div>
+    <div class="label-3 mt-4">
+      {{ $t("coin.no-intro") }}
+    </div>
 
     <contribute-action class="my-6" />
   </div>

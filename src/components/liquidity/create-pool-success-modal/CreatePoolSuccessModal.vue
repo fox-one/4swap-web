@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" max-width="450">
-    <f-panel class="pa-8">
-      <div class="label-1 d-flex align-center">
+    <f-panel class="pa-8 pb-2">
+      <div class="label-1 d-flex align-center justify-center">
         <v-icon class="mr-1"> $IconCheck </v-icon>
 
         {{ $t("liquidity.create.toast.success.title") }}

@@ -5,6 +5,10 @@ a {
   user-select: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 .label-1 {
   font-size: 18px;
   font-weight: 600;
@@ -30,6 +34,6 @@ a {
   background-color: transparent !important;
 }
 
-.f-input-search svg {
-  width: 12px !important;
+.f-asset-list {
+  min-height: 60vh;
 }

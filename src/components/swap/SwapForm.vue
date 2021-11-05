@@ -5,7 +5,7 @@
         <base-asset-amount-input
           :data="bindInput"
           :assets="assets"
-          :placeholder="$t('sell')"
+          :placeholder="$t('from')"
           @update:asset="(v) => handleUpdateAsset('input', v)"
           @input="(v) => handleInput('input', v)"
         />
@@ -15,7 +15,7 @@
         <base-asset-amount-input
           :data="bindOutput"
           :assets="assets"
-          :placeholder="$t('received')"
+          :placeholder="$t('to')"
           @update:asset="(v) => handleUpdateAsset('output', v)"
           @input="(v) => handleInput('output', v)"
         />

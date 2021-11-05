@@ -24,6 +24,7 @@ const themesLake = {
     warning_emphsize: "#FFE08F",
     error_bg: "#4A2222",
     error_emphsize: "#F34A4D",
+    greyscale_6: "#303030",
   },
 };
 
@@ -42,18 +43,20 @@ const themeFSwap = {
   dark: {
     primary: "#FFFFFF",
     secondary: "#EE4596",
-    third: "#88305A",
-    forth: "#6f2649",
+    third: "#882F57",
+    forth: "#A94170",
     fifth: "#763f59",
     warning_bg: "#5C3A13",
     warning_emphsize: "#FFE08F",
     error_bg: "#4A2222",
     error_emphsize: "#F34A4D",
+    greyscale_6: "#303030",
   },
 };
 
 export default function ({ store, $config }) {
   const isDark = store.state.app.dark;
+  // const isDark = false;
 
   const options = {
     icons: {

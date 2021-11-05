@@ -85,14 +85,14 @@ class LiquidityAddForm extends Vue {
   get rules() {
     return {
       asset1: [
-        () => !!this.bindAsset1.asset || "Asset is required",
-        (v) => !!v || "Amount is required",
-        (v) => +v > 0 || "Amount is not valid",
+        () => !!this.bindAsset1.asset || this.$t("asset.required"),
+        (v) => !!v || this.$t("amount.required"),
+        (v) => +v > 0 || this.$t("amount.invalid"),
       ],
       asset2: [
-        () => !!this.bindAsset2.asset || "Asset is required",
-        (v) => !!v || "Amount is required",
-        (v) => +v > 0 || "Amount is not valid",
+        () => !!this.bindAsset2.asset || this.$t("asset.required"),
+        (v) => !!v || this.$t("amount.required"),
+        (v) => +v > 0 || this.$t("amount.invalid"),
       ],
     };
   }

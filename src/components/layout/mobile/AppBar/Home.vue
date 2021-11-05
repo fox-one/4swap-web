@@ -58,8 +58,6 @@ class HomeAppBar extends Vue {
 
   @Watch("appbar.color", { immediate: true })
   handleColorChange(value: string) {
-    console.log("handleColorChange", value);
-
     this.$utils.mixin.setMixinTheme(value);
   }
 }
@@ -78,5 +76,11 @@ export default HomeAppBar;
 
 .appbar--shadow {
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+.theme--dark {
+  .appbar--shadow {
+    box-shadow: 0px 0px 24px rgba(255, 255, 255, 0.12) !important;
+  }
 }
 </style>

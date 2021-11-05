@@ -1,11 +1,19 @@
 <template>
   <div class="overview">
-    <div class="header">
-      <div class="label-3 mb-4">{{ $t("wallet.assets") }}</div>
-      <div class="balance">
-        <base-fiat-division :parts="meta.parts" />
+    <v-sheet light>
+      <div class="header">
+        <div class="label mb-4">{{ $t("wallet.assets") }}</div>
+        <div class="balance">
+          <base-fiat-division :parts="meta.parts" />
+        </div>
+
+        <v-btn icon small class="f-bottom-sheet__close" @click="$emit('close')">
+          <v-icon>$close</v-icon>
+        </v-btn>
       </div>
-    </div>
+    </v-sheet>
+
+    <v-sheet></v-sheet>
 
     <div class="mb-8">
       <f-list-item
@@ -32,7 +40,9 @@
     <div class="text-center mb-8">
       <base-disconnect @disconnected="$emit('disconnected')" />
 
-      <div class="label-3 mt-8">{{ $t("channel.name") }} v{{ version }}</div>
+      <div class="version label-3 mt-8">
+        {{ $t("channel.name") }} v{{ version }}
+      </div>
     </div>
   </div>
 </template>
@@ -77,6 +87,16 @@ export default AccountSettingOverview;
 .header {
   padding: 54px 16px;
   background: url("../../assets/images/bg_coins.png") 100% 100% no-repeat,
-    var(--v-fifth-base);
+    #f6f8fc;
+
+  .label {
+    color: var(--v-greyscale_3-base);
+    font-weight: 500;
+    font-size: 14px;
+  }
+}
+
+.version {
+  color: var(--v-greyscale_4-base);
 }
 </style>

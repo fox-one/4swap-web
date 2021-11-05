@@ -13,9 +13,13 @@
 
       <div class="label-1 mb-4">{{ $t("my.pools") }}</div>
 
-      <f-search-input v-model="filter" :placeholder="$t('search.pools')" />
+      <f-search-input
+        v-model="filter"
+        :placeholder="$t('search.pools')"
+        hide-details
+      />
 
-      <account-pool-list :filter="filter" />
+      <account-pool-list :filter="filter" class="mt-4" />
     </template>
   </div>
 </template>

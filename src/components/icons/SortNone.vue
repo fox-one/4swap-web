@@ -8,11 +8,11 @@
   >
     <path
       d="M5.59625 0.553942C5.79596 0.280098 6.20451 0.280098 6.40422 0.553942L9.46434 4.75H2.53613L5.59625 0.553942Z"
-      fill="#CCCCCC"
+      :fill="color[0]"
     />
     <path
       d="M5.59625 11.4461C5.79596 11.7199 6.20451 11.7199 6.40422 11.4461L9.46434 7.25H2.53613L5.59625 11.4461Z"
-      fill="#CCCCCC"
+      :fill="color[0]"
     />
   </svg>
 </template>
@@ -21,6 +21,10 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-class SortNone extends Vue {}
+class SortNone extends Vue {
+  get color() {
+    return [this.$vuetify.theme.currentTheme.greyscale_4];
+  }
+}
 export default SortNone;
 </script>

@@ -64,7 +64,7 @@ class SwapFormInformations extends Vue {
         value: this.meta.minReceivedText,
       },
       {
-        title: this.$t("tip.label.fee"),
+        title: this.$t("fee"),
         value: this.meta.feeText,
       },
       {

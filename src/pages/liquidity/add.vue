@@ -101,11 +101,13 @@ class LiquidityAdd extends Mixins(mixin.page) {
   setInitialAsset() {
     const base = this.$route.query.base;
     const quote = this.$route.query.quote;
-
     const getAssetById = this.$store.getters[GlobalGetters.GET_ASSET_BY_ID];
 
-    this.asset1.asset = getAssetById(base) || null;
-    this.asset2.asset = getAssetById(quote) || null;
+    const asset1 = getAssetById(base) || null;
+    const asset2 = getAssetById(quote) || null;
+
+    this.asset1.asset = asset1;
+    this.asset2.asset = asset2;
   }
 }
 export default LiquidityAdd;

@@ -137,7 +137,7 @@ class ProfitRateChartPanel extends Vue {
         +value > 0 ? "$IconUpPolygon" : +value < 0 ? "$IconDownPolygon" : "";
 
       return h("span", { staticClass: "d-flex align-center" }, [
-        h(VIcon, { staticClass: "mr-1", props: { size: 16 } }, [icon]),
+        h(VIcon, { staticClass: "mr-1", props: { size: 12 } }, [icon]),
         text,
       ]);
     };

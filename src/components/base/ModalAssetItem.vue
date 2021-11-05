@@ -53,8 +53,8 @@ export default ModalAssetItem;
 .asset-item {
   display: flex;
   align-items: center;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 5c00;
   margin-bottom: 20px;
   cursor: pointer;
 

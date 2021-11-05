@@ -4,6 +4,7 @@
     :asset="bindData.asset"
     :assets="assets"
     hide-details
+    inputmode="decimal"
     v-bind="$attrs"
     v-on="$listeners"
   >
@@ -24,7 +25,9 @@
 import { Component, PropSync, Vue, Prop } from "vue-property-decorator";
 import { GlobalGetters } from "@/store/types";
 
-@Component
+@Component({
+  inheritAttrs: false,
+})
 class AssetAmountInput extends Vue {
   @PropSync("data") bindData;
 

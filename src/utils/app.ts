@@ -17,20 +17,24 @@ export async function init(vm: Vue) {
       }),
     ]);
 
-    if (vm.$route.name === "auth") {
-      commit(GlobalMutations.SET_APP_INITING, false);
+    try {
+      if (vm.$route.name === "auth") {
+        commit(GlobalMutations.SET_APP_INITING, false);
 
-      return;
+        return;
+      }
+
+      await vm.$utils.account.checkFennecAuth(vm);
+
+      // load account data
+      await loadAccountData(vm);
+    } catch (error) {
+      // ignore 401
     }
-
-    await vm.$utils.account.checkFennecAuth(vm);
-
-    // load account data
-    await loadAccountData(vm);
 
     commit(GlobalMutations.SET_APP_INITING, false);
   } catch (error) {
-    commit(GlobalMutations.SET_APP_INITING, false);
+    vm.$utils.helper.errorHandler(vm, error);
   }
 }
 

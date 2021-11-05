@@ -14,7 +14,7 @@
 
     <span>{{ meta.amountText }}</span>
 
-    <v-icon size="16" class="ml-4">$FIconChevronRight4PBold</v-icon>
+    <v-icon size="16" class="ml-4">$FIconChevronRight4P</v-icon>
   </div>
 </template>
 

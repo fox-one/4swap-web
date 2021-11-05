@@ -1,8 +1,13 @@
 <template>
   <div>
-    <currency-setting />
-    <scheme-setting />
-    <price-alert-setting />
+    <div class="my-3">
+      <currency-setting />
+    </div>
+    <div class="my-3">
+      <scheme-setting class="my-3" />
+    </div>
+
+    <price-alert-setting class="my-3" />
   </div>
 </template>
 

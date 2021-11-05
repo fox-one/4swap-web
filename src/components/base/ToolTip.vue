@@ -32,7 +32,7 @@
     </template>
 
     <f-bottom-sheet-title>
-      {{ $t("common.hint-title") }}
+      {{ $t("details") }}
     </f-bottom-sheet-title>
     <div class="hint">
       <div class="pa-6 pt-0" v-if="html" v-html="hint" />
@@ -40,7 +40,7 @@
 
       <div class="text-center my-8">
         <f-button color="primary" @click="handleClose">
-          {{ $t("common.close") }}
+          {{ $t("close") }}
         </f-button>
       </div>
     </div>

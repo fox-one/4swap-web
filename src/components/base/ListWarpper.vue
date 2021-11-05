@@ -14,7 +14,7 @@
       v-else-if="error"
       class="d-flex caption error--text justify-center pa-5"
     >
-      {{ $t("error") }}
+      {{ $t("error.ocurred") }}
     </div>
     <div
       v-else-if="!empty"
@@ -22,7 +22,7 @@
     >
       <div v-if="filter">{{ $t("not-found") }}</div>
       <slot v-else name="empty">
-        {{ hint || $t("common.empty") }}
+        {{ hint || $t("empty") }}
       </slot>
     </div>
   </div>

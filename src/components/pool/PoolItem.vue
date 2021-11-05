@@ -1,18 +1,22 @@
 <template>
-  <v-layout align-center class="my-5">
+  <v-layout align-center class="pool-item">
     <base-pair-icon
       :base-asset="meta.baseAsset"
       :quote-asset="meta.quoteAsset"
     />
 
     <v-flex class="ml-4">
-      <div class="font-weight-bold">{{ meta.symbol }}</div>
-      <div class="label-3 mt-2 number">{{ meta.priceText }}</div>
-    </v-flex>
+      <v-layout>
+        <v-flex class="font-weight-bold">
+          {{ meta.symbol }}
+        </v-flex>
+        <span class="number font-weight-bold">{{ meta.dataText }}</span>
+      </v-layout>
 
-    <div class="align-self-start font-weight-bold number">
-      {{ meta.dataText }}
-    </div>
+      <div class="label-3 mt-2 number">
+        {{ meta.priceText }}
+      </div>
+    </v-flex>
   </v-layout>
 </template>
 
@@ -58,5 +62,9 @@ export default PoolItem;
 <style lang="scss" scoped>
 .font-weight-bold {
   font-weight: 600 !important;
+}
+
+.pool-item {
+  margin-bottom: 32px;
 }
 </style>

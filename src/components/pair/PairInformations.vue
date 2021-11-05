@@ -2,7 +2,7 @@
   <div>
     <base-information-list :items="meta.items" reactive small />
 
-    <div class="label-1 action rounded mt-6" @click="handleClick">
+    <div class="label-1 action rounded mt-3" @click="handleClick">
       <v-icon size="16">$FIconConvertDirection4PBold</v-icon>
       <span class="ml-2">{{ $t("swap") }}</span>
     </div>
@@ -112,5 +112,6 @@ export default PairInformations;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 14px;
 }
 </style>

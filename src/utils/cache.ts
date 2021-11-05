@@ -3,9 +3,11 @@ export function updateCache(cache: string[], value: string) {
 
   if (index > -1) {
     cache.splice(index, 1);
-  } else if (cache.length >= 20) {
-    cache.shift();
   }
 
-  cache.push(value);
+  if (cache.length >= 20) {
+    cache.pop();
+  }
+
+  cache.unshift(value);
 }

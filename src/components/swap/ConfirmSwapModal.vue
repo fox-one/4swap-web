@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" max-width="450">
     <f-panel
       v-if="order && inputAsset && outputAsset"
-      class="swap-confirm-modal pa-8"
+      class="swap-confirm-modal pa-8 pb-2"
     >
       <div class="dialog-title">
         <v-icon v-if="meta.showImpactWarning" :color="meta.color" class="mr-1">
@@ -60,7 +60,7 @@ class ConfirmSwapModal extends Vue {
 
   @Prop() outputAmount!: string;
 
-  dialog = false;
+  dialog = true;
 
   counter = 0;
 
