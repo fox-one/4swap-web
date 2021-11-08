@@ -4,12 +4,10 @@
       <v-icon color="black">$FIconMinusBold</v-icon>
     </span>
 
-    <v-fade-transition>
-      <div v-if="tabIndex === 1" class="account">
-        <div class="amount">{{ meta.totalValueText }}</div>
-        <div class="label-3 mt-1">{{ $t("liquidity.my") }}</div>
-      </div>
-    </v-fade-transition>
+    <div class="account">
+      <div class="amount">{{ meta.totalValueText }}</div>
+      <div class="label-3 mt-1">{{ $t("liquidity.my") }}</div>
+    </div>
 
     <span class="action action__add" @click="handleAdd">
       <v-icon color="white">$FIconAddBold</v-icon>
@@ -29,13 +27,10 @@ class LiquidityPageAction extends Vue {
 
   @Prop() pair;
 
-  animated = false;
-
   get classes() {
     return {
       "liquidity-actions": true,
       "liquidity-actions--dense": this.tabIndex === 0,
-      "liquidity-actions--animated": this.animated,
     };
   }
 
@@ -74,18 +69,20 @@ export default LiquidityPageAction;
   padding: 4px;
   display: flex;
   align-items: center;
-  transition: width 0.2s ease;
+  justify-content: space-between;
+  transition: width 0.5s ease;
 
   &--dense {
     width: 144px;
     justify-content: space-between;
 
     .account {
-      display: none;
+      max-width: 0 !important;
     }
   }
 
   .account {
+    max-width: 400px;
     flex: 1;
     text-align: center;
 
@@ -99,6 +96,7 @@ export default LiquidityPageAction;
   }
 
   .action {
+    position: absolute;
     min-width: 56px;
     width: 56px;
     height: 56px;
@@ -107,12 +105,15 @@ export default LiquidityPageAction;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    z-index: 11;
 
     &__remove {
       background-color: var(--v-greyscale_7-base);
     }
 
     &__add {
+      right: 4px;
+      left: 4px;
       background-color: var(--v-secondary-base);
     }
   }

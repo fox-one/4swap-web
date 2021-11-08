@@ -9,6 +9,10 @@ a {
   text-decoration: none;
 }
 
+.nuxt-progress {
+  background-color: var(--v-secondary-base) !important;
+}
+
 .label-1 {
   font-size: 18px;
   font-weight: 600;

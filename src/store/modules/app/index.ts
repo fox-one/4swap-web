@@ -19,7 +19,7 @@ const state: State.AppState = {
   contentStyle: {},
 
   settings: {
-    slippage: 0.99,
+    slippage: 0.999,
     currency: "USD",
     chartScheme: "SCHEME_A",
     priceAlertCountDown: true,

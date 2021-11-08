@@ -1,7 +1,7 @@
 <template>
   <div v-if="meta.pair" class="page">
     <template v-if="meta.isAdded">
-      <v-tabs-items v-model="tabIndex">
+      <v-tabs-items v-model="tabIndex" touchless>
         <v-tab-item>
           <account-panel :pair="meta.pair" />
         </v-tab-item>
@@ -92,6 +92,15 @@ class PairDetailPage extends Mixins(mixins.page) {
     const isAdded = getIsLiquidityAdded(pair);
 
     return { pair, symbol: pairMeta?.symbol ?? "", isAdded };
+  }
+
+  mounted() {
+    const source = this.$route.query.source;
+    if (source === "market") {
+      this.tabIndex = 1;
+    } else if (source === "profile") {
+      this.tabIndex = 0;
+    }
   }
 
   @Watch("meta.pair", { immediate: true })

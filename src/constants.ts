@@ -14,6 +14,8 @@ export const CNB_ASSET_ID = "965e5c6e-434c-3fa9-b780-c50f43cd955c";
 
 export const PRSID = "3edb734c-6d6f-32ff-ab03-4eb43640c758";
 
+export const PANDO_DOC = "https://docs.pando.im/docs/lake/intro";
+
 export const SUP_CHART_SCHEMES = ["SCHEME_A", "SCHEME_B"];
 
 export const CREATE_FEE = {

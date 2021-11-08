@@ -41,7 +41,9 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
   const sorted = isReverse
     ? { baseAsset: quoteAsset, quoteAsset: baseAsset, ...getReversePair(pair) }
     : { baseAsset, quoteAsset, ...pair };
-  const price = +sorted.quote_amount / +sorted.base_amount;
+  const price =
+    (+sorted.base_amount && +sorted.quote_amount / +sorted.base_amount) || 0;
+  const reversePrice = (price && 1 / price) || 0;
   const symbol = `${sorted.baseAsset.symbol} / ${sorted.quoteAsset.symbol}`;
   const volume = +pair.quote_value + +pair.base_value;
   const turnOver = (volume && +pair.volume_24h / +volume) || 0;
@@ -51,7 +53,7 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
   const quoteSymbol = sorted.quoteAsset.symbol;
 
   const priceFormat = format({ n: price, fixed: true, dp: 8 });
-  const reversePriceFormat = format({ n: 1 / price, fixed: true, dp: 8 });
+  const reversePriceFormat = format({ n: reversePrice, fixed: true, dp: 8 });
   const priceText = `1 ${baseSymbol} ≈ ${priceFormat} ${quoteSymbol}`;
   const reversePriceText = `1 ${quoteSymbol} ≈ ${reversePriceFormat} ${baseSymbol}`;
 
@@ -59,6 +61,7 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
     ...sorted,
     liquidityAsset,
     price,
+    reversePrice,
     symbol,
     volume,
     turnOver,
@@ -179,10 +182,7 @@ export function getPreOrderMeta(
   let receivePercent = 1;
 
   route_assets.forEach((asset, index) => {
-    const pair = getPairByIds({
-      base: asset,
-      quote: route_assets?.[index + 1],
-    });
+    const pair = getPairByIds(asset, route_assets?.[index + 1]);
 
     receivePercent *= 1 - (pair?.fee_percent ?? 0);
   });

@@ -22,13 +22,12 @@ class AccountProfitInformations extends Vue {
 
     const baseAssetSybmol = baseAsset?.symbol ?? "";
     const quoteAssetSymbol = quoteAsset?.symbol ?? "";
-    const currBaseAmount = profit?.origin.currentBaseAmount ?? 0;
-    const currQuoteAmount = profit?.origin.currentQuoteAmount ?? 0;
+    const currBaseAmount = profit?.currentBaseAmount ?? 0;
+    const currQuoteAmount = profit?.currentQuoteAmount ?? 0;
     const netBaseAmount = profit?.netBaseAmount ?? 0;
     const netQuoteAmount = profit?.netQuoteAmount ?? 0;
-    const diffBaseAmount = currBaseAmount - (profit?.origin.netBaseAmount ?? 0);
-    const diffQuoteAmount =
-      currQuoteAmount - (profit?.origin.netQuoteAmount ?? 0);
+    const diffBaseAmount = currBaseAmount - (profit?.netBaseAmount ?? 0);
+    const diffQuoteAmount = currQuoteAmount - (profit?.netQuoteAmount ?? 0);
 
     return {
       baseAsset,
@@ -46,6 +45,8 @@ class AccountProfitInformations extends Vue {
 
   get items() {
     const format = this.$utils.number.format;
+    const attachSign = this.$utils.number.attachSign;
+
     const { baseAssetSybmol, quoteAssetSymbol } = this.meta;
     return [
       {
@@ -60,7 +61,10 @@ class AccountProfitInformations extends Vue {
       {
         title:
           this.$t("liquidity.profits.difference") + ` (${baseAssetSybmol})`,
-        value: format({ n: this.meta.diffBaseAmount, dp: 8 }),
+        value: attachSign({
+          n: this.meta.diffBaseAmount,
+          text: format({ n: Math.abs(this.meta.diffBaseAmount), dp: 8 }),
+        }),
       },
       "divider",
       {
@@ -75,7 +79,10 @@ class AccountProfitInformations extends Vue {
       {
         title:
           this.$t("liquidity.profits.difference") + ` (${quoteAssetSymbol})`,
-        value: format({ n: this.meta.diffQuoteAmount, dp: 8 }),
+        value: attachSign({
+          n: this.meta.diffQuoteAmount,
+          text: format({ n: Math.abs(this.meta.diffQuoteAmount), dp: 8 }),
+        }),
       },
     ];
   }

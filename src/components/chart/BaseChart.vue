@@ -24,6 +24,7 @@ export function getBaseOption(vm, data, colors): EChartsOption {
       axisLine: { show: false },
       axisLabel: {
         inside: false,
+        hideOverlap: true,
         showMinLabel: false,
         margin: 16,
         color: () => {
@@ -32,6 +33,16 @@ export function getBaseOption(vm, data, colors): EChartsOption {
           return isDark ? "rgba(255, 255, 255, 0.4)" : "rgba(0, 0, 0, 0.4)";
         },
         rich: {},
+        formatter: {
+          year: "{yyyy}",
+          month: "{MMM}",
+          day: "{d}",
+          hour: "{HH}:{mm}",
+          minute: "{HH}:{mm}",
+          second: "{HH}:{mm}:{ss}",
+          millisecond: "{hh}:{mm}:{ss} {SSS}",
+          none: "{yyyy}-{MM}-{dd} {hh}:{mm}:{ss} {SSS}",
+        } as any,
       },
       axisPointer: {
         show: true,

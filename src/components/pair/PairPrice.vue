@@ -30,11 +30,12 @@ class PairPrice extends Vue {
       baseAsset,
       quoteAsset,
       price,
+      reversePrice,
       priceText,
       reversePriceText,
     } = getPairMeta(this, this.pair)!;
     const fiatAmount = this.reverse
-      ? (1 / price) * +baseAsset.price
+      ? reversePrice * +baseAsset.price
       : price * +quoteAsset.price;
     const fiatText = toFiat(this, { n: fiatAmount });
 

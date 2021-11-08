@@ -14,8 +14,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import TransactionItem from "@/components/transaction/Index.vue";
+import axios from "axios";
 
 @Component({
   components: {
@@ -36,23 +37,46 @@ class PairTransactions extends Vue {
 
   transactions: API.Transaction[] = [];
 
-  async requstTransactions() {
-    if (this.loading || !this.pagination.has_next) {
+  source: any = null;
+
+  @Watch("pair")
+  handlePairChange() {
+    this.requstTransactions(true);
+  }
+
+  async requstTransactions(reload = false) {
+    if (!reload && (this.loading || !this.pagination.has_next)) {
       return;
     }
 
     this.loading = true;
 
     try {
-      const res = await this.$http.getTransactions({
-        base: this.pair.base_asset_id,
-        quote: this.pair.quote_asset_id,
-        limit: 20,
-        cursor: this.pagination.next_cursor,
-      });
+      const CancelToken = axios.CancelToken;
+      const source = CancelToken.source();
+
+      if (reload) {
+        this.source?.cancel();
+      }
+
+      this.source = source;
+
+      const res = await this.$http.getTransactions(
+        {
+          base: this.pair.base_asset_id,
+          quote: this.pair.quote_asset_id,
+          limit: 20,
+          cursor: this.pagination.next_cursor,
+        },
+        source.token
+      );
 
       const transactions = res.transactions || [];
-      this.transactions = [...this.transactions, ...transactions];
+
+      this.transactions = reload
+        ? [...transactions]
+        : [...this.transactions, ...transactions];
+
       this.pagination.has_next = res.pagination.has_next;
       this.pagination.next_cursor = res.pagination.next_cursor;
       this.loading = false;

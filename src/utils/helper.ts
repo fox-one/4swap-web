@@ -41,9 +41,11 @@ export function getDurationData(
   size: number | undefined = undefined
 ) {
   const end = fn(data[data.length - 1]);
-  const start = end - (parse(duration, "s") || 0);
+  let start = end - (parse(duration, "s") || 0);
 
-  if (!start) return [];
+  if (!start) {
+    start = fn(data[0]);
+  }
 
   return data
     .filter((x) => fn(x) >= start)
@@ -53,6 +55,10 @@ export function getDurationData(
       }
 
       const interval = Math.floor(array.length / size);
+
+      if (interval === 0) {
+        return true;
+      }
 
       return (array.length - 1 - index) % interval === 0;
     });

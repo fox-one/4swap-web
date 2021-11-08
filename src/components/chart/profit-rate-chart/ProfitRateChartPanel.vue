@@ -26,6 +26,7 @@
         :data="durationData"
         :current.sync="current"
         :type="type"
+        :duration="duration"
         :colors="colors"
         :pair="pair"
       />
@@ -83,7 +84,7 @@ class ProfitRateChartPanel extends Vue {
   get thumbData() {
     const getDurationData = this.$utils.helper.getDurationData;
 
-    return getDurationData(this.data, "168h", (x) => x?.ts);
+    return getDurationData(this.data, "168h", (x) => x?.ts, 10);
   }
 
   get meta() {
@@ -125,27 +126,33 @@ class ProfitRateChartPanel extends Vue {
 
   get titles() {
     const toPercent = this.$utils.number.toPercent;
+    const attachSign = this.$utils.number.attachSign;
     const h = this.$createElement;
 
     const time = this.current?.[0] ?? 0;
     const data = this.current?.[1] ?? 0;
     const thumbData = this.thumbCurrent?.[1] ?? 0;
 
-    const formatData = (value) => {
-      const text = toPercent({ n: value });
+    const formatData = (value, thumb = false) => {
+      const text = attachSign({
+        n: value,
+        text: toPercent({ n: Math.abs(value) }),
+      });
       const icon =
         +value > 0 ? "$IconUpPolygon" : +value < 0 ? "$IconDownPolygon" : "";
 
       return h("span", { staticClass: "d-flex align-center" }, [
-        h(VIcon, { staticClass: "mr-1", props: { size: 12 } }, [icon]),
+        h(VIcon, { staticClass: "mr-1", props: { size: thumb ? 12 : 18 } }, [
+          icon,
+        ]),
         text,
       ]);
     };
 
-    const title = (data && formatData(data)) || "";
-    const thumbTitle = (thumbData && formatData(thumbData)) || "";
+    const title = formatData(data);
+    const thumbTitle = formatData(thumbData, true);
     const subtitle =
-      (time && this.$utils.time.format(time, "MMM DD HH:mm A Z")) || "";
+      (time && this.$utils.time.format(time, "MMM DD, YYYY HH:mm")) || "";
 
     return {
       title,

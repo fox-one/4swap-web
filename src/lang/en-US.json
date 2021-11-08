@@ -131,7 +131,7 @@
   "predication": "Predication",
   "price": "Price",
   "price.24hours": "Price",
-  "price.alert.hint": "When the price impact exceeds 80%, a countdown will occur to protect the trade",
+  "price.alert.hint": "When the price impact exceeds 10%, a countdown will occur to protect the trade",
   "price_alert.count_down.title": "Price alert count down",
   "profit": "Profit",
   "profits": "Profits",

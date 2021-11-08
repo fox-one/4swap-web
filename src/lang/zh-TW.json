@@ -131,7 +131,7 @@
   "predication": "預測",
   "price": "價格",
   "price.24hours": "價格",
-  "price.alert.hint": "交易時當價格影響超出 80%，使用倒計時保護",
+  "price.alert.hint": "交易時當價格影響超出 10%，使用倒計時保護",
   "price_alert.count_down.title": "價格警告倒計時",
   "profit": "收益",
   "profits": "收益",

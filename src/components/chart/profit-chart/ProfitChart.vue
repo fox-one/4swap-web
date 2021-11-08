@@ -45,6 +45,8 @@ class ProfitChart extends Vue {
 
   @Prop() type;
 
+  @Prop() duration;
+
   @Prop() data!: API.PairProfits[];
 
   point = null;
@@ -53,7 +55,8 @@ class ProfitChart extends Vue {
     return getChartData(this, this.data, this.pair, this.type);
   }
 
-  @Watch("chartData", { immediate: true })
+  @Watch("duration", { immediate: true })
+  @Watch("type", { immediate: true })
   @Watch("point", { immediate: true })
   handlePointChange() {
     const current = this.point || this.chartData[this.chartData.length - 1];

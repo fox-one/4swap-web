@@ -50,7 +50,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { GlobalGetters } from "@/store/types";
-import { VERSION } from "@/constants";
+import { VERSION, PANDO_DOC } from "@/constants";
 
 @Component
 class AccountSettingOverview extends Vue {
@@ -71,7 +71,7 @@ class AccountSettingOverview extends Vue {
   }
 
   handleLearnMore() {
-    location.assign("https://docs.pando.im/docs/lake/intro");
+    location.assign(PANDO_DOC);
   }
 }
 export default AccountSettingOverview;

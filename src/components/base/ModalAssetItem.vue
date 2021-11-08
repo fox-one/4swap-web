@@ -54,7 +54,7 @@ export default ModalAssetItem;
   display: flex;
   align-items: center;
   font-size: 16px;
-  font-weight: 5c00;
+  font-weight: 500;
   margin-bottom: 20px;
   cursor: pointer;
 

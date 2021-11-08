@@ -1,7 +1,7 @@
 <template>
-  <span class="icon">
+  <v-btn fab width="24" height="24" color="greyscale_7">
     <v-icon size="16">$FIconRefresh4P</v-icon>
-  </span>
+  </v-btn>
 </template>
 
 <script lang="ts">
@@ -11,15 +11,3 @@ import { Component, Vue } from "vue-property-decorator";
 class LiquiditySwitch extends Vue {}
 export default LiquiditySwitch;
 </script>
-
-<style lang="scss" scoped>
-.icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 24px;
-  background-color: var(--v-greyscale_7-base);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>

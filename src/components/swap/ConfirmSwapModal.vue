@@ -60,7 +60,7 @@ class ConfirmSwapModal extends Vue {
 
   @Prop() outputAmount!: string;
 
-  dialog = true;
+  dialog = false;
 
   counter = 0;
 

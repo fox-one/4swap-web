@@ -75,8 +75,18 @@ class MarketChartPanel extends Vue {
     const getDurationData = this.$utils.helper.getDurationData;
 
     return {
-      market: getDurationData(this.data.market, this.duration, (x) => x?.ts),
-      kline: getDurationData(this.data.kline, this.duration, (x) => x?.[0]),
+      market: getDurationData(
+        this.data.market,
+        this.duration,
+        (x) => x?.ts,
+        100
+      ),
+      kline: getDurationData(
+        this.data.kline,
+        this.duration,
+        (x) => x?.[0],
+        100
+      ),
     };
   }
 
@@ -149,7 +159,7 @@ class MarketChartPanel extends Vue {
     if (this.isPriceChart) {
       return {
         title: this.$utils.number.format({ n: data }),
-        subtitle: this.$utils.time.format(time, "MMM DD HH:mm A Z"),
+        subtitle: this.$utils.time.format(time, "MMM DD, YYYY HH:mm"),
       };
     }
 

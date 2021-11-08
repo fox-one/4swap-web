@@ -59,19 +59,6 @@ declare namespace API {
 
   export interface PairProfits {
     ts: number;
-    origin: {
-      netBaseAmount: number;
-      netQuoteAmount: number;
-      currentBaseAmount: number;
-      currentQuoteAmount: number;
-      netBaseValue: number;
-      netQuoteValue: number;
-      baseValue: number;
-      quoteValue: number;
-      baseProfit: number;
-      fiatProfit: number;
-      fiatProfitRate: number;
-    };
     netBaseAmount: number;
     netQuoteAmount: number;
     currentBaseAmount: number;

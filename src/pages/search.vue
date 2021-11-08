@@ -1,8 +1,8 @@
 <template>
   <div>
-    <f-search-input v-model="filter" clearable hide-details />
+    <f-search-input v-model="filter" autofocus clearable hide-details />
 
-    <search-history v-if="meta.showHistory" />
+    <search-history v-if="meta.showHistory" class="mt-8" />
 
     <pool-list v-else searchable recordable :filter="filter" class="mt-6" />
   </div>

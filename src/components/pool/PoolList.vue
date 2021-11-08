@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="headers" class="pool-headers mb-5">
+    <div ref="headers" class="pool-headers pb-5">
       <slot name="header" />
 
       <template v-if="!hideHeaders">
@@ -95,7 +95,11 @@ class PoolList extends Vue {
   handleToDetail(item) {
     this.$router.push({
       name: "pair-detail",
-      query: { base: item.base_asset_id, quote: item.quote_asset_id },
+      query: {
+        base: item.base_asset_id,
+        quote: item.quote_asset_id,
+        source: "market",
+      },
     });
 
     if (this.recordable) {
@@ -116,3 +120,12 @@ class PoolList extends Vue {
 }
 export default PoolList;
 </script>
+
+<style lang="scss" scoped>
+.pool-headers {
+  position: sticky;
+  top: 44px;
+  background-color: var(--v-greyscale_7-base);
+  z-index: 11;
+}
+</style>

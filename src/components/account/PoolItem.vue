@@ -107,7 +107,11 @@ class PoolItem extends Vue {
   handleToDetail() {
     this.$router.push({
       name: "pair-detail",
-      query: { base: this.pair.base_asset_id, quote: this.pair.quote_asset_id },
+      query: {
+        base: this.pair.base_asset_id,
+        quote: this.pair.quote_asset_id,
+        source: "profile",
+      },
     });
   }
 }

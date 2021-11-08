@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { Component, Watch } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import dayjs from "dayjs";
 import { GlobalMutations } from "~/store/types";
 
@@ -33,14 +33,6 @@ export default class PageView extends Vue {
     return "";
   }
 
-  get contentClass() {
-    return "";
-  }
-
-  get contentStyle() {
-    return {};
-  }
-
   setLang() {
     const locale = this.$utils.helper.getLocale();
 
@@ -50,15 +42,10 @@ export default class PageView extends Vue {
     dayjs.locale(locale);
   }
 
-  @Watch("contentClass")
-  @Watch("contentStyle")
   setPageConfig() {
     this.$store.commit(GlobalMutations.SET_BOTTOM_NAV, {
       value: this.bottomNav,
     });
-
-    this.$store.commit(GlobalMutations.SET_CONTENT_CLASS, this.contentClass);
-    this.$store.commit(GlobalMutations.SET_CONTENT_STYLE, this.contentStyle);
 
     this.$store.commit(GlobalMutations.SET_APPBAR, {
       title: this.title,
@@ -68,6 +55,8 @@ export default class PageView extends Vue {
     const defaultThemeColor = this.$vuetify.theme.dark ? "#000000" : "#ffffff";
     const color = (this.appbar as any).color || defaultThemeColor;
 
-    this.$utils.mixin.setMixinTheme(color);
+    setTimeout(() => {
+      this.$utils.mixin.setMixinTheme(color);
+    }, 200);
   }
 }

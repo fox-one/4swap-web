@@ -8,6 +8,7 @@
 
     <div class="pa-3 px-5">
       <f-segment-control
+        :value="bindSlippageSeletor"
         borderless
         mandatory
         color="greyscale_7"
@@ -30,6 +31,7 @@
         suffix="%"
         class="my-5"
         type="number"
+        inputmode="decimal"
         :placeholder="$t('slippage.custom.label')"
         :value="bindSlippage"
         @input="handleSlippageInput"
@@ -53,7 +55,7 @@ import { GlobalMutations } from "@/store/types";
 class SlippageSetting extends Vue {
   dialog = false;
 
-  slippage: any = 0.99;
+  slippage: any = 0.999;
 
   get items() {
     return [
@@ -80,14 +82,23 @@ class SlippageSetting extends Vue {
     return Number(this.slippage) > 0 && Number(this.slippage) < 1;
   }
 
+  get bindSlippageSeletor() {
+    return [0.999, 0.995, 0.99].includes(this.slippage) ? this.slippage : -1;
+  }
+
   get bindSlippage() {
     const value = new BigNumber(1).minus(this.slippage).times(100).toNumber();
 
     return isNaN(value) ? "" : value;
   }
 
+  mounted() {
+    this.slippage = this.$store.state.app.settings.slippage;
+  }
+
   @Watch("dialog")
   handleDialogChange(value) {
+    console.log("handleDialogChange", this.$store.state.app.settings.slippage);
     if (value) {
       this.slippage = this.$store.state.app.settings.slippage;
     }

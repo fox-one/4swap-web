@@ -1,6 +1,7 @@
 <template>
   <base-chart
     ref="chart"
+    v-click-outside="handleClickOutSide"
     :option="option"
     :loading="loading"
     @after-init="handleAfterInit"
@@ -99,6 +100,24 @@ class BaseLineChart extends Vue {
         ],
       },
     });
+  }
+
+  handleResetVisualMap() {
+    this.bindPoint = null;
+
+    this.chart?.setOption({
+      visualMap: {
+        show: false,
+      },
+    });
+
+    this.chart?.instance?.dispatchAction({
+      type: "unselect",
+    });
+  }
+
+  handleClickOutSide() {
+    this.handleResetVisualMap();
   }
 }
 export default BaseLineChart;

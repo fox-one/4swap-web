@@ -26,7 +26,7 @@ const config: NuxtConfig = {
       { rel: "stylesheet", href: "/fonts/inter/style.css" },
     ],
   },
-  loading: { color: process.env.LOADING_COLOR },
+  loading: { color: "#fff" },
   css: ["~/styles/index.scss"],
   plugins: ["~/plugins/property.ts", "~/plugins/lib.ts"],
   buildModules: [

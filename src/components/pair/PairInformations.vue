@@ -67,7 +67,7 @@ class PairInformations extends Vue {
       },
       {
         title: this.$t("24h.trades"),
-        value: transaction_count_24h ?? 0,
+        value: transaction_count_24h ?? "0",
       },
       {
         title: this.$t("24h.fees"),
@@ -76,7 +76,7 @@ class PairInformations extends Vue {
       {
         title: this.$t("24h.pool-turnover"),
         value: toPercent({ n: turnOver }),
-        hint: "24H Pool Turnover",
+        hint: this.$t("turnover.tooltip"),
       },
       {
         ...this.rorItems[this.rorIndex],
@@ -84,7 +84,7 @@ class PairInformations extends Vue {
         titleFn: () => {
           this.rorIndex = (this.rorIndex + 1) % 3;
         },
-        hint: "24H ROR",
+        hint: this.$t("ror.tooltip"),
       },
       {
         title: this.$t("24h.price-change"),
@@ -98,7 +98,13 @@ class PairInformations extends Vue {
   }
 
   handleClick() {
-    this.$router.push({ name: "swap" });
+    this.$router.push({
+      name: "swap",
+      query: {
+        input: this.pair?.base_asset_id,
+        output: this.pair.quote_asset_id,
+      },
+    });
   }
 }
 export default PairInformations;

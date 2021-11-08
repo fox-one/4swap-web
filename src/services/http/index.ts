@@ -88,10 +88,13 @@ export default function (http: Http) {
       return http.get(`/transactions`, { params });
     },
 
-    getTransactions(params: API.GetTransactionsParams) {
+    getTransactions(
+      params: API.GetTransactionsParams,
+      cancelToken: any = undefined
+    ) {
       const url = `/transactions/${params.base}/${params.quote}`;
 
-      return http.get(url, { params });
+      return http.get(url, { params, cancelToken });
     },
 
     getMyTransactions(params: API.GetTransactionsParams) {

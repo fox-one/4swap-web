@@ -25,6 +25,7 @@
         :loading="loading"
         :data="durationData"
         :current.sync="current"
+        :duration="duration"
         :type="type"
         :colors="colors"
         :pair="pair"
@@ -82,7 +83,7 @@ class ProfitChartPanel extends Vue {
   get thumbData() {
     const getDurationData = this.$utils.helper.getDurationData;
 
-    return getDurationData(this.data, "168h", (x) => x?.ts);
+    return getDurationData(this.data, "168h", (x) => x?.ts, 10);
   }
 
   get meta() {
@@ -126,6 +127,7 @@ class ProfitChartPanel extends Vue {
     const getPairMeta = this.$utils.pair.getPairMeta;
     const format = this.$utils.number.format;
     const toFiat = this.$utils.currency.toFiat;
+    const attachSign = this.$utils.number.attachSign;
     const h = this.$createElement;
     const getColor = this.$utils.color.getColor;
 
@@ -136,29 +138,39 @@ class ProfitChartPanel extends Vue {
     const { baseAsset, quoteAsset } = getPairMeta(this, this.pair)!;
     const baseAssetSymbol = baseAsset.symbol;
     const quoteAssetSymbol = quoteAsset.symbol;
-    const sign = +data >= 0 ? "+" : "-";
 
     const formatData = (data, type) => {
       const style = { color: getColor(this, data) };
 
       if (this.type === 2) {
-        return h("span", { staticStyle: style }, [
-          `${sign} ${toFiat(this, { n: Math.abs(data) })}`,
-        ]);
+        const currency = this.$store.state.app.settings.currency;
+        const text = attachSign({
+          n: data,
+          text: toFiat(this, { n: Math.abs(data), from: currency }) as string,
+        });
+
+        console.log(data);
+        console.log(toFiat(this, { n: Math.abs(data) }));
+
+        return h("span", { staticStyle: style }, [text]);
       } else {
         const symbol = type === 0 ? baseAssetSymbol : quoteAssetSymbol;
+        const text = attachSign({
+          n: data,
+          text: format({ n: Math.abs(data) }),
+        });
 
         return h("span", { staticStyle: style }, [
-          `${sign} ${format({ n: Math.abs(data) })}`,
+          text,
           h("span", { staticClass: "symbol ml-1" }, [symbol]),
         ]);
       }
     };
 
-    const title = (data && formatData(data, this.type)) || "";
-    const thumbTitle = (thumbData && formatData(thumbData, this.type)) || "";
+    const title = formatData(data, this.type);
+    const thumbTitle = formatData(thumbData, this.type);
     const subtitle =
-      (time && this.$utils.time.format(time, "MMM DD HH:mm A Z")) || "";
+      (time && this.$utils.time.format(time, "MMM DD, YYYY HH:mm")) || "";
 
     return {
       title,

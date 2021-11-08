@@ -7,7 +7,7 @@
 
     <div class="greyscale_3--text items">
       <asset-amount :asset="meta.input" :amount="meta.inputAmount" />
-      <span class="mx-2 arrow">-></span>
+      <span class="mx-2 arrow greyscale_4--text">-></span>
       <asset-amount :asset="meta.output" :amount="meta.outputAmount" />
     </div>
   </div>
