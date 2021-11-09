@@ -52,7 +52,7 @@ export const tasks = {
       if (vm.$store.getters[GlobalGetters.LOGGED]) {
         vm.$utils.assets.getAssets(vm);
       }
-    }, 5000);
+    }, 15000);
   },
 
   clearPollingTasks() {
