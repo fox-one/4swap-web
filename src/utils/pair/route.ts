@@ -1,11 +1,11 @@
 import BigNumber from "bignumber.js";
 import Hashids from "hashids";
 import { Uniswap } from "@/utils/swap/uniswap";
-import { Curve } from "@/utils/swap/curve";
+import { Curve, A } from "@/utils/swap/curve";
 
 const HASH_SALT = "uniswap routes";
 const uniswap = new Uniswap();
-const curve = new Curve(200);
+const curve = new Curve(A);
 const precision = 8;
 
 export type SwapParams = {

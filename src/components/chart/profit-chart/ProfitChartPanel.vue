@@ -149,9 +149,6 @@ class ProfitChartPanel extends Vue {
           text: toFiat(this, { n: Math.abs(data), from: currency }) as string,
         });
 
-        console.log(data);
-        console.log(toFiat(this, { n: Math.abs(data) }));
-
         return h("span", { staticStyle: style }, [text]);
       } else {
         const symbol = type === 0 ? baseAssetSymbol : quoteAssetSymbol;

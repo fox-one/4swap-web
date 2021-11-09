@@ -4,6 +4,8 @@ const nCoins = 2;
 const one = 1;
 const two = 2;
 
+export const A = 200;
+
 export class Curve {
   a: number;
 

@@ -57,7 +57,7 @@ export function fmtProfits(
     netQuoteAmount: format(netQuoteAmount, 8),
     currentBaseAmount: format(currentBaseAmount, 8),
     currentQuoteAmount: format(currentQuoteAmount, 8),
-    fiatProfit: format(currentQuoteAmount, 8),
+    fiatProfit: format(fiatProfit, 8),
     originFiatProfit: format(originFiatProfit, 8),
     baseProfit: format(baseProfit, 8),
     quoteProfit: format(quoteProfit, 8),

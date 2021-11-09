@@ -1,5 +1,6 @@
 import { GlobalGetters } from "@/store/types";
 import { format } from "@foxone/utils/number";
+import { Curve, A } from "../swap/curve";
 
 export type PairMeta = ReturnType<typeof getPairMeta>;
 
@@ -9,6 +10,30 @@ export type AccountPair = API.Pair & {
   profit: API.PairProfits;
   shared: PairShared;
 };
+
+const curve = new Curve(A);
+
+export function getCurvePairPrice(pair: API.Pair, reverse = false) {
+  if (reverse) {
+    return curve.swapReverse(+pair.base_amount, +pair.quote_amount, 1);
+  }
+
+  return curve.swap(+pair.base_amount, +pair.quote_amount, 1);
+}
+
+export function getUniPairPrice(pair: API.Pair, reverse = false) {
+  if (reverse) {
+    return +pair.base_amount && +pair.quote_amount / +pair.base_amount;
+  }
+
+  return +pair.quote_amount && +pair.base_amount / +pair.quote_amount;
+}
+
+export function getPairPrice(pair: API.Pair, reverse = false) {
+  return pair.swap_method === "curve"
+    ? getCurvePairPrice(pair, reverse)
+    : getUniPairPrice(pair, reverse);
+}
 
 /**
  * get pair meta items
@@ -41,9 +66,10 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
   const sorted = isReverse
     ? { baseAsset: quoteAsset, quoteAsset: baseAsset, ...getReversePair(pair) }
     : { baseAsset, quoteAsset, ...pair };
-  const price =
-    (+sorted.base_amount && +sorted.quote_amount / +sorted.base_amount) || 0;
-  const reversePrice = (price && 1 / price) || 0;
+
+  const price = getPairPrice(sorted, false);
+  const reversePrice = getPairPrice(sorted, true);
+
   const symbol = `${sorted.baseAsset.symbol} / ${sorted.quoteAsset.symbol}`;
   const volume = +pair.quote_value + +pair.base_value;
   const turnOver = (volume && +pair.volume_24h / +volume) || 0;

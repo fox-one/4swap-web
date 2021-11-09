@@ -105,14 +105,8 @@ class BaseLineChart extends Vue {
   handleResetVisualMap() {
     this.bindPoint = null;
 
-    this.chart?.setOption({
-      visualMap: {
-        show: false,
-      },
-    });
-
     this.chart?.instance?.dispatchAction({
-      type: "unselect",
+      type: "downplay",
     });
   }
 

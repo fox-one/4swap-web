@@ -89,6 +89,7 @@ export default LiquidityPageAction;
     .amount {
       font-weight: 600;
       font-size: 16px;
+      overflow: hidden;
       text-align: center;
       font-feature-settings: "salt" on;
       color: var(--v-greyscale_7-base);
@@ -113,7 +114,7 @@ export default LiquidityPageAction;
 
     &__add {
       right: 4px;
-      left: 4px;
+      top: 4px;
       background-color: var(--v-secondary-base);
     }
   }
