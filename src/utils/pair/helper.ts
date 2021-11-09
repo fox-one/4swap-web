@@ -23,10 +23,10 @@ export function getCurvePairPrice(pair: API.Pair, reverse = false) {
 
 export function getUniPairPrice(pair: API.Pair, reverse = false) {
   if (reverse) {
-    return +pair.base_amount && +pair.quote_amount / +pair.base_amount;
+    return +pair.quote_amount && +pair.base_amount / +pair.quote_amount;
   }
 
-  return +pair.quote_amount && +pair.base_amount / +pair.quote_amount;
+  return +pair.base_amount && +pair.quote_amount / +pair.base_amount;
 }
 
 export function getPairPrice(pair: API.Pair, reverse = false) {

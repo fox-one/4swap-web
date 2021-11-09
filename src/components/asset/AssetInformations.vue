@@ -45,7 +45,7 @@ class AssetInformations extends Vue {
       [0, 0, 0]
     );
 
-    const liquidityText = simplize(this, { n: liquidity });
+    const liquidityText = toFiat(this, { n: liquidity * price, short: true });
     const volumeText = simplize(this, { n: volume });
     const tradeText = format({ n: trades });
 

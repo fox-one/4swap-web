@@ -1,5 +1,5 @@
 <template>
-  <div class="greyscale_6 rounded pa-6 mb-4">
+  <div class="greyscale_6 rounded pa-6 mb-4" @click="handleToDetail">
     <v-layout align-center>
       <v-layout class="left">
         <base-pair-icon
@@ -14,7 +14,7 @@
         </div>
       </v-layout>
 
-      <v-btn fab width="32" height="32" @click="handleToDetail">
+      <v-btn fab width="32" height="32">
         <v-icon size="16">$FIconChevronRight4PBold</v-icon>
       </v-btn>
     </v-layout>

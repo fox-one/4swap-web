@@ -55,7 +55,6 @@ const config: NuxtConfig = {
         seo: false,
       },
     ],
-    "@nuxtjs/pwa",
   ],
   googleAnalytics: {
     id: process.env.GA,

@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
 class ConfirmSwapModal extends Vue {
@@ -102,13 +102,31 @@ class ConfirmSwapModal extends Vue {
     return { impact, impactText, level, showImpactWarning, ...meta[level] };
   }
 
+  @Watch("dialog")
+  handleDialogChange(value) {
+    if (!value) {
+      this.clearCountDown();
+    }
+  }
+
   show() {
     this.dialog = true;
 
-    if (this.$store.state.app.settings.priceAlertCountDown) {
+    if (
+      this.$store.state.app.settings.priceAlertCountDown &&
+      this.meta.level === "high"
+    ) {
       this.counter = Math.round(this.meta.impact * 100);
       this.startCountDown();
     }
+  }
+
+  clearCountDown() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+
+    this.counter = 0;
   }
 
   startCountDown() {

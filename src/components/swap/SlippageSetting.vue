@@ -1,5 +1,9 @@
 <template>
-  <f-bottom-sheet v-model="dialog" :title="$t('slippage.setting.title')">
+  <f-bottom-sheet
+    v-model="dialog"
+    :title="$t('slippage.setting.title')"
+    wapper-in-desktop="dialog"
+  >
     <template #activator="{ on }">
       <v-btn icon small v-on="on">
         <v-icon>$FIconSetting</v-icon>
@@ -98,7 +102,6 @@ class SlippageSetting extends Vue {
 
   @Watch("dialog")
   handleDialogChange(value) {
-    console.log("handleDialogChange", this.$store.state.app.settings.slippage);
     if (value) {
       this.slippage = this.$store.state.app.settings.slippage;
     }

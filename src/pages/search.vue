@@ -1,6 +1,12 @@
 <template>
   <div>
-    <f-search-input v-model="filter" autofocus clearable hide-details />
+    <f-search-input
+      v-model="filter"
+      type="text"
+      autofocus
+      clearable
+      hide-details
+    />
 
     <search-history v-if="meta.showHistory" class="mt-8" />
 

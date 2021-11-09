@@ -3,10 +3,10 @@
     <v-layout align-center>
       <v-flex class="label-1">{{ $t("history") }}</v-flex>
 
-      <v-btn small text class="greyscale_4--text" @click="handleClear">
+      <span class="greyscale_4--text" @click="handleClear">
         <span>{{ $t("clear") }}</span>
         <v-icon color="greyscale_4">$FIconTrash</v-icon>
-      </v-btn>
+      </span>
     </v-layout>
 
     <div>

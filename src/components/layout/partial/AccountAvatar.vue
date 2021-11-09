@@ -1,5 +1,10 @@
 <template>
-  <f-bottom-sheet v-model="dialog" hide-close-icon>
+  <f-bottom-sheet
+    v-model="dialog"
+    hide-close-icon
+    min-width="500"
+    z-index="1111"
+  >
     <template #activator="{ on }">
       <base-user-avatar
         v-show="isLogged"

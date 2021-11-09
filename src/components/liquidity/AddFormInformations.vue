@@ -32,7 +32,7 @@ class AddFormInformations extends Vue {
       const k = Math.sqrt(+base_amount * +quote_amount);
       const v = Math.sqrt(+this.asset1.amount * +this.asset2.amount);
 
-      shares = toPercent({ n: v / (v + k) });
+      shares = toPercent({ n: (v + k && v / (v + k)) || 0 });
     }
 
     return [

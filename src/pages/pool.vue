@@ -2,7 +2,7 @@
   <div>
     <v-layout align-center>
       <v-flex class="label-1">{{ $t("overview") }}</v-flex>
-      <v-btn icon small height="24" @click="handleToOverview">
+      <v-btn icon small @click="handleToOverview">
         <v-icon>$FIconUpRight</v-icon>
       </v-btn>
     </v-layout>
@@ -16,7 +16,7 @@
             {{ $t("all.pools") }}
           </v-flex>
 
-          <v-btn icon small height="24" @click="handleSearch">
+          <v-btn icon small @click="handleSearch">
             <v-icon>$FIconSearch</v-icon>
           </v-btn>
         </v-layout>

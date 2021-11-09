@@ -66,7 +66,7 @@ class ProfitChartPanel extends Vue {
   @Inject()
   togggleExpand1;
 
-  type = 0;
+  type = 2;
 
   current = null;
 
