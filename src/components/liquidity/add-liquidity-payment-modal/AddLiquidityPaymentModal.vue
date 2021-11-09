@@ -90,6 +90,12 @@ class AddLiquidityPaymentModal extends Vue {
     this.handleCheck();
   }
 
+  handleReset() {
+    this.dialog = false;
+    this.asset1Paid = false;
+    this.asset1Paid = false;
+  }
+
   async handleCheck() {
     if (this.asset1Paid && this.asset2Paid) {
       try {
