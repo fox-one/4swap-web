@@ -134,7 +134,7 @@ export async function loadAccountData(vm: Vue) {
     vm.$utils.assets.getAssets(vm),
   ]);
 
-  const shared = vm.$store.getters[GlobalGetters.ACCOUNT_PAIRS];
+  const shared = vm.$store.getters[GlobalGetters.ACCOUNT_PAIRS](vm);
 
   shared.forEach((pair) => {
     vm.$store.dispatch(GlobalActions.LOAD_PROFIT, {

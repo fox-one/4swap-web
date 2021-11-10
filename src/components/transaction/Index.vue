@@ -1,5 +1,9 @@
 <template>
-  <v-lazy :options="{ threshold: 0.5 }" transition="fade-transition">
+  <v-lazy
+    v-if="!meta.hide"
+    :options="{ threshold: 0.5 }"
+    transition="fade-transition"
+  >
     <div :class="classes">
       <swap-transasction v-if="meta.isSwap" :transaction="transaction" />
       <liquidity-transaction v-else :transaction="transaction" />
@@ -22,11 +26,14 @@ import LiquidityTransaction from "./LiquidityTransaction.vue";
 class TransactionItem extends Vue {
   @Prop() transaction!: API.Transaction;
 
+  @Prop({ type: Boolean, default: false }) hideSwap!: boolean;
+
   get meta() {
     const isSwap = this.transaction.type === "Swap";
 
     return {
       isSwap,
+      hide: this.hideSwap && isSwap,
     };
   }
 

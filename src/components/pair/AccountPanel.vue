@@ -42,7 +42,7 @@ class AccountPanel extends Vue {
     const getAccountPair = this.$store.getters[GlobalGetters.GET_ACCOUNT_PAIR];
     const getPairMeta = this.$utils.pair.getPairMeta;
 
-    const { shared } = getAccountPair(this.pair) as AccountPair;
+    const { shared } = getAccountPair(this, this.pair) as AccountPair;
     const { liquidityAsset } = getPairMeta(this, this.pair) || {};
 
     const totalValue = shared?.totalValue ?? 0;

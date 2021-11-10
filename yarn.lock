@@ -1150,6 +1150,29 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@formatjs/ecma402-abstract@1.10.0":
+  version "1.10.0"
+  resolved "https://registry.npmjs.org/@formatjs/ecma402-abstract/-/ecma402-abstract-1.10.0.tgz#f51b9167535c9463113c24644de90262aa5d31a7"
+  integrity sha512-WNkcUHC6xw12rWY87TUw6KXzb1LnOooYBLLqtyn1kW2j197rcwpqmUOJMBED56YcLzaJPfVw1L2ShiDhL5pVnQ==
+  dependencies:
+    "@formatjs/intl-localematcher" "0.2.21"
+    tslib "^2.1.0"
+
+"@formatjs/intl-localematcher@0.2.21":
+  version "0.2.21"
+  resolved "https://registry.npmjs.org/@formatjs/intl-localematcher/-/intl-localematcher-0.2.21.tgz#39ef33d701fe8084f3d693cd3ff7cbe03cdd3a49"
+  integrity sha512-JTJeLiNwexN4Gy0cMxoUPvJbKhXdnSuo5jPrDafEZpnDWlJ5VDYta8zUVVozO/pwzEmFVHEUpgiEDj+39L4oMg==
+  dependencies:
+    tslib "^2.1.0"
+
+"@formatjs/intl-numberformat@^7.2.5":
+  version "7.2.5"
+  resolved "https://registry.npmjs.org/@formatjs/intl-numberformat/-/intl-numberformat-7.2.5.tgz#d9425bc3cfda6193b11d6e59c2c3c45e46461c63"
+  integrity sha512-vscEGB5FduaMbkdplIBd8aENVkfyyjpBfJ9pKxkckCHdd3CY/AuLxzbcIyXAOmadYQQzTxMDDgyv0eRbGxCKtg==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.10.0"
+    tslib "^2.1.0"
+
 "@foxone/fennec-base@0.3.8", "@foxone/fennec-base@^0.3.8":
   version "0.3.8"
   resolved "https://registry.npmjs.org/@foxone/fennec-base/-/fennec-base-0.3.8.tgz#bcc7b570d9c49c07323003e5341f7ebd81481a4c"
@@ -1167,12 +1190,12 @@
   dependencies:
     "@foxone/fennec-base" "0.3.8"
 
-"@foxone/icons@3.0.1-39", "@foxone/icons@^3.0.1-39":
-  version "3.0.1-39"
-  resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.0.1-39.tgz#d00e6e1e3c450c611790348e2a43d9fb8c45f4cd"
-  integrity sha512-+2t0ylY0WVCNsZT4+0kJ+OsDlgcHzAUnTUArtDeCXExwcEZP9XyiJIclIYTKCwyYwizD7g48lvO9F2mMlUlNEw==
+"@foxone/icons@3.0.1-40", "@foxone/icons@^3.0.1-40":
+  version "3.0.1-40"
+  resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.0.1-40.tgz#64c0c58a61bb91724a8806f353f452e14c5a151d"
+  integrity sha512-+J/L9XHDT65NHtPjBDSHpV40wdzDSxV/BLYHedEuHYi1vN0VExoBnmM885BTdy0ohgeax2g7ZtDdjRChYKI8jQ==
   dependencies:
-    "@foxone/uikit" "3.0.1-39"
+    "@foxone/uikit" "3.0.1-40"
     vue "^2.6.12"
     vue-class-component "^7.2.3"
     vue-property-decorator "^9.1.2"
@@ -1180,12 +1203,12 @@
     vuetify "^2.5.6"
     vuex "^3.4.0"
 
-"@foxone/uikit@3.0.1-39", "@foxone/uikit@^3.0.1-39":
-  version "3.0.1-39"
-  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.0.1-39.tgz#8e626fdf565c14ee16cbc72696684ae58b12edfc"
-  integrity sha512-Rvux8+AvIHuGNr81GV6j3g9OC8kKI+ecsAzMlRa7uaAkvt3YCmHqDJTuoFfh61khsq9Z8D9zB2NrNQW2ZBYWgQ==
+"@foxone/uikit@3.0.1-40", "@foxone/uikit@^3.0.1-40":
+  version "3.0.1-40"
+  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.0.1-40.tgz#dca5461321cdbec148025164113a0284ed7a47c8"
+  integrity sha512-vQ3VpzMLXQHMyfEZeuENPudGFLtESLhKgXPit6LPofNbWaUZ3zl2yakw6SUN7P8dEa1eMljn6M3lZ61fkyuivw==
   dependencies:
-    "@foxone/icons" "3.0.1-39"
+    "@foxone/icons" "3.0.1-40"
     "@foxone/utils" "^0.2.6"
     bignumber.js "^9.0.1"
     qrcode "^1.4.4"
@@ -1193,10 +1216,10 @@
     vue-class-component "^7.2.3"
     vue-property-decorator "^9.1.2"
 
-"@foxone/utils@^0.2.14":
-  version "0.2.14"
-  resolved "https://registry.npmjs.org/@foxone/utils/-/utils-0.2.14.tgz#060151557abd8d8d099e01a3374dbaa8b41d42fa"
-  integrity sha512-lsCaC5SaIG+RtGEWKy7S/8wkpnUHZycIBF0md6D9rdQulpSS/I69FxxXv8AmJaep4Lo3R4fOBdphLWGXSaFG/Q==
+"@foxone/utils@^0.2.16":
+  version "0.2.16"
+  resolved "https://registry.npmjs.org/@foxone/utils/-/utils-0.2.16.tgz#5537702937fe4e3bad151d763a4b32fa20086bfc"
+  integrity sha512-LXmv+xAax2k+FG2sC7F9k6iM/OgADpbxii1FQJ/7FFnpCixLVazP4ULiGmMvodWdw7eE3BAq5DH/Qty2TbB5EA==
   dependencies:
     axios "^0.21.1"
     bignumber.js "^9.0.1"
@@ -10875,6 +10898,11 @@ tslib@^1.10.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.13.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
+
+tslib@^2.1.0:
+  version "2.3.1"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
+  integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
 tslint@^5.20.1:
   version "5.20.1"

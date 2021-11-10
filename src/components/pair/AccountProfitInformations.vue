@@ -17,8 +17,9 @@ class AccountProfitInformations extends Vue {
     const getProfitByPair = getters[GlobalGetters.GET_PROFIT_BY_PAIR];
     const getPairMeta = this.$utils.pair.getPairMeta;
 
-    const { baseAsset, quoteAsset } = getPairMeta(this, this.pair) || {};
-    const profit: API.PairProfits = getProfitByPair(this.pair);
+    const pairMeta = getPairMeta(this, this.pair)!;
+    const { baseAsset, quoteAsset } = pairMeta;
+    const profit: API.PairProfits = getProfitByPair(pairMeta);
 
     const baseAssetSybmol = baseAsset?.symbol ?? "";
     const quoteAssetSymbol = quoteAsset?.symbol ?? "";

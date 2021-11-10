@@ -19,6 +19,8 @@ import BaseLineChart from "../BaseLineChart.vue";
 class PriceChart extends Vue {
   @Prop() data!: API.KlineData[];
 
+  @Prop() pair;
+
   @Prop() chartType;
 
   @PropSync("current") bindCurrent;
@@ -26,7 +28,10 @@ class PriceChart extends Vue {
   point = null;
 
   get reverse() {
-    return this.chartType === "1";
+    const { isReverse } = this.$utils.pair.getPairMeta(this, this.pair)!;
+    const chartReverse = this.chartType === "1";
+
+    return isReverse !== chartReverse;
   }
 
   @Watch("reverse")

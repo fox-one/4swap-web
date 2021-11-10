@@ -58,12 +58,12 @@ class PairInformations extends Vue {
 
     const items = [
       {
-        title: this.$t("volume"),
-        value: toFiat(this, { n: volume }),
+        title: this.$t("liquidity"),
+        value: toFiat(this, { n: volume, short: true }),
       },
       {
         title: this.$t("24h.vol"),
-        value: toFiat(this, { n: volume_24h }),
+        value: toFiat(this, { n: volume_24h, short: true }),
       },
       {
         title: this.$t("24h.trades"),

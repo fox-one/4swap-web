@@ -14,6 +14,7 @@
         :colors="colors"
         :current.sync="current"
         :chart-type="chartType"
+        :pair="pair"
       />
     </template>
 
@@ -54,7 +55,7 @@ class MarketChartPanel extends Vue {
 
   duration: API.Duration = "168h";
 
-  chartType: ChartType = "volume";
+  chartType: ChartType = "0";
 
   data: any = {
     market: [],
@@ -141,7 +142,7 @@ class MarketChartPanel extends Vue {
         { text: this.$t("price") + ` (${reverseSymbol})`, value: "1" },
       ];
 
-      return [...baseItems, ...priceItems];
+      return [...priceItems, ...baseItems];
     }
 
     return baseItems;

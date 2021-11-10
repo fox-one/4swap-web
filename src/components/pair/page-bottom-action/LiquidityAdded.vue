@@ -37,7 +37,7 @@ class LiquidityPageAction extends Vue {
   get meta() {
     const toFiat = this.$utils.currency.toFiat;
     const getAccountPair = this.$store.getters[GlobalGetters.GET_ACCOUNT_PAIR];
-    const { shared } = getAccountPair(this.pair) as AccountPair;
+    const { shared } = getAccountPair(this, this.pair) as AccountPair;
 
     const totalValue = shared?.totalValue ?? 0;
     const totalValueText = toFiat(this, { n: totalValue });

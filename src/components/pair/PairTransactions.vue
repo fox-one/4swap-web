@@ -39,7 +39,7 @@ class PairTransactions extends Vue {
 
   source: any = null;
 
-  @Watch("pair")
+  @Watch("pair.route_id")
   handlePairChange() {
     this.requstTransactions(true);
   }

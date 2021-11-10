@@ -60,7 +60,7 @@ class MePage extends Mixins(mixins.page) {
 
   get meta() {
     const logged = this.$store.getters[GlobalGetters.LOGGED];
-    const pairs = this.$store.getters[GlobalGetters.ACCOUNT_PAIRS];
+    const pairs = this.$store.getters[GlobalGetters.ACCOUNT_PAIRS](this);
     const empty = pairs.length === 0;
 
     return {

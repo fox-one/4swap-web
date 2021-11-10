@@ -106,12 +106,10 @@ export function getPairMeta(vm: Vue, pair: API.Pair, reverse = false) {
  * @param {API.Pair} pair
  * @return {*}
  */
-export function getPairShared(getters, pair: API.Pair) {
-  const getAssetById = getters[GlobalGetters.GET_ASSET_BY_ID];
-  const getBalanceById = getters[GlobalGetters.GET_BALANCE_BY_ID];
-  const baseAsset = getAssetById(pair.base_asset_id);
-  const quoteAsset = getAssetById(pair.quote_asset_id);
-  const balance = getBalanceById(pair.liquidity_asset_id) ?? 0;
+export function getPairShared(vm: Vue, pair: API.Pair) {
+  const pairMeta = getPairMeta(vm, pair)!;
+  const getBalanceById = vm.$store.getters[GlobalGetters.GET_BALANCE_BY_ID];
+  const balance = getBalanceById(pairMeta!.liquidity_asset_id) ?? 0;
 
   if (!balance) {
     return null;
@@ -120,14 +118,14 @@ export function getPairShared(getters, pair: API.Pair) {
   const liquidity = Number(pair?.liquidity ?? 0);
   const percent = liquidity > 0 ? Math.min(balance / liquidity, 1) : 0;
 
-  const totalBaseAmount = Number(pair?.base_amount ?? 0);
-  const totalQuoteAmount = Number(pair?.quote_amount ?? 0);
+  const totalBaseAmount = Number(pairMeta.base_amount ?? 0);
+  const totalQuoteAmount = Number(pairMeta.quote_amount ?? 0);
 
   const sharedBaseAmount = totalBaseAmount * percent;
   const sharedQuoteAmount = totalQuoteAmount * percent;
   const totalValue =
-    sharedBaseAmount * Number(baseAsset?.price ?? 0) +
-    sharedQuoteAmount * Number(quoteAsset?.price ?? 0);
+    sharedBaseAmount * Number(pairMeta.baseAsset?.price ?? 0) +
+    sharedQuoteAmount * Number(pairMeta.quoteAsset?.price ?? 0);
 
   return { balance, totalValue, sharedBaseAmount, sharedQuoteAmount, percent };
 }

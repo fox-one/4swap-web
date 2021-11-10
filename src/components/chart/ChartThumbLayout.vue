@@ -44,17 +44,12 @@ export default ChartThumbLayout;
   padding: 16px;
   padding-right: 48px;
   background: var(--v-greyscale_7-base);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .chart-title {
-    flex: 1;
-  }
+  position: relative;
 
   .chart {
-    min-width: 88px;
-    max-width: 88px;
+    position: absolute;
+    top: 16px;
+    right: 48px;
     width: 88px;
     height: 55px;
   }

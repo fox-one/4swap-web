@@ -18,7 +18,7 @@ class PoolList extends Vue {
   @Prop() filter;
 
   get meta() {
-    const accountPairs = this.$store.getters[GlobalGetters.ACCOUNT_PAIRS];
+    const accountPairs = this.$store.getters[GlobalGetters.ACCOUNT_PAIRS](this);
     const fitlerFn = this.$utils.pair.filterFn;
     const getPairMeta = this.$utils.pair.getPairMeta;
 

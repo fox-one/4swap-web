@@ -14,26 +14,6 @@ export function errorHandler(vm: Vue, error) {
   vm.$uikit.toast.error({ message: `${code} ${message}` });
 }
 
-export function getLocale() {
-  let locale = "en";
-  if (navigator.language.includes("zh")) {
-    locale = "zh";
-  } else if (navigator.language.includes("ja")) {
-    locale = "ja";
-  }
-  return locale;
-}
-
-export function getLangCode(value) {
-  const data = {
-    zh: "zh-CN",
-    ja: "ja-JP",
-    en: "en-US",
-  };
-
-  return data[value];
-}
-
 export function getDurationData(
   data,
   duration,

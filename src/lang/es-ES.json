@@ -66,7 +66,6 @@
   "fee.create": "You need to pay fee: {amount}",
   "fees": "Fees",
   "fees.24hours": "24h Fees",
-  "from": "From",
   "go.to.swap": "Go to swap",
   "history": "History",
   "liquidity": "Liquidity",
@@ -184,7 +183,6 @@
   "tip.label.min-recevied": "Min Recevied",
   "tip.label.price": "Price",
   "tip.label.routes": "Routes",
-  "to": "To",
   "token.not-found": "Token Not Found",
   "trades.24hours": "24h Trades",
   "transactions": "Transactions",
@@ -200,5 +198,7 @@
   "wallet.balance.login-to-see": "Login to see balance",
   "warn.price.impact": "Price impact reached <p>{value}</p> This transaction carries a high risk of loss.",
   "warning": "Warning",
-  "website": "Website"
+  "website": "Website",
+  "from": "From",
+  "to": "To"
 }

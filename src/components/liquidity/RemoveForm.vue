@@ -34,7 +34,7 @@ class RemoveForm extends Vue {
 
   get assets() {
     const getAssetById = this.$store.getters[GlobalGetters.GET_ASSET_BY_ID];
-    const accountPairs = this.$store.getters[GlobalGetters.ACCOUNT_PAIRS];
+    const accountPairs = this.$store.getters[GlobalGetters.ACCOUNT_PAIRS](this);
 
     return accountPairs.map((x) => {
       return getAssetById(x.liquidity_asset_id);

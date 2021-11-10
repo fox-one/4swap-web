@@ -89,7 +89,7 @@ class PairDetailPage extends Mixins(mixins.page) {
     const id2 = this.$route.query.quote;
     const pair = getPair(id1, id2);
     const pairMeta = getPairMeta(this, pair);
-    const isAdded = getIsLiquidityAdded(pair);
+    const isAdded = getIsLiquidityAdded(this, pair);
 
     return { pair, symbol: pairMeta?.symbol ?? "", isAdded };
   }

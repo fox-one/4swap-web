@@ -27,7 +27,9 @@ class AccountOverview extends Vue {
     const attachSign = this.$utils.number.attachSign;
     const getters = this.$store.getters;
 
-    const { totalUsd, totalProfit } = getters[GlobalGetters.ACCOUNT_OVERVIEW];
+    const { totalUsd, totalProfit } = getters[GlobalGetters.ACCOUNT_OVERVIEW](
+      this
+    );
     const parts = toFiat(this, { n: totalUsd }, true);
     const totalProfitText = attachSign({
       n: +totalProfit,

@@ -2,6 +2,7 @@ import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import dayjs from "dayjs";
 import { GlobalMutations } from "~/store/types";
+import { getLocale } from "@foxone/utils/helper";
 
 @Component({
   head() {
@@ -34,10 +35,10 @@ export default class PageView extends Vue {
   }
 
   setLang() {
-    const locale = this.$utils.helper.getLocale();
+    const locale = getLocale();
 
     this.$i18n.locale = locale;
-    this.$vuetify.lang.current = locale === "zh" ? "zhHans" : locale;
+    this.$vuetify.lang.current = locale;
 
     dayjs.locale(locale);
   }

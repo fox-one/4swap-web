@@ -1,6 +1,5 @@
 import * as currency from "@foxone/utils/currency";
 import BigNumber from "bignumber.js";
-import { getLangCode } from "./helper";
 
 export const CURRENCY = {
   CNY: { name: "CNY", symbol: "¥" },
@@ -24,7 +23,7 @@ export function toFiat(
 ) {
   const to = vm.$store.state.app.settings.currency;
   const rates = vm.$store.state.pool.fiats;
-  const locale = getLangCode(vm.$store.$i18n.locale);
+  const locale = vm.$store.$i18n.locale;
   const configs = opts.short
     ? {
         maximumFractionDigits: 2,

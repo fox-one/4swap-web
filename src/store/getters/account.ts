@@ -13,8 +13,8 @@ export default {
   },
 
   [GetterTypes.GET_IS_LIQUIDITY_ADDED](state, getters) {
-    return (pair) => {
-      const accountPairs = getters[GetterTypes.ACCOUNT_PAIRS];
+    return (vm: Vue, pair) => {
+      const accountPairs = getters[GetterTypes.ACCOUNT_PAIRS](vm);
       const found = accountPairs.find((x) => {
         return (
           x.base_asset_id === pair.base_asset_id &&
@@ -27,8 +27,8 @@ export default {
   },
 
   [GetterTypes.GET_ACCOUNT_PAIR](state, getters) {
-    return (pair) => {
-      const shared = getPairShared(getters, pair);
+    return (vm: Vue, pair) => {
+      const shared = getPairShared(vm, pair);
       const profit = getters[GlobalGetters.GET_PROFIT_BY_PAIR](pair);
 
       return { ...pair, shared, profit };
@@ -38,22 +38,26 @@ export default {
   [GetterTypes.ACCOUNT_PAIRS](state, getters) {
     const pairs = getters[GlobalGetters.AVALIABLE_PAIRS];
 
-    return pairs
-      .map((pair) => getters[GlobalGetters.GET_ACCOUNT_PAIR](pair))
-      .filter((pair) => pair.shared);
+    return (vm: Vue) => {
+      return pairs
+        .map((pair) => getters[GlobalGetters.GET_ACCOUNT_PAIR](vm, pair))
+        .filter((pair) => pair.shared);
+    };
   },
 
   [GetterTypes.ACCOUNT_OVERVIEW](state, getters) {
-    const pairs = getters[GlobalGetters.ACCOUNT_PAIRS];
+    return (vm: Vue) => {
+      const pairs = getters[GlobalGetters.ACCOUNT_PAIRS](vm);
 
-    return pairs.reduce(
-      (total, next) => {
-        return {
-          totalUsd: total.totalUsd + (next.shared?.totalValue ?? 0),
-          totalProfit: total.totalProfit + (next.profit?.fiatProfit ?? 0),
-        };
-      },
-      { totalUsd: 0, totalProfit: 0 }
-    );
+      return pairs.reduce(
+        (total, next) => {
+          return {
+            totalUsd: total.totalUsd + (next.shared?.totalValue ?? 0),
+            totalProfit: total.totalProfit + (next.profit?.fiatProfit ?? 0),
+          };
+        },
+        { totalUsd: 0, totalProfit: 0 }
+      );
+    };
   },
 };
