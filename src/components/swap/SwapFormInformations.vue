@@ -1,5 +1,5 @@
 <template>
-  <div v-if="pair && order">
+  <div v-if="order">
     <base-information-list :items="items" />
   </div>
 </template>

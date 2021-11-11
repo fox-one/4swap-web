@@ -85,7 +85,7 @@ export async function getAssets(vm: Vue) {
   } else {
     const resp = await vm.$http.getAssetsFromMixin();
 
-    assets = resp;
+    assets = resp ?? [];
   }
 
   if (vm.$store.getters[GlobalGetters.LOGGED]) {
@@ -111,7 +111,7 @@ export async function getAsset(vm: Vue, id: string) {
     asset = resp;
   }
 
-  if (vm.$store.getters[GlobalGetters.LOGGED]) {
+  if (asset && vm.$store.getters[GlobalGetters.LOGGED]) {
     vm.$store.commit(GlobalMutations.SET_WALLET_ASSET, asset);
   }
 }

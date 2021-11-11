@@ -31,7 +31,7 @@ class AccountProfitChart extends Vue {
   data: API.ProfitsData[] = [];
 
   get formatedData() {
-    return this.data.map((x) => fmtProfits(this.pair, x));
+    return this.data.map((x) => fmtProfits(this, this.pair, x));
   }
 
   mounted() {

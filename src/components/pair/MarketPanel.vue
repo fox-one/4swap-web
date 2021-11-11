@@ -12,7 +12,11 @@
     <div class="label-1 mt-8">{{ $t("chart") }}</div>
     <market-chart-panel :pair="pair" class="mt-4" @loaded="handleLoaded" />
 
-    <div class="label-1 mt-8">{{ $t("transactions") }}</div>
+    <div class="label-1 mt-8 d-flex">
+      <span>{{ $t("transactions") }}</span>
+      <v-spacer />
+      <route-to-my-history-action :pair="pair" />
+    </div>
     <pair-transactions :pair="pair" />
   </div>
 </template>
@@ -24,6 +28,7 @@ import PairInformations from "@/components/pair/PairInformations.vue";
 import PairAssets from "@/components/pair/PairAssets.vue";
 import PairTransactions from "@/components/pair/PairTransactions.vue";
 import MarketChartPanel from "@/components/chart/market-chart/MarketChartPanel.vue";
+import RouteToMyHistoryAction from "./RouteToMyHistoryAction.vue";
 
 @Component({
   components: {
@@ -32,6 +37,7 @@ import MarketChartPanel from "@/components/chart/market-chart/MarketChartPanel.v
     PairInformations,
     PairTransactions,
     MarketChartPanel,
+    RouteToMyHistoryAction,
   },
 })
 class MarketPanel extends Vue {

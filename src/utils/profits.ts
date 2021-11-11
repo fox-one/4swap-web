@@ -5,18 +5,67 @@ function divide(a, b) {
   return b !== 0 ? a / b : 0;
 }
 
+function getReverseData(isReverse, data) {
+  let netBaseAmount = +data.nba;
+  let netQuoteAmount = +data.nqa;
+  let currentBaseAmount = +data.ba;
+  let currentQuoteAmount = +data.qa;
+  let netBaseValue = +data.nbv;
+  let netQuoteValue = +data.nqv;
+  let baseValue = +data.bv;
+  let quoteValue = +data.qv;
+
+  if (isReverse) {
+    [
+      netQuoteAmount,
+      netBaseAmount,
+      currentQuoteAmount,
+      currentBaseAmount,
+      netQuoteValue,
+      netBaseValue,
+      quoteValue,
+      baseValue,
+    ] = [
+      netBaseAmount,
+      netQuoteAmount,
+      currentBaseAmount,
+      currentQuoteAmount,
+      netBaseValue,
+      netQuoteValue,
+      baseValue,
+      quoteValue,
+    ];
+  }
+
+  return {
+    netQuoteAmount,
+    netBaseAmount,
+    currentQuoteAmount,
+    currentBaseAmount,
+    netQuoteValue,
+    netBaseValue,
+    quoteValue,
+    baseValue,
+  };
+}
+
 export function fmtProfits(
+  vm: Vue,
   pair: API.Pair,
   data: API.ProfitsData
 ): API.PairProfits {
-  const netBaseAmount = +data.nba;
-  const netQuoteAmount = +data.nqa;
-  const currentBaseAmount = +data.ba;
-  const currentQuoteAmount = +data.qa;
-  const netBaseValue = +data.nbv;
-  const netQuoteValue = +data.nqv;
-  const baseValue = +data.bv;
-  const quoteValue = +data.qv;
+  const { isReverse } = vm.$utils.pair.getPairMeta(vm, pair)!;
+  const {
+    netQuoteAmount,
+    netBaseAmount,
+    currentQuoteAmount,
+    currentBaseAmount,
+    netQuoteValue,
+    netBaseValue,
+    quoteValue,
+    baseValue,
+  } = getReverseData(isReverse, data);
+
   const ts = data.ts;
   const netTotalValue = netBaseValue + netQuoteValue;
   const isCurve = pair.swap_method === "curve";
@@ -53,6 +102,16 @@ export function fmtProfits(
 
   return {
     ts,
+    origin: {
+      netQuoteAmount,
+      netBaseAmount,
+      currentQuoteAmount,
+      currentBaseAmount,
+      netQuoteValue,
+      netBaseValue,
+      quoteValue,
+      baseValue,
+    },
     netBaseAmount: format(netBaseAmount, 8),
     netQuoteAmount: format(netQuoteAmount, 8),
     currentBaseAmount: format(currentBaseAmount, 8),
@@ -103,8 +162,6 @@ function calcCurveProfits({
 
 /**
  * calc normal pair profits
- * since price = BaseAmount / QuoteAmount
- * so any side added the opposite changed to is equal to the side value * 2
  *
  * @param {*} {
  *   currentBaseAmount,
@@ -120,13 +177,18 @@ function calcProfits({
   netBaseAmount,
   netQuoteAmount,
 }) {
+  const currentPrice = divide(currentBaseAmount, currentQuoteAmount);
+
   // 以 base 计价的收益和收益率
-  const baseProfit = (currentBaseAmount - netBaseAmount) * 2;
-  const baseProfitRate = divide(baseProfit, netBaseAmount * 2);
+  const baseAmountConverted = netBaseAmount + netQuoteAmount * currentPrice;
+  const baseProfit = currentBaseAmount * 2 - baseAmountConverted;
+  const baseProfitRate = divide(baseProfit, baseAmountConverted);
 
   // 以 quote 计价的收益和收益率
-  const quoteProfit = (currentQuoteAmount - netQuoteAmount) * 2;
-  const quoteProfitRate = divide(quoteProfit, netQuoteAmount * 2);
+  const quoteAmountConverted =
+    netQuoteAmount + divide(netBaseAmount, currentPrice);
+  const quoteProfit = currentQuoteAmount * 2 - quoteAmountConverted;
+  const quoteProfitRate = divide(quoteProfit, quoteAmountConverted);
 
   return { baseProfit, baseProfitRate, quoteProfit, quoteProfitRate };
 }

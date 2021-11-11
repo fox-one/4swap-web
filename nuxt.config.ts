@@ -25,6 +25,11 @@ const config: NuxtConfig = {
       },
       { rel: "stylesheet", href: "/fonts/inter/style.css" },
     ],
+    script: [
+      {
+        src: "https://polyfill.io/v3/polyfill.min.js?features=Intl",
+      },
+    ],
   },
   loading: { color: "#fff" },
   css: ["~/styles/index.scss"],

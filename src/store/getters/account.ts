@@ -29,7 +29,7 @@ export default {
   [GetterTypes.GET_ACCOUNT_PAIR](state, getters) {
     return (vm: Vue, pair) => {
       const shared = getPairShared(vm, pair);
-      const profit = getters[GlobalGetters.GET_PROFIT_BY_PAIR](pair);
+      const profit = getters[GlobalGetters.GET_PROFIT_BY_PAIR](vm, pair);
 
       return { ...pair, shared, profit };
     };

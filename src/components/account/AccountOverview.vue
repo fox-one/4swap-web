@@ -4,14 +4,6 @@
 
     <div class="mt-6">
       <base-fiat-division :parts="meta.parts" class="balance" />
-
-      <span
-        v-if="!meta.hideProfit"
-        :style="{ color: meta.color }"
-        class="profit ml-3"
-      >
-        {{ meta.totalProfitText }}
-      </span>
     </div>
   </div>
 </template>
@@ -24,27 +16,12 @@ import { GlobalGetters } from "~/store/types";
 class AccountOverview extends Vue {
   get meta() {
     const toFiat = this.$utils.currency.toFiat;
-    const attachSign = this.$utils.number.attachSign;
     const getters = this.$store.getters;
 
-    const { totalUsd, totalProfit } = getters[GlobalGetters.ACCOUNT_OVERVIEW](
-      this
-    );
+    const { totalUsd } = getters[GlobalGetters.ACCOUNT_OVERVIEW](this);
     const parts = toFiat(this, { n: totalUsd }, true);
-    const totalProfitText = attachSign({
-      n: +totalProfit,
-      text: toFiat(this, { n: Math.abs(totalProfit) }) as string,
-    });
-    const color = this.$utils.color.getColor(this, totalProfit);
-    const hideProfit = +totalProfit === 0;
 
-    return {
-      parts,
-      totalProfit,
-      color,
-      totalProfitText,
-      hideProfit,
-    };
+    return { parts };
   }
 }
 export default AccountOverview;

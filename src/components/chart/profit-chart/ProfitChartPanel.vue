@@ -4,6 +4,7 @@
     :type.sync="type"
     :duration.sync="duration"
     :title="titles.title"
+    :hint="titles.hint"
     :subtitle="titles.subtitle"
     :thumb-title="titles.thumbTitle"
     :expand="expand1"
@@ -66,7 +67,7 @@ class ProfitChartPanel extends Vue {
   @Inject()
   togggleExpand1;
 
-  type = 2;
+  type = 0;
 
   current = null;
 
@@ -116,10 +117,6 @@ class ProfitChartPanel extends Vue {
         text: this.$t("profits") + ` (${this.meta.quoteAssetSymbol})`,
         value: 1,
       },
-      {
-        text: this.$t("profits") + ` (${this.meta.currency})`,
-        value: 2,
-      },
     ];
   }
 
@@ -136,42 +133,31 @@ class ProfitChartPanel extends Vue {
     const thumbData = this.thumbCurrent?.[1] ?? 0;
 
     const { baseAsset, quoteAsset } = getPairMeta(this, this.pair)!;
-    const baseAssetSymbol = baseAsset.symbol;
-    const quoteAssetSymbol = quoteAsset.symbol;
+    const asset = this.type === 0 ? baseAsset : quoteAsset;
 
-    const formatData = (data, type) => {
+    const formatData = (data) => {
       const style = { color: getColor(this, data) };
+      const text = attachSign({
+        n: data,
+        text: format({ n: Math.abs(data) }),
+      });
 
-      if (this.type === 2) {
-        const currency = this.$store.state.app.settings.currency;
-        const text = attachSign({
-          n: data,
-          text: toFiat(this, { n: Math.abs(data), from: currency }) as string,
-        });
-
-        return h("span", { staticStyle: style }, [text]);
-      } else {
-        const symbol = type === 0 ? baseAssetSymbol : quoteAssetSymbol;
-        const text = attachSign({
-          n: data,
-          text: format({ n: Math.abs(data) }),
-        });
-
-        return h("span", { staticStyle: style }, [
-          text,
-          h("span", { staticClass: "symbol ml-1" }, [symbol]),
-        ]);
-      }
+      return h("span", { staticStyle: style }, [
+        text,
+        h("span", { staticClass: "symbol ml-1" }, [asset.symbol]),
+      ]);
     };
 
-    const title = formatData(data, this.type);
-    const thumbTitle = formatData(thumbData, this.type);
+    const title = formatData(data);
+    const thumbTitle = formatData(thumbData);
+    const hint = "≈ " + toFiat(this, { n: +data * +asset.price });
     const subtitle =
       (time && this.$utils.time.format(time, "MMM DD, YYYY HH:mm")) || "";
 
     return {
       title,
       subtitle,
+      hint,
       thumbTitle,
     };
   }

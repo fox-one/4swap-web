@@ -29,12 +29,12 @@ const getters: GetterTree<State.AccountState, any> = {
   },
 
   [GetterTypes.GET_PROFIT_BY_PAIR](state) {
-    return (pair) => {
+    return (vm, pair) => {
       const key = `${pair.base_asset_id}_${pair.quote_asset_id}`;
       const data = state.profits[key];
 
       if (data) {
-        return fmtProfits(pair, state.profits[key]);
+        return fmtProfits(vm, pair, state.profits[key]);
       }
 
       return null;

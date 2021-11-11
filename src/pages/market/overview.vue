@@ -4,7 +4,7 @@
 
     <f-divider opacity="0.2" class="mt-5 mb-8" />
     <div class="label-1">{{ $t("chart") }}</div>
-    <market-chart-panel class="mt-4" />
+    <market-chart-panel is-global class="mt-4" />
 
     <div class="label-1 mt-8">{{ $t("transactions") }}</div>
     <market-transactions />

@@ -3,7 +3,7 @@
     <div>
       <span class="label-3 mr-1" @click="handleTitleClick">{{ title }}</span>
 
-      <v-icon v-if="icon" size="12" class="mr-1" @click="handleTitleClick">
+      <v-icon v-if="icon" size="12" class="mr-1" @click.stop="handleTitleClick">
         {{ icon }}
       </v-icon>
 
@@ -12,8 +12,8 @@
 
     <v-spacer />
 
-    <div>
-      <span class="ml-2">
+    <div class="information-item__value">
+      <span>
         <Render :nodes="value" />
       </span>
     </div>
@@ -65,6 +65,10 @@ export default InformationItem;
 
   &--small {
     font-size: 12px;
+  }
+
+  &__value {
+    margin-left: 8px;
   }
 }
 </style>

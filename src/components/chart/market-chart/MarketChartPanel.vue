@@ -51,6 +51,8 @@ export type ChartType = "liquidity" | "volume" | "0" | "1";
 class MarketChartPanel extends Vue {
   @Prop() pair;
 
+  @Prop({ type: Boolean, default: false }) isGlobal;
+
   loading = false;
 
   duration: API.Duration = "168h";
@@ -173,6 +175,10 @@ class MarketChartPanel extends Vue {
   }
 
   mounted() {
+    if (this.isGlobal) {
+      this.chartType = "liquidity";
+    }
+
     this.requestChartData();
   }
 

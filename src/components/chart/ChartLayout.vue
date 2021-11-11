@@ -4,7 +4,7 @@
       <type-select :types="types" :value.sync="bindType" />
     </div>
     <div class="chart-title mb-10">
-      <chart-title :title="title" :subtitle="subtitle" />
+      <chart-title :title="title" :subtitle="subtitle" :hint="hint" />
     </div>
     <div class="chart">
       <slot name="chart" />
@@ -39,6 +39,8 @@ class ChartLayout extends Vue {
   @Prop() title;
 
   @Prop() subtitle;
+
+  @Prop() hint;
 
   @PropSync("type") bindType;
 

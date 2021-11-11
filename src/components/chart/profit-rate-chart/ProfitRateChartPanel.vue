@@ -67,7 +67,7 @@ class ProfitRateChartPanel extends Vue {
   @Inject()
   togggleExpand2;
 
-  type = 2;
+  type = 0;
 
   current = null;
 
@@ -110,23 +110,15 @@ class ProfitRateChartPanel extends Vue {
   get types() {
     return [
       {
-        text: this.$t("profits.rate") + ` (${this.meta.baseAssetSymbol})`,
+        text: this.$t("profits.rate"),
         value: 0,
-      },
-      {
-        text: this.$t("profits.rate") + ` (${this.meta.quoteAssetSymbol})`,
-        value: 1,
-      },
-      {
-        text: this.$t("profits.rate") + ` (${this.meta.currency})`,
-        value: 2,
       },
     ];
   }
 
   get titles() {
     const toPercent = this.$utils.number.toPercent;
-    const attachSign = this.$utils.number.attachSign;
+    const getColor = this.$utils.color.getColor;
     const h = this.$createElement;
 
     const time = this.current?.[0] ?? 0;
@@ -134,19 +126,21 @@ class ProfitRateChartPanel extends Vue {
     const thumbData = this.thumbCurrent?.[1] ?? 0;
 
     const formatData = (value, thumb = false) => {
-      const text = attachSign({
-        n: value,
-        text: toPercent({ n: Math.abs(value) }),
-      });
+      const text = toPercent({ n: Math.abs(value) });
+      const color = getColor(this, value);
       const icon =
         +value > 0 ? "$IconUpPolygon" : +value < 0 ? "$IconDownPolygon" : "";
 
-      return h("span", { staticClass: "d-flex align-center" }, [
-        h(VIcon, { staticClass: "mr-1", props: { size: thumb ? 12 : 18 } }, [
-          icon,
-        ]),
-        text,
-      ]);
+      return h(
+        "span",
+        { staticClass: "d-flex align-center", style: { color } },
+        [
+          h(VIcon, { staticClass: "mr-1", props: { size: thumb ? 12 : 18 } }, [
+            icon,
+          ]),
+          text,
+        ]
+      );
     };
 
     const title = formatData(data);

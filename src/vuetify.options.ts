@@ -43,8 +43,8 @@ const themeFSwap = {
   dark: {
     primary: "#FFFFFF",
     secondary: "#EE4596",
-    third: "#882F57",
-    forth: "#A94170",
+    third: "#4a142d",
+    forth: "#6f2848",
     fifth: "#763f59",
     warning_bg: "#5C3A13",
     warning_emphsize: "#FFE08F",

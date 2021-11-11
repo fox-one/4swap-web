@@ -3,6 +3,9 @@
     <div class="mt-3">
       <render :nodes="title" />
     </div>
+    <div v-if="!thumb && hint" class="mt-3 hint">
+      {{ hint }}
+    </div>
     <div v-if="!thumb" class="mt-3 subtitle">
       <render :nodes="subtitle" />
     </div>
@@ -22,6 +25,8 @@ class ChartTitle extends Vue {
   @Prop() title;
 
   @Prop() subtitle;
+
+  @Prop() hint;
 
   @Prop({ type: Boolean, default: false }) thumb;
 
@@ -65,7 +70,8 @@ export default ChartTitle;
   }
 }
 
-.subtitle {
+.subtitle,
+.hint {
   font-weight: 500;
   font-weight: 500;
   font-size: 12px;

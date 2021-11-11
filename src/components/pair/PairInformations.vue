@@ -42,10 +42,12 @@ class PairInformations extends Vue {
   }
 
   get meta() {
+    const h = this.$createElement;
     const toFiat = this.$utils.currency.toFiat;
     const toPercent = this.$utils.number.toPercent;
     const getPairMeta = this.$utils.pair.getPairMeta;
     const getPriceChangeInDuration = this.$utils.pair.getPriceChangeInDuration;
+    const getColor = this.$utils.color.getColor;
     const {
       volume,
       volume_24h,
@@ -88,7 +90,11 @@ class PairInformations extends Vue {
       },
       {
         title: this.$t("24h.price-change"),
-        value: priceChangeText,
+        value: h(
+          "span",
+          { style: { color: getColor(this, priceChange) } },
+          priceChangeText
+        ),
       },
     ];
 

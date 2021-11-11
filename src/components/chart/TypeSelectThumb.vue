@@ -1,7 +1,9 @@
 <template>
   <div class="type-select" @click="handleChangeType">
     <span class="mr-2">{{ display }}</span>
-    <v-icon size="16" color="greyscale_3">$FIconExchange4P</v-icon>
+    <v-icon v-if="showSwitcher" size="16" color="greyscale_3">
+      $FIconExchange4P
+    </v-icon>
   </div>
 </template>
 
@@ -13,6 +15,10 @@ class TypeSelectThumb extends Vue {
   @PropSync("value") bindValue;
 
   @Prop() types;
+
+  get showSwitcher() {
+    return this.types.length > 1;
+  }
 
   get display() {
     return this.types.find((x) => x.value === this.bindValue)?.text;

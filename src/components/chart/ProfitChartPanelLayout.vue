@@ -67,7 +67,7 @@ export default ProfitPanelLayout;
   }
 
   .f-segment-control,
-  .type-field {
+  .type-field--switch {
     background: var(--v-greyscale_5-base) !important;
   }
 }

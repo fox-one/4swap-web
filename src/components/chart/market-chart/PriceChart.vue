@@ -1,5 +1,6 @@
 <template>
   <base-line-chart
+    v-if="pair"
     :data="chartData"
     :point.sync="point"
     v-bind="$attrs"
@@ -28,7 +29,7 @@ class PriceChart extends Vue {
   point = null;
 
   get reverse() {
-    const { isReverse } = this.$utils.pair.getPairMeta(this, this.pair)!;
+    const { isReverse } = this.$utils.pair.getPairMeta(this, this.pair) || {};
     const chartReverse = this.chartType === "1";
 
     return isReverse !== chartReverse;

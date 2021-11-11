@@ -97,10 +97,13 @@ export default function (http: Http) {
       return http.get(url, { params, cancelToken });
     },
 
-    getMyTransactions(params: API.GetTransactionsParams) {
+    getMyTransactions(
+      params: API.GetTransactionsParams,
+      cancelToken: any = undefined
+    ) {
       const url = `/transactions/${params.base}/${params.quote}/mine`;
 
-      return http.get(url, { params });
+      return http.get(url, { params, cancelToken });
     },
 
     getMyTransaction(params: API.GetTransactionParams): Promise<any> {

@@ -115,6 +115,7 @@
   "me.not.support": "You haven’t support any pool yet",
   "me.total.balance": "Total Balance",
   "me.total.lp_balance": "Pool Balance",
+  "my.history": "My History",
   "my.pools": "My Pools",
   "next": "Next",
   "ok": "OK",
@@ -200,5 +201,7 @@
   "wallet.balance.login-to-see": "Login to see balance",
   "warn.price.impact": "Price impact reached <p>{value}</p> This transaction carries a high risk of loss.",
   "warning": "Warning",
-  "website": "Website"
+  "website": "Website",
+  "transaction.all": "All Transaction",
+  "transaction.type": "Transaction Type"
 }
