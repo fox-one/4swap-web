@@ -108,6 +108,23 @@ class PairDetailPage extends Mixins(mixins.page) {
     this.setPageConfig();
   }
 
+  @Watch("tabIndex")
+  handleTabIndexChange() {
+    if (this.tabIndex === 0) {
+      this.handleUpdateUrlSource("profile");
+    } else {
+      this.handleUpdateUrlSource("market");
+    }
+  }
+
+  handleUpdateUrlSource(source) {
+    this.$router
+      .replace({ query: { ...this.$route.query, source } })
+      .catch(() => {
+        // ignore
+      });
+  }
+
   handleRemove() {
     this.$router.push({
       name: "liquidity-remove",

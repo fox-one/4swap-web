@@ -12,9 +12,11 @@
     </div>
     <div
       v-else-if="error"
-      class="d-flex caption error--text justify-center pa-5"
+      class="d-flex caption error--text justify-center align-center pa-5"
+      @click="handleRetry"
     >
-      {{ $t("error.ocurred") }}
+      <span>{{ $t("error.ocurred") }}</span>
+      <v-icon size="12" class="ml-1">$FIconRefresh4P</v-icon>
     </div>
     <div
       v-else-if="!empty"
@@ -55,6 +57,10 @@ class ListWapper extends Vue {
   }
 
   loadData() {
+    this.$emit("load");
+  }
+
+  handleRetry() {
     this.$emit("load");
   }
 }
