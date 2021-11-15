@@ -31,10 +31,11 @@ import { PANDO_DOC } from "@/constants";
 
 @Component
 class LiquidityEmptyPlaceholder extends Vue {
-  logo =
-    this.$config.channel === "lake"
+  get logo() {
+    return this.$config.CHANNEL === "lake"
       ? require("@/assets/images/image_empty_liquidity_lake.png")
       : require("@/assets/images/image_empty_liquidity_fswap.png");
+  }
 
   handleToAdd() {
     const pair = this.$utils.pair.getMostLiquidityPair(this);

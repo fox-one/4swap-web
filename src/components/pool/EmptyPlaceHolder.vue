@@ -22,10 +22,12 @@ import RouteToCreateAction from "../liquidity/RouteToCreateAction.vue";
 class EmptyPlaceHolder extends Vue {
   @Prop() searchable!: boolean;
 
-  image =
-    this.$config.channel === "lake"
+  get image() {
+    console.log(this.$config);
+    return this.$config.CHANNEL === "lake"
       ? require("@/assets/images/image_empty_pool_lake.png")
       : require("@/assets/images/image_empty_pool_fswap.png");
+  }
 
   get text() {
     return this.searchable ? this.$t("token.not-found") : this.$t("empty");
