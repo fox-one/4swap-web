@@ -1,7 +1,8 @@
 <template>
   <div class="type-select" @click="handleChangeType">
-    <span class="mr-2">{{ display }}</span>
-    <v-icon v-if="showSwitcher" size="16" color="greyscale_3">
+    <span class="mr-2">{{ meta.text }}</span>
+    <base-tool-tip :hint="meta.hint" dialog />
+    <v-icon v-if="showSwitcher" size="16" color="greyscale_3" class="ml-2">
       $FIconExchange4P
     </v-icon>
   </div>
@@ -20,8 +21,10 @@ class TypeSelectThumb extends Vue {
     return this.types.length > 1;
   }
 
-  get display() {
-    return this.types.find((x) => x.value === this.bindValue)?.text;
+  get meta() {
+    const current = this.types.find((x) => x.value === this.bindValue);
+
+    return { text: current.text, hint: current.hint };
   }
 
   handleChangeType() {

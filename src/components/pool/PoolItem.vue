@@ -21,17 +21,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, InjectReactive } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import { getPairMeta } from "@/utils/pair/helper";
+import { Sync } from "vuex-pathify";
 
 @Component
 class PoolItem extends Vue {
   @Prop() pair!: API.Pair;
 
-  @InjectReactive()
+  @Sync("page/pool@reverse")
   reverse!: boolean;
 
-  @InjectReactive()
+  @Sync("page/pool@dimension")
   dimension!: string;
 
   get meta() {

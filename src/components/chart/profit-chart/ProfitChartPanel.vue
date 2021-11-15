@@ -7,6 +7,7 @@
     :hint="titles.hint"
     :subtitle="titles.subtitle"
     :thumb-title="titles.thumbTitle"
+    :thumb-hint="titles.thumbHint"
     :expand="expand1"
     :loading="loading"
     @toggle="togggleExpand1"
@@ -112,10 +113,12 @@ class ProfitChartPanel extends Vue {
       {
         text: this.$t("profits") + ` (${this.meta.baseAssetSymbol})`,
         value: 0,
+        hint: this.$t("profit.hint"),
       },
       {
         text: this.$t("profits") + ` (${this.meta.quoteAssetSymbol})`,
         value: 1,
+        hint: this.$t("profit.hint"),
       },
     ];
   }
@@ -150,7 +153,10 @@ class ProfitChartPanel extends Vue {
 
     const title = formatData(data);
     const thumbTitle = formatData(thumbData);
+
     const hint = "≈ " + toFiat(this, { n: +data * +asset.price });
+    const thumbHint = "≈ " + toFiat(this, { n: +thumbData * +asset.price });
+
     const subtitle =
       (time && this.$utils.time.format(time, "MMM DD, YYYY HH:mm")) || "";
 
@@ -159,6 +165,7 @@ class ProfitChartPanel extends Vue {
       subtitle,
       hint,
       thumbTitle,
+      thumbHint,
     };
   }
 }

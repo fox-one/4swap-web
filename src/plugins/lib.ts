@@ -3,6 +3,7 @@ import Vue from "vue";
 import Bugsnag from "@bugsnag/js";
 import BugsnagPluginVue from "@bugsnag/plugin-vue";
 import UIKit from "@foxone/uikit";
+import PandoUI from "@foxone/pando-ui";
 import InfiniteScroll from "vue-infinite-scroll";
 import { CanvasRenderer } from "echarts/renderers";
 import { LineChart, BarChart } from "echarts/charts";
@@ -13,13 +14,11 @@ import {
   LegendPlainComponent,
   AxisPointerComponent,
 } from "echarts/components";
-
 import { use } from "echarts/core";
 
-import "sticksy";
 import "@/components";
-
 import "@foxone/uikit/build/index.min.css";
+import "@foxone/pando-ui/build/index.css";
 
 import type { Plugin } from "@nuxt/types";
 
@@ -41,6 +40,7 @@ const plugin: Plugin = ({ app }) => {
     centered: true,
   });
   Vue.use(UIKit.Dialog, app.vuetify, { flat: true });
+  Vue.use(PandoUI, app.vuetify);
   Vue.use(InfiniteScroll);
 
   Bugsnag.start({

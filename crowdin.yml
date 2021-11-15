@@ -2,7 +2,7 @@
 # Your Crowdin credentials
 #
 "project_id": "5"
-"api_token": "CROWDIN_PERSONAL_TOKEN"
+"api_token_env": "CROWDIN_PERSONAL_TOKEN"
 "base_path": "."
 "base_url": "https://pando.crowdin.com"
 
@@ -15,7 +15,8 @@
 #
 # Files configuration
 #
-files: [
+files:
+  [
     {
       #
       # Source files filter

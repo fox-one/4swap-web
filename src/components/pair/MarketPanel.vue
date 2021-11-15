@@ -15,7 +15,7 @@
     <div class="label-1 mt-8 d-flex">
       <span>{{ $t("transactions") }}</span>
       <v-spacer />
-      <route-to-my-history-action :pair="pair" />
+      <route-to-my-history-action v-if="isLogged" :pair="pair" />
     </div>
     <pair-transactions :pair="pair" />
   </div>
@@ -29,6 +29,8 @@ import PairAssets from "@/components/pair/PairAssets.vue";
 import PairTransactions from "@/components/pair/PairTransactions.vue";
 import MarketChartPanel from "@/components/chart/market-chart/MarketChartPanel.vue";
 import RouteToMyHistoryAction from "./RouteToMyHistoryAction.vue";
+import { Get } from "vuex-pathify";
+import { GlobalGetters } from "@/store/types";
 
 @Component({
   components: {
@@ -42,6 +44,8 @@ import RouteToMyHistoryAction from "./RouteToMyHistoryAction.vue";
 })
 class MarketPanel extends Vue {
   @Prop() pair;
+
+  @Get(GlobalGetters.LOGGED) isLogged!: boolean;
 
   data = {
     kline: [],

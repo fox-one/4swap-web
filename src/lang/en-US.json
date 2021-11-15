@@ -203,5 +203,7 @@
   "warning": "Warning",
   "website": "Website",
   "transaction.all": "All Transaction",
-  "transaction.type": "Transaction Type"
+  "transaction.type": "Transaction Type",
+  "profit.hint": "Profits are calculated by substracting impermanent loss from your proportional rewards of the toal accumulated trading fees the liquidity pool, in value of one of the designated asset of the trading pair.",
+  "profit-rate.hint": "Profit rate = Profits / Value of the total added assets * 100%"
 }

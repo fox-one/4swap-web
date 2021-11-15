@@ -99,7 +99,7 @@ export function checkFennecAuth(vm: Vue) {
         } catch (error) {
           // if some error occur during auto connect
           // clear auth channel from localstoreage
-          logout({ store: vm.$store });
+          logout({ $store: vm.$store });
           reject();
         }
       }, 1000);

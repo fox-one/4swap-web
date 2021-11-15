@@ -22,13 +22,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, ProvideReactive, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import { GlobalGetters, GlobalMutations } from "@/store/types";
 import PoolDimensionList from "@/components/pool/DimensionList.vue";
 import PoolHeader from "./PoolHeader.vue";
 import PoolItem from "./PoolItem.vue";
 import EmptyPlaceHolder from "./EmptyPlaceHolder.vue";
 import { getPairMeta, filterFn } from "@/utils/pair/helper";
+import { Sync } from "vuex-pathify";
 
 @Component({
   components: {
@@ -39,14 +40,14 @@ import { getPairMeta, filterFn } from "@/utils/pair/helper";
   },
 })
 class PoolList extends Vue {
-  @ProvideReactive()
-  reverse = false;
+  @Sync("page/pool@reverse")
+  reverse;
 
-  @ProvideReactive()
-  sort = "desc";
+  @Sync("page/pool@sort")
+  sort;
 
-  @ProvideReactive()
-  dimension = "volume";
+  @Sync("page/pool@dimension")
+  dimension;
 
   @Prop({ type: String, default: "" })
   filter!: string;

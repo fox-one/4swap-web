@@ -15,18 +15,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, InjectReactive, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { dimensions } from "./DimensionList.vue";
+import { Sync } from "vuex-pathify";
 
 @Component
 class PoolHeader extends Vue {
-  @InjectReactive()
+  @Sync("page/pool@dimension")
   dimension!: string;
 
-  @InjectReactive()
+  @Sync("page/pool@reverse")
   reverse!: boolean;
 
-  @InjectReactive()
+  @Sync("page/pool@sort")
   sort!: string;
 
   get sorts() {

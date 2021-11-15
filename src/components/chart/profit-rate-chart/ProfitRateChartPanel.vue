@@ -112,6 +112,7 @@ class ProfitRateChartPanel extends Vue {
       {
         text: this.$t("profits.rate"),
         value: 0,
+        hint: this.$t("profit-rate.hint"),
       },
     ];
   }

@@ -3,7 +3,7 @@
     <div class="mt-3">
       <render :nodes="title" />
     </div>
-    <div v-if="!thumb && hint" class="mt-3 hint">
+    <div v-if="hint" class="mt-3 hint">
       {{ hint }}
     </div>
     <div v-if="!thumb" class="mt-3 subtitle">

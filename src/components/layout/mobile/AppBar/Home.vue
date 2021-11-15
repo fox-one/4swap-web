@@ -13,9 +13,9 @@
         <account-avatar />
       </div>
 
-      <pando-products v-if="isLake" />
+      <f-pando-products current-id="lake" />
 
-      <FSwapLogo v-else />
+      <!-- <FSwapLogo v-else /> -->
     </v-layout>
 
     <template v-slot:extension v-if="appbar.extension">
@@ -54,6 +54,10 @@ class HomeAppBar extends Vue {
 
   get isLake() {
     return this.$config.CHANNEL === "lake";
+  }
+
+  mounted() {
+    console.log(this.$vuetify);
   }
 
   @Watch("appbar.color", { immediate: true })

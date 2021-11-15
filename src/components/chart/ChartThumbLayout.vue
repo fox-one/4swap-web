@@ -5,7 +5,7 @@
       <div class="chart-title">
         <type-select-thumb :types="types" :value.sync="bindType" class="mb-4" />
 
-        <chart-title :thumb="true" :title="thumbTitle" />
+        <chart-title :thumb="true" :title="thumbTitle" :hint="thumbHint" />
       </div>
       <div class="chart">
         <slot name="thumb" />
@@ -28,6 +28,8 @@ import TypeSelectThumb from "./TypeSelectThumb.vue";
 })
 class ChartThumbLayout extends Vue {
   @Prop() thumbTitle;
+
+  @Prop() thumbHint;
 
   @Prop() types;
 

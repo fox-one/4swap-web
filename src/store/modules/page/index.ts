@@ -25,9 +25,9 @@ const state = {
   },
 
   pool: {
-    sortby: "",
-    filter: "",
-    ascending: false,
+    reverse: false,
+    sort: "desc",
+    dimension: "volume",
     searchHistory: [],
   },
 

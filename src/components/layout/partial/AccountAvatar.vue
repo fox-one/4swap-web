@@ -4,6 +4,7 @@
     hide-close-icon
     min-width="500"
     z-index="1111"
+    wapper-in-desktop="dialog"
   >
     <template #activator="{ on }">
       <base-user-avatar

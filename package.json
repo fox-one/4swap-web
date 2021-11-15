@@ -12,7 +12,8 @@
   },
   "resolutions": {
     "vuetify": "2.5.8",
-    "nuxt": "2.15.8"
+    "nuxt": "2.15.8",
+    "vue": "2.6.12"
   },
   "scripts": {
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -23,17 +24,17 @@
     "build:prod": "APP_ENV=prod nuxt-ts build",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
-    "test": "ts-mocha src/**/*.spec.ts",
-    "i18n": "node ./scripts/i18n.js"
+    "test": "ts-mocha src/**/*.spec.ts"
   },
   "dependencies": {
     "@bugsnag/js": "^7.5.1",
     "@bugsnag/plugin-vue": "^7.3.5",
-    "@foxone/fennec-base": "^0.3.8",
-    "@foxone/fennec-dapp": "^0.3.8",
-    "@foxone/icons": "^3.0.1-41",
-    "@foxone/uikit": "^3.0.1-41",
-    "@foxone/utils": "^0.2.17",
+    "@foxone/fennec-base": "^0.4.5-2",
+    "@foxone/fennec-dapp": "^0.4.5-2",
+    "@foxone/icons": "^3.0.1-42",
+    "@foxone/pando-ui": "^0.0.2-2",
+    "@foxone/uikit": "^3.0.1-42",
+    "@foxone/utils": "^0.2.18",
     "@mdi/js": "^5.5.55",
     "@nuxt/types": "^2.14.6",
     "@nuxt/typescript-runtime": "^2.0.0",
