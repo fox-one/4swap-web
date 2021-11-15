@@ -6,7 +6,7 @@
 
     <div class="label-2">{{ text }}</div>
 
-    <route-to-create-action class="mt-8" />
+    <route-to-create-action hide-while-not-support class="mt-8" />
   </div>
 </template>
 

@@ -13,9 +13,7 @@
         <account-avatar />
       </div>
 
-      <f-pando-products current-id="lake" />
-
-      <!-- <FSwapLogo v-else /> -->
+      <f-pando-products :current-id="isLake ? 'lake' : '4swap'" />
     </v-layout>
 
     <template v-slot:extension v-if="appbar.extension">
@@ -28,15 +26,11 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import Render from "@/components/base/Render";
 import AccountAvatar from "../../partial/AccountAvatar.vue";
-import PandoProducts from "../../partial/PandoProducts.vue";
-import FSwapLogo from "../../partial/FSwapLogo.vue";
 
 @Component({
   components: {
     AccountAvatar,
-    PandoProducts,
     Render,
-    FSwapLogo: FSwapLogo,
   },
 })
 class HomeAppBar extends Vue {
