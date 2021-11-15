@@ -18,7 +18,7 @@ const themesLake = {
     primary: "#FFFFFF",
     secondary: "#46CFFB",
     third: "#075973",
-    forth: "#DEF3F4",
+    forth: "#0D7292",
     fifth: "#F6F8FC",
     warning_bg: "#5C3A13",
     warning_emphsize: "#FFE08F",
