@@ -1180,10 +1180,10 @@
     vuetify "^2.5.6"
     vuex "^3.4.0"
 
-"@foxone/pando-ui@^0.0.2-2":
-  version "0.0.2-2"
-  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.2-2.tgz#68a0e06cc1079830060a3c52ba069455dd43a89f"
-  integrity sha512-vOb+JWJpLkpT0/cDA7hBn2Vpbg3dlijNQUQjryP2RnQlhTOMZ57fiXpVQl2cNJlM6kxKmRDk/GKf1dLG5R7ApQ==
+"@foxone/pando-ui@^0.0.2-3":
+  version "0.0.2-3"
+  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.2-3.tgz#03f5d6fc9f698ce53af0d0c16edeb1ff73e00bdb"
+  integrity sha512-HQTYhXUpdgtcgTGRi4gsAucZO/kcB4aQFqw13PulxRyWbot+aCA23weLUoobI3EXuToW2u/CYRs0z7bsiS74qg==
   dependencies:
     "@foxone/icons" "3.0.1-42"
     "@foxone/uikit" "3.0.1-42"

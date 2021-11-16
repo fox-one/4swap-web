@@ -13,7 +13,7 @@
         <account-avatar />
       </div>
 
-      <f-pando-products :current-id="isLake ? 'lake' : '4swap'" />
+      <pando-products :current-id="isLake ? 'lake' : '4swap'" z-index="111" />
     </v-layout>
 
     <template v-slot:extension v-if="appbar.extension">

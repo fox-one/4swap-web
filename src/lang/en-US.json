@@ -78,7 +78,7 @@
   "liquidity.create.alreay.exists": "The pool you intend to create already exists. Go to the liquidity pool info page by clicking <span class='link'>here</span>.",
   "liquidity.create.new-pool": "Create A New Pool",
   "liquidity.create.not-support": "Not Support",
-  "liquidity.create.pair.not-support": "You have selected a liquidity pool not yet supported on @:channel.name.",
+  "liquidity.create.pair.not-support": "You have selected a liquidity pool not yet supported on @:channel.name .",
   "liquidity.create.rules.p1": "1. The process fee is 0.2 ETH for every request.",
   "liquidity.create.rules.p2": "2. The request will be processed and results informed within 3 business days.",
   "liquidity.create.rules.p3": "3. If the request is denied, you will receive a full refund.",
@@ -136,6 +136,8 @@
   "price.alert.hint": "When the price impact exceeds 10%, a countdown will occur to protect the trade",
   "price_alert.count_down.title": "Price alert count down",
   "profit": "Profit",
+  "profit-rate.hint": "Profit rate = Profits / Value of the total added assets * 100%",
+  "profit.hint": "Profits are calculated by substracting impermanent loss from your proportional rewards of the toal accumulated trading fees the liquidity pool, in value of one of the designated asset of the trading pair.",
   "profits": "Profits",
   "profits.rate": "Profits Rate",
   "qrcode": "QRCode",
@@ -188,6 +190,8 @@
   "to": "To",
   "token.not-found": "Token Not Found",
   "trades.24hours": "24h Trades",
+  "transaction.all": "All Transaction",
+  "transaction.type": "Transaction Type",
   "transactions": "Transactions",
   "transactions.empty": "No recent transactions",
   "turnover.24hours": "Turnover 24H",
@@ -201,9 +205,5 @@
   "wallet.balance.login-to-see": "Login to see balance",
   "warn.price.impact": "Price impact reached <p>{value}</p> This transaction carries a high risk of loss.",
   "warning": "Warning",
-  "website": "Website",
-  "transaction.all": "All Transaction",
-  "transaction.type": "Transaction Type",
-  "profit.hint": "Profits are calculated by substracting impermanent loss from your proportional rewards of the toal accumulated trading fees the liquidity pool, in value of one of the designated asset of the trading pair.",
-  "profit-rate.hint": "Profit rate = Profits / Value of the total added assets * 100%"
+  "website": "Website"
 }
