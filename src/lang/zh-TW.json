@@ -177,6 +177,7 @@
   "swap.introduction.what.content": "@:channel.name 是一种自动化流通协议。没有订单，没有集中的一方，也没有市商。@:channel.name 的核心是每个交易对使用x*y=k 来维持一条可进行交易的曲线，而交易对价格将会直接由交易对背后的流通池中剩余的币的数量所决定。",
   "swap.introduction.what.title": "什么是 @:channel.name",
   "swap.lack-of-liquidity": "该交易对缺少流动性，所以目前无法交易",
+  "swap.paid": "I Have Paid",
   "swap.price.impact": "价格影响",
   "swap.reject": "订单被拒绝",
   "swap.scan-to-pay": "扫码支付",
@@ -205,6 +206,5 @@
   "wallet.balance.login-to-see": "登录查看余额",
   "warn.price.impact": "价格影响达到 <p>{value}</p> 此交易具有很高的损失风险。",
   "warning": "警告",
-  "website": "网址",
-  "swap.paid": "I Have Paid"
+  "website": "网址"
 }

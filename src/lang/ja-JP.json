@@ -177,6 +177,7 @@
   "swap.introduction.what.content": "@:channel.name コンスタント積に基づく自動マーケットメイク契約 公式 x*y = k, k はペアの準備残高の積 (x*y). これにより、オーダーブック、一元化された仲介者、および従来のマーケットメーカーが免れます. 各ペアは2つのトークンの準備金で構成される流動性プールを管理します. ペアトークンの価格は準備金の残高によって直接決定されます.",
   "swap.introduction.what.title": " @:channel.name はなんですか",
   "swap.lack-of-liquidity": "ペアは現在流動性が不足しているため、取引できません.",
+  "swap.paid": "I Have Paid",
   "swap.price.impact": "価格への影響",
   "swap.reject": "注文が拒否されました",
   "swap.scan-to-pay": "スキャンして支払う",
@@ -205,6 +206,5 @@
   "wallet.balance.login-to-see": "ログインして残高を確認する",
   "warn.price.impact": "Price impact reached <p>{value}</p> This transaction carries a high risk of loss.",
   "warning": "Warning",
-  "website": "ウェブサイト",
-  "swap.paid": "I Have Paid"
+  "website": "ウェブサイト"
 }

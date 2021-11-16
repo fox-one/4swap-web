@@ -177,6 +177,7 @@
   "swap.introduction.what.content": "@:channel.name is an automated liquidity protocol powered by the constant product formula x*y = k, where k represents the product of a pair’s reserve balances (x*y). It obviates orderbook, centralized intermediaries, and traditional market makers. Each pair manages a liquidity pool made up of reserves of two tokens. The prices of the pair tokens are directly determined by the reserve balances.",
   "swap.introduction.what.title": "Was ist @:channel.name",
   "swap.lack-of-liquidity": "Dem Paar mangelt es derzeit an Liquidität, so dass es nicht gehandelt werden kann.",
+  "swap.paid": "I Have Paid",
   "swap.price.impact": "Preisauswirkung",
   "swap.reject": "Auftrag abgelehnt",
   "swap.scan-to-pay": "Zur Zahlung scannen",
@@ -205,6 +206,5 @@
   "wallet.balance.login-to-see": "Anmelden, um Saldo zu sehen",
   "warn.price.impact": "Preisauswirkungen erreicht <p>{value}</p>. Diese Transaktion birgt ein hohes Verlustrisiko.",
   "warning": "Achtung",
-  "website": "Webseite",
-  "swap.paid": "I Have Paid"
+  "website": "Webseite"
 }
