@@ -5,23 +5,14 @@
     </div>
 
     <div class="label-2">{{ text }}</div>
-
-    <route-to-create-action hide-while-not-support class="mt-8" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import RouteToCreateAction from "../liquidity/RouteToCreateAction.vue";
+import { Component, Vue } from "vue-property-decorator";
 
-@Component({
-  components: {
-    RouteToCreateAction,
-  },
-})
-class EmptyPlaceHolder extends Vue {
-  @Prop() searchable!: boolean;
-
+@Component
+class PoolListPlaceholder extends Vue {
   get image() {
     return this.$config.CHANNEL === "lake"
       ? require("@/assets/images/image_empty_pool_lake.png")
@@ -29,8 +20,8 @@ class EmptyPlaceHolder extends Vue {
   }
 
   get text() {
-    return this.searchable ? this.$t("token.not-found") : this.$t("empty");
+    return this.$t("token.not-found");
   }
 }
-export default EmptyPlaceHolder;
+export default PoolListPlaceholder;
 </script>

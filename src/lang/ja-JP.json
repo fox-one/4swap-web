@@ -205,5 +205,6 @@
   "wallet.balance.login-to-see": "ログインして残高を確認する",
   "warn.price.impact": "Price impact reached <p>{value}</p> This transaction carries a high risk of loss.",
   "warning": "Warning",
-  "website": "ウェブサイト"
+  "website": "ウェブサイト",
+  "swap.paid": "I Have Paid"
 }

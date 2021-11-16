@@ -8,7 +8,7 @@
       {{ $t("liquidity.mine.empty") }}
     </div>
 
-    <div>
+    <div v-if="!hideAction">
       <div>
         <f-button color="primary" class="mt-8" @click="handleToAdd">
           <v-icon size="16">$FIconAdd4PBold</v-icon>
@@ -26,11 +26,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import { PANDO_DOC } from "@/constants";
 
 @Component
 class LiquidityEmptyPlaceholder extends Vue {
+  @Prop({ type: Boolean, default: false }) hideAction;
+
   get logo() {
     return this.$config.CHANNEL === "lake"
       ? require("@/assets/images/image_empty_liquidity_lake.png")

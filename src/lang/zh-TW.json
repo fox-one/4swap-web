@@ -205,5 +205,6 @@
   "wallet.balance.login-to-see": "登录查看余额",
   "warn.price.impact": "价格影响达到 <p>{value}</p> 此交易具有很高的损失风险。",
   "warning": "警告",
-  "website": "网址"
+  "website": "网址",
+  "swap.paid": "I Have Paid"
 }

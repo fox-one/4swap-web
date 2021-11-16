@@ -1,6 +1,8 @@
 <template>
   <div>
     <pool-item v-for="(pair, index) in meta.pairs" :key="index" :pair="pair" />
+
+    <pool-list-placeholder v-if="meta.empty" />
   </div>
 </template>
 
@@ -8,10 +10,12 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { GlobalGetters } from "@/store/types";
 import PoolItem from "./PoolItem.vue";
+import PoolListPlaceholder from "./PoolListEmptyPlaceholder.vue";
 
 @Component({
   components: {
     PoolItem,
+    PoolListPlaceholder,
   },
 })
 class PoolList extends Vue {
@@ -33,9 +37,11 @@ class PoolList extends Vue {
       .sort((a, b) => {
         return b.shared.totalValue - a.shared.totalValue;
       });
+    const empty = pairs.length === 0;
 
     return {
       pairs,
+      empty,
     };
   }
 }
