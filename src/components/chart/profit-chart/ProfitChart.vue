@@ -13,15 +13,9 @@ import BaseLineChart from "../BaseLineChart.vue";
 
 export function getChartData(vm: Vue, data, pair, type) {
   const toFiat = vm.$utils.currency.toFiat;
-  const getPairMeta = vm.$utils.pair.getPairMeta;
-  const { isReverse } = getPairMeta(vm, pair)!;
 
   let fn = (x) => {
     let [baseProfit, quoteProfit] = [x.baseProfit, x.quoteProfit];
-
-    if (isReverse) {
-      [baseProfit, quoteProfit] = [quoteProfit, baseProfit];
-    }
 
     return type === 0
       ? baseProfit
