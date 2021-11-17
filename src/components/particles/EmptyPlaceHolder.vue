@@ -6,19 +6,14 @@
 
     <div class="label-2">{{ text }}</div>
 
-    <route-to-create-action hide-while-not-support class="mt-8" />
+    <slot name="action"></slot>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import RouteToCreateAction from "../liquidity/RouteToCreateAction.vue";
 
-@Component({
-  components: {
-    RouteToCreateAction,
-  },
-})
+@Component
 class EmptyPlaceHolder extends Vue {
   @Prop() searchable!: boolean;
 

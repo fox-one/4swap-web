@@ -10,7 +10,11 @@
       </template>
     </div>
 
-    <empty-place-holder v-if="meta.empty" :searchable="searchable" />
+    <empty-place-holder v-if="meta.empty" :searchable="searchable">
+      <template #action>
+        <route-to-create-action hide-while-not-support class="mt-8" />
+      </template>
+    </empty-place-holder>
 
     <pool-item
       v-for="(item, index) in meta.items"
@@ -24,10 +28,11 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { GlobalGetters, GlobalMutations } from "@/store/types";
-import PoolDimensionList from "@/components/pool/DimensionList.vue";
+import PoolDimensionList from "./DimensionList.vue";
+import RouteToCreateAction from "../liquidity/RouteToCreateAction.vue";
 import PoolHeader from "./PoolHeader.vue";
 import PoolItem from "./PoolItem.vue";
-import EmptyPlaceHolder from "./EmptyPlaceHolder.vue";
+import EmptyPlaceHolder from "../particles/EmptyPlaceHolder.vue";
 import { getPairMeta, filterFn } from "@/utils/pair/helper";
 import { Sync } from "vuex-pathify";
 
@@ -37,6 +42,7 @@ import { Sync } from "vuex-pathify";
     PoolHeader,
     PoolDimensionList,
     EmptyPlaceHolder,
+    RouteToCreateAction,
   },
 })
 class PoolList extends Vue {

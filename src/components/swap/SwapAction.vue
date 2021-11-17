@@ -94,7 +94,6 @@ class SwapAction extends Vue {
         checker: () => this.$utils.payment.checkSwapOrder(this, traceId),
       });
     } catch (error) {
-      console.log(error);
       this.$utils.helper.errorHandler(this, error);
     }
     this.loading = false;

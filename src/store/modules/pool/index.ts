@@ -113,6 +113,17 @@ const getters = {
     return (id: string) => state.assets.find((x) => x.id === id);
   },
 
+  [GetterTypes.GET_ASSET_BY_SYMBOL](state) {
+    return (symbol: string) => {
+      return state.assets.find((x) => {
+        return [
+          x.symbol.toLowerCase(),
+          x.display_symbol?.toLowerCase(),
+        ].includes(symbol.toLowerCase());
+      });
+    };
+  },
+
   [GetterTypes.GET_PAIR_BY_IDS](state) {
     return (id1: string, id2: string) => {
       // pair's base id is smaller than quote id

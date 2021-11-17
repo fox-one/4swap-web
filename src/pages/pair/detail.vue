@@ -19,6 +19,9 @@
       @add="handleAdd"
     />
   </div>
+  <div v-else>
+    <empty-place-holder />
+  </div>
 </template>
 
 <script lang="ts">
@@ -35,6 +38,7 @@ import MarketPanel from "@/components/pair/MarketPanel.vue";
 import AccountPanel from "@/components/pair/AccountPanel.vue";
 import PageBottomAction from "@/components/pair/page-bottom-action/Index.vue";
 import PageTabs from "@/components/pair/PageTabs.vue";
+import EmptyPlaceHolder from "@/components/particles/EmptyPlaceHolder.vue";
 import { Sync } from "vuex-pathify";
 
 @Component({
@@ -42,6 +46,7 @@ import { Sync } from "vuex-pathify";
     MarketPanel,
     AccountPanel,
     PageBottomAction,
+    EmptyPlaceHolder,
   },
 })
 class PairDetailPage extends Mixins(mixins.page) {

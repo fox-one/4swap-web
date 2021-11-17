@@ -1,5 +1,6 @@
 import Vue from "vue";
 import parse from "parse-duration";
+import { GlobalGetters } from "~/store/types";
 
 export function errorHandler(vm: Vue, error) {
   const code = error.code;
@@ -42,4 +43,24 @@ export function getDurationData(
 
       return (array.length - 1 - index) % interval === 0;
     });
+}
+
+export function useRedirectByPairPath(vm: Vue, action) {
+  const getAssetBySymbol = vm.$store.getters[GlobalGetters.GET_ASSET_BY_SYMBOL];
+  const path = vm.$route.params.path;
+  const [baseSymbol = "", quoteSymbol = ""] = path.split("-");
+
+  const baseAsset = getAssetBySymbol(baseSymbol);
+  const quoteAsset = getAssetBySymbol(quoteSymbol);
+
+  action({ baseAsset, quoteAsset });
+}
+
+export function useRedirectByAssetSymbol(vm: Vue, action) {
+  const getAssetBySymbol = vm.$store.getters[GlobalGetters.GET_ASSET_BY_SYMBOL];
+  const symbol = vm.$route.params.symbol;
+
+  const asset = getAssetBySymbol(symbol);
+
+  action({ asset });
 }

@@ -50,10 +50,6 @@ class HomeAppBar extends Vue {
     return this.$config.CHANNEL === "lake";
   }
 
-  mounted() {
-    console.log(this.$vuetify);
-  }
-
   @Watch("appbar.color", { immediate: true })
   handleColorChange(value: string) {
     this.$utils.mixin.setMixinTheme(value);
