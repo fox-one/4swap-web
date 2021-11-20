@@ -1180,7 +1180,7 @@
     vuetify "^2.5.6"
     vuex "^3.4.0"
 
-"@foxone/pando-ui@^0.0.2-3":
+"@foxone/pando-ui@0.0.2-3":
   version "0.0.2-3"
   resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.2-3.tgz#03f5d6fc9f698ce53af0d0c16edeb1ff73e00bdb"
   integrity sha512-HQTYhXUpdgtcgTGRi4gsAucZO/kcB4aQFqw13PulxRyWbot+aCA23weLUoobI3EXuToW2u/CYRs0z7bsiS74qg==

@@ -68,7 +68,7 @@ const getters = {
   [GetterTypes.AVALIABLE_SWAP_ASSETS](state, getters) {
     const assets: API.Asset[] = getters[GetterTypes.AVALIABLE_ASSETS];
     const pairs = state.pairs;
-    const cache = state.cache;
+    const cache = state.cache.concat().reverse();
 
     const filted = assets.filter(({ id, name }) => {
       const isLPToken =

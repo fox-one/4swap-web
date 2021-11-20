@@ -102,8 +102,8 @@ class SwapPage extends Mixins(mixins.page) {
     this.setInitialAsset();
   }
 
-  @Watch("asset1.asset")
-  @Watch("asset2.asset")
+  @Watch("input.asset")
+  @Watch("output.asset")
   handleAssetChange(value) {
     this.setLRUCache(value);
 

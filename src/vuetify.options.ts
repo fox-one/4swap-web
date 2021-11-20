@@ -24,7 +24,6 @@ const themesLake = {
     warning_emphsize: "#FFE08F",
     error_bg: "#4A2222",
     error_emphsize: "#F34A4D",
-    greyscale_6: "#303030",
   },
 };
 
@@ -50,7 +49,6 @@ const themeFSwap = {
     warning_emphsize: "#FFE08F",
     error_bg: "#4A2222",
     error_emphsize: "#F34A4D",
-    greyscale_6: "#303030",
   },
 };
 
