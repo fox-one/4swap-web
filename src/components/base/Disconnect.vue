@@ -25,17 +25,9 @@ export default class ConnectWalletBtn extends Vue {
   @Get(GlobalGetters.LOGGED) isLogged!: boolean;
 
   handleDisconnect() {
-    this.$uikit.dialog.show({
-      title: this.$t("confirm") as string,
-      text: this.$t("disconnect.confrirm") as string,
-      type: "warning",
-      confirm: {
-        text: this.$t("disconnect") as string,
-        callback: () => {
-          this.$utils.account.logout(this);
-
-          this.$emit("disconnected");
-        },
+    this.$utils.account.requestLogout(this, {
+      onDisconnect: () => {
+        this.$emit("disconnected");
       },
     });
   }

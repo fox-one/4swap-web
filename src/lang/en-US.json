@@ -206,5 +206,6 @@
   "wallet.balance.login-to-see": "Login to see balance",
   "warn.price.impact": "Price impact reached <p>{value}</p> This transaction carries a high risk of loss.",
   "warning": "Warning",
-  "website": "Website"
+  "website": "Website",
+  "contact.us": "Contact Us"
 }

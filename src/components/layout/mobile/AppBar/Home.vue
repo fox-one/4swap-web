@@ -10,7 +10,7 @@
   >
     <v-layout justify-center align-center class="appbar--home">
       <div class="account">
-        <account-avatar />
+        <account-entry />
       </div>
 
       <pando-products :current-id="isLake ? 'lake' : '4swap'" z-index="111" />
@@ -25,11 +25,11 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import Render from "@/components/base/Render";
-import AccountAvatar from "../../partial/AccountAvatar.vue";
+import AccountEntry from "../../partial/AccountEntry.vue";
 
 @Component({
   components: {
-    AccountAvatar,
+    AccountEntry,
     Render,
   },
 })

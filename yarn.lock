@@ -1167,12 +1167,12 @@
   dependencies:
     "@foxone/fennec-base" "0.4.5-2"
 
-"@foxone/icons@3.0.1-42", "@foxone/icons@^3.0.1-42":
-  version "3.0.1-42"
-  resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.0.1-42.tgz#0528115262ce689f9f3bc8fdc19452a430d7e738"
-  integrity sha512-rBQrSrlBuJOKtRdLd0kHCyUZIrj2FPCDaRrY7O6+/8IOoDhwgIaEqQo5adp2qyzq6JgafxnbBJX9In1CpOwJFg==
+"@foxone/icons@3.0.1-45":
+  version "3.0.1-45"
+  resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.0.1-45.tgz#5dfcd8494abbd1200d349f680ef47b75e54eb60b"
+  integrity sha512-qD0LPxxJb13uFC7Zk2RbtKDSf2HC9zL0xVhjmWWTENh0ItGKirrKF1peujKQQ5+8ROU5ACgnnTqeDgu4D9LDpw==
   dependencies:
-    "@foxone/uikit" "3.0.1-42"
+    "@foxone/uikit" "3.0.1-45"
     vue "^2.6.12"
     vue-class-component "^7.2.3"
     vue-property-decorator "^9.1.2"
@@ -1180,13 +1180,13 @@
     vuetify "^2.5.6"
     vuex "^3.4.0"
 
-"@foxone/pando-ui@0.0.2-3":
-  version "0.0.2-3"
-  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.2-3.tgz#03f5d6fc9f698ce53af0d0c16edeb1ff73e00bdb"
-  integrity sha512-HQTYhXUpdgtcgTGRi4gsAucZO/kcB4aQFqw13PulxRyWbot+aCA23weLUoobI3EXuToW2u/CYRs0z7bsiS74qg==
+"@foxone/pando-ui@^0.0.2-8":
+  version "0.0.2-8"
+  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.2-8.tgz#9c6295125dfb6914f54ff9a920c4fa17e6e26a1f"
+  integrity sha512-cX53x3dn7WK7b29KCuGha1FsMJx4+wxQpoMkzfggb7qY9JzO/jN7MogBbcmFkf2cE/X+ug/Qxf3tHe+DgNsi6Q==
   dependencies:
-    "@foxone/icons" "3.0.1-42"
-    "@foxone/uikit" "3.0.1-42"
+    "@foxone/icons" "3.0.1-45"
+    "@foxone/uikit" "3.0.1-45"
     core-js "^3.6.5"
     vue "^2.6.11"
     vue-class-component "^7.2.3"
@@ -1197,12 +1197,12 @@
     vuetify-loader "^1.7.3"
     vuex "^3.4.0"
 
-"@foxone/uikit@3.0.1-42", "@foxone/uikit@^3.0.1-42":
-  version "3.0.1-42"
-  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.0.1-42.tgz#8d020a08a6ab329ce76c1e7d2b9182c107a6bd7e"
-  integrity sha512-lAonieUMhCyrdCqiRzZ74gSKaSmGi8eWgAPOOOVHP+TjU4uJauSfnMXRHcBBpriqaZbizMrUUJmJaQTCl2Y4AA==
+"@foxone/uikit@3.0.1-45":
+  version "3.0.1-45"
+  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.0.1-45.tgz#68dbb61aa25dc56da80a5180108ee7ff71499ab5"
+  integrity sha512-56KlYwYs7pveBdqMpwkgBfpuaOKnTUw2bRusm1Om8iiT1HZG0fioRUtIcofPtYLznC+QMHA9tOkUg64yHu3uLQ==
   dependencies:
-    "@foxone/icons" "3.0.1-42"
+    "@foxone/icons" "3.0.1-45"
     "@foxone/utils" "^0.2.6"
     bignumber.js "^9.0.1"
     qrcode "^1.4.4"

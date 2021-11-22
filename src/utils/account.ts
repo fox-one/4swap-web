@@ -81,6 +81,22 @@ export function logout(opts: any) {
   commit(GlobalMutations.CLEAR_ACCOUNT);
 }
 
+export function requestLogout(vm: Vue, cbs: { onDisconnect?: any }) {
+  vm.$uikit.dialog.show({
+    title: vm.$t("confirm") as string,
+    text: vm.$t("disconnect.confrirm") as string,
+    type: "warning",
+    confirm: {
+      text: vm.$t("disconnect") as string,
+      callback: () => {
+        vm.$utils.account.logout(vm);
+
+        cbs?.onDisconnect?.();
+      },
+    },
+  });
+}
+
 /**
  * if last auth channel is fennec
  * then auto connect to fennec
