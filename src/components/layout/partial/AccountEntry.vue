@@ -5,6 +5,7 @@
     min-width="500"
     z-index="111"
     wapper-in-desktop="dialog"
+    content-class="f-bottom-sheet--no-padding"
   >
     <template #activator="{ on }">
       <pando-account-avatar

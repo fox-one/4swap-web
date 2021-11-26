@@ -1180,10 +1180,23 @@
     vuetify "^2.5.6"
     vuex "^3.4.0"
 
-"@foxone/pando-ui@^0.0.2-8":
-  version "0.0.2-8"
-  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.2-8.tgz#9c6295125dfb6914f54ff9a920c4fa17e6e26a1f"
-  integrity sha512-cX53x3dn7WK7b29KCuGha1FsMJx4+wxQpoMkzfggb7qY9JzO/jN7MogBbcmFkf2cE/X+ug/Qxf3tHe+DgNsi6Q==
+"@foxone/icons@3.0.1-46", "@foxone/icons@^3.0.1-46":
+  version "3.0.1-46"
+  resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.0.1-46.tgz#4ce2523d0059327af8b2f98bc0ddc6709a185512"
+  integrity sha512-T/KsEbb1hg0lRAYPXK578sboTjFtLM7UDx4dQ7SKUeovhWPt3M+lRSrJYR3jG9PqYpfbYFgNO8TPMKAqcbSQpQ==
+  dependencies:
+    "@foxone/uikit" "3.0.1-46"
+    vue "^2.6.12"
+    vue-class-component "^7.2.3"
+    vue-property-decorator "^9.1.2"
+    vue-router "^3.2.0"
+    vuetify "^2.5.6"
+    vuex "^3.4.0"
+
+"@foxone/pando-ui@^0.0.2-9":
+  version "0.0.2-9"
+  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.2-9.tgz#815b706573ab4f4a6ed045da5580eb9b45be1f60"
+  integrity sha512-c9KAU6/s7wFKnFoYsRRI63gVVaRL25Nfyfybt21FvxyXRD+tVkeUnOtLrdsSTR8ABJL82bvlJDYnr2p+h22/jQ==
   dependencies:
     "@foxone/icons" "3.0.1-45"
     "@foxone/uikit" "3.0.1-45"
@@ -1203,6 +1216,19 @@
   integrity sha512-56KlYwYs7pveBdqMpwkgBfpuaOKnTUw2bRusm1Om8iiT1HZG0fioRUtIcofPtYLznC+QMHA9tOkUg64yHu3uLQ==
   dependencies:
     "@foxone/icons" "3.0.1-45"
+    "@foxone/utils" "^0.2.6"
+    bignumber.js "^9.0.1"
+    qrcode "^1.4.4"
+    tinycolor2 "^1.4.2"
+    vue-class-component "^7.2.3"
+    vue-property-decorator "^9.1.2"
+
+"@foxone/uikit@3.0.1-46", "@foxone/uikit@^3.0.1-46":
+  version "3.0.1-46"
+  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.0.1-46.tgz#5f5eadff919e56499160643c003ce5b982f498fe"
+  integrity sha512-ThE4xK+Xvg/+5Y34lh2mqw/fhiV4lX/pmqA6n3hWib6o2QhInBP4o41cIbH4LPPS1Jzpc5S9tJXviqWVyoC2+g==
+  dependencies:
+    "@foxone/icons" "3.0.1-46"
     "@foxone/utils" "^0.2.6"
     bignumber.js "^9.0.1"
     qrcode "^1.4.4"
