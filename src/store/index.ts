@@ -28,6 +28,7 @@ export default function () {
           "page.pool.reverse",
           "page.pool.sort",
           "page.pool.dimension",
+          "pool.cache",
         ],
       }),
     ],
