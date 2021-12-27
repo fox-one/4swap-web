@@ -4,7 +4,7 @@
       {{ $t("coin.no-intro") }}
     </div>
 
-    <!-- <contribute-action class="my-6" /> -->
+    <contribute-action class="my-6" />
   </div>
 </template>
 
