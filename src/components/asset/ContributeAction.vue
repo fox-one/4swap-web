@@ -10,11 +10,7 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 class ContributeAction extends Vue {
   handleContribute() {
-    const url_zh = "https://jinshuju.net/f/Fp4vFj";
-    const url_en = "https://jinshuju.net/f/SlyulF";
-    const lang = this.$vuetify.lang.current;
-
-    window.location.href = lang === "zh" ? url_zh : url_en;
+    window.location.href = "https://github.com/fox-one/4swap-assets";
   }
 }
 export default ContributeAction;
