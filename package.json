@@ -3,7 +3,7 @@
   "version": "3.0.26",
   "description": "4swap webpages",
   "author": "Fox.ONE",
-  "license": "GPL 3.0",
+  "license": "GPL-3.0",
   "config": {
     "nuxt": {
       "host": "0.0.0.0",
