@@ -110,7 +110,9 @@ export function checkFennecAuth(vm: Vue) {
     return new Promise((resolve, reject) => {
       setTimeout(async () => {
         try {
-          await vm.$fennec.connect("Pando Rings");
+          const name = vm.$config.CHANNEL_NAME || "4Swap";
+
+          await vm.$fennec.connect(name);
           resolve(true);
         } catch (error) {
           // if some error occur during auto connect
