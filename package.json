@@ -13,9 +13,7 @@
   "resolutions": {
     "vuetify": "2.5.8",
     "nuxt": "2.15.8",
-    "vue": "2.6.12",
-    "@foxone/icons": "^3.0.1-47",
-    "@foxone/uikit": "^3.0.1-47"
+    "vue": "2.6.12"
   },
   "scripts": {
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -33,9 +31,9 @@
     "@bugsnag/plugin-vue": "^7.3.5",
     "@foxone/fennec-base": "^0.4.5-2",
     "@foxone/fennec-dapp": "^0.4.5-2",
-    "@foxone/icons": "^3.0.1-47",
-    "@foxone/pando-ui": "^0.0.2-9",
-    "@foxone/uikit": "^3.0.1-47",
+    "@foxone/icons": "^3.0.1-52",
+    "@foxone/pando-ui": "^0.0.2-11",
+    "@foxone/uikit": "^3.0.1-54",
     "@foxone/utils": "^0.2.18",
     "@mdi/js": "^5.5.55",
     "@nuxt/types": "^2.14.6",
