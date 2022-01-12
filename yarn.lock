@@ -1167,7 +1167,7 @@
   dependencies:
     "@foxone/fennec-base" "0.4.5-2"
 
-"@foxone/icons@3.0.1-47", "@foxone/icons@^3.0.1-47":
+"@foxone/icons@3.0.1-47":
   version "3.0.1-47"
   resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.0.1-47.tgz#a6a4ce69b30015a384205662384d54a060e0f8c3"
   integrity sha512-7Qn3RAw64fU1BGrDrz+fHleeJHCQrFLh2Q8n80hO7cUhMkUadefvyQmZ4QtBeRo6uRTD025BLQru/LJoCEFRMw==
@@ -1190,7 +1190,7 @@
   resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.2-11.tgz#6322160d34df5bd634e64f3d432ae209af48563c"
   integrity sha512-70fp8J2rgrn7tOnxd66zfzpQsmbzIkffBsmBcnNYuOZVMRpbAn3iUbBv0WAVt3oMZHgwy+zszmaN2JdPTtZMIA==
 
-"@foxone/uikit@3.0.1-47", "@foxone/uikit@^3.0.1-47":
+"@foxone/uikit@3.0.1-47":
   version "3.0.1-47"
   resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.0.1-47.tgz#cc7a5bf6ea95ba8f63ea1271612046b582f1cd28"
   integrity sha512-mvwS7/LAjiHDhy0weby2Tg4q8vlF9zM4A4BoxRr3DTOeEkeKAJuAB55k0hw6cwZpvxp3EZfhmTsAsLsaJsE94Q==
@@ -1202,15 +1202,6 @@
     tinycolor2 "^1.4.2"
     vue-class-component "^7.2.3"
     vue-property-decorator "^9.1.2"
-
-"@foxone/uikit@^3.0.1-54":
-  version "3.0.1-54"
-  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.0.1-54.tgz#65688388f220a19eb048b0fe13959fa2b0eeb5a3"
-  integrity sha512-ptRkxfXffE+58VvQXIIFpuV6XfVGfVCqYDVP3xV68iIJpSjb+skDIJmh2v8Vj7k+tt/MMOa2aypceHW6++qiMQ==
-  dependencies:
-    "@foxone/utils" "^0.2.6"
-    qrcode "^1.5.0"
-    tinycolor2 "^1.4.2"
 
 "@foxone/utils@^0.2.18":
   version "0.2.18"
@@ -3765,15 +3756,6 @@ cliui@^5.0.0:
     strip-ansi "^5.2.0"
     wrap-ansi "^5.1.0"
 
-cliui@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/cliui/-/cliui-6.0.0.tgz#511d702c0c4e41ca156d7d0e96021f23e13225b1"
-  integrity sha512-t6wbgtoCXvAzst7QgXxJYqPt0usEfbgQdftEPbLL/cvv6HPE5VgvqCuAIDR0NgU52ds6rFwqrgakNLrHEjCbrQ==
-  dependencies:
-    string-width "^4.2.0"
-    strip-ansi "^6.0.0"
-    wrap-ansi "^6.2.0"
-
 clone-deep@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/clone-deep/-/clone-deep-4.0.1.tgz#c19fd9bdbbf85942b4fd979c84dcf7d5f07c2387"
@@ -4887,11 +4869,6 @@ emojis-list@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/emojis-list/-/emojis-list-3.0.0.tgz#5570662046ad29e2e916e71aae260abdff4f6a78"
   integrity sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==
-
-encode-utf8@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/encode-utf8/-/encode-utf8-1.0.3.tgz#f30fdd31da07fb596f281beb2f6b027851994cda"
-  integrity sha512-ucAnuBEhUK4boH2HjVYG5Q2mQyPorvv0u/ocS+zhdw0S8AlHYY+GOFhP1Gio5z4icpP2ivFSvhtFjQi8+T9ppw==
 
 encodeurl@~1.0.2:
   version "1.0.2"
@@ -8502,11 +8479,6 @@ pngjs@^3.3.0:
   resolved "https://registry.npmjs.org/pngjs/-/pngjs-3.4.0.tgz#99ca7d725965fb655814eaf65f38f12bbdbf555f"
   integrity sha512-NCrCHhWmnQklfH4MtJMRjZ2a8c80qXeMlQMv2uVp9ISJMTt562SbGd6n2oq0PaPgKm7Z6pL9E2UlLIhC+SHL3w==
 
-pngjs@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.npmjs.org/pngjs/-/pngjs-5.0.0.tgz#e79dd2b215767fd9c04561c01236df960bce7fbb"
-  integrity sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==
-
 pnp-webpack-plugin@^1.6.4:
   version "1.7.0"
   resolved "https://registry.npmjs.org/pnp-webpack-plugin/-/pnp-webpack-plugin-1.7.0.tgz#65741384f6d8056f36e2255a8d67ffc20866f5c9"
@@ -9345,16 +9317,6 @@ qrcode@^1.4.4:
     isarray "^2.0.1"
     pngjs "^3.3.0"
     yargs "^13.2.4"
-
-qrcode@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.npmjs.org/qrcode/-/qrcode-1.5.0.tgz#95abb8a91fdafd86f8190f2836abbfc500c72d1b"
-  integrity sha512-9MgRpgVc+/+47dFvQeD6U2s0Z92EsKzcHogtum4QB+UNd025WOJSHvn/hjk9xmzj7Stj95CyUAs31mrjxliEsQ==
-  dependencies:
-    dijkstrajs "^1.0.1"
-    encode-utf8 "^1.0.3"
-    pngjs "^5.0.0"
-    yargs "^15.3.1"
 
 qs@~6.5.2:
   version "6.5.2"
@@ -10426,7 +10388,7 @@ string-width@^4.0.0, string-width@^4.1.0:
     is-fullwidth-code-point "^3.0.0"
     strip-ansi "^6.0.0"
 
-string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
+string-width@^4.2.2, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -11747,7 +11709,7 @@ wrap-ansi@^5.1.0:
     string-width "^3.0.0"
     strip-ansi "^5.0.0"
 
-wrap-ansi@^6.0.0, wrap-ansi@^6.2.0:
+wrap-ansi@^6.0.0:
   version "6.2.0"
   resolved "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-6.2.0.tgz#e9393ba07102e6c91a3b221478f0257cd2856e53"
   integrity sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==
@@ -11853,14 +11815,6 @@ yargs-parser@13.1.2, yargs-parser@^13.1.2:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
-yargs-parser@^18.1.2:
-  version "18.1.3"
-  resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-18.1.3.tgz#be68c4975c6b2abf469236b0c870362fab09a7b0"
-  integrity sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==
-  dependencies:
-    camelcase "^5.0.0"
-    decamelize "^1.2.0"
-
 yargs-unparser@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/yargs-unparser/-/yargs-unparser-2.0.0.tgz#f131f9226911ae5d9ad38c432fe809366c2325eb"
@@ -11886,23 +11840,6 @@ yargs@13.3.2, yargs@^13.2.4:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^13.1.2"
-
-yargs@^15.3.1:
-  version "15.4.1"
-  resolved "https://registry.npmjs.org/yargs/-/yargs-15.4.1.tgz#0d87a16de01aee9d8bec2bfbf74f67851730f4f8"
-  integrity sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==
-  dependencies:
-    cliui "^6.0.0"
-    decamelize "^1.2.0"
-    find-up "^4.1.0"
-    get-caller-file "^2.0.1"
-    require-directory "^2.1.1"
-    require-main-filename "^2.0.0"
-    set-blocking "^2.0.0"
-    string-width "^4.2.0"
-    which-module "^2.0.0"
-    y18n "^4.0.0"
-    yargs-parser "^18.1.2"
 
 yn@3.1.1:
   version "3.1.1"
