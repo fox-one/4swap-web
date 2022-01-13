@@ -10,20 +10,15 @@
       "port": "3005"
     }
   },
-  "resolutions": {
-    "vuetify": "2.5.8",
-    "nuxt": "2.15.8",
-    "vue": "2.6.12"
-  },
   "scripts": {
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "yarn lint",
-    "dev": "nuxt-ts",
-    "dev:prod": "APP_ENV=prod nuxt-ts",
+    "dev": "nuxt",
+    "dev:prod": "APP_ENV=prod nuxt",
     "build": "nuxt-ts build",
-    "build:prod": "APP_ENV=prod nuxt-ts build",
-    "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate",
+    "build:prod": "APP_ENV=prod nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
     "test": "ts-mocha src/**/*.spec.ts"
   },
   "dependencies": {
@@ -33,7 +28,8 @@
     "@foxone/fennec-dapp": "^0.4.5-2",
     "@foxone/icons": "^3.0.1-52",
     "@foxone/pando-ui": "^0.0.2-11",
-    "@foxone/uikit": "3.0.1-47",
+    "@foxone/pandoseed": "^1.0.3",
+    "@foxone/uikit": "^3.0.1-58",
     "@foxone/utils": "^0.2.18",
     "@mdi/js": "^5.5.55",
     "@nuxt/types": "^2.14.6",

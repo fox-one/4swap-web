@@ -50,9 +50,8 @@ class LiquidityRemove extends Mixins(mixin.page) {
   }
 
   get pair() {
-    const getPairByLiquidityId = this.$store.getters[
-      GlobalGetters.GET_PAIR_BY_LIQUIDIY_ID
-    ];
+    const getPairByLiquidityId =
+      this.$store.getters[GlobalGetters.GET_PAIR_BY_LIQUIDIY_ID];
 
     return getPairByLiquidityId(this.asset.asset?.id ?? "");
   }
