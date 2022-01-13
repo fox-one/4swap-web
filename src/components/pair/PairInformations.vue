@@ -48,13 +48,8 @@ class PairInformations extends Vue {
     const getPairMeta = this.$utils.pair.getPairMeta;
     const getPriceChangeInDuration = this.$utils.pair.getPriceChangeInDuration;
     const getColor = this.$utils.color.getColor;
-    const {
-      volume,
-      volume_24h,
-      transaction_count_24h,
-      fee_24h,
-      turnOver,
-    } = getPairMeta(this, this.pair)!;
+    const { volume, volume_24h, transaction_count_24h, fee_24h, turnOver } =
+      getPairMeta(this, this.pair)!;
     const priceChange = getPriceChangeInDuration(this.data.kline, 1);
     const priceChangeText = toPercent({ n: priceChange, dp: 2, symbol: true });
 

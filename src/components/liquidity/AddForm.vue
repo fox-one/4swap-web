@@ -51,12 +51,8 @@ class LiquidityAddForm extends Vue {
     let reverse = false;
 
     if (this.pair) {
-      const {
-        baseAsset,
-        quoteAsset,
-        base_amount,
-        quote_amount,
-      } = this.$utils.pair.getPairMeta(this, this.pair)!;
+      const { baseAsset, quoteAsset, base_amount, quote_amount } =
+        this.$utils.pair.getPairMeta(this, this.pair)!;
 
       reverse = !(
         baseAsset.id === this.bindAsset1.asset.id &&

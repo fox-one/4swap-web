@@ -24,13 +24,8 @@ class MarketInformations extends Vue {
     const format = this.$utils.number.format;
 
     const getters = this.$store.getters;
-    const {
-      totalUSDValue,
-      volume24h,
-      fee24h,
-      transactions,
-      turnover24h,
-    } = getters[GlobalGetters.POOL_OVERVIEW];
+    const { totalUSDValue, volume24h, fee24h, transactions, turnover24h } =
+      getters[GlobalGetters.POOL_OVERVIEW];
 
     const totalFiatText = toFiat(this, { n: totalUSDValue, short: true }, true);
     const volume24hText = toFiat(this, { n: volume24h, short: true }, true);
