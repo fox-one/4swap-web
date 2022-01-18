@@ -63,24 +63,29 @@ const getters = {
     });
   },
 
-  // remove LP token in avaliable assets
-  // LP token not support on swap list
+  // only assets appear in pairs can be swapped
   [GetterTypes.AVALIABLE_SWAP_ASSETS](state, getters) {
     const assets: API.Asset[] = getters[GetterTypes.AVALIABLE_ASSETS];
-    const pairs = state.pairs;
-    const cache = state.cache.concat().reverse();
+    const avaliablePairs: API.Pair[] = getters[GetterTypes.AVALIABLE_PAIRS];
 
-    const filted = assets.filter(({ id, name }) => {
-      const isLPToken =
-        pairs.find(({ liquidity_asset_id }) => liquidity_asset_id === id) ||
-        name.includes("LP Token");
+    const set = new Set<string>();
+    const map = new Map<string, API.Asset>();
 
-      return !isLPToken;
+    assets.forEach((x) => {
+      map.set(x.id, x);
     });
 
-    return filted.concat().sort((a, b) => {
-      const idxA = cache.indexOf(a.id);
-      const idxB = cache.indexOf(b.id);
+    avaliablePairs.forEach((x) => {
+      set.add(x.base_asset_id);
+      set.add(x.quote_asset_id);
+    });
+
+    const avaliableAssets = Array.from(set).map((x) => map.get(x));
+    const cache = state.cache.concat().reverse();
+
+    return avaliableAssets.concat().sort((a, b) => {
+      const idxA = cache.indexOf(a?.id);
+      const idxB = cache.indexOf(b?.id);
 
       return idxA > idxB ? -1 : idxA === idxB ? 0 : 1;
     });

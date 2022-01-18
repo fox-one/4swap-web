@@ -22,7 +22,7 @@ class TitleAssetSelect extends Vue {
   }
 
   get assets() {
-    return this.$store.getters[GlobalGetters.AVALIABLE_SWAP_ASSETS];
+    return this.$store.getters[GlobalGetters.AVALIABLE_ASSETS];
   }
 }
 export default TitleAssetSelect;
