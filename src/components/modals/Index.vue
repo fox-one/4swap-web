@@ -10,6 +10,8 @@
     <payment-modal />
 
     <auth-modal />
+
+    <terms-modal />
   </div>
 </template>
 
@@ -17,6 +19,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import PaymentModal from "./PaymentModal.vue";
 import AuthModal from "./AuthModal.vue";
+import TermsModal from "./TermsModal.vue";
 import { Sync } from "vuex-pathify";
 import { GlobalMutations } from "~/store/types";
 
@@ -24,6 +27,7 @@ import { GlobalMutations } from "~/store/types";
   components: {
     PaymentModal,
     AuthModal,
+    TermsModal,
   },
 })
 class Modals extends Vue {
