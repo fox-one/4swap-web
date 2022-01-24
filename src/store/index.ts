@@ -21,6 +21,7 @@ export default function () {
         key: "vuex",
         paths: [
           "app.settings",
+          "app.termsAccepted",
           "auth",
           "page.swap.input.asset",
           "page.swap.output.asset",

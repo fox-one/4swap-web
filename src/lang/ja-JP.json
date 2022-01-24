@@ -207,5 +207,9 @@
   "warn.price.impact": "価格への影響が <p>{value}</p> に達しました。この取引には、損失のリスクが高くなります。",
   "warning": "警告",
   "website": "ウェブサイト",
-  "contact.us": "お問い合わせ"
+  "contact.us": "お問い合わせ",
+  "terms.hint": "Before using it, please make sure to understand the working principle of 4swap and agree to the following terms:",
+  "terms.item1": "1. Inconsistent prices due to force majeure factors such as complex network environment factors Lake does not guarantee the reliability of services on the client side.",
+  "terms.item2": "2. The Mtg node has the right to intervene in the system when it is urgent and necessary, and announce it publicly.",
+  "accept": "Accept"
 }

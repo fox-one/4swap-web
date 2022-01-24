@@ -9,6 +9,7 @@ export const MutationTypes = {
   SET_BOTTOM_NAV: "SET_BOTTOM_NAV",
   SET_CONTENT_CLASS: "SET_CONTENT_CLASS",
   SET_CONTENT_STYLE: "SET_CONTENT_STYLE",
+  SET_TERMS_ACCEPTED: "SET_TERMS_ACCEPTED",
 };
 
 export const ActionTypes = {

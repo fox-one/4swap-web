@@ -30,5 +30,6 @@ declare namespace State {
     dark: boolean;
     bottomNav: string;
     initing: boolean;
+    termsAccepted: boolean;
   }
 }

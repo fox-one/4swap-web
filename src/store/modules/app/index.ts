@@ -37,6 +37,8 @@ const state: State.AppState = {
   bottomNav: "",
 
   initing: true,
+
+  termsAccepted: false,
 };
 
 const mutations = {
