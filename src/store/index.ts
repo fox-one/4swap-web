@@ -22,6 +22,7 @@ export default function () {
         paths: [
           "app.settings",
           "app.termsAccepted",
+          "app.termsVersion",
           "auth",
           "page.swap.input.asset",
           "page.swap.output.asset",

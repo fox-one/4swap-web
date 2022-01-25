@@ -15,10 +15,6 @@ import { GLOBAL_EVENTS } from "@/constants";
 class AuthModal extends Vue {
   fennec = false;
 
-  get termsAccepted() {
-    return this.$store.state.app.termsAccepted;
-  }
-
   mounted() {
     setTimeout(() => {
       this.fennec = this.$fennec?.isAvailable() ?? false;
@@ -27,16 +23,8 @@ class AuthModal extends Vue {
     this.$root.$on(GLOBAL_EVENTS.OPEN_AUTH, () => {
       const authModal = this.$refs.authModal as any;
 
-      if (!this.termsAccepted) {
-        this.handleShowTerms();
-      } else {
-        authModal?.onClick();
-      }
+      authModal?.onClick();
     });
-  }
-
-  handleShowTerms() {
-    this.$root.$emit(GLOBAL_EVENTS.OPEN_TERMS_MODAL);
   }
 
   handleLogin(value) {

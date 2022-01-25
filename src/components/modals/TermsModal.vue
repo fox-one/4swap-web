@@ -1,5 +1,10 @@
 <template>
-  <f-bottom-sheet v-model="dialog" title="Use Terms" wapper-in-desktop="dialog">
+  <f-bottom-sheet
+    v-model="dialog"
+    :persistent="true"
+    :title="$t('use.terms')"
+    wapper-in-desktop="dialog"
+  >
     <div class="pa-6">
       <div class="terms-title">
         {{ $t("terms.hint") }}
@@ -25,7 +30,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { GLOBAL_EVENTS } from "@/constants";
+import { GLOBAL_EVENTS, TERMS_VERSION } from "@/constants";
 import { GlobalMutations } from "@/store/types";
 
 @Component
@@ -40,9 +45,8 @@ class TermsModal extends Vue {
 
   handleAcceptTerms() {
     this.$store.commit(GlobalMutations.SET_TERMS_ACCEPTED, true);
+    this.$store.commit(GlobalMutations.SET_TERMS_VERSION, TERMS_VERSION);
     this.dialog = false;
-
-    this.$root.$emit(GLOBAL_EVENTS.OPEN_AUTH);
   }
 }
 export default TermsModal;

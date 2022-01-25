@@ -39,6 +39,7 @@ const state: State.AppState = {
   initing: true,
 
   termsAccepted: false,
+  termsVersion: "0.0.0",
 };
 
 const mutations = {

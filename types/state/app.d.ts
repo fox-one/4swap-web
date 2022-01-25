@@ -31,5 +31,6 @@ declare namespace State {
     bottomNav: string;
     initing: boolean;
     termsAccepted: boolean;
+    termsVersion: string;
   }
 }

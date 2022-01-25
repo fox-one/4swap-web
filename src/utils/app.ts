@@ -1,5 +1,6 @@
 import { GlobalMutations, GlobalActions, GlobalGetters } from "@/store/types";
 import { loadAccountData } from "./account";
+import { TERMS_VERSION, GLOBAL_EVENTS } from "@/constants";
 
 export async function init(vm: Vue) {
   const { commit, dispatch } = vm.$store;
@@ -59,3 +60,12 @@ export const tasks = {
     clearInterval(interval);
   },
 };
+
+export function checkTerms(vm: Vue) {
+  const termsAccepted = vm.$store.state.app.termsAccepted;
+  const termsVersion = vm.$store.state.app.termsVersion;
+
+  if (!termsAccepted || termsVersion !== TERMS_VERSION) {
+    vm.$root.$emit(GLOBAL_EVENTS.OPEN_TERMS_MODAL);
+  }
+}
