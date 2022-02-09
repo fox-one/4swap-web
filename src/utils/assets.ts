@@ -1,10 +1,12 @@
 import { GlobalGetters, GlobalMutations } from "@/store/types";
+import { EOSID, ETHID } from "~/constants";
 
 export interface Asset {
   id: string;
   name: string;
   symbol: string;
   logo: string;
+  chainId: string;
   chainLogo: string;
   price: string;
 }
@@ -23,7 +25,8 @@ export interface Asset {
 export function getAvaliableAddAssets(
   assets: API.Asset[],
   mixinAssets: API.MixinAsset[],
-  blacklist: string[]
+  blacklist: string[],
+  multisigAssets: API.MixinAsset[]
 ) {
   const assetsMap = new Map<string, Asset>();
 
@@ -36,13 +39,23 @@ export function getAvaliableAddAssets(
       return;
     }
 
+    // asset should be a ERC20 Token or eosio.token,
+    // otherwise it should be supported with multisignature API.
+    if (
+      asset.chainId !== ETHID &&
+      asset.chainId !== EOSID &&
+      !multisigAssets.find(({ asset_id }) => asset_id === asset.id)
+    ) {
+      return;
+    }
+
     if (!assetsMap[asset.id]) {
       assetsMap.set(asset.id, asset);
     }
   };
 
-  assets.forEach(({ id, name, symbol, logo, price, chainLogo }) => {
-    checkDup({ id, name, symbol, logo, price, chainLogo });
+  assets.forEach(({ id, name, symbol, logo, price, chainLogo, chain_id }) => {
+    checkDup({ id, name, symbol, logo, price, chainLogo, chainId: chain_id });
   });
 
   mixinAssets.forEach(
@@ -62,6 +75,7 @@ export function getAvaliableAddAssets(
         symbol,
         logo,
         price,
+        chainId: chain_id,
         chainLogo: chainAsset?.icon_url ?? "",
       });
     }

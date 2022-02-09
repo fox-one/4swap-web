@@ -34,15 +34,6 @@ const getters = {
     } = state;
     let avaliables: API.Asset[] = assets;
 
-    // use asset should support in multisignature API
-    // otherwise support all ERC20 or eosio.token
-    avaliables = avaliables.filter(
-      ({ id, chain_id }) =>
-        chain_id === ETHID ||
-        chain_id === EOSID ||
-        state.multisigAssets.find((x) => id === x.asset_id)
-    );
-
     //  use asset only listed in whitelist
     if (whitelists.length) {
       avaliables = avaliables.filter(({ id }) =>

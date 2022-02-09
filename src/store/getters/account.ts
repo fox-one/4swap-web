@@ -8,8 +8,14 @@ export default {
     const walletAssets: API.MixinAsset[] = state.account.assets;
     const assets: API.Asset[] = state.pool.assets;
     const assetsBlackLists: string[] = state.pool.assetsBlackLists;
+    const multisigAssets: API.MixinAsset[] = state.pool.multisigAssets;
 
-    return getAvaliableAddAssets(assets, walletAssets, assetsBlackLists);
+    return getAvaliableAddAssets(
+      assets,
+      walletAssets,
+      assetsBlackLists,
+      multisigAssets
+    );
   },
 
   [GetterTypes.GET_IS_LIQUIDITY_ADDED](state, getters) {
