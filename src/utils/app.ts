@@ -13,6 +13,7 @@ export async function init(vm: Vue) {
       dispatch(GlobalActions.LOAD_APP_INFO),
       dispatch(GlobalActions.LOAD_FIATS, { token: vm.$config.FIAT_TOKEN }),
       dispatch(GlobalActions.LOAD_POOL_ASSETS),
+      dispatch(GlobalActions.LOAD_MULTISIG_ASSETS),
       dispatch(GlobalActions.LOAD_POOL_PAIRS, {
         brokerId: vm.$config.BROKER_ID,
       }),

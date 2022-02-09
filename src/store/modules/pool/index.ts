@@ -1,6 +1,6 @@
 import { make } from "vuex-pathify";
 import { MutationTypes, ActionTypes, GetterTypes } from "./types";
-import { PRSID } from "@/constants";
+import { EOSID, ETHID, PRSID } from "@/constants";
 import { updateCache } from "@/utils/cache";
 import BigNumber from "bignumber.js";
 
@@ -9,6 +9,7 @@ import type { ActionTree } from "vuex";
 const state: State.PoolState = {
   pairs: [],
   assets: [],
+  multisigAssets: [],
   assetsWhiteLists: [],
   assetsBlackLists: [PRSID],
   fiats: [],
@@ -31,7 +32,16 @@ const getters = {
       assetsWhiteLists: whitelists,
       assetsBlackLists: blacklists,
     } = state;
-    let avaliables = assets;
+    let avaliables: API.Asset[] = assets;
+
+    // use asset should support in multisignature API
+    // otherwise support all ERC20 or eosio.token
+    avaliables = avaliables.filter(
+      ({ id, chain_id }) =>
+        chain_id === ETHID ||
+        chain_id === EOSID ||
+        state.multisigAssets.find((x) => id === x.asset_id)
+    );
 
     //  use asset only listed in whitelist
     if (whitelists.length) {
@@ -170,6 +180,12 @@ const actions: ActionTree<State.AuthState, any> = {
         chainLogo: x.chain.logo,
       }))
     );
+  },
+
+  async [ActionTypes.LOAD_MULTISIG_ASSETS]({ commit }) {
+    const resp = await this.$http.getMultiSigAssets();
+
+    commit(MutationTypes.SET_MULTISIG_ASSETS, resp);
   },
 
   async [ActionTypes.LOAD_FIATS]({ commit }, { token }) {
