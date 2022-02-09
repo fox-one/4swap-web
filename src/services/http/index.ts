@@ -120,6 +120,10 @@ export default function (http: Http) {
       return http.get(`/orders/${id}`);
     },
 
+    async getMultiSigAssets(): Promise<API.MixinAsset[]> {
+      return http.get(`${MIXIN_HOST}/network/assets/multisig`);
+    },
+
     async getAssetsFromMixin(): Promise<API.MixinAsset[]> {
       return await http.get(`${MIXIN_HOST}/assets`);
     },
