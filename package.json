@@ -56,7 +56,8 @@
     "vue-infinite-scroll": "^2.0.2",
     "vue-property-decorator": "^9.1.2",
     "vuex-pathify": "^1.5.1",
-    "vuex-persistedstate": "^3.0.1"
+    "vuex-persistedstate": "^3.0.1",
+    "vue-gtag": "^1.14.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.11.0",

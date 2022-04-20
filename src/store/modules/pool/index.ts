@@ -1,6 +1,6 @@
 import { make } from "vuex-pathify";
 import { MutationTypes, ActionTypes, GetterTypes } from "./types";
-import { EOSID, ETHID, PRSID } from "@/constants";
+import { PRSID } from "@/constants";
 import { updateCache } from "@/utils/cache";
 import BigNumber from "bignumber.js";
 

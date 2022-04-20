@@ -14,11 +14,17 @@ export type AccountPair = API.Pair & {
 const curve = new Curve(A);
 
 export function getCurvePairPrice(pair: API.Pair, reverse = false) {
+  const fillPercent = 1 - +pair.fee_percent;
+
   if (reverse) {
-    return curve.swapReverse(+pair.base_amount, +pair.quote_amount, 1);
+    return curve.swapReverse(
+      +pair.base_amount,
+      +pair.quote_amount,
+      fillPercent
+    );
   }
 
-  return curve.swap(+pair.base_amount, +pair.quote_amount, 1);
+  return curve.swap(+pair.base_amount, +pair.quote_amount, fillPercent);
 }
 
 export function getUniPairPrice(pair: API.Pair, reverse = false) {
@@ -194,9 +200,13 @@ export function getPreOrderMeta(
   if (amount && funds) {
     price = (+amount / +funds).toString();
     reversePrice = (+funds / +amount).toString();
-    priceText = `1 ${inputSymbol} ≈ ${format({ n: price })} ${outputSymbol}`;
+    priceText = `1 ${inputSymbol} ≈ ${format({
+      n: price,
+      dp: 8,
+    })} ${outputSymbol}`;
     reversePriceText = `1 ${outputSymbol} ≈ ${format({
       n: reversePrice,
+      dp: 8,
     })} ${inputSymbol}`;
   }
 

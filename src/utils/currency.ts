@@ -28,7 +28,7 @@ export function toFiat(
     ? {
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,
-        notation: "compact",
+        notation: "compact" as const,
       }
     : {};
   const intl = opts.intl ?? true;

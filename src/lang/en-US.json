@@ -145,6 +145,8 @@
   "qrcode": "QRCode",
   "ratio": "Ratio",
   "received": "Received",
+  "reference.price": "Reference Price",
+  "reference.price.hint": "The actual transaction price is related to the actual number of transactions, this price is for reference only.",
   "rejected": "Rejected",
   "remove": "Remove",
   "ror.24hours": "24h ROR",

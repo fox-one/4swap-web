@@ -4,6 +4,8 @@ export const IS_MTG = true;
 
 export const VERSION = pkg.version;
 
+export const GA = "G-ZMQ4PKF7BP";
+
 export const TERMS_VERSION = "0.0.1";
 
 export const MIXIN_HOST = "https://mixin-api.zeromesh.net";

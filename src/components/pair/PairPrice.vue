@@ -5,6 +5,11 @@
       :quote-asset="meta.quoteAsset"
     />
 
+    <div class="price-label">
+      {{ $t("reference.price") }}
+      <f-hint :hint="$t('reference.price.hint')" />
+    </div>
+
     <div class="price mt-3">
       <span class="mr-2">{{ meta.priceText }}</span>
       <v-icon size="24" @click="handleSwitch"> $IconSwitcher4P </v-icon>
@@ -57,6 +62,14 @@ export default PairPrice;
 <style lang="scss" scoped>
 .pair-icon {
   justify-content: center;
+}
+
+.price-label {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  color: var(--v-greyscale_3-base);
+  margin-top: 24px;
 }
 
 .price {
