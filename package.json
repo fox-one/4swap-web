@@ -1,6 +1,6 @@
 {
   "name": "4swap",
-  "version": "3.0.37",
+  "version": "3.0.38",
   "description": "4swap webpages",
   "author": "Fox.ONE",
   "license": "GPL-3.0",
@@ -53,11 +53,11 @@
     "uuid": "^8.3.0",
     "vconsole": "^3.5.0",
     "vue-class-component": "^7.1.0",
+    "vue-gtag": "^1.14.0",
     "vue-infinite-scroll": "^2.0.2",
     "vue-property-decorator": "^9.1.2",
     "vuex-pathify": "^1.5.1",
-    "vuex-persistedstate": "^3.0.1",
-    "vue-gtag": "^1.14.0"
+    "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.11.0",
