@@ -4,6 +4,10 @@
     :fennec="fennec"
     :title="$t('connect-wallet')"
     @auth="handleLogin"
+    :client-id="clientId"
+    :scope="scope"
+    :is-firesbox="false"
+    @error="handleError"
   />
 </template>
 
@@ -14,6 +18,10 @@ import { GLOBAL_EVENTS } from "@/constants";
 @Component
 class AuthModal extends Vue {
   fennec = false;
+
+  clientId = this.$config.MIXIN_CLIENT_ID;
+
+  scope = "PROFILE:READ ASSETS:READ";
 
   mounted() {
     setTimeout(() => {
@@ -28,7 +36,7 @@ class AuthModal extends Vue {
   }
 
   handleLogin(value) {
-    if (value === "mixin") {
+    if (value?.type === "mixin") {
       this.$utils.account.requestAuthMixin(this);
     } else {
       this.$utils.account.authFennec(this);
