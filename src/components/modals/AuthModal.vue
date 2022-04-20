@@ -35,9 +35,9 @@ class AuthModal extends Vue {
     });
   }
 
-  handleLogin(value) {
-    if (value?.type === "mixin") {
-      this.$utils.account.requestAuthMixin(this);
+  handleLogin(data) {
+    if (data?.type === "mixin") {
+      this.$utils.account.authMixin(this, data?.code);
     } else {
       this.$utils.account.authFennec(this);
     }

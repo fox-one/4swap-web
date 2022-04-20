@@ -41,14 +41,12 @@ export async function authMixin(vm: Vue, code: string) {
     broker_id: vm.$config.BROKER_ID,
     label: vm.$config.CHANNEL,
   });
-  const redirect = localStorage.getItem("authPath") || "/";
 
   await updateAuth(vm, {
     token: res.token,
     scope: res.scope,
     channel: "mixin",
   });
-  document.location.replace(redirect);
 }
 
 /**
