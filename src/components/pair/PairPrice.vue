@@ -1,6 +1,7 @@
 <template>
   <div class="text-center">
     <base-pair-icon
+      :large="true"
       :base-asset="meta.baseAsset"
       :quote-asset="meta.quoteAsset"
     />

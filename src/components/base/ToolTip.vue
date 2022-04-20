@@ -3,7 +3,7 @@
     <template #activator="{ on }">
       <v-icon
         v-if="hint"
-        size="14"
+        size="12"
         color="greyscale_1"
         class="icon"
         v-bind="$attrs"
@@ -21,7 +21,7 @@
     <template #activator="{ on }">
       <v-icon
         v-if="hint"
-        size="14"
+        size="12"
         color="greyscale_1"
         class="icon"
         v-bind="$attrs"

@@ -1044,12 +1044,16 @@
   resolved "https://registry.npmjs.org/@foxone/pandoseed/-/pandoseed-1.0.3.tgz#dd9f7fd624a5dbf2a6889584168be02c0ade2a5b"
   integrity sha512-CeMTLbRtFa1xBgltZrGwKZdiwpWnuoqJBFdDsWW6ntzHpbxWaXE+BV3riuTwMxcYO6yrp0an9V+QL5I/pU9ooA==
 
-"@foxone/uikit@^3.0.1-58":
-  version "3.0.1-58"
-  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.0.1-58.tgz#85bdb5a3c506770b4ea9c1a47359866f7375df96"
-  integrity sha512-2MyMP6h/lqgbEC1O+3gUItUUmFslTSXheRgim0VOdZopLg74jsmQ0+G9rDGU/YOLNBUjqh7ppe7thQhdKTZAyw==
+"@foxone/uikit@^3.1.4-3":
+  version "3.1.4-3"
+  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.1.4-3.tgz#bf916f6dcd0223c528c3696bd678186e5a5be13d"
+  integrity sha512-KKy2G6WEfkSaPSm9wOeGM70zKvWSdFmA5zVfO1kIGpanrYH8jnF0pU6oda4h2pdszkBJswPMUWXV5FnF10DdOw==
   dependencies:
+    "@nuxt/types" "^2.15.8"
+    axios "^0.26.0"
+    pako "^2.0.4"
     qrcode "^1.5.0"
+    reconnecting-websocket "^4.4.0"
     tinycolor2 "^1.4.2"
     vue-class-component "^7.2.3"
     vue-property-decorator "^9.1.2"
@@ -1405,7 +1409,7 @@
     rc9 "^1.2.0"
     std-env "^2.3.0"
 
-"@nuxt/types@^2.14.6":
+"@nuxt/types@^2.14.6", "@nuxt/types@^2.15.8":
   version "2.15.8"
   resolved "https://registry.npmjs.org/@nuxt/types/-/types-2.15.8.tgz#1249de448f68169fe17e9379ee7b5caa0eb336b0"
   integrity sha512-zBAG5Fy+SIaZIerOVF1vxy1zz16ZK07QSbsuQAjdtEFlvr+vKK+0AqCv8r8DBY5IVqdMIaw5FgNUz5py0xWdPg==
@@ -2900,6 +2904,13 @@ axios@^0.21.1:
   integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
   dependencies:
     follow-redirects "^1.14.0"
+
+axios@^0.26.0:
+  version "0.26.1"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
+  integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
+  dependencies:
+    follow-redirects "^1.14.8"
 
 babel-code-frame@^6.22.0:
   version "6.26.0"
@@ -5542,6 +5553,11 @@ follow-redirects@^1.0.0, follow-redirects@^1.10.0, follow-redirects@^1.14.0:
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.7.tgz#2004c02eb9436eee9a21446a6477debf17e81685"
   integrity sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==
 
+follow-redirects@^1.14.8:
+  version "1.14.9"
+  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.9.tgz#dd4ea157de7bfaf9ea9b3fbd85aa16951f78d8d7"
+  integrity sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -8094,6 +8110,11 @@ package-json@^4.0.0:
     registry-url "^3.0.3"
     semver "^5.1.0"
 
+pako@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/pako/-/pako-2.0.4.tgz#6cebc4bbb0b6c73b0d5b8d7e8476e2b2fbea576d"
+  integrity sha512-v8tweI900AUkZN6heMU/4Uy4cXRc2AYNRggVmTR+dEncawDJgCdLMximOVA2p4qO57WMynangsfGRb5WD6L1Bg==
+
 pako@~1.0.5:
   version "1.0.11"
   resolved "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
@@ -9354,6 +9375,11 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+reconnecting-websocket@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.npmjs.org/reconnecting-websocket/-/reconnecting-websocket-4.4.0.tgz#3b0e5b96ef119e78a03135865b8bb0af1b948783"
+  integrity sha512-D2E33ceRPga0NvTDhJmphEgJ7FUYF0v4lr1ki0csq06OdlxKfugGzN0dSkxM/NfqCxYELK4KcaTOUOjTV6Dcng==
 
 regenerate-unicode-properties@^9.0.0:
   version "9.0.0"
