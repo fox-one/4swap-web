@@ -80,6 +80,7 @@ const config: NuxtConfig = {
     CHANNEL_NAME: process.env.CHANNEL_NAME || "",
     BROKER_ID: process.env.BROKER_ID || "",
 
+    BRANCH: process.env.BRANCH || "",
     API_BASE: process.env.API_BASE || "",
     WS_BASE: process.env.WS_BASE || "",
     MIXIN_CLIENT_ID: process.env.MIXIN_CLIENT_ID || "",

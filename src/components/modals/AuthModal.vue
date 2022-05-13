@@ -7,7 +7,6 @@
     :client-id="clientId"
     :scope="scope"
     :is-firesbox="false"
-    @error="handleError"
   />
 </template>
 

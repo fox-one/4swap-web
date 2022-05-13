@@ -33,6 +33,7 @@ jobs:
 
       - name: Build
         env:
+          BRANCH: develop
           CHANNEL: ${{ secrets.CHANNEL }}
           CHANNEL_NAME: ${{ secrets.CHANNEL_NAME }}
           BROKER_ID: ${{ secrets.BROKER_ID }}

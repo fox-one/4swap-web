@@ -12,6 +12,8 @@
     <auth-modal />
 
     <terms-modal />
+
+    <pando-announce-modal app="4swap" :dev="dev" />
   </div>
 </template>
 
@@ -32,6 +34,10 @@ import { GlobalMutations } from "~/store/types";
 })
 class Modals extends Vue {
   @Sync("app/paying") paying!: State.PayingState;
+
+  get dev() {
+    return this.$config.BRANCH === "develop";
+  }
 
   handlePayingCancel() {
     this.$store.commit(GlobalMutations.SET_PAYING, { visible: false });
