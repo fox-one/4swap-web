@@ -133,7 +133,7 @@ export default function (http: Http) {
     },
 
     async createActions(data: API.CreateAction): Promise<API.CreateActionRsp> {
-      return http.post(`/actions`, { data });
+      return http.post(`/actions/v2`, { data });
     },
 
     async getMe() {
