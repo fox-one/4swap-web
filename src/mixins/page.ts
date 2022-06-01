@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Watch } from "vue-property-decorator";
 import dayjs from "dayjs";
 import { GlobalMutations } from "~/store/types";
 import { getLocale } from "@foxone/utils/helper";
@@ -32,6 +32,11 @@ export default class PageView extends Vue {
 
   get bottomNav() {
     return "";
+  }
+
+  @Watch("title")
+  handleTitleChange() {
+    this.setPageConfig();
   }
 
   setLang() {

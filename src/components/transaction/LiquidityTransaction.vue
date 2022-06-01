@@ -1,24 +1,41 @@
 <template>
-  <div class="py-4">
-    <v-layout class="mb-3">
-      <v-flex>
-        <div class="value">{{ meta.totalValue }}</div>
-        <div class="text mt-3">{{ meta.text }}</div>
+  <div
+    class="pa-4 mx-n4"
+    :class="{ 'transaction--expand': expand }"
+    @click="handleToggle"
+  >
+    <v-layout>
+      <v-icon size="16" color="greyscale_3">
+        {{ meta.icon }}
+      </v-icon>
+
+      <v-flex class="ml-4">
+        <v-layout class="transaction-title">
+          <v-flex>{{ meta.text }}</v-flex>
+          <span>{{ meta.totalValue }}</span>
+        </v-layout>
+
+        <div v-if="expand">
+          <asset-amount :asset="meta.baseAsset" :amount="meta.baseAmount" />
+          <asset-amount :asset="meta.quoteAsset" :amount="meta.quoteAmount" />
+          <asset-amount :asset="meta.liquidityAsset" :amount="meta.liquidity" />
+        </div>
+
+        <v-layout class="transaction-label mt-3">
+          <v-flex>{{ meta.time }}</v-flex>
+          <div
+            class="expand-action"
+            :class="{ 'expand-action--active': !expand }"
+          >
+            <span v-if="expand">{{ $t("less") }}</span>
+            <span v-else>{{ $t("more") }}</span>
+            <v-icon size="16" color="greyscale_3" class="expand-icon">
+              $IconPolygon
+            </v-icon>
+          </div>
+        </v-layout>
       </v-flex>
-      <span class="time">{{ meta.time }}</span>
     </v-layout>
-
-    <div class="items rounded">
-      <template v-if="showLiquidityAsset">
-        <asset-amount :asset="meta.liquidityAsset" :amount="meta.liquidity" />
-      </template>
-      <template v-else>
-        <asset-amount :asset="meta.baseAsset" :amount="meta.base_amount" />
-        <asset-amount :asset="meta.quoteAsset" :amount="meta.quote_amount" />
-      </template>
-
-      <liquidity-switch class="switch" @click.native="handleSwitch" />
-    </div>
   </div>
 </template>
 
@@ -39,6 +56,8 @@ class LiquidityTransaction extends Vue {
 
   showLiquidityAsset = false;
 
+  expand = false;
+
   get meta() {
     const toFiat = this.$utils.currency.toFiat;
     const toRelative = this.$utils.time.toRelative;
@@ -58,20 +77,21 @@ class LiquidityTransaction extends Vue {
     const baseAsset = getAssetById(base_asset_id);
     const quoteAsset = getAssetById(quote_asset_id);
     const liquidityAsset = getAssetById(pair.liquidity_asset_id);
-    const [text, symbol] =
+    const [text, icon] =
       type === "Add"
-        ? [this.$t("liquidity.add"), "+"]
-        : [this.$t("liquidity.remove"), "-"];
+        ? [this.$t("liquidity.add"), "$FIconAdd4PBold"]
+        : [this.$t("liquidity.remove"), "$FIconMinus4PBold"];
 
     return {
+      icon,
       text,
       baseAsset,
       quoteAsset,
-      base_amount,
-      quote_amount,
+      baseAmount: base_amount,
+      quoteAmount: quote_amount,
       liquidity,
       liquidityAsset,
-      totalValue: symbol + " " + toFiat(this, { n: this.transaction.value }),
+      totalValue: toFiat(this, { n: this.transaction.value }),
       time: toRelative(this.transaction.created_at),
     };
   }
@@ -79,39 +99,42 @@ class LiquidityTransaction extends Vue {
   handleSwitch() {
     this.showLiquidityAsset = !this.showLiquidityAsset;
   }
+
+  handleToggle() {
+    this.expand = !this.expand;
+  }
 }
 export default LiquidityTransaction;
 </script>
 
 <style lang="scss" scoped>
-.value {
-  font-size: 14px;
-  font-weight: 600;
-  font-feature-settings: "salt" on;
-}
-
-.text {
+.transaction-title {
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 17px;
 }
 
-.time {
+.transaction-label {
+  font-weight: 400;
   font-size: 12px;
-  color: var(--v-greyscale_4-base);
-}
-
-.items {
-  background: var(--v-greyscale_6-base);
+  line-height: 15px;
   color: var(--v-greyscale_3-base);
-  padding: 12px;
-  display: grid;
-  position: relative;
-  grid-template-columns: 1fr 1fr;
+}
 
-  .switch {
-    position: absolute;
-    right: 12px;
-    top: calc(50% - 12px);
+.transaction--expand {
+  background: var(--v-greyscale_6-base);
+}
+
+.expand-action {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.expand-action--active {
+  .expand-icon {
+    transform: rotate(180deg);
+    transition: 0.2s ease;
   }
 }
 </style>

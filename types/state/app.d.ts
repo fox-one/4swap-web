@@ -10,6 +10,8 @@ declare namespace State {
 
   export interface SettingsState {
     slippage: number;
+    slippage_add: number;
+    slippage_remove: number;
     currency: string;
     chartScheme: string;
     priceAlertCountDown: boolean;
@@ -21,6 +23,7 @@ declare namespace State {
   }
 
   export interface AppState {
+    version: number;
     contentClass: string;
     contentStyle: any;
     appbar: AppBarState;

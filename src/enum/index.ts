@@ -6,9 +6,9 @@ type Meta<T extends string> = Record<
 >;
 
 const DurationMeta: Meta<API.Duration> = {
+  "24h": { text: "chart.duration.d" },
   "168h": { text: "chart.duration.w" },
   "720h": { text: "chart.duration.m" },
-  "1440h": { text: "chart.duration.y" },
   "4320h": { text: "chart.duration.y" },
 };
 

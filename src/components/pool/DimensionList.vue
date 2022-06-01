@@ -1,25 +1,27 @@
 <template>
   <div>
     <dimension-item
-      v-for="(item, index) in items"
+      v-for="(item, index) in dimensions"
       :key="index"
       :item="item"
-      @click.native="handleSelect(item)"
+      v-bind="$attrs"
+      v-on="$listeners"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, ProvideReactive, Model } from "vue-property-decorator";
+import {
+  Component,
+  Vue,
+  ProvideReactive,
+  Model,
+  Prop,
+} from "vue-property-decorator";
 import DimensionItem from "./DimensionItem.vue";
 
-export const dimensions = [
-  { text: "liquidity", value: "volume" },
-  { text: "volume.24hours", value: "volume_24h" },
-  { text: "turnover.24hours", value: "turnOver" },
-];
-
 @Component({
+  inheritAttrs: false,
   components: {
     DimensionItem,
   },
@@ -27,19 +29,11 @@ export const dimensions = [
 class DimensionList extends Vue {
   @Model("change") value!: string;
 
+  @Prop() dimensions;
+
   @ProvideReactive()
   get current() {
     return this.value;
-  }
-
-  get items() {
-    return dimensions.map((x) => {
-      return { ...x, text: this.$t(x.text) };
-    });
-  }
-
-  handleSelect(item) {
-    this.$emit("change", item.value);
   }
 }
 export default DimensionList;

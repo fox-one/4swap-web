@@ -1,6 +1,7 @@
 export const prefix = "app/";
 
 export const MutationTypes = {
+  SET_VERSION: "SET_VERSION",
   SET_PAYING: "SET_PAYING",
   SET_SETTINGS: "SET_SETTINGS",
   SET_APPBAR: "SET_APPBAR",

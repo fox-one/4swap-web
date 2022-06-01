@@ -20,9 +20,10 @@
   "chart": "Charts",
   "chart.chart-type.liquidity": "Liquidity",
   "chart.chart-type.volume": "Volume",
-  "chart.duration.m": "Month",
-  "chart.duration.w": "Week",
-  "chart.duration.y": "Year",
+  "chart.duration.d": "D",
+  "chart.duration.m": "M",
+  "chart.duration.w": "W",
+  "chart.duration.y": "Y",
   "chart_scheme.scheme_a": "Scheme A",
   "chart_scheme.scheme_b": "Scheme B",
   "chart_scheme.title": "Chart scheme",
@@ -200,7 +201,7 @@
   "trades.24hours": "24h Trades",
   "transaction.all": "All Transaction",
   "transaction.type": "Transaction Type",
-  "transactions": "Transactions",
+  "transactions": "All Transactions",
   "transactions.empty": "No recent transactions",
   "turnover.24hours": "24h Turnover",
   "turnover.tooltip": "The rate that assets sold and replaced in the pool during 24 hours",
@@ -214,5 +215,9 @@
   "wallet.balance.login-to-see": "Login to see balance",
   "warn.price.impact": "Price impact reached <p>{value}</p> This transaction carries a high risk of loss.",
   "warning": "Warning",
-  "website": "Website"
+  "website": "Website",
+  "liquidity.empty.hint": "You have not added {symbol} liquidity",
+  "assets": "Assets",
+  "less": "Less",
+  "more": "More"
 }

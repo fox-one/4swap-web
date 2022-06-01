@@ -5,6 +5,8 @@ import { isDarkTheme } from "@foxone/utils/mixin";
 import type { ActionTree } from "vuex";
 
 const state: State.AppState = {
+  version: 0,
+
   appbar: {
     title: "",
     style: "",
@@ -20,6 +22,8 @@ const state: State.AppState = {
 
   settings: {
     slippage: 0.999,
+    slippage_add: 0.999,
+    slippage_remove: 0.999,
     currency: "USD",
     chartScheme: "SCHEME_A",
     priceAlertCountDown: true,
@@ -44,6 +48,10 @@ const state: State.AppState = {
 
 const mutations = {
   ...make.mutations(state),
+
+  [MutationTypes.SET_VERSION](state, version) {
+    state.version = version;
+  },
 
   [MutationTypes.SET_PAYING](state, data) {
     state.paying = { ...state.paying, ...data };

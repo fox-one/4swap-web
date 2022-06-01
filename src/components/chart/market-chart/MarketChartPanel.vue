@@ -1,32 +1,47 @@
 <template>
-  <chart-layout
-    :types="types"
-    :type.sync="chartType"
-    :duration.sync="duration"
-    :title="titles.title"
-    :subtitle="titles.subtitle"
-  >
-    <template #chart>
-      <component
-        :is="component"
-        :data="chartData"
-        :loading="loading"
-        :colors="colors"
-        :current.sync="current"
-        :chart-type="chartType"
-        :pair="pair"
-      />
-    </template>
+  <div>
+    <chart-layout
+      :types="types"
+      :durations="durations"
+      :type.sync="chartType"
+      :duration.sync="duration"
+      :title="titles.title"
+      :subtitle="titles.subtitle"
+      :label="titles.label"
+    >
+      <template #chart>
+        <component
+          :is="component"
+          :data="chartData"
+          :loading="loading"
+          :colors="colors"
+          :current.sync="current"
+          :chart-type="chartType"
+          :pair="pair"
+        />
+      </template>
+    </chart-layout>
 
-    <template #foot>
-      <route-to-swap-action
-        v-if="isPriceChart"
-        :pair="pair"
-        :reverse="isPriceReverse"
-        class="mt-4"
-      />
-    </template>
-  </chart-layout>
+    <chart-layout
+      v-if="pair && isPriceChart"
+      :durations="durations"
+      :duration.sync="priceReverse.duration"
+      :title="priceReverseTitles.title"
+      :subtitle="priceReverseTitles.subtitle"
+      :label="priceReverseTitles.label"
+    >
+      <template #chart>
+        <price-chart
+          :data="priceReverseDurationData.kline"
+          :loading="loading"
+          :colors="colors"
+          :current.sync="priceReverse.current"
+          :chart-reverse="true"
+          :pair="pair"
+        />
+      </template>
+    </chart-layout>
+  </div>
 </template>
 
 <script lang="ts">
@@ -37,7 +52,7 @@ import VolumeChart from "./VolumeChart.vue";
 import RouteToSwapAction from "../../liquidity/RouteToSwapAction.vue";
 import ChartLayout from "../ChartLayout.vue";
 
-export type ChartType = "liquidity" | "volume" | "0" | "1";
+export type ChartType = "liquidity" | "volume" | "price";
 
 @Component({
   components: {
@@ -57,7 +72,7 @@ class MarketChartPanel extends Vue {
 
   duration: API.Duration = "168h";
 
-  chartType: ChartType = "0";
+  chartType: ChartType = "price";
 
   data: any = {
     market: [],
@@ -66,12 +81,13 @@ class MarketChartPanel extends Vue {
 
   current = null;
 
-  get isPriceChart() {
-    return this.chartType === "0" || this.chartType === "1";
-  }
+  priceReverse = {
+    current: null,
+    duration: "168h",
+  };
 
-  get isPriceReverse() {
-    return this.chartType === "1";
+  get isPriceChart() {
+    return this.chartType === "price";
   }
 
   get durationData() {
@@ -93,14 +109,32 @@ class MarketChartPanel extends Vue {
     };
   }
 
+  get priceReverseDurationData() {
+    const getDurationData = this.$utils.helper.getDurationData;
+
+    return {
+      market: getDurationData(
+        this.data.market,
+        this.priceReverse.duration,
+        (x) => x?.ts,
+        100
+      ),
+      kline: getDurationData(
+        this.data.kline,
+        this.priceReverse.duration,
+        (x) => x?.[0],
+        100
+      ),
+    };
+  }
+
   get component() {
     switch (this.chartType) {
       case "liquidity":
         return "liquidity-chart";
       case "volume":
         return "volume-chart";
-      case "0":
-      case "1":
+      case "price":
         return "price-chart";
       default:
         return "";
@@ -112,8 +146,7 @@ class MarketChartPanel extends Vue {
       case "liquidity":
       case "volume":
         return this.durationData.market;
-      case "0":
-      case "1":
+      case "price":
         return this.durationData.kline;
       default:
         return [];
@@ -129,25 +162,26 @@ class MarketChartPanel extends Vue {
   }
 
   get types() {
-    const baseItems = [
+    const types = [
       { text: this.$t("chart.chart-type.volume"), value: "volume" },
       { text: this.$t("chart.chart-type.liquidity"), value: "liquidity" },
     ];
 
     if (this.pair) {
-      const pairMeta = this.$utils.pair.getPairMeta(this, this.pair)!;
-      const { baseAsset, quoteAsset } = pairMeta;
-      const symbol = `${baseAsset.symbol} / ${quoteAsset.symbol}`;
-      const reverseSymbol = `${quoteAsset.symbol} / ${baseAsset.symbol}`;
-      const priceItems = [
-        { text: this.$t("price") + ` (${symbol})`, value: "0" },
-        { text: this.$t("price") + ` (${reverseSymbol})`, value: "1" },
-      ];
-
-      return [...priceItems, ...baseItems];
+      types.push({ text: this.$t("price"), value: "price" });
     }
 
-    return baseItems;
+    return types;
+  }
+
+  get durations() {
+    const durations = ["168h", "720h", "4320h"];
+
+    if (this.chartType === "price") {
+      durations.unshift("24h");
+    }
+
+    return durations;
   }
 
   get titles() {
@@ -160,9 +194,17 @@ class MarketChartPanel extends Vue {
     }
 
     if (this.isPriceChart) {
+      const { baseAsset, quoteAsset, symbol } = this.$utils.pair.getPairMeta(
+        this,
+        this.pair
+      )!;
+      const baseAssetSymbol = baseAsset?.symbol;
+      const quoteAssetSymbol = quoteAsset?.symbol;
+      const value = this.$utils.number.format({ n: data });
       return {
-        title: this.$utils.number.format({ n: data }),
+        title: `1 ${baseAssetSymbol} ≈ ${value} ${quoteAssetSymbol}`,
         subtitle: this.$utils.time.format(time, "MMM DD, YYYY HH:mm"),
+        label: symbol,
       };
     }
 
@@ -171,6 +213,27 @@ class MarketChartPanel extends Vue {
         props: { parts: this.$utils.currency.toFiat(this, { n: data }, true) },
       }),
       subtitle: this.$utils.time.format(time, "MMM DD, YYYY"),
+    };
+  }
+
+  get priceReverseTitles() {
+    if (!this.pair) return null;
+
+    const data = this.priceReverse.current?.[1] ?? 0;
+    const time = this.priceReverse.current?.[0] ?? 0;
+    const { baseAsset, quoteAsset, symbol } = this.$utils.pair.getPairMeta(
+      this,
+      this.pair,
+      true
+    )!;
+    const baseAssetSymbol = baseAsset?.symbol;
+    const quoteAssetSymbol = quoteAsset?.symbol;
+    const value = this.$utils.number.format({ n: data });
+
+    return {
+      title: `1 ${baseAssetSymbol} ≈ ${value} ${quoteAssetSymbol}`,
+      subtitle: this.$utils.time.format(time, "MMM DD, YYYY HH:mm"),
+      label: symbol,
     };
   }
 

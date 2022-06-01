@@ -21,7 +21,7 @@
       </chart-thumb-layout>
     </div>
     <div v-else class="profit-panel--full">
-      <chart-layout v-bind="$attrs" v-on="$listeners">
+      <chart-layout use-dropdown-type-select v-bind="$attrs" v-on="$listeners">
         <template #chart>
           <slot name="chart" />
         </template>

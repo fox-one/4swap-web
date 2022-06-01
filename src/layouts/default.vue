@@ -14,6 +14,7 @@ import { Component, Vue } from "vue-property-decorator";
 import MobileLayout from "@/components/layout/mobile/Index.vue";
 import Modals from "@/components/modals/Index.vue";
 import { Sync } from "vuex-pathify";
+import migrate from "../migrate";
 
 @Component({
   components: {
@@ -30,6 +31,7 @@ class NuxtDefaultLayout extends Vue {
 
   async mounted() {
     try {
+      await migrate(this);
       await this.$utils.app.init(this);
       this.$utils.app.tasks.setUpPollingTasks(this);
       this.$utils.app.checkTerms(this);

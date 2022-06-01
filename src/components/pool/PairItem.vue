@@ -1,23 +1,27 @@
 <template>
-  <v-layout align-center class="pool-item">
-    <base-pair-icon
-      :base-asset="meta.baseAsset"
-      :quote-asset="meta.quoteAsset"
-    />
+  <div v-intersect="onIntersect" class="pool-item__wrapper">
+    <v-layout v-if="isActive" align-center class="pool-item">
+      <v-lazy min-width="64" transition="">
+        <base-pair-icon
+          :base-asset="meta.baseAsset"
+          :quote-asset="meta.quoteAsset"
+        />
+      </v-lazy>
 
-    <v-flex class="ml-4">
-      <v-layout>
-        <v-flex class="font-weight-bold">
-          {{ meta.symbol }}
-        </v-flex>
-        <span class="number font-weight-bold">{{ meta.dataText }}</span>
-      </v-layout>
+      <v-flex class="ml-4">
+        <v-layout>
+          <v-flex class="font-weight-bold">
+            {{ meta.symbol }}
+          </v-flex>
+          <span class="number font-weight-bold">{{ meta.dataText }}</span>
+        </v-layout>
 
-      <div class="label-3 mt-2 number">
-        {{ meta.priceText }}
-      </div>
-    </v-flex>
-  </v-layout>
+        <div class="label-3 mt-2 number">
+          {{ meta.priceText }}
+        </div>
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,14 +30,15 @@ import { getPairMeta } from "@/utils/pair/helper";
 import { Sync } from "vuex-pathify";
 
 @Component
-class PoolItem extends Vue {
+class PairItem extends Vue {
   @Prop() pair!: API.Pair;
 
   @Sync("page/pool@reverse")
   reverse!: boolean;
 
-  @Sync("page/pool@dimension")
-  dimension!: string;
+  @Sync("page/pool@dimension_pair") dimension!: string;
+
+  isActive = false;
 
   get meta() {
     const toPercent = this.$utils.number.toPercent;
@@ -56,13 +61,25 @@ class PoolItem extends Vue {
       dataText: dataFormat,
     };
   }
+
+  onIntersect(
+    entries: IntersectionObserverEntry[],
+    observer: IntersectionObserver,
+    isIntersecting: boolean
+  ) {
+    this.isActive = isIntersecting;
+  }
 }
-export default PoolItem;
+export default PairItem;
 </script>
 
 <style lang="scss" scoped>
 .font-weight-bold {
   font-weight: 600 !important;
+}
+
+.pool-item__wrapper {
+  min-height: 72px;
 }
 
 .pool-item {

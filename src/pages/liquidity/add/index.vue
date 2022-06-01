@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-layout class="label-1 mb-4">
+      <span>{{ $t("liquidity.add") }}</span>
+
+      <v-spacer />
+
+      <slippage-setting :value="slippage" @change="handleSlippageChange" />
+    </v-layout>
+
     <first-liquidity-provider-tip :pair="pair" />
 
     <add-form :asset1.sync="asset1" :asset2.sync="asset2" :pair="pair">
@@ -26,12 +34,14 @@
 <script lang="ts">
 import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixin from "@/mixins";
-import { GlobalGetters } from "@/store/types";
+import { GlobalGetters, GlobalMutations } from "@/store/types";
+import { Sync } from "vuex-pathify";
 import AddForm from "@/components/liquidity/AddForm.vue";
 import AddFormInformations from "@/components/liquidity/AddFormInformations.vue";
 import AddAction from "@/components/liquidity/AddAction.vue";
 import Introductions from "@/components/particles/Introductions.vue";
 import FirstLiquidityProviderTip from "@/components/liquidity/FirstLiquidityProviderTip.vue";
+import SlippageSetting from "@/components/swap/SlippageSetting.vue";
 
 import type { Asset } from "@/utils/assets";
 
@@ -47,9 +57,12 @@ type AssetData = {
     AddAction,
     Introductions,
     FirstLiquidityProviderTip,
+    SlippageSetting,
   },
 })
 class LiquidityAdd extends Mixins(mixin.page) {
+  @Sync("app/settings@slippage_add") slippage;
+
   asset1: AssetData = {
     asset: null,
     amount: "",
@@ -96,6 +109,10 @@ class LiquidityAdd extends Mixins(mixin.page) {
 
   mounted() {
     this.setInitialAsset();
+  }
+
+  handleSlippageChange(value) {
+    this.$store.commit(GlobalMutations.SET_SETTINGS, { slippage_add: value });
   }
 
   setInitialAsset() {

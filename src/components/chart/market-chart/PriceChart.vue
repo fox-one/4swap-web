@@ -22,7 +22,7 @@ class PriceChart extends Vue {
 
   @Prop() pair;
 
-  @Prop() chartType;
+  @Prop({ type: Boolean, default: false }) chartReverse!: boolean;
 
   @PropSync("current") bindCurrent;
 
@@ -30,9 +30,8 @@ class PriceChart extends Vue {
 
   get reverse() {
     const { isReverse } = this.$utils.pair.getPairMeta(this, this.pair) || {};
-    const chartReverse = this.chartType === "1";
 
-    return isReverse !== chartReverse;
+    return isReverse !== this.chartReverse;
   }
 
   @Watch("reverse")

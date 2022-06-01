@@ -64,6 +64,51 @@ const getters = {
     });
   },
 
+  [GetterTypes.AVALIABLE_ASSETS_META](state, getters) {
+    const pairs: API.Pair[] = getters[GetterTypes.AVALIABLE_PAIRS];
+    const empty = { liquidity: 0, volume_24h: 0, liquidity_amount: 0 };
+    const assetMap = new Map<string, typeof empty>();
+
+    pairs.forEach((pair) => {
+      const {
+        base_asset_id,
+        quote_asset_id,
+        base_amount,
+        base_value,
+        quote_amount,
+        quote_value,
+        volume_24h,
+      } = pair;
+      const baseRecord = assetMap.get(base_asset_id) || empty;
+      const quoteRecord = assetMap.get(quote_asset_id) || empty;
+
+      assetMap.set(base_asset_id, {
+        liquidity: baseRecord.liquidity + +base_value,
+        liquidity_amount: baseRecord.liquidity_amount + +base_amount,
+        volume_24h: baseRecord.volume_24h + +volume_24h,
+      });
+      assetMap.set(quote_asset_id, {
+        liquidity: quoteRecord.liquidity + +quote_value,
+        liquidity_amount: baseRecord.liquidity_amount + +quote_amount,
+        volume_24h: quoteRecord.volume_24h + +volume_24h,
+      });
+    });
+
+    return Array.from(assetMap).map(([id, data]) => {
+      const asset = getters[GetterTypes.GET_ASSET_BY_ID](id);
+
+      return {
+        name: asset.name,
+        id: asset.id,
+        symbol: asset.symbol,
+        chain_logo: asset.chainLogo,
+        logo: asset.logo,
+        price: +asset.price,
+        ...data,
+      };
+    });
+  },
+
   // only assets appear in pairs can be swapped
   [GetterTypes.AVALIABLE_SWAP_ASSETS](state, getters) {
     const assets: API.Asset[] = getters[GetterTypes.AVALIABLE_ASSETS];

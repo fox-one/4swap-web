@@ -15,15 +15,6 @@
         </div>
       </v-col>
     </v-row>
-
-    <f-divider opacity="0.1" />
-
-    <div class="pa-4 text-center">
-      <f-button text small color="secondary" @click="handleToAddLiquidity">
-        <v-icon size="16" class="mr-1">$FIconAdd4P</v-icon>
-        <span>{{ $t("liquidity.add") }}</span>
-      </f-button>
-    </div>
   </div>
 </template>
 
@@ -78,24 +69,13 @@ export default PoolOverview;
 
 <style lang="scss" scoped>
 .overview {
-  background: linear-gradient(180deg, #85263d 0%, #88305a 100%);
+  background: #22306d;
 
   &--lake {
-    background: linear-gradient(180deg, #0e4b77 0%, #075973 100%);
-  }
-}
+    background: #3154d0;
 
-.theme--light {
-  .overview {
-    background: linear-gradient(180deg, #fff6f5 0%, #fdf4f8 100%);
-
-    &--lake {
-      background: linear-gradient(
-        180deg,
-        #e0f8ff 0%,
-        #edfbfc 100%,
-        #edfbfc 100%
-      );
+    .label {
+      color: #b2defd;
     }
   }
 }
@@ -104,13 +84,13 @@ export default PoolOverview;
   font-size: 12px;
   font-weight: 500;
   line-height: 15px;
-  color: var(--v-greyscale_1-base);
-  opacity: 0.4;
+  color: #fd8cc2;
 }
 
 .value {
   font-size: 25px;
   font-weight: 700;
+  color: #ffffff;
 }
 
 .f-divider {

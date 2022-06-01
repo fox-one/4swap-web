@@ -1,5 +1,5 @@
 declare namespace API {
-  export type Duration = "168h" | "720h" | "4320h" | "1440h";
+  export type Duration = "24h" | "168h" | "720h" | "4320h";
 
   export interface PaginationParams {
     limit: string | number;

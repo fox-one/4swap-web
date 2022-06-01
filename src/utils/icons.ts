@@ -26,8 +26,10 @@ import {
   FIconLink4P,
   FIconWarningFill,
   FIconChevronRight4P,
+  FIconArrowRight4P,
   FIconPoolAFill,
   FIconCommentFill,
+  FIconMinus4PBold,
 } from "@foxone/icons";
 
 const ficons = {
@@ -60,6 +62,8 @@ const ficons = {
   FIconChevronRight4P: { component: FIconChevronRight4P },
   FIconPoolAFill: { component: FIconPoolAFill },
   FIconCommentFill: { component: FIconCommentFill },
+  FIconArrowRight4P: { component: FIconArrowRight4P },
+  FIconMinus4PBold: { component: FIconMinus4PBold },
 };
 
 const icons = [
@@ -75,6 +79,7 @@ const icons = [
   "IconDownPolygon",
   "IconCheck",
   "IconTick",
+  "IconPolygon",
 ].reduce((m, k) => ({ ...m, [k]: { component: k } }), {});
 
 export default {

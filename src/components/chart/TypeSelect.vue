@@ -1,24 +1,20 @@
 <template>
-  <f-bottom-sheet v-model="dialog" :title="$t('chart')">
-    <template #activator="{ on }">
-      <div v-if="showSwitcher" class="type-field type-field--switch" v-on="on">
-        <span class="mr-2 f-body-2">{{ display }}</span>
-        <v-icon v-if="showSwitcher" size="16"> $FIconChevronDown4P </v-icon>
-      </div>
-      <div v-else class="type-field">
-        <span class="mr-2 f-body-2">{{ display }}</span>
-      </div>
-    </template>
-
-    <base-select-item
+  <f-segment-control
+    v-model="bindValue"
+    borderless
+    mandatory
+    active-class="primary"
+    class="types"
+  >
+    <f-button
       v-for="(item, index) in types"
       :key="index"
-      :title="item.text"
+      :ripple="false"
       :value="item.value"
-      :active="item.value === bindValue"
-      @select="handleSelect"
-    />
-  </f-bottom-sheet>
+    >
+      <span>{{ item.text }}</span>
+    </f-button>
+  </f-segment-control>
 </template>
 
 <script lang="ts">
@@ -55,16 +51,11 @@ export default TypeSelect;
 </script>
 
 <style lang="scss" scoped>
-.type-field {
-  display: inline-block;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  border-radius: 8px;
+.types {
+  width: 100%;
 
-  &--switch {
-    padding: 8px 12px;
-    background: var(--v-forth-base);
+  .f-btn {
+    flex: 1;
   }
 }
 </style>

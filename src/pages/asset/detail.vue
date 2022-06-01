@@ -1,16 +1,30 @@
 <template>
-  <div v-if="meta.asset">
-    <brief-introduction :info="info" :asset="meta.asset" />
+  <div v-if="meta.asset" class="mx-n4">
+    <brief-introduction
+      :brief-active.sync="briefActive"
+      :info="info"
+      :asset="meta.asset"
+    />
 
-    <f-divider opacity="0.05" class="mb-8 mx-n4" />
+    <asset-tabs class="asset-tabs" />
+    <f-divider opacity="0.05" />
 
-    <div class="label-1 mb-6">{{ $t("overview") }}</div>
-    <asset-informations :asset="meta.asset" :info="info" :pairs="meta.pairs" />
+    <div class="pa-4">
+      <template v-if="tabIndex === 0">
+        <asset-informations
+          :asset="meta.asset"
+          :pairs="meta.pairs"
+          :info="info"
+        />
+        <f-divider opacity="0.05" class="mb-8 mt-6 mx-n4" />
+        <asset-intro :asset="meta.asset" :info="info" />
+      </template>
 
-    <f-divider opacity="0.05" class="mb-8 mt-6 mx-n4" />
-    <div class="label-1">{{ $t("pools") }}</div>
-
-    <pool-list :pairs="meta.pairs" />
+      <template v-if="tabIndex === 1">
+        <pair-dimensions />
+        <pair-list :pairs="meta.pairs" class="mt-4" />
+      </template>
+    </div>
   </div>
 </template>
 
@@ -18,28 +32,35 @@
 import { Component, Mixins, Watch } from "vue-property-decorator";
 import mixins from "@/mixins";
 import { GlobalGetters } from "@/store/types";
-import TitleAssetSelect from "@/components/asset/TitleAssetSelect.vue";
 import BriefIntroduction from "@/components/asset/BriefIntroduction.vue";
 import AssetInformations from "@/components/asset/AssetInformations.vue";
-import PoolList from "@/components/pool/PoolList.vue";
+import AssetTabs from "@/components/asset/AssetTabs.vue";
+import AssetIntro from "@/components/asset/AssetIntro.vue";
+import PairList from "@/components/pool/PairList.vue";
+import PairDimensions from "@/components/pool/AssetDimensions.vue";
+import { Sync } from "vuex-pathify";
 
 @Component({
   components: {
     BriefIntroduction,
     AssetInformations,
-    PoolList,
+    AssetIntro,
+    AssetTabs,
+    PairList,
+    PairDimensions,
   },
 })
 class AssetDetail extends Mixins(mixins.page) {
+  @Sync("page/asset@tabIndex") tabIndex!: number;
+
   id = "";
 
   info = null;
 
+  briefActive = false;
+
   get title() {
-    return this.$createElement(TitleAssetSelect, {
-      props: { asset: this.meta.asset },
-      on: { "update:asset": this.handleUpdateAsset },
-    });
+    return this.briefActive ? "" : this.meta.symbol;
   }
 
   get htmlTitle() {
@@ -87,3 +108,12 @@ class AssetDetail extends Mixins(mixins.page) {
 }
 export default AssetDetail;
 </script>
+
+<style lang="scss" scoped>
+.asset-tabs {
+  position: sticky;
+  top: 44px;
+  background-color: var(--v-greyscale_7-base);
+  z-index: 11;
+}
+</style>

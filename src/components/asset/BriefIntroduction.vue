@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <div
+    v-intersect="{
+      handler: onIntersect,
+      options: { threshold: 0.6 },
+    }"
+  >
     <div class="text-center">
       <f-mixin-asset-logo
         :size="40"
@@ -7,87 +12,61 @@
         :chain-logo="meta.chainLogo"
       />
 
-      <div class="name mt-3">{{ meta.name }}</div>
-
-      <a
-        v-if="meta.website"
-        class="link my-4 secondary--text"
-        :href="meta.website"
-      >
-        <span class="mr-1">{{ meta.website }}</span>
-        <v-icon size="16" color="secondary">$FIconLink4P</v-icon>
-      </a>
-    </div>
-
-    <div class="intro">
-      <template v-if="meta.isIntroEmpty">
-        <empty-intro-placeholder />
-      </template>
-      <template v-else>
-        <p v-for="(intro, index) of meta.intro" :key="index">
-          {{ intro }}
-        </p>
-      </template>
+      <v-layout align-center justify-center class="mt-3">
+        <span class="symbol">{{ meta.symbol }}</span>
+        <span class="name">{{ meta.name }}</span>
+      </v-layout>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import EmptyIntroPlaceholder from "./EmptyIntroPlaceholder.vue";
+import { Component, Vue, Prop, PropSync } from "vue-property-decorator";
 
 @Component({
-  components: {
-    EmptyIntroPlaceholder,
-  },
+  inheritAttrs: false,
 })
 class BriefIntroduction extends Vue {
-  @Prop() info;
-
   @Prop() asset;
 
-  get meta() {
-    const isZh = this.$i18n.locale === "zh";
-    const intro = isZh
-      ? this.info?.intro?.zh ?? ""
-      : this.info?.intro?.en ?? "";
-    const isIntroEmpty = !intro || (intro && intro?.length === 0);
+  @PropSync("briefActive") isActive;
 
+  get meta() {
     return {
+      symbol: this.asset?.symbol ?? "",
       name: this.asset?.name ?? "",
       logo: this.asset?.logo ?? "",
       chainLogo: this.asset?.chain.logo ?? "",
-      website: this.info?.website ?? "",
-      intro,
-      isIntroEmpty,
     };
+  }
+
+  onIntersect(
+    entries: IntersectionObserverEntry[],
+    observer: IntersectionObserver,
+    isIntersecting: boolean
+  ) {
+    this.isActive = isIntersecting;
   }
 }
 export default BriefIntroduction;
 </script>
 
 <style lang="scss" scoped>
-.name {
+.symbol {
   font-size: 25px;
   font-weight: 600;
   line-height: 30px;
   letter-spacing: -0.02em;
-  font-feature-settings: "salt" on;
 }
 
-.link {
+.name {
   font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-.intro {
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 15px;
   color: var(--v-greyscale_3-base);
+  background-color: var(--v-greyscale_6-base);
+  padding: 3px 4px;
+  margin-left: 10px;
+  border-radius: 4px;
 }
 </style>

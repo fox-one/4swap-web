@@ -6,7 +6,7 @@
     <div class="label-1">{{ $t("chart") }}</div>
     <market-chart-panel is-global class="mt-4" />
 
-    <div class="label-1 mt-8">{{ $t("transactions") }}</div>
+    <div class="label-1 mt-8 mb-4">{{ $t("transactions") }}</div>
     <market-transactions />
   </div>
 </template>

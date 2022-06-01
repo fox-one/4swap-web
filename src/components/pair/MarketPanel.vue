@@ -1,21 +1,17 @@
 <template>
   <div v-if="pair">
-    <pair-price :pair="pair" class="mt-4" />
+    <pair-price :pair="pair" :data="data" class="mt-4" />
 
-    <f-divider class="mt-6 mb-3" />
-
-    <pair-informations :pair="pair" :data="data" />
-
-    <div class="label-1 mt-8">{{ $t("pool.assets") }}</div>
-    <pair-assets :pair="pair" class="mt-4" />
+    <pair-informations :pair="pair" :data="data" class="mt-6" />
 
     <div class="label-1 mt-8">{{ $t("chart") }}</div>
     <market-chart-panel :pair="pair" class="mt-4" @loaded="handleLoaded" />
 
-    <div class="label-1 mt-8 d-flex">
+    <div class="label-1 mt-8">{{ $t("pool.assets") }}</div>
+    <pair-assets :pair="pair" class="mt-4" />
+
+    <div class="label-1 mt-8 mb-4 d-flex">
       <span>{{ $t("transactions") }}</span>
-      <v-spacer />
-      <route-to-my-history-action v-if="isLogged" :pair="pair" />
     </div>
     <pair-transactions :pair="pair" />
   </div>

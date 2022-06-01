@@ -1,26 +1,21 @@
 <template>
   <div v-if="meta.pair" class="page">
-    <template v-if="meta.isAdded">
-      <v-tabs-items v-model="tabIndex" touchless>
-        <v-tab-item>
-          <account-panel :pair="meta.pair" />
-        </v-tab-item>
-        <v-tab-item>
-          <market-panel :pair="meta.pair" />
-        </v-tab-item>
-      </v-tabs-items>
-    </template>
-    <market-panel v-else :pair="meta.pair" />
+    <v-tabs-items v-model="tabIndex" touchless>
+      <v-tab-item>
+        <market-panel :pair="meta.pair" />
+      </v-tab-item>
+      <v-tab-item>
+        <account-panel :pair="meta.pair" @add="handleAdd" />
+      </v-tab-item>
+    </v-tabs-items>
 
     <page-bottom-action
+      v-if="tabIndex === 0 && !meta.isAdded"
       :added="meta.isAdded"
       :pair="meta.pair"
       @remove="handleRemove"
       @add="handleAdd"
     />
-  </div>
-  <div v-else>
-    <empty-place-holder />
   </div>
 </template>
 
@@ -38,7 +33,6 @@ import MarketPanel from "@/components/pair/MarketPanel.vue";
 import AccountPanel from "@/components/pair/AccountPanel.vue";
 import PageBottomAction from "@/components/pair/page-bottom-action/Index.vue";
 import PageTabs from "@/components/pair/PageTabs.vue";
-import EmptyPlaceHolder from "@/components/particles/EmptyPlaceHolder.vue";
 import { Sync } from "vuex-pathify";
 
 @Component({
@@ -46,7 +40,6 @@ import { Sync } from "vuex-pathify";
     MarketPanel,
     AccountPanel,
     PageBottomAction,
-    EmptyPlaceHolder,
   },
 })
 class PairDetailPage extends Mixins(mixins.page) {
@@ -73,15 +66,11 @@ class PairDetailPage extends Mixins(mixins.page) {
   }
 
   get appbar() {
-    if (this.meta.isAdded) {
-      return {
-        align: "center",
-        extensionHight: 56,
-        extension: this.$createElement(PageTabs),
-      };
-    }
-
-    return { align: "center" };
+    return {
+      align: "center",
+      extensionHight: 56,
+      extension: this.$createElement(PageTabs),
+    };
   }
 
   get meta() {
@@ -102,9 +91,9 @@ class PairDetailPage extends Mixins(mixins.page) {
   mounted() {
     const source = this.$route.query.source;
     if (source === "market") {
-      this.tabIndex = 1;
-    } else if (source === "profile") {
       this.tabIndex = 0;
+    } else if (source === "profile") {
+      this.tabIndex = 1;
     }
   }
 

@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-layout class="label-1 mb-4">
+      <span>{{ $t("liquidity.remove") }}</span>
+
+      <v-spacer />
+
+      <slippage-setting :value="slippage" @change="handleSlippageChange" />
+    </v-layout>
+
     <remove-form :data.sync="asset" :pair="pair">
       <template #information>
         <remove-form-informations :pair="pair" :data.sync="asset" />
@@ -19,11 +27,13 @@
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
 import mixin from "@/mixins";
-import { GlobalGetters } from "@/store/types";
+import { Sync } from "vuex-pathify";
+import { GlobalGetters, GlobalMutations } from "@/store/types";
 import RemoveForm from "@/components/liquidity/RemoveForm.vue";
 import RemoveFormInformations from "@/components/liquidity/RemoveFormInformations.vue";
 import RemoveAction from "@/components/liquidity/RemoveAction.vue";
 import Introductions from "@/components/particles/Introductions.vue";
+import SlippageSetting from "@/components/swap/SlippageSetting.vue";
 
 @Component({
   components: {
@@ -31,9 +41,12 @@ import Introductions from "@/components/particles/Introductions.vue";
     RemoveFormInformations,
     RemoveAction,
     Introductions,
+    SlippageSetting,
   },
 })
 class LiquidityRemove extends Mixins(mixin.page) {
+  @Sync("app/settings@slippage_remove") slippage;
+
   asset: any = {
     asset: null,
     amount: "",
@@ -58,6 +71,12 @@ class LiquidityRemove extends Mixins(mixin.page) {
 
   mounted() {
     this.setInitialAsset();
+  }
+
+  handleSlippageChange(value) {
+    this.$store.commit(GlobalMutations.SET_SETTINGS, {
+      slippage_remove: value,
+    });
   }
 
   setInitialAsset() {

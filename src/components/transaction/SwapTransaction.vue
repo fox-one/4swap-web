@@ -1,15 +1,44 @@
 <template>
-  <div class="py-4">
-    <v-layout align-center class="mb-3">
-      <v-flex class="value">{{ meta.totalValue }}</v-flex>
-      <span class="time">{{ meta.time }}</span>
-    </v-layout>
+  <div
+    class="pa-4 mx-n4"
+    :class="{ 'transaction--expand': expand }"
+    @click="handleToggle"
+  >
+    <v-layout>
+      <v-icon size="16" color="greyscale_3">
+        $FIconConvertDirection4PBold
+      </v-icon>
 
-    <div class="greyscale_3--text items">
-      <asset-amount :asset="meta.input" :amount="meta.inputAmount" />
-      <span class="mx-2 arrow greyscale_4--text">-></span>
-      <asset-amount :asset="meta.output" :amount="meta.outputAmount" />
-    </div>
+      <v-flex class="ml-4">
+        <v-layout class="transaction-title">
+          <v-flex>{{ meta.text }}</v-flex>
+          <div>{{ meta.totalValue }}</div>
+        </v-layout>
+
+        <div v-if="expand">
+          <asset-amount
+            :input="true"
+            :asset="meta.input"
+            :amount="meta.inputAmount"
+          />
+          <asset-amount :asset="meta.output" :amount="meta.outputAmount" />
+        </div>
+
+        <v-layout class="transaction-label mt-3">
+          <v-flex>{{ meta.time }}</v-flex>
+          <div
+            class="expand-action"
+            :class="{ 'expand-action--active': !expand }"
+          >
+            <span v-if="expand">{{ $t("less") }}</span>
+            <span v-else>{{ $t("more") }}</span>
+            <v-icon size="16" color="greyscale_3" class="expand-icon">
+              $IconPolygon
+            </v-icon>
+          </div>
+        </v-layout>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
@@ -25,6 +54,13 @@ import AssetAmount from "./AssetAmount.vue";
 })
 class SwapTransaction extends Vue {
   @Prop() transaction!: API.Transaction;
+
+  expand = false;
+
+  ticker = {
+    input: null,
+    output: null,
+  };
 
   get meta() {
     const toFiat = this.$utils.currency.toFiat;
@@ -49,37 +85,49 @@ class SwapTransaction extends Vue {
     return {
       input,
       output,
+      text: `${input.symbol} -> ${output.symbol}`,
       inputAmount: Math.abs(+inputAmount),
       outputAmount: Math.abs(+outputAmount),
       totalValue: toFiat(this, { n: this.transaction.value }),
       time: toRelative(this.transaction.created_at),
     };
   }
+
+  handleToggle() {
+    this.expand = !this.expand;
+  }
 }
 export default SwapTransaction;
 </script>
 
 <style lang="scss" scoped>
-.value {
+.transaction-title {
+  font-weight: 500;
   font-size: 14px;
-  font-weight: 600;
-  font-feature-settings: "salt" on;
+  line-height: 17px;
 }
 
-.time {
+.transaction-label {
+  font-weight: 400;
   font-size: 12px;
-  color: var(--v-greyscale_4-base);
+  line-height: 15px;
+  color: var(--v-greyscale_3-base);
 }
 
-.items {
-  display: grid;
-  position: relative;
-  grid-template-columns: 1fr 1fr;
+.transaction--expand {
+  background: var(--v-greyscale_6-base);
+}
 
-  .arrow {
-    position: absolute;
-    left: calc(50% - 40px);
-    top: -2px;
+.expand-action {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.expand-action--active {
+  .expand-icon {
+    transform: rotate(180deg);
+    transition: 0.2s ease;
   }
 }
 </style>

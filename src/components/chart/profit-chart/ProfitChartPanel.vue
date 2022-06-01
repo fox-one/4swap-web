@@ -3,6 +3,7 @@
     :types="types"
     :type.sync="type"
     :duration.sync="duration"
+    :durations="['168h', '720h', '4320h']"
     :title="titles.title"
     :hint="titles.hint"
     :subtitle="titles.subtitle"

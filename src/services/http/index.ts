@@ -132,6 +132,10 @@ export default function (http: Http) {
       return await http.get(`${MIXIN_HOST}/assets/${id}`);
     },
 
+    async getTiker(params) {
+      return http.get(`${MIXIN_HOST}/ticker`, { params });
+    },
+
     async createActions(data: API.CreateAction): Promise<API.CreateActionRsp> {
       return http.post(`/actions/v2`, { data });
     },

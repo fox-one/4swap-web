@@ -1,6 +1,6 @@
 <template>
   <div v-if="asset">
-    <base-information-list :items="items1" />
+    <base-information-list :items="items1" class="mt-n3" />
     <base-information-list reactive :items="items2" class="mt-n3" />
   </div>
 </template>
@@ -46,7 +46,7 @@ class AssetInformations extends Vue {
     );
 
     const liquidityText = toFiat(this, { n: liquidity * price, short: true });
-    const volumeText = simplize(this, { n: volume });
+    const volumeText = toFiat(this, { n: volume, short: true });
     const tradeText = format({ n: trades });
 
     const issueTime = this.info?.issue ?? "-";

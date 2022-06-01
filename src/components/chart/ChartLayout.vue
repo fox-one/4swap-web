@@ -1,20 +1,31 @@
 <template>
-  <div class="chart-panel pa-4">
-    <div class="chart-type">
+  <div>
+    <div v-if="!typeDisabled && !useDropdownTypeSelect" class="chart-type mb-4">
       <type-select :types="types" :value.sync="bindType" />
     </div>
-    <div class="chart-title mb-10">
-      <chart-title :title="title" :subtitle="subtitle" :hint="hint" />
-    </div>
-    <div class="chart">
-      <slot name="chart" />
-    </div>
-    <div class="chart-duration">
-      <duration-select :value.sync="bindDuration" />
-    </div>
 
-    <div class="chart-action">
-      <slot name="foot" />
+    <div class="chart-panel pa-4">
+      <div
+        v-if="!typeDisabled && useDropdownTypeSelect"
+        class="chart-type mb-4"
+      >
+        <type-dropdown-select :types="types" :value.sync="bindType" />
+      </div>
+
+      <div class="chart-title mb-10">
+        <chart-title
+          :title="title"
+          :subtitle="subtitle"
+          :hint="hint"
+          :label="label"
+        />
+      </div>
+      <div class="chart">
+        <slot name="chart" />
+      </div>
+      <div class="chart-duration">
+        <duration-select :value.sync="bindDuration" :durations="durations" />
+      </div>
     </div>
   </div>
 </template>
@@ -22,6 +33,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, PropSync } from "vue-property-decorator";
 import TypeSelect from "./TypeSelect.vue";
+import TypeDropdownSelect from "./TypeDropdownSelect.vue";
 import DurationSelect from "./DurationSelect.vue";
 import ChartTitle from "./ChartTitle.vue";
 
@@ -29,11 +41,14 @@ import ChartTitle from "./ChartTitle.vue";
   inheritAttrs: false,
   components: {
     TypeSelect,
+    TypeDropdownSelect,
     DurationSelect,
     ChartTitle,
   },
 })
 class ChartLayout extends Vue {
+  @Prop({ type: Boolean, default: false }) useDropdownTypeSelect!: boolean;
+
   @Prop() types;
 
   @Prop() title;
@@ -41,6 +56,12 @@ class ChartLayout extends Vue {
   @Prop() subtitle;
 
   @Prop() hint;
+
+  @Prop() durations;
+
+  @Prop() label;
+
+  @Prop({ type: Boolean, default: false }) typeDisabled!: boolean;
 
   @PropSync("type") bindType;
 

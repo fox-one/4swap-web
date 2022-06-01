@@ -17,6 +17,8 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 class EmptyPlaceHolder extends Vue {
   @Prop() searchable!: boolean;
 
+  @Prop() hint!: string;
+
   get image() {
     return this.$config.CHANNEL === "lake"
       ? require("@/assets/images/image_empty_pool_lake.png")
@@ -24,7 +26,11 @@ class EmptyPlaceHolder extends Vue {
   }
 
   get text() {
-    return this.searchable ? this.$t("token.not-found") : this.$t("empty");
+    return this.hint
+      ? this.hint
+      : this.searchable
+      ? this.$t("token.not-found")
+      : this.$t("empty");
   }
 }
 export default EmptyPlaceHolder;

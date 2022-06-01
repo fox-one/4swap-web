@@ -43,9 +43,9 @@ class RemoveForm extends Vue {
 
   get rules() {
     return [
-      () => !!this.bindData.asset || "Asset is required",
-      (v) => !!v || "Amount is required",
-      (v) => +v > 0 || "Amount is not valid",
+      () => !!this.bindData.asset || this.$t("asset.required"),
+      (v) => !!v || this.$t("amount.required"),
+      (v) => +v > 0 || this.$t("amount.invalid"),
     ];
   }
 

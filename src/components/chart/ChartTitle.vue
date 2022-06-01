@@ -1,6 +1,9 @@
 <template>
   <div :class="classes">
-    <div class="mt-3">
+    <div v-if="label" class="label">
+      {{ label }}
+    </div>
+    <div>
       <render :nodes="title" />
     </div>
     <div v-if="hint" class="mt-3 hint">
@@ -28,6 +31,8 @@ class ChartTitle extends Vue {
 
   @Prop() hint;
 
+  @Prop() label;
+
   @Prop({ type: Boolean, default: false }) thumb;
 
   get classes() {
@@ -42,8 +47,9 @@ export default ChartTitle;
 
 <style lang="scss" scoped>
 .chart-title {
-  font-size: 25px;
-  line-height: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
   font-weight: bold;
   letter-spacing: -0.02em;
   font-feature-settings: "salt" on;
@@ -68,6 +74,13 @@ export default ChartTitle;
       }
     }
   }
+}
+
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  margin-bottom: 12px;
 }
 
 .subtitle,

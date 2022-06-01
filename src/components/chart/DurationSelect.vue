@@ -1,31 +1,28 @@
 <template>
-  <f-segment-control
-    v-model="bindValue"
-    borderless
-    mandatory
-    active-class="primary"
-    class="durations"
-  >
-    <f-button
+  <div class="durations">
+    <div
       v-for="(item, index) in items"
       :key="index"
       :ripple="false"
       :value="item.value"
+      class="duration-item"
+      :class="{ 'duration-item--active': item.value === bindValue }"
+      @click="handleSelect(item)"
     >
       <span>{{ item.text }}</span>
-    </f-button>
-  </f-segment-control>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { Component, PropSync, Vue } from "vue-property-decorator";
+import { Component, PropSync, Vue, Prop } from "vue-property-decorator";
 import { getDurationMeta } from "@/enum";
 
 @Component
 class DurationSelect extends Vue {
   @PropSync("value") bindValue;
 
-  durations: any = ["168h", "720h", "4320h"];
+  @Prop() durations;
 
   get items() {
     return this.durations.map((x) => {
@@ -36,14 +33,39 @@ class DurationSelect extends Vue {
       };
     });
   }
+
+  handleSelect(item) {
+    this.bindValue = item.value;
+  }
 }
 export default DurationSelect;
 </script>
 
 <style lang="scss" scoped>
-.f-segment-control {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  background: var(--v-forth-base) !important;
+.durations {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+
+  .duration-item {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    background: var(--v-greyscale_7-base);
+    color: var(--v-greyscale_1-base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 16px;
+    cursor: pointer;
+
+    &--active {
+      background: var(--v-greyscale_1-base);
+      color: var(--v-greyscale_7-base);
+    }
+  }
 }
 </style>

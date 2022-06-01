@@ -52,11 +52,12 @@
 
 <script lang="ts">
 import BigNumber from "bignumber.js";
-import { Component, Vue, Watch } from "vue-property-decorator";
-import { GlobalMutations } from "@/store/types";
+import { Component, Vue, Watch, Model } from "vue-property-decorator";
 
 @Component
 class SlippageSetting extends Vue {
+  @Model("change") value;
+
   dialog = false;
 
   slippage: any = 0.999;
@@ -97,13 +98,13 @@ class SlippageSetting extends Vue {
   }
 
   mounted() {
-    this.slippage = this.$store.state.app.settings.slippage;
+    this.slippage = this.value;
   }
 
   @Watch("dialog")
   handleDialogChange(value) {
     if (value) {
-      this.slippage = this.$store.state.app.settings.slippage;
+      this.slippage = this.value;
     }
   }
 
@@ -125,9 +126,9 @@ class SlippageSetting extends Vue {
   }
 
   handleSetSlippage() {
-    this.$store.commit(GlobalMutations.SET_SETTINGS, {
-      slippage: this.slippage,
-    });
+    this.$emit("change", this.slippage);
+
+    console.log("handleSetSlippage", this.slippage);
 
     this.dialog = false;
   }

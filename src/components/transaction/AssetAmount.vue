@@ -1,6 +1,6 @@
 <template>
-  <div class="asset-amount">
-    <div class="d-flex align-center">
+  <div>
+    <div class="asset-amount">
       <f-mixin-asset-logo
         :size="16"
         :logo="meta.logo"
@@ -8,10 +8,12 @@
         :chain-size="6"
       />
 
-      <span class="ml-2">{{ meta.symbol }}</span>
-    </div>
+      <span v-if="!hideSign" class="ml-1">{{ meta.sign }}</span>
 
-    <div class="mt-1">{{ meta.amount }}</div>
+      <span class="mr-1">{{ meta.amount }}</span>
+
+      <span>{{ meta.symbol }}</span>
+    </div>
   </div>
 </template>
 
@@ -24,14 +26,22 @@ class AssetAmount extends Vue {
 
   @Prop() amount!: string;
 
-  @Prop({ type: Boolean, default: true }) singleLine!: boolean;
+  @Prop({ type: Boolean, default: false }) input!: boolean;
 
   get meta() {
+    const toFiat = this.$utils.currency.toFiat;
+    const amount = this.amount;
+    const price = this.asset?.price ?? 0;
+    const value = +amount * +price;
+    const sign = this.input ? "-" : +amount > 0 ? "+" : "-";
+
     return {
+      sign,
       symbol: this.asset.symbol,
       logo: this.asset.logo,
       chainLogo: this.asset.chain.logo,
-      amount: this.$utils.number.format({ n: this.amount, dp: 8 }),
+      value: toFiat(this, { n: value }),
+      amount: this.$utils.number.format({ n: Math.abs(+this.amount), dp: 8 }),
     };
   }
 }
@@ -40,7 +50,20 @@ export default AssetAmount;
 
 <style lang="scss" scoped>
 .asset-amount {
-  font-size: 12px;
+  display: flex;
+  align-items: center;
   font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 16px 0;
+}
+
+.value-now,
+.value-then {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 16px 0;
+  color: var(--v-greyscale_3-base);
 }
 </style>

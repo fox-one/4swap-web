@@ -1,16 +1,30 @@
 <template>
   <div>
-    <base-information-list :items="meta.items" reactive small />
+    <v-expand-transition>
+      <base-information-list :items="meta.items" small />
+    </v-expand-transition>
 
-    <div class="label-1 action rounded mt-3" @click="handleClick">
-      <v-icon size="16">$FIconConvertDirection4PBold</v-icon>
-      <span class="ml-2">{{ $t("swap") }}</span>
+    <div class="mt-n3">
+      <div class="expand-action">
+        <v-icon
+          color="greyscale_3"
+          :size="16"
+          :class="{ 'expand-icon--active': expand }"
+          class="expand-icon"
+          @click="handleToggle"
+        >
+          $FIconChevronDown4P
+        </v-icon>
+      </div>
+
+      <f-divider class="my-3" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { Sync } from "vuex-pathify";
 
 @Component
 class PairInformations extends Vue {
@@ -18,7 +32,7 @@ class PairInformations extends Vue {
 
   @Prop() data;
 
-  rorIndex = 0;
+  @Sync("page/pairDetail@pair_information_expand") expand;
 
   get rorItems() {
     const getNetRORInDuration = this.$utils.pair.getNetRORInDuration;
@@ -42,33 +56,16 @@ class PairInformations extends Vue {
   }
 
   get meta() {
-    const h = this.$createElement;
     const toFiat = this.$utils.currency.toFiat;
     const toPercent = this.$utils.number.toPercent;
     const getPairMeta = this.$utils.pair.getPairMeta;
-    const getPriceChangeInDuration = this.$utils.pair.getPriceChangeInDuration;
-    const getColor = this.$utils.color.getColor;
     const { volume, volume_24h, transaction_count_24h, fee_24h, turnOver } =
       getPairMeta(this, this.pair)!;
-    const priceChange = getPriceChangeInDuration(this.data.kline, 1);
-    const priceChangeText = toPercent({ n: priceChange, dp: 2, symbol: true });
 
-    const items = [
-      {
-        title: this.$t("liquidity"),
-        value: toFiat(this, { n: volume, short: true }),
-      },
+    const items: any[] = [
       {
         title: this.$t("24h.vol"),
         value: toFiat(this, { n: volume_24h, short: true }),
-      },
-      {
-        title: this.$t("24h.trades"),
-        value: transaction_count_24h ?? "0",
-      },
-      {
-        title: this.$t("24h.fees"),
-        value: toFiat(this, { n: fee_24h }),
       },
       {
         title: this.$t("24h.pool-turnover"),
@@ -76,49 +73,46 @@ class PairInformations extends Vue {
         hint: this.$t("turnover.tooltip"),
       },
       {
-        ...this.rorItems[this.rorIndex],
-        icon: "$IconSwitcher",
-        titleFn: () => {
-          this.rorIndex = (this.rorIndex + 1) % 3;
-        },
-        hint: this.$t("ror.tooltip"),
-      },
-      {
-        title: this.$t("24h.price-change"),
-        value: h(
-          "span",
-          { style: { color: getColor(this, priceChange) } },
-          priceChangeText
-        ),
+        title: this.$t("liquidity"),
+        value: toFiat(this, { n: volume, short: true }),
       },
     ];
+
+    if (this.expand) {
+      items.push(
+        "divider",
+        ...this.rorItems,
+        "divider",
+        {
+          title: this.$t("24h.trades"),
+          value: transaction_count_24h ?? "0",
+        },
+        {
+          title: this.$t("24h.fees"),
+          value: toFiat(this, { n: fee_24h }),
+        }
+      );
+    }
 
     return {
       items,
     };
   }
 
-  handleClick() {
-    this.$router.push({
-      name: "swap",
-      query: {
-        input: this.pair?.base_asset_id,
-        output: this.pair.quote_asset_id,
-      },
-    });
+  handleToggle() {
+    this.expand = !this.expand;
   }
 }
 export default PairInformations;
 </script>
 
 <style lang="scss" scoped>
-.action {
-  background: var(--v-greyscale_6-base);
-  height: 50px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
+.expand-action {
+  text-align: center;
+}
+
+.expand-icon--active {
+  transform: rotate(180deg);
+  transition: 0.2s ease;
 }
 </style>

@@ -1,5 +1,7 @@
 export function updateCache(cache: string[], value: string) {
-  const index = cache.indexOf(value);
+  const strCache = cache.map((x) => JSON.stringify(x));
+  const strValue = JSON.stringify(value);
+  const index = strCache.indexOf(strValue);
 
   if (index > -1) {
     cache.splice(index, 1);

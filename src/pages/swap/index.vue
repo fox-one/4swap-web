@@ -5,7 +5,7 @@
 
       <v-spacer />
 
-      <slippage-setting />
+      <slippage-setting :value="slippage" @change="handleSlippagehange" />
     </v-layout>
 
     <swap-form
@@ -34,7 +34,7 @@ import { Component, Mixins, Watch } from "vue-property-decorator";
 import { GlobalGetters, GlobalMutations } from "@/store/types";
 import { DEFAULT_ASSET_ID, BTC_ASSET_ID } from "@/constants";
 import mixins from "@/mixins";
-import { Sync } from "vuex-pathify";
+import { Sync, Get } from "vuex-pathify";
 import SwapForm from "@/components/swap/SwapForm.vue";
 import SlippageSetting from "@/components/swap/SlippageSetting.vue";
 import PairAssets from "@/components/pair/PairAssets.vue";
@@ -57,6 +57,8 @@ class SwapPage extends Mixins(mixins.page) {
   @Sync("page/swap@input") input!: State.SwapAssetData;
 
   @Sync("page/swap@output") output!: State.SwapAssetData;
+
+  @Get("app/settings@slippage") slippage;
 
   order: API.SwapOrder | null = null;
 
@@ -142,6 +144,10 @@ class SwapPage extends Mixins(mixins.page) {
 
   handleUpdateOrder(order) {
     this.order = order;
+  }
+
+  handleSlippagehange(value) {
+    this.$store.commit(GlobalMutations.SET_SETTINGS, { slippage: value });
   }
 }
 export default SwapPage;
