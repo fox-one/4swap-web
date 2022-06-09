@@ -74,7 +74,7 @@ class LiquidityAdd extends Mixins(mixin.page) {
   };
 
   get title() {
-    return this.$t("liquidity.add");
+    return "";
   }
 
   get appbar() {

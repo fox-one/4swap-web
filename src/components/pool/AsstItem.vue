@@ -2,20 +2,18 @@
   <div v-intersect="onIntersect" class="asset-item__wrapper">
     <v-layout v-if="isActive" align-center class="asset-item">
       <f-mixin-asset-logo
-        :size="36"
+        :size="32"
         :logo="meta.logo"
         :chain-logo="meta.chainLogo"
       />
       <v-flex class="ml-4">
-        <v-layout>
-          <v-flex class="font-weight-bold">{{ meta.symbol }}</v-flex>
-          <span class="number font-weight-bold">{{ meta.dataText }}</span>
-        </v-layout>
-
-        <v-layout class="label-3 mt-2 number">
-          <v-flex>{{ meta.name }}</v-flex>
-        </v-layout>
+        <v-flex class="symbol">{{ meta.symbol }}</v-flex>
+        <v-flex class="label-3 mt-1">{{ meta.name }}</v-flex>
       </v-flex>
+
+      <div class="number value">
+        {{ meta.dataText }}
+      </div>
     </v-layout>
   </div>
 </template>
@@ -63,7 +61,13 @@ export default AssetItem;
 
 <style lang="scss" scoped>
 .asset-item {
-  margin-bottom: 32px;
+  padding: 14px 0;
   cursor: pointer;
+
+  .symbol,
+  .value {
+    font-size: 14px;
+    font-weight: 600;
+  }
 }
 </style>

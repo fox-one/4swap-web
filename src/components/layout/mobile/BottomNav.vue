@@ -25,7 +25,7 @@ class BottomNav extends Vue {
   get items() {
     return [
       {
-        text: this.$t("pools"),
+        text: this.$t("home"),
         icon:
           this.$config.CHANNEL === "lake"
             ? "$FIconPoolAFill"
@@ -41,7 +41,7 @@ class BottomNav extends Vue {
       },
       {
         text: this.$t("me"),
-        icon: "$FIconPersonFill",
+        icon: "$FIconPersonAFill",
         path: "me",
         value: "me",
       },

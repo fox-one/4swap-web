@@ -29,7 +29,7 @@
           >
             <span v-if="expand">{{ $t("less") }}</span>
             <span v-else>{{ $t("more") }}</span>
-            <v-icon size="16" color="greyscale_3" class="expand-icon">
+            <v-icon size="12" color="greyscale_3" class="expand-icon">
               $IconPolygon
             </v-icon>
           </div>

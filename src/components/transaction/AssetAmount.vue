@@ -2,10 +2,10 @@
   <div>
     <div class="asset-amount">
       <f-mixin-asset-logo
-        :size="16"
+        :size="14"
         :logo="meta.logo"
         :chain-logo="meta.chainLogo"
-        :chain-size="6"
+        :chain-size="4"
       />
 
       <span v-if="!hideSign" class="ml-1">{{ meta.sign }}</span>

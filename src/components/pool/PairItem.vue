@@ -10,13 +10,13 @@
 
       <v-flex class="ml-4">
         <v-layout>
-          <v-flex class="font-weight-bold">
+          <v-flex class="symbol">
             {{ meta.symbol }}
           </v-flex>
-          <span class="number font-weight-bold">{{ meta.dataText }}</span>
+          <span class="number value">{{ meta.dataText }}</span>
         </v-layout>
 
-        <div class="label-3 mt-2 number">
+        <div class="label-3 mt-2">
           {{ meta.priceText }}
         </div>
       </v-flex>
@@ -83,6 +83,12 @@ export default PairItem;
 }
 
 .pool-item {
-  margin-bottom: 32px;
+  padding: 14px 0;
+
+  .symbol,
+  .value {
+    font-size: 14px;
+    font-weight: 600;
+  }
 }
 </style>

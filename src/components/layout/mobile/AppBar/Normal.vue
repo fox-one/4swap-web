@@ -69,6 +69,7 @@ export default NormalAppBar;
 ::v-deep {
   .f-app-bar__title {
     letter-spacing: -0.014em;
+    font-weight: 600;
   }
 }
 </style>

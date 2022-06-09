@@ -54,7 +54,6 @@ export default DurationSelect;
     width: 32px;
     height: 32px;
     border-radius: 32px;
-    background: var(--v-greyscale_7-base);
     color: var(--v-greyscale_1-base);
     display: flex;
     justify-content: center;

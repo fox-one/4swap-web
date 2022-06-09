@@ -9,7 +9,12 @@
     grow
     slider
   >
-    <v-tab v-for="(tab, index) in tabs" :key="index" :ripple="false">
+    <v-tab
+      v-for="(tab, index) in tabs"
+      :key="index"
+      :ripple="false"
+      class="tab-item"
+    >
       <span>{{ tab.text }}</span>
     </v-tab>
   </f-tabs>
@@ -42,5 +47,10 @@ export default PageTabs;
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.tab-item {
+  font-weight: 500;
+  font-size: 16px;
 }
 </style>

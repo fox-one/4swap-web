@@ -53,7 +53,7 @@ class LiquidityRemove extends Mixins(mixin.page) {
   };
 
   get title() {
-    return this.$t("liquidity.remove");
+    return "";
   }
 
   get appbar() {

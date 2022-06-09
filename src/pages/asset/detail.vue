@@ -6,11 +6,16 @@
       :asset="meta.asset"
     />
 
-    <asset-tabs class="asset-tabs" />
-    <f-divider opacity="0.05" />
+    <asset-tabs class="asset-tabs mt-6" />
+    <f-divider />
 
     <div class="pa-4">
       <template v-if="tabIndex === 0">
+        <pair-dimensions />
+        <pair-list :pairs="meta.pairs" to-swap class="mt-4" />
+      </template>
+
+      <template v-if="tabIndex === 1">
         <asset-informations
           :asset="meta.asset"
           :pairs="meta.pairs"
@@ -18,11 +23,6 @@
         />
         <f-divider opacity="0.05" class="mb-8 mt-6 mx-n4" />
         <asset-intro :asset="meta.asset" :info="info" />
-      </template>
-
-      <template v-if="tabIndex === 1">
-        <pair-dimensions />
-        <pair-list :pairs="meta.pairs" class="mt-4" />
       </template>
     </div>
   </div>
@@ -37,7 +37,7 @@ import AssetInformations from "@/components/asset/AssetInformations.vue";
 import AssetTabs from "@/components/asset/AssetTabs.vue";
 import AssetIntro from "@/components/asset/AssetIntro.vue";
 import PairList from "@/components/pool/PairList.vue";
-import PairDimensions from "@/components/pool/AssetDimensions.vue";
+import PairDimensions from "@/components/pool/PairDimensions.vue";
 import { Sync } from "vuex-pathify";
 
 @Component({

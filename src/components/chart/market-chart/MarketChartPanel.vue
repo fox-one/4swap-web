@@ -168,7 +168,7 @@ class MarketChartPanel extends Vue {
     ];
 
     if (this.pair) {
-      types.push({ text: this.$t("price"), value: "price" });
+      types.unshift({ text: this.$t("price"), value: "price" });
     }
 
     return types;

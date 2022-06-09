@@ -14,6 +14,7 @@
   "asset.required": "Asset is required",
   "asset1": "Asset 1",
   "asset2": "Asset 2",
+  "assets": "Assets",
   "assets.pool": "Assets Pool",
   "authing": "Login",
   "cancel": "Cancel",
@@ -72,6 +73,8 @@
   "from": "From",
   "go.to.swap": "Go to swap",
   "history": "History",
+  "home": "Home",
+  "less": "Less",
   "liquidity": "Liquidity",
   "liquidity.add": "Add Liquidity",
   "liquidity.add.fail": "Add Failed",
@@ -92,6 +95,7 @@
   "liquidity.create.toast.success.p1": "You have successfully paid for creating a new liquidity pool.",
   "liquidity.create.toast.success.p2": "Your request is received. You will hear back from us within 3 business days.",
   "liquidity.create.toast.success.title": "Payment Successful",
+  "liquidity.empty.hint": "You have not added {symbol} liquidity",
   "liquidity.first-provider.content.p1": "The ratio of tokens you add will set the price of this pool.At present, for tokens with legal prices, we use legal currency prices for initial pricing.",
   "liquidity.first-provider.content.p2": "For tokens with a legal currency price of 0, you can freely determine the ratio, Once you are happy with the rate click 'prepare to supply' to review.",
   "liquidity.first-provider.content.p3": "@:channel.name will deduct the share of the liquidity value of 0.001 as the reserved share to ensure that a pool is only allowed to be raised once for the first time.",
@@ -118,6 +122,7 @@
   "me.not.support": "You haven’t support any pool yet",
   "me.total.balance": "Total Balance",
   "me.total.lp_balance": "Pool Balance",
+  "more": "More",
   "my.history": "My History",
   "my.pools": "My Pools",
   "next": "Next",
@@ -215,9 +220,5 @@
   "wallet.balance.login-to-see": "Login to see balance",
   "warn.price.impact": "Price impact reached <p>{value}</p> This transaction carries a high risk of loss.",
   "warning": "Warning",
-  "website": "Website",
-  "liquidity.empty.hint": "You have not added {symbol} liquidity",
-  "assets": "Assets",
-  "less": "Less",
-  "more": "More"
+  "website": "Website"
 }

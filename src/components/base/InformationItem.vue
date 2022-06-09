@@ -1,11 +1,9 @@
 <template>
   <v-layout :class="classes">
     <div>
-      <span class="label-3 mr-1" @click="handleTitleClick">{{ title }}</span>
-
-      <v-icon v-if="icon" size="12" class="mr-1" @click.stop="handleTitleClick">
-        {{ icon }}
-      </v-icon>
+      <span class="information-item__title mr-1">
+        {{ title }}
+      </span>
 
       <base-tool-tip :hint="hint" dialog />
     </div>
@@ -16,6 +14,9 @@
       <span>
         <Render :nodes="value" />
       </span>
+      <v-icon v-if="icon" size="12" class="ml-1" @click.stop="handleTileClick">
+        {{ icon }}
+      </v-icon>
     </div>
   </v-layout>
 </template>
@@ -47,7 +48,7 @@ class InformationItem extends Vue {
     };
   }
 
-  handleTitleClick() {
+  handleTileClick() {
     if (typeof this.titleFn === "function") {
       this.titleFn();
     }
@@ -58,10 +59,7 @@ export default InformationItem;
 
 <style lang="scss" scoped>
 .information-item {
-  font-weight: 500;
   margin: 24px 0;
-  line-height: 12px;
-  font-size: 13px;
 
   &--small {
     font-size: 12px;
@@ -69,6 +67,16 @@ export default InformationItem;
 
   &__value {
     margin-left: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--v-greyscale_3-base);
   }
 }
 </style>

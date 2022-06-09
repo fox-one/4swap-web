@@ -3,7 +3,7 @@
     <v-img :src="logo" width="110" height="110" />
     <div class="hint">{{ hint }}</div>
     <f-button color="primary" @click="$emit('add')">
-      <v-icon :size="16">$FIconAdd4P</v-icon>
+      <v-icon :size="16" class="mr-1">$FIconAdd4PBold</v-icon>
       {{ $t("liquidity.add") }}
     </f-button>
     <f-button text class="mt-2" @click="handleLearnMore">

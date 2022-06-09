@@ -35,7 +35,7 @@ class PairIcon extends Vue {
   @Prop({ default: false, type: Boolean }) small!: boolean;
 
   get size() {
-    return this.small ? 24 : this.large ? 40 : 32;
+    return this.small ? 24 : this.large ? 40 : 28;
   }
 
   getChainLogo(asset) {

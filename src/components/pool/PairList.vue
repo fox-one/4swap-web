@@ -44,6 +44,8 @@ class PairList extends Vue {
 
   @Prop({ type: Boolean, default: false }) recordable!: boolean;
 
+  @Prop({ type: Boolean, default: false }) toSwap!: boolean;
+
   @Prop({ type: String, default: "" }) filter!: string;
 
   get meta() {
@@ -74,14 +76,25 @@ class PairList extends Vue {
   }
 
   handleToDetail(item) {
-    this.$router.push({
-      name: "pair-detail",
-      query: {
-        base: item.base_asset_id,
-        quote: item.quote_asset_id,
-        source: "market",
-      },
-    });
+    if (this.toSwap) {
+      const { base_asset_id = "", quote_asset_id = "" } =
+        this.$utils.pair.getPairMeta(this, item) || {};
+      const [input, output] = [base_asset_id, quote_asset_id];
+
+      this.$router.push({
+        name: "swap",
+        query: { input, output },
+      });
+    } else {
+      this.$router.push({
+        name: "pair-detail",
+        query: {
+          base: item.base_asset_id,
+          quote: item.quote_asset_id,
+          source: "market",
+        },
+      });
+    }
 
     if (this.recordable) {
       this.$store.commit(GlobalMutations.SET_POOL_SEARCH_HISTORY, {

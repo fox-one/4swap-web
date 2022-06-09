@@ -29,8 +29,15 @@ class AssetTabs extends Vue {
   @Sync("page/asset@tabIndex") tabIndex!: number;
 
   get tabs() {
-    return [{ text: this.$t("overview") }, { text: this.$t("pools") }];
+    return [{ text: this.$t("swap") }, { text: this.$t("overview") }];
   }
 }
 export default AssetTabs;
 </script>
+
+<style lang="scss" scoped>
+.tab-item {
+  font-size: 16px;
+  font-weight: 500;
+}
+</style>

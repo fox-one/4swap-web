@@ -1,5 +1,7 @@
 <template>
   <div class="text-center">
+    <v-img :src="image" width="110" height="110" class="d-inline-block" />
+
     <div class="label-3 mt-4">
       {{ $t("coin.no-intro") }}
     </div>
@@ -17,6 +19,12 @@ import ContributeAction from "./ContributeAction.vue";
     ContributeAction,
   },
 })
-class EmptyIntroPlaceholder extends Vue {}
+class EmptyIntroPlaceholder extends Vue {
+  get image() {
+    return this.$config.CHANNEL === "lake"
+      ? require("@/assets/images/image_empty_pool_lake.png")
+      : require("@/assets/images/image_empty_pool_fswap.png");
+  }
+}
 export default EmptyIntroPlaceholder;
 </script>

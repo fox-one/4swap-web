@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="headers" class="pool-headers pb-5">
+    <div ref="headers" class="pool-headers mb-5">
       <v-layout align-center>
         <pool-tabs />
 
@@ -9,7 +9,7 @@
         </v-btn>
       </v-layout>
 
-      <div v-if="!hideHeaders" class="my-4">
+      <div v-if="!hideHeaders" class="mt-4">
         <component :is="components.dimension" v-bind="$attrs" />
       </div>
     </div>

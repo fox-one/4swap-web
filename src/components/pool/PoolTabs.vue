@@ -7,6 +7,7 @@
     disable-slider-length
     slider-size="2"
     slider
+    height="40"
   >
     <v-tab
       v-for="(tab, index) in tabs"
@@ -37,7 +38,7 @@ export default PoolTabs;
 <style lang="scss" scoped>
 .tab-item {
   padding: 0 !important;
-  min-width: 60px;
+  min-width: 40px;
   margin-right: 16px;
   font-weight: 600;
   font-size: 18px;

@@ -9,7 +9,7 @@
 
     <pool-overview class="mt-4" />
 
-    <pool-list :hide-search="false" class="mt-8" />
+    <pool-list :hide-search="false" class="mt-6" />
   </div>
 </template>
 
