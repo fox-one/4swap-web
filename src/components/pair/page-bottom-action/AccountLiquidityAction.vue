@@ -22,7 +22,7 @@ import { AccountPair } from "@/utils/pair/helper";
 import { Sync } from "vuex-pathify";
 
 @Component
-class LiquidityPageAction extends Vue {
+class AccountLiquidityAction extends Vue {
   @Sync("page/pairDetail@tabIndex") tabIndex!: number;
 
   @Prop() pair;
@@ -30,7 +30,7 @@ class LiquidityPageAction extends Vue {
   get classes() {
     return {
       "liquidity-actions": true,
-      "liquidity-actions--dense": this.tabIndex === 0,
+      "liquidity-actions--dense": true,
     };
   }
 
@@ -53,7 +53,7 @@ class LiquidityPageAction extends Vue {
     this.$emit("add");
   }
 }
-export default LiquidityPageAction;
+export default AccountLiquidityAction;
 </script>
 
 <style lang="scss" scoped>

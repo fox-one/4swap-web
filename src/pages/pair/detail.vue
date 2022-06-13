@@ -10,7 +10,6 @@
     </v-tabs-items>
 
     <page-bottom-action
-      v-if="tabIndex === 0 && !meta.isAdded"
       :added="meta.isAdded"
       :pair="meta.pair"
       @remove="handleRemove"

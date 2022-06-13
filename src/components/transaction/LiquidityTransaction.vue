@@ -91,6 +91,7 @@ class LiquidityTransaction extends Vue {
       quoteAmount: quote_amount,
       liquidity,
       liquidityAsset,
+      isAdd: type === "Add",
       totalValue: toFiat(this, { n: this.transaction.value }),
       time: toRelative(this.transaction.created_at),
     };

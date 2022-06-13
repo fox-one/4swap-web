@@ -33,8 +33,16 @@
         {{ meta.priceChangeText }}
       </span>
       <span class="price-label">
-        {{ $t("reference.price") }}
-        <f-hint :hint="$t('reference.price.hint')" />
+        <f-hint :hint="$t('reference.price.hint')">
+          <template #activator="{ on }">
+            <div v-on="on" class="as">
+              {{ $t("reference.price") }}
+              <v-icon size="12" color="greyscale_1" class="f-hint-activator">
+                $info
+              </v-icon>
+            </div>
+          </template>
+        </f-hint>
       </span>
     </div>
   </div>
