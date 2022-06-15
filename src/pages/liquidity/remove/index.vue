@@ -58,7 +58,7 @@ class LiquidityRemove extends Mixins(mixin.page) {
 
   get appbar() {
     return {
-      title: this.$t("liquidity.remove"),
+      title: "",
     };
   }
 

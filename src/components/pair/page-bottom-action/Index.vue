@@ -42,6 +42,11 @@ export default PairDetailPageBottomAction;
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.36);
+
+  ::v-deep {
+    .f-btn {
+      box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.36);
+    }
+  }
 }
 </style>

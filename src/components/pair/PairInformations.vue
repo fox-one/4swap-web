@@ -37,25 +37,30 @@ class PairInformations extends Vue {
   get rorItems() {
     const getNetRORInDuration = this.$utils.pair.getNetRORInDuration;
     const toPercent = this.$utils.number.toPercent;
+    const getColor = this.$utils.color.getColor;
 
     const getRORText = (days: number) => {
       if (this.data.kline.length === 0 && this.data.market.length === 0) {
-        return "-";
+        return { value: "-", color: "" };
       }
 
       const value = getNetRORInDuration(this.pair, this.data, days);
 
-      return toPercent({ n: value, dp: 2, symbol: true });
+      return {
+        value: toPercent({ n: value, dp: 2, symbol: true }),
+        color: getColor(this, value),
+      };
     };
 
     return [
-      { title: this.$t("ror.24hours"), value: getRORText(1) },
-      { title: this.$t("ror.7days"), value: getRORText(7) },
-      { title: this.$t("ror.30days"), value: getRORText(30) },
+      { title: this.$t("ror.24hours"), ...getRORText(1) },
+      { title: this.$t("ror.7days"), ...getRORText(7) },
+      { title: this.$t("ror.30days"), ...getRORText(30) },
     ];
   }
 
   get meta() {
+    const h = this.$createElement;
     const toFiat = this.$utils.currency.toFiat;
     const toPercent = this.$utils.number.toPercent;
     const getPairMeta = this.$utils.pair.getPairMeta;
@@ -81,7 +86,12 @@ class PairInformations extends Vue {
     if (this.expand) {
       items.push(
         "divider",
-        ...this.rorItems,
+        ...this.rorItems.map((x) => {
+          return {
+            ...x,
+            value: h("span", { style: { color: x.color } }, x.value),
+          };
+        }),
         "divider",
         {
           title: this.$t("24h.trades"),

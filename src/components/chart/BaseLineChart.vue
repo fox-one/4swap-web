@@ -37,8 +37,13 @@ class BaseLineChart extends Vue {
   @Prop({ type: Array, default: () => [] }) customOption;
 
   get option(): EChartsOption {
+    const baseOptions: any = getBaseOption(this, this.data, this.colors);
+    const lineColor = this.$vuetify.theme.currentTheme.greyscale_1 as string;
+
+    baseOptions.xAxis.axisPointer.lineStyle.color = lineColor;
+
     return {
-      ...getBaseOption(this, this.data, this.colors),
+      ...baseOptions,
       ...this.customOption,
       grid: [{ top: 20, bottom: 40, left: 0, right: 16 }],
       series: [

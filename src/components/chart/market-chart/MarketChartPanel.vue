@@ -24,11 +24,13 @@
 
     <chart-layout
       v-if="pair && isPriceChart"
+      :type-disabled="true"
       :durations="durations"
       :duration.sync="priceReverse.duration"
       :title="priceReverseTitles.title"
       :subtitle="priceReverseTitles.subtitle"
       :label="priceReverseTitles.label"
+      class="mt-4"
     >
       <template #chart>
         <price-chart

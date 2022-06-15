@@ -50,7 +50,8 @@ export default ChartThumbLayout;
 
   .chart {
     position: absolute;
-    top: 16px;
+    top: 50%;
+    transform: translateY(-50%);
     right: 48px;
     width: 88px;
     height: 55px;

@@ -12,10 +12,8 @@
         :chain-logo="meta.chainLogo"
       />
 
-      <v-layout align-center justify-center class="mt-3">
-        <span class="symbol">{{ meta.symbol }}</span>
-        <span class="name">{{ meta.name }}</span>
-      </v-layout>
+      <div class="name mt-2">{{ meta.name }} Price</div>
+      <div class="price number mt-2">{{ meta.price }}</div>
     </div>
   </div>
 </template>
@@ -32,10 +30,13 @@ class BriefIntroduction extends Vue {
   @PropSync("briefActive") isActive;
 
   get meta() {
+    const toFiat = this.$utils.currency.toFiat;
+
     return {
       symbol: this.asset?.symbol ?? "",
       name: this.asset?.name ?? "",
       logo: this.asset?.logo ?? "",
+      price: toFiat(this, { n: this.asset?.price ?? 0 }),
       chainLogo: this.asset?.chain.logo ?? "",
     };
   }
@@ -64,9 +65,11 @@ export default BriefIntroduction;
   font-size: 12px;
   line-height: 15px;
   color: var(--v-greyscale_3-base);
-  background-color: var(--v-greyscale_6-base);
-  padding: 3px 4px;
-  margin-left: 10px;
-  border-radius: 4px;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
 }
 </style>

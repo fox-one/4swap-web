@@ -70,4 +70,8 @@ export default AssetItem;
     font-weight: 600;
   }
 }
+
+.asset-item__wrapper {
+  min-height: 64px;
+}
 </style>
