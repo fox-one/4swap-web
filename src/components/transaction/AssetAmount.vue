@@ -26,6 +26,8 @@ class AssetAmount extends Vue {
 
   @Prop() amount!: string;
 
+  @Prop({ type: Boolean, default: true }) sign!: boolean;
+
   @Prop({ type: Boolean, default: false }) input!: boolean;
 
   get meta() {
@@ -33,7 +35,7 @@ class AssetAmount extends Vue {
     const amount = this.amount;
     const price = this.asset?.price ?? 0;
     const value = +amount * +price;
-    const sign = this.input ? "-" : +amount > 0 ? "+" : "-";
+    const sign = !this.sign ? "" : this.input ? "-" : +amount > 0 ? "+" : "-";
 
     return {
       sign,

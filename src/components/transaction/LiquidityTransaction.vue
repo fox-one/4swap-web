@@ -16,9 +16,21 @@
         </v-layout>
 
         <div v-if="expand">
-          <asset-amount :asset="meta.baseAsset" :amount="meta.baseAmount" />
-          <asset-amount :asset="meta.quoteAsset" :amount="meta.quoteAmount" />
-          <asset-amount :asset="meta.liquidityAsset" :amount="meta.liquidity" />
+          <asset-amount
+            :asset="meta.baseAsset"
+            :amount="meta.baseAmount"
+            :sign="false"
+          />
+          <asset-amount
+            :asset="meta.quoteAsset"
+            :amount="meta.quoteAmount"
+            :sign="false"
+          />
+          <asset-amount
+            :asset="meta.liquidityAsset"
+            :amount="meta.liquidity"
+            :sign="false"
+          />
         </div>
 
         <v-layout class="transaction-label mt-3">
@@ -87,9 +99,9 @@ class LiquidityTransaction extends Vue {
       text,
       baseAsset,
       quoteAsset,
-      baseAmount: base_amount,
-      quoteAmount: quote_amount,
-      liquidity,
+      baseAmount: Math.abs(+base_amount),
+      quoteAmount: Math.abs(+quote_amount),
+      liquidity: Math.abs(+liquidity),
       liquidityAsset,
       isAdd: type === "Add",
       totalValue: toFiat(this, { n: this.transaction.value }),

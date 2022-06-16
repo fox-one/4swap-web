@@ -38,7 +38,7 @@ class BaseLineChart extends Vue {
 
   get option(): EChartsOption {
     const baseOptions: any = getBaseOption(this, this.data, this.colors);
-    const lineColor = this.$vuetify.theme.currentTheme.greyscale_1 as string;
+    const lineColor = this.$vuetify.theme.currentTheme.secondary as string;
 
     baseOptions.xAxis.axisPointer.lineStyle.color = lineColor;
 

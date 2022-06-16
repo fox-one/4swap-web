@@ -67,6 +67,7 @@ class PairTransactions extends Vue {
           quote: this.pair.quote_asset_id,
           limit: 20,
           cursor: this.pagination.next_cursor,
+          type: "Swap",
         },
         source.token
       );
