@@ -24,7 +24,7 @@
       <pair-assets show-detail-link :pair="pair" class="mt-4" />
 
       <div class="label-1 mt-8">{{ $t("history") }}</div>
-      <pair-transactions :pair="pair" class="mt-2" />
+      <pair-transactions :pair="pair" swap-only class="mt-2" />
     </template>
   </div>
 </template>

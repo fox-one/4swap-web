@@ -26,6 +26,8 @@ import axios from "axios";
 class PairTransactions extends Vue {
   @Prop() pair!: API.Pair;
 
+  @Prop({ type: Boolean, default: false }) swapOnly!: boolean;
+
   loading = false;
 
   error = false;
@@ -61,23 +63,23 @@ class PairTransactions extends Vue {
 
       this.source = source;
 
-      const res = await this.$http.getTransactions(
-        {
-          base: this.pair.base_asset_id,
-          quote: this.pair.quote_asset_id,
-          limit: 20,
-          cursor: this.pagination.next_cursor,
-          type: "Swap",
-        },
-        source.token
-      );
+      const params: any = {
+        base: this.pair.base_asset_id,
+        quote: this.pair.quote_asset_id,
+        limit: 20,
+        cursor: this.pagination.next_cursor,
+      };
 
+      if (this.swapOnly) {
+        params.type = "Swap";
+      }
+
+      const res = await this.$http.getTransactions(params, source.token);
       const transactions = res.transactions || [];
 
       this.transactions = reload
         ? [...transactions]
         : [...this.transactions, ...transactions];
-
       this.pagination.has_next = res.pagination.has_next;
       this.pagination.next_cursor = res.pagination.next_cursor;
       this.loading = false;
