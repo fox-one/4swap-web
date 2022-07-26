@@ -1,5 +1,5 @@
 import { GlobalMutations, GlobalActions, GlobalGetters } from "@/store/types";
-import { loadAccountData } from "./account";
+import { loadAccountData, sync } from "./account";
 import { TERMS_VERSION, GLOBAL_EVENTS } from "@/constants";
 
 export async function init(vm: Vue) {
@@ -20,18 +20,11 @@ export async function init(vm: Vue) {
     ]);
 
     try {
-      if (vm.$route.name === "auth") {
-        commit(GlobalMutations.SET_APP_INITING, false);
-
-        return;
-      }
-
-      await vm.$utils.account.checkFennecAuth(vm);
-
-      // load account data
+      await sync(vm);
       await loadAccountData(vm);
     } catch (error) {
       // ignore 401
+      console.log(error);
     }
 
     commit(GlobalMutations.SET_APP_INITING, false);

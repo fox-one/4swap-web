@@ -64,13 +64,9 @@ class CreateAction extends Vue {
         asset2_id: this.asset2?.id ?? "",
         trace_id: uuid(),
       };
-      await this.$utils.payment.createPool(this, params, {
-        onSuccess: () => {
-          this.handleShowSuccessModal();
-        },
-        checker: () =>
-          this.$utils.payment.checkApplieOrder(this, params.trace_id),
-      });
+      await this.$utils.payment.createPool(this, params);
+
+      this.handleShowSuccessModal();
     } catch (error) {
       this.$utils.helper.errorHandler(this, error);
     }

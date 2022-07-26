@@ -74,7 +74,6 @@ const config: NuxtConfig = {
   build: {
     transpile: ["vuetify", "@foxone/uikit"],
   },
-
   publicRuntimeConfig: {
     CHANNEL: process.env.CHANNEL || "",
     CHANNEL_NAME: process.env.CHANNEL_NAME || "",
@@ -89,7 +88,6 @@ const config: NuxtConfig = {
     TOKEN: process.env.TOKEN || "",
     NODE_ENV: process.env.NODE_ENV,
   },
-
   privateRuntimeConfig: {
     TOKEN: process.env.TOKEN || "",
     SCOPE: process.env.SCOPE || "",

@@ -48,18 +48,20 @@ class RemoveAction extends Vue {
     this.loading = true;
 
     try {
-      await this.$utils.payment.removeLiquidity(this, params, {
-        onSuccess: () => {
-          this.handleRemoveSuccess(params.follow_id);
+      await this.$utils.payment.removeLiquidity(
+        this,
+        params,
+        {
+          baseId: this.pair?.base_asset_id,
+          quoteId: this.pair?.quote_asset_id,
         },
-        checker: () =>
-          this.$utils.payment.checkTransaction(
-            this,
-            this.pair?.base_asset_id,
-            this.pair?.quote_asset_id,
-            params.follow_id
-          ),
-      });
+        {
+          symbol: this.data?.asset?.symbol ?? "",
+          logo: this.data?.asset?.logo ?? "",
+          amount: this.data.amount ?? "",
+        }
+      );
+      this.handleRemoveSuccess(params.follow_id);
     } catch (error) {
       this.$utils.helper.errorHandler(this, error);
     }

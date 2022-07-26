@@ -84,48 +84,24 @@ export function getAvaliableAddAssets(
   return Array.from(assetsMap.values());
 }
 
-/**
- * get wallet assets by mixin api or fennec
- * depend on which method user authed
- *
- * @export
- * @param {Vue} vm
- */
 export async function getAssets(vm: Vue) {
-  let assets: API.MixinAsset[] = [];
-
-  if (vm.$fennec.connected) {
-    assets = (await vm.$fennec.ctx?.wallet.getAssets()) ?? [];
-  } else {
-    const resp = await vm.$http.getAssetsFromMixin();
-
-    assets = resp ?? [];
-  }
-
   if (vm.$store.getters[GlobalGetters.LOGGED]) {
-    vm.$store.commit(GlobalMutations.SET_WALLET_ASSETS, assets);
+    try {
+      const assets = await vm.$passport.getAssets();
+
+      if (assets?.length > 0) {
+        vm.$store.commit(GlobalMutations.SET_WALLET_ASSETS, assets);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
-/**
- * get wallet asset by mixin api or fennec
- * depend on which method user authed
- *
- * @export
- * @param {Vue} vm
- */
 export async function getAsset(vm: Vue, id: string) {
-  let asset: API.MixinAsset;
+  if (vm.$store.getters[GlobalGetters.LOGGED]) {
+    const asset = await vm.$passport.getAsset(id);
 
-  if (vm.$fennec.connected) {
-    asset = (await vm.$fennec.ctx?.wallet.getAsset(id)) ?? [];
-  } else {
-    const resp = await vm.$http.getAssetFromMixin(id);
-
-    asset = resp;
-  }
-
-  if (asset && vm.$store.getters[GlobalGetters.LOGGED]) {
     vm.$store.commit(GlobalMutations.SET_WALLET_ASSET, asset);
   }
 }

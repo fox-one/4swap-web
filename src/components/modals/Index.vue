@@ -9,7 +9,7 @@
 
     <payment-modal />
 
-    <auth-modal />
+    <!-- <auth-modal /> -->
 
     <terms-modal />
 

@@ -27,8 +27,10 @@ export const PANDO_DOC = "https://docs.pando.im/docs/lake/intro";
 export const SUP_CHART_SCHEMES = ["SCHEME_A", "SCHEME_B"];
 
 export const CREATE_FEE = {
-  amount: 0.2,
+  amount: "0.2",
   asset_id: "43d61dcd-e413-450d-80b8-101d5e903357",
+  logo: "https://mixin-images.zeromesh.net/zVDjOxNTQvVsA8h2B4ZVxuHoCF3DJszufYKWpd9duXUSbSapoZadC7_13cnWBqg0EmwmRcKGbJaUpA8wFfpgZA=s128",
+  symbol: "ETH",
 };
 
 export const GLOBAL_EVENTS = {
