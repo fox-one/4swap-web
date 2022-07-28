@@ -31,14 +31,19 @@ export async function openAuth(vm: Vue) {
 }
 
 export async function sync(vm: Vue) {
-  const tokenLocale = vm.$store.state.auth.token;
-  const channelLocale = vm.$store.state.auth.channel;
-  const auth = await vm.$passport.sync({
-    channel: channelLocale,
-    token: tokenLocale,
-  });
+  try {
+    const tokenLocale = vm.$store.state.auth.token;
+    const channelLocale = vm.$store.state.auth.channel;
+    const auth = await vm.$passport.sync({
+      channel: channelLocale,
+      token: tokenLocale,
+    });
 
-  vm.$store.commit(GlobalMutations.SET_TOKEN, auth);
+    vm.$store.commit(GlobalMutations.SET_TOKEN, auth);
+  } catch (error) {
+    vm.$utils.helper.errorHandler(vm, error);
+    logout(vm);
+  }
 }
 
 export function logout(opts: any) {

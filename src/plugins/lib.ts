@@ -22,6 +22,7 @@ import "@foxone/uikit/build/index.min.css";
 import "@foxone/pando-ui/build/index.css";
 
 import type { Plugin } from "@nuxt/types";
+import { GlobalMutations } from "~/store/types";
 
 const plugin: Plugin = ({ app }) => {
   use([
@@ -49,14 +50,23 @@ const plugin: Plugin = ({ app }) => {
   Vue.use(Passport, {
     origin: app.$config.CHANNEL_NAME,
     config: { infuraId: "a018fa2f735a435f9a7917f0d429c61a" },
+    onDisconnect: () => {
+      app.$utils.account.logout({ $store: app.store });
+    },
   });
   Vue.use(PandoUI, app.vuetify);
   Vue.use(InfiniteScroll);
 
-  Bugsnag.start({
-    apiKey: "06e187390080bca0c4399f731eb5dd50",
-    plugins: [new BugsnagPluginVue()],
-  });
+  // app.store?.subscribe((mutation, state) => {
+  //   if (mutation.type === GlobalMutations.SET_TOKEN) {
+  //     console.log(state);
+  //   }
+  // });
+
+  // Bugsnag.start({
+  //   apiKey: "06e187390080bca0c4399f731eb5dd50",
+  //   plugins: [new BugsnagPluginVue()],
+  // });
 };
 
 export default plugin;

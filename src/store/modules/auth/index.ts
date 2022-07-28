@@ -20,13 +20,11 @@ const mutations = {
 
   [MutationTypes.SET_TOKEN](state, data) {
     state.token = data.token;
-    state.scope = data.scope;
     state.channel = data.channel;
   },
 
   [MutationTypes.CLEAR_AUTH](state) {
     state.token = "";
-    state.scope = "";
     state.channel = "";
   },
 };
