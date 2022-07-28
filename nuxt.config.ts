@@ -72,6 +72,7 @@ const config: NuxtConfig = {
     optionsPath: "./vuetify.options.ts",
   },
   build: {
+    analyze: true,
     transpile: ["vuetify", "@foxone/uikit"],
   },
   publicRuntimeConfig: {
