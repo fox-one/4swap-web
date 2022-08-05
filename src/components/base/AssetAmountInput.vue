@@ -16,7 +16,11 @@
         :messages="messages"
         @connect-wallet="handleConnectWallet"
         @fill="handleFill"
-      />
+      >
+        <template #append-left>
+          <base-mvm-action :asset="bindData.asset" />
+        </template>
+      </f-asset-input-tools>
     </template>
   </f-asset-amount-input>
 </template>

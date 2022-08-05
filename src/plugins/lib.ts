@@ -1,7 +1,7 @@
 import Vue from "vue";
 
-import Bugsnag from "@bugsnag/js";
-import BugsnagPluginVue from "@bugsnag/plugin-vue";
+// import Bugsnag from "@bugsnag/js";
+// import BugsnagPluginVue from "@bugsnag/plugin-vue";
 import UIKit from "@foxone/uikit";
 import Passport from "@foxone/mixin-passport";
 import PandoUI from "@foxone/pando-ui";
@@ -22,7 +22,6 @@ import "@foxone/uikit/build/index.min.css";
 import "@foxone/pando-ui/build/index.css";
 
 import type { Plugin } from "@nuxt/types";
-import { GlobalMutations } from "~/store/types";
 
 const plugin: Plugin = ({ app }) => {
   use([
@@ -56,12 +55,6 @@ const plugin: Plugin = ({ app }) => {
   });
   Vue.use(PandoUI, app.vuetify);
   Vue.use(InfiniteScroll);
-
-  // app.store?.subscribe((mutation, state) => {
-  //   if (mutation.type === GlobalMutations.SET_TOKEN) {
-  //     console.log(state);
-  //   }
-  // });
 
   // Bugsnag.start({
   //   apiKey: "06e187390080bca0c4399f731eb5dd50",

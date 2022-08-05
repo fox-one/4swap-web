@@ -20,7 +20,10 @@
       :balance="meta.balance"
       :logged="logged"
       :name="$t('channel.name')"
+      :user-name="meta.name"
+      :user-avatar="meta.avatar"
       :version="VERSION"
+      :mvm="$passport.helper.isMVM()"
       @close="handleClose"
       @connect="handleConnect"
       @disconnect="handleDisconnect"
@@ -45,8 +48,6 @@ import AccountEntryActions from "./AccountEntryActions.vue";
   },
 })
 class AccountEntry extends Vue {
-  @Get("account/profile") profile!: API.MixinUser | null;
-
   @Get(GlobalGetters.LOGGED) logged!: boolean;
 
   dialog = false;
@@ -57,10 +58,11 @@ class AccountEntry extends Vue {
     const toFiat = this.$utils.currency.toFiat;
     const getters = this.$store.getters;
     const balance = getters[GlobalGetters.GET_WALLET_BALANCE];
+    const profile = this.$store.state.account.profile;
 
     return {
-      avatar: this.profile?.avatar_url ?? "",
-      name: this.profile?.full_name ?? "",
+      avatar: profile?.avatar_url ?? "",
+      name: profile?.full_name ?? "",
       balance: toFiat(this, { n: balance }, true),
     };
   }

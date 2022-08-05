@@ -20,6 +20,12 @@
     </v-layout>
 
     <pool-item-informations :pair="pair" class="mt-6" />
+
+    <div class="share-text">
+      {{ meta.shareText }}
+
+      <base-mvm-action :asset="meta.liquidityAsset" />
+    </div>
   </div>
 </template>
 
@@ -39,19 +45,25 @@ class PoolItem extends Vue {
   get meta() {
     const toFiat = this.$utils.currency.toFiat;
     const getPairMeta = this.$utils.pair.getPairMeta;
+    const format = this.$utils.number.format;
     const pairMeta = getPairMeta(this, this.pair);
 
     const { shared } = this.pair;
-    const { baseAsset, quoteAsset, symbol } = pairMeta || {};
+    const { liquidityAsset, baseAsset, quoteAsset, symbol } = pairMeta || {};
 
     const totalValue = shared?.totalValue ?? 0;
     const totalValuetext = toFiat(this, { n: totalValue });
+    const shareText =
+      format({ n: shared?.balance ?? "" }) + " " + liquidityAsset?.symbol ?? "";
 
     return {
       baseAsset,
       quoteAsset,
+      liquidityAsset,
       totalValuetext,
+      shareText,
       symbol,
+      sharedText: "",
     };
   }
 
@@ -91,5 +103,13 @@ export default PoolItem;
       background-color: var(--v-greyscale_6-base);
     }
   }
+}
+
+.share-text {
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 24px;
+  color: var(--v-greyscale_4-base);
 }
 </style>

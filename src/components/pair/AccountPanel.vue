@@ -3,7 +3,11 @@
     <div v-if="meta.isAdded">
       <div class="text-center top-section mt-4">
         <base-fiat-division :parts="meta.totalValueParts" class="liquidity" />
-        <div class="share mt-3">{{ meta.shareText }}</div>
+        <div class="share-text mt-3">
+          {{ meta.shareText }}
+
+          <base-mvm-action :asset="meta.liquidityAsset" />
+        </div>
 
         <account-profits-chart :pair="pair" class="mt-8 text-left" />
       </div>
@@ -62,7 +66,7 @@ class AccountPanel extends Vue {
     const shareText =
       format({ n: shared?.balance ?? "" }) + " " + liquidityAsset?.symbol ?? "";
 
-    return { totalValueParts, shareText, isAdded, symbol };
+    return { totalValueParts, shareText, isAdded, symbol, liquidityAsset };
   }
 }
 export default AccountPanel;
@@ -82,7 +86,9 @@ export default AccountPanel;
   }
 }
 
-.share {
+.share-text {
+  display: flex;
+  justify-content: center;
   font-size: 12px;
   color: var(--v-greyscale_4-base);
 }

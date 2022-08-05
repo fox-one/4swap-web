@@ -55,7 +55,7 @@ class AssetList extends Vue {
     }
 
     if (this.searchable) {
-      const filter = this.filter;
+      const filter = this.filter.toLowerCase();
 
       items = items.filter((x) => {
         const name = x.name.toLowerCase();
