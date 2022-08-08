@@ -3,7 +3,8 @@
     <f-list-item
       :title="$t('settings.title')"
       hide-tail
-      @change="handleToSettings"
+      min-height="59"
+      @click="handleToSettings"
     >
       <template #head>
         <v-icon>$FIconSettingFill</v-icon>
@@ -13,6 +14,7 @@
     <f-list-item
       :title="$t('me.learn.more')"
       hide-tail
+      min-height="59"
       @click="handleLearnMore"
     >
       <template #head>
@@ -20,7 +22,12 @@
       </template>
     </f-list-item>
 
-    <f-list-item :title="$t('contact.us')" hide-tail @click="handleContact">
+    <f-list-item
+      :title="$t('contact.us')"
+      hide-tail
+      min-height="59"
+      @click="handleContact"
+    >
       <template #head>
         <v-icon>$FIconCommentFill</v-icon>
       </template>

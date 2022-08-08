@@ -64,12 +64,12 @@ class PairPrice extends Vue {
     const getPairMeta = this.$utils.pair.getPairMeta;
     const getColor = this.$utils.color.getColor;
     const getPriceChangeInDuration = this.$utils.pair.getPriceChangeInDuration;
-    const { baseAsset, quoteAsset, priceText } = getPairMeta(
+    const { baseAsset, quoteAsset, priceText, isReverse } = getPairMeta(
       this,
       this.pair,
       this.reverse
     )!;
-    const priceChange = getPriceChangeInDuration(this.data.kline, 1);
+    const priceChange = getPriceChangeInDuration(this.data.kline, 1, isReverse);
     const priceChangeText = toPercent({ n: priceChange, dp: 2, symbol: true });
     const priceChangeColor = getColor(this, priceChange);
 

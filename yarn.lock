@@ -1483,10 +1483,10 @@
     ethers "^5.6.9"
     uuid "^8.3.2"
 
-"@foxone/pando-ui@^0.0.6-0":
-  version "0.0.6-0"
-  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.6-0.tgz#33ebee33d863c30f38378c15e92d12a5868f8795"
-  integrity sha512-3qCa+rBjjqD0q7/RsDJH3AoIWIwuCWcBw59i60KKGIMMPoAOx8QGV7dq7UuHTOG9dp3E0uxqbXgYaxgB1Hn57Q==
+"@foxone/pando-ui@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.6.tgz#a8f5f619e07aac139df182ce2f2b69b6079a7fb2"
+  integrity sha512-Z5fIuST58desKp6pkva9QEzMJmHGTCvFWymJYTuJdbjfFkQGNXe3oEUznzQe1qQvk4YbO7H5dqfKPmjJO7+JgA==
   dependencies:
     "@multiavatar/multiavatar" "^1.0.7"
 
@@ -1495,10 +1495,10 @@
   resolved "https://registry.npmjs.org/@foxone/pandoseed/-/pandoseed-1.0.3.tgz#dd9f7fd624a5dbf2a6889584168be02c0ade2a5b"
   integrity sha512-CeMTLbRtFa1xBgltZrGwKZdiwpWnuoqJBFdDsWW6ntzHpbxWaXE+BV3riuTwMxcYO6yrp0an9V+QL5I/pU9ooA==
 
-"@foxone/uikit@^3.2.4":
-  version "3.2.4"
-  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.2.4.tgz#38044b794764abc385e0ab990d6c8ec736232f29"
-  integrity sha512-c91r5wXdoV8uQUYeoUeuVtGv5avTu5d3Pvh84ZL5s+Ez9VxbyqJZTR4huCWegznuhNFNnMNey5gb1R5aUlVNFA==
+"@foxone/uikit@^3.2.7":
+  version "3.2.7"
+  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.2.7.tgz#28bb29b3f3d6c8311c388e87fb90ba51e96fc2ce"
+  integrity sha512-RjebSFdcA47ySOGWnlmiaJJ1YIa9fwtFmNRPvmbLkmWiJxS4n35j1hiPFN+ntQGyODF6FJEXz7ZbaWHBSHqF8g==
   dependencies:
     "@nuxt/types" "^2.15.8"
     axios "^0.26.0"

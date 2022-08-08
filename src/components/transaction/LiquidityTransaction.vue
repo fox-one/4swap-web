@@ -72,7 +72,7 @@ class LiquidityTransaction extends Vue {
 
   get meta() {
     const toFiat = this.$utils.currency.toFiat;
-    const toRelative = this.$utils.time.toRelative;
+    const format = this.$utils.time.format;
     const getAssetById = this.$store.getters[GlobalGetters.GET_ASSET_BY_ID];
     const getPair = this.$store.getters[GlobalGetters.GET_PAIR_BY_IDS];
 
@@ -105,7 +105,7 @@ class LiquidityTransaction extends Vue {
       liquidityAsset,
       isAdd: type === "Add",
       totalValue: toFiat(this, { n: this.transaction.value }),
-      time: toRelative(this.transaction.created_at),
+      time: format(this.transaction.created_at),
     };
   }
 

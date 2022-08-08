@@ -1,7 +1,6 @@
 <template>
   <f-bottom-sheet
     v-model="dialog"
-    hide-close-icon
     min-width="500"
     z-index="111"
     wapper-in-desktop="dialog"

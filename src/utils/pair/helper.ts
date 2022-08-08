@@ -304,11 +304,16 @@ export function getNetRORInDuration(
  * @param {number} days
  * @return {*}
  */
-export function getPriceChangeInDuration(kline: API.KlineData[], days: number) {
-  const current = kline?.[kline.length - 1]?.[2] ?? 0;
+export function getPriceChangeInDuration(
+  kline: API.KlineData[],
+  days: number,
+  reverse: boolean
+) {
+  const priceIndex = reverse ? 2 : 1;
+  const current = kline?.[kline.length - 1]?.[priceIndex] ?? 0;
 
   const startIndex = kline.length >= days * 24 ? kline.length - days * 24 : 0;
-  const start = kline?.[startIndex]?.[2] ?? 0;
+  const start = kline?.[startIndex]?.[priceIndex] ?? 0;
 
   if (!start) {
     return 0;
