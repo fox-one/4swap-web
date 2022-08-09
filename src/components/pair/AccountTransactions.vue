@@ -49,7 +49,7 @@ class AccountTransactions extends Vue {
         quote: this.pair.quote_asset_id,
         limit: 20,
         cursor: this.pagination.next_cursor,
-        type: "add,remove",
+        type: "add,remove,swap",
       });
 
       const transactions = res.transactions || [];

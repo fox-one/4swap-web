@@ -3,6 +3,7 @@
     :data="transactions"
     :error="error"
     :loading="loading"
+    :disable="tabIndex === 1"
     @load="requstTransactions"
   >
     <transaction-item
@@ -17,6 +18,7 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import TransactionItem from "@/components/transaction/Index.vue";
 import axios from "axios";
+import { Sync } from "vuex-pathify";
 
 @Component({
   components: {
@@ -24,6 +26,8 @@ import axios from "axios";
   },
 })
 class PairTransactions extends Vue {
+  @Sync("page/pairDetail@tabIndex") tabIndex!: number;
+
   @Prop() pair!: API.Pair;
 
   @Prop({ type: Boolean, default: false }) swapOnly!: boolean;

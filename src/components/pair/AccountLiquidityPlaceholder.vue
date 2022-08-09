@@ -47,7 +47,8 @@ export default AccountLiquidityPlaceholder;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 112px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   .hint {
     margin: 24px 0;

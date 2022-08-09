@@ -13,19 +13,19 @@
       </div>
 
       <account-profit-informations :pair="pair" class="mt-6" />
-
-      <div class="mx-n4">
-        <div class="pt-2 greyscale_6" />
-      </div>
-
-      <div class="label-1 mt-8 mb-4">{{ $t("my.history") }}</div>
-      <account-transactions :pair="pair" />
     </div>
     <account-liquidity-placeholder
       v-else
       :symbol="meta.symbol"
       v-on="$listeners"
     />
+
+    <div class="mx-n4">
+      <div class="pt-2 greyscale_6" />
+    </div>
+
+    <div class="label-1 mt-8 mb-4">{{ $t("my.history") }}</div>
+    <account-transactions :pair="pair" />
   </div>
 </template>
 

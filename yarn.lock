@@ -1450,10 +1450,10 @@
   resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.1.4.tgz#4af810bec265cbcbbc7d8de5f266a8f0b167315c"
   integrity sha512-RbHOHB2e2ZoCTxhaikk7wbp7nWsDkKlVY7lHf9qSjt49GD2A0eYMqqTNDvZTcVQVqQr54WoK6nqTtDavlup31A==
 
-"@foxone/mixin-api@0.1.18", "@foxone/mixin-api@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.npmjs.org/@foxone/mixin-api/-/mixin-api-0.1.18.tgz#13e508edb9ccff177bcd308d19f3014bccec9ae3"
-  integrity sha512-TUcLZUbO8LyU5TGvXdV966ErecrMA04LeParjXxYE5PvyYxVMS3SdwB2pAfTX/1TQrGgvV5CnpmQSNRYZqaJ6w==
+"@foxone/mixin-api@0.1.19", "@foxone/mixin-api@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.npmjs.org/@foxone/mixin-api/-/mixin-api-0.1.19.tgz#02ebd9df2022191e4c9f30a11972a5526cdfcfe6"
+  integrity sha512-JtUr708M80Oqrl4oENWi+J8G06wn/EcUFmH5KsEhLxK/dbnsF9iMStiycbcH+Cj544v7xP7VPMwYy7cVIjtfOg==
   dependencies:
     axios "^0.21.1"
     browser-passworder "^2.0.3"
@@ -1461,22 +1461,22 @@
     jsonwebtoken "^8.5.1"
     node-forge "^0.10.0"
 
-"@foxone/mixin-passport@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.npmjs.org/@foxone/mixin-passport/-/mixin-passport-0.1.18.tgz#e217a073696ea1bd395a4eea4d8400bebc649457"
-  integrity sha512-lBGUwwMj5eVpHKfiEWlYVwG8uNbj6zqXz9DgShFBmlxu8Cv/CehU6kmN6/CXkFpVzwAuiBNSETskGfE84CO9Pg==
+"@foxone/mixin-passport@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.npmjs.org/@foxone/mixin-passport/-/mixin-passport-0.1.19.tgz#31fab7868482659777bb08ff3c458db09cf0fafd"
+  integrity sha512-baucOTgezxkFqE7o6TpQn55q/6mzctKqnplpd5W0Gqyi7uXINm+o4qth0N/pWgcpb5Mx0JF5vmyDfqqwvAl/wA==
   dependencies:
     "@foxone/fennec-dapp" "^0.5.4"
-    "@foxone/mixin-api" "0.1.18"
-    "@foxone/mvm" "0.1.18"
+    "@foxone/mixin-api" "0.1.19"
+    "@foxone/mvm" "0.1.19"
     "@foxone/utils" "^0.2.6"
 
-"@foxone/mvm@0.1.18":
-  version "0.1.18"
-  resolved "https://registry.npmjs.org/@foxone/mvm/-/mvm-0.1.18.tgz#c6e48dd245a44f978c7f1e97ddc23c06554f6bd3"
-  integrity sha512-i+5f+UFvIpgk9MqEXacbxr//QW3h+dLgGA0FCFJI5S3iXo9ZdUydAXz8Ucl/2qulSK8zOOCJoaZ4oXTCtGG8tQ==
+"@foxone/mvm@0.1.19":
+  version "0.1.19"
+  resolved "https://registry.npmjs.org/@foxone/mvm/-/mvm-0.1.19.tgz#ceddae42bed5e816abe8e4cf366637059091d3e7"
+  integrity sha512-Ly7nWmKNEle2hiHRhxUOGrMHqLCQho1pW5O05S1KYbPF3ql1FQ+gHL5iNME8qEHB109Sgz4iDz6lmbhmmLhOJQ==
   dependencies:
-    "@foxone/mixin-api" "^0.1.18"
+    "@foxone/mixin-api" "^0.1.19"
     "@metamask/detect-provider" "^1.2.0"
     "@walletconnect/web3-provider" "^1.7.8"
     bignumber.js "^9.0.1"

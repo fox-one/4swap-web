@@ -47,8 +47,10 @@ class ListWapper extends Vue {
 
   @Prop({ type: String, default: "" }) filter!: string;
 
+  @Prop({ type: Boolean, default: false }) disable!: boolean;
+
   get disabled() {
-    return this.loading || this.ended || this.error;
+    return this.loading || this.ended || this.error || this.disable;
   }
 
   get empty() {
