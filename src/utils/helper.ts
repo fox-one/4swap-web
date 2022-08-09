@@ -3,7 +3,7 @@ import parse from "parse-duration";
 import { GlobalGetters } from "~/store/types";
 
 export function errorHandler(vm: Vue, error) {
-  const code = error.code;
+  const code = error.code || "";
 
   let locale = "";
   if (code && vm.$t(`errorcode.${code}`) !== code) {

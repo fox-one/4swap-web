@@ -7,7 +7,7 @@
       @click="handleToSettings"
     >
       <template #head>
-        <v-icon>$FIconSettingFill</v-icon>
+        <v-icon>$FIconSetting</v-icon>
       </template>
     </f-list-item>
 
@@ -18,7 +18,7 @@
       @click="handleLearnMore"
     >
       <template #head>
-        <v-icon>$FIconDocumentFill</v-icon>
+        <v-icon>$FIconDocument</v-icon>
       </template>
     </f-list-item>
 
@@ -29,7 +29,7 @@
       @click="handleContact"
     >
       <template #head>
-        <v-icon>$FIconCommentFill</v-icon>
+        <v-icon>$FIconComment</v-icon>
       </template>
     </f-list-item>
   </div>

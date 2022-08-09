@@ -19,7 +19,7 @@ import {
   FIconMinusBold,
   FIconAddBold,
   FIconSettingFill,
-  FIconDocumentFill,
+  FIconDocument,
   FIconExchange4P,
   FIconMax4P,
   FIconMin4P,
@@ -28,7 +28,7 @@ import {
   FIconChevronRight4P,
   FIconArrowRight4P,
   FIconPoolAFill,
-  FIconCommentFill,
+  FIconComment,
   FIconMinus4PBold,
 } from "@foxone/icons";
 
@@ -53,7 +53,7 @@ const ficons = {
   FIconMinusBold: { component: FIconMinusBold },
   FIconAddBold: { component: FIconAddBold },
   FIconSettingFill: { component: FIconSettingFill },
-  FIconDocumentFill: { component: FIconDocumentFill },
+  FIconDocument: { component: FIconDocument },
   FIconExchange4P: { component: FIconExchange4P },
   FIconMax4P: { component: FIconMax4P },
   FIconMin4P: { component: FIconMin4P },
@@ -61,7 +61,7 @@ const ficons = {
   FIconWarningFill: { component: FIconWarningFill },
   FIconChevronRight4P: { component: FIconChevronRight4P },
   FIconPoolAFill: { component: FIconPoolAFill },
-  FIconCommentFill: { component: FIconCommentFill },
+  FIconComment: { component: FIconComment },
   FIconArrowRight4P: { component: FIconArrowRight4P },
   FIconMinus4PBold: { component: FIconMinus4PBold },
 };

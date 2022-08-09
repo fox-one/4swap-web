@@ -1450,10 +1450,10 @@
   resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.1.4.tgz#4af810bec265cbcbbc7d8de5f266a8f0b167315c"
   integrity sha512-RbHOHB2e2ZoCTxhaikk7wbp7nWsDkKlVY7lHf9qSjt49GD2A0eYMqqTNDvZTcVQVqQr54WoK6nqTtDavlup31A==
 
-"@foxone/mixin-api@0.1.15", "@foxone/mixin-api@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.npmjs.org/@foxone/mixin-api/-/mixin-api-0.1.15.tgz#b7d35aea4b201180a12cd19a6be635e65ccca042"
-  integrity sha512-uPWiSOV2HSmCpJatfkFFSIhZNxrR3mNwCdTrl6mDpuRpYrS62vNvuCmaspwnHzsaWNA6Cs4pq3IXjA8oUlpueg==
+"@foxone/mixin-api@0.1.18", "@foxone/mixin-api@^0.1.18":
+  version "0.1.18"
+  resolved "https://registry.npmjs.org/@foxone/mixin-api/-/mixin-api-0.1.18.tgz#13e508edb9ccff177bcd308d19f3014bccec9ae3"
+  integrity sha512-TUcLZUbO8LyU5TGvXdV966ErecrMA04LeParjXxYE5PvyYxVMS3SdwB2pAfTX/1TQrGgvV5CnpmQSNRYZqaJ6w==
   dependencies:
     axios "^0.21.1"
     browser-passworder "^2.0.3"
@@ -1461,32 +1461,32 @@
     jsonwebtoken "^8.5.1"
     node-forge "^0.10.0"
 
-"@foxone/mixin-passport@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.npmjs.org/@foxone/mixin-passport/-/mixin-passport-0.1.15.tgz#0563fe2dca4050b591c061f01ea9bdb91d92dc82"
-  integrity sha512-C6NdV+vcdZB2FH8FI1Nsdl7N0ZJaFBEHuFTf6Teccy7kbNApqw+QSEsYusgVZG1HD3ZPYUoGF9OcspnyFXxBQg==
+"@foxone/mixin-passport@^0.1.18":
+  version "0.1.18"
+  resolved "https://registry.npmjs.org/@foxone/mixin-passport/-/mixin-passport-0.1.18.tgz#e217a073696ea1bd395a4eea4d8400bebc649457"
+  integrity sha512-lBGUwwMj5eVpHKfiEWlYVwG8uNbj6zqXz9DgShFBmlxu8Cv/CehU6kmN6/CXkFpVzwAuiBNSETskGfE84CO9Pg==
   dependencies:
     "@foxone/fennec-dapp" "^0.5.4"
-    "@foxone/mixin-api" "0.1.15"
-    "@foxone/mvm" "0.1.15"
+    "@foxone/mixin-api" "0.1.18"
+    "@foxone/mvm" "0.1.18"
     "@foxone/utils" "^0.2.6"
 
-"@foxone/mvm@0.1.15":
-  version "0.1.15"
-  resolved "https://registry.npmjs.org/@foxone/mvm/-/mvm-0.1.15.tgz#58a91f6574d9d8c339e4adda332cd2129adf80c1"
-  integrity sha512-Jmm+ZvPtWMABFJXD41JRI3sbf9ody5JN8ktqIwzpuJzKJiQQU3bS0hKvpcjrtxxdrIgsY6MtgZpvBXhFQgc98w==
+"@foxone/mvm@0.1.18":
+  version "0.1.18"
+  resolved "https://registry.npmjs.org/@foxone/mvm/-/mvm-0.1.18.tgz#c6e48dd245a44f978c7f1e97ddc23c06554f6bd3"
+  integrity sha512-i+5f+UFvIpgk9MqEXacbxr//QW3h+dLgGA0FCFJI5S3iXo9ZdUydAXz8Ucl/2qulSK8zOOCJoaZ4oXTCtGG8tQ==
   dependencies:
-    "@foxone/mixin-api" "^0.1.15"
+    "@foxone/mixin-api" "^0.1.18"
     "@metamask/detect-provider" "^1.2.0"
     "@walletconnect/web3-provider" "^1.7.8"
     bignumber.js "^9.0.1"
     ethers "^5.6.9"
     uuid "^8.3.2"
 
-"@foxone/pando-ui@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.6.tgz#a8f5f619e07aac139df182ce2f2b69b6079a7fb2"
-  integrity sha512-Z5fIuST58desKp6pkva9QEzMJmHGTCvFWymJYTuJdbjfFkQGNXe3oEUznzQe1qQvk4YbO7H5dqfKPmjJO7+JgA==
+"@foxone/pando-ui@^0.0.7-0":
+  version "0.0.7-0"
+  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.7-0.tgz#3c8a831be74bede1225557241e59ec0eb97fbf01"
+  integrity sha512-7LtIP6mIKJry2r1OgQuVr3h0yVmkm5bdxTtvTdtxXAm9dXyy54Vnrk4Y7PEofJfH0TYe7O373+CQdMZBbus3bg==
   dependencies:
     "@multiavatar/multiavatar" "^1.0.7"
 

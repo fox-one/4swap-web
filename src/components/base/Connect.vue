@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot v-if="!isLogged" name="action" :on="{ click: handleOpenAuth }">
-      <f-button color="primary" @click="handleOpenAuth">
+      <f-button :loading="loading" color="primary" @click="handleOpenAuth">
         {{ $t("connect-wallet") }}
       </f-button>
     </slot>
@@ -19,8 +19,14 @@ import { GlobalGetters } from "@/store/types";
 export default class ConnectWalletBtn extends Vue {
   @Get(GlobalGetters.LOGGED) isLogged!: boolean;
 
-  handleOpenAuth() {
-    this.$utils.account.openAuth(this);
+  loading = false;
+
+  async handleOpenAuth() {
+    this.loading = true;
+
+    await this.$utils.account.openAuth(this);
+
+    this.loading = false;
   }
 }
 </script>
