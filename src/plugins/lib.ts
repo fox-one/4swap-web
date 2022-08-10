@@ -40,7 +40,7 @@ const plugin: Plugin = ({ app }) => {
     dialog: { flat: true },
     toast: { top: false, centered: true },
     auth: {
-      wallets: ["fennec", "mixin", "metamask", "walletconnect"],
+      wallets: ["fennec", "mixin", "metamask"],
       clientId: app.$config.MIXIN_CLIENT_ID,
       scope: "PROFILE:READ ASSETS:READ",
       pkce: true,
