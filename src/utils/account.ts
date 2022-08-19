@@ -34,6 +34,13 @@ export async function sync(vm: Vue) {
   try {
     const tokenLocale = vm.$store.state.auth.token;
     const channelLocale = vm.$store.state.auth.channel;
+
+    if (!channelLocale) {
+      logout(vm);
+
+      return;
+    }
+
     const auth = await vm.$passport.sync({
       channel: channelLocale,
       token: tokenLocale,
