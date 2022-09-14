@@ -3,6 +3,7 @@
     <f-loading v-if="initing" :loading="initing" color="primary" fullscreen />
 
     <template v-else>
+      <pando-banner v-if="isHome" app="4swap" :dev="dev" />
       <mobile-layout />
       <modals />
     </template>
@@ -24,6 +25,14 @@ import migrate from "../migrate";
 })
 class NuxtDefaultLayout extends Vue {
   @Sync("app/initing") initing!: boolean;
+
+  get dev() {
+    return this.$config.BRANCH === "develop";
+  }
+
+  get isHome() {
+    return ["index", "pool", "swap", "me"].includes(this.$route.name as string);
+  }
 
   get desktop() {
     return this.$vuetify.breakpoint.mdAndUp;
