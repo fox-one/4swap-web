@@ -3,6 +3,7 @@
     app
     custom-content
     flat
+    :height="64"
     :extension-height="appbar.extensionHeight"
     :show="appbar.show"
     :color="appbar.color"

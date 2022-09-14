@@ -112,7 +112,7 @@ export default AssetDetail;
 <style lang="scss" scoped>
 .asset-tabs {
   position: sticky;
-  top: 44px;
+  top: 64px;
   background-color: var(--v-greyscale_7-base);
   z-index: 11;
 }

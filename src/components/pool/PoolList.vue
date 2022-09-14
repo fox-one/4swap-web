@@ -66,7 +66,7 @@ export default PoolList;
 <style lang="scss" scoped>
 .pool-headers {
   position: sticky;
-  top: 44px;
+  top: 64px;
   background-color: var(--v-greyscale_7-base);
   z-index: 11;
 }
