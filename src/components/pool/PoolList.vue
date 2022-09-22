@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div ref="headers" class="pool-headers pb-4">
+    <div
+      ref="headers"
+      class="pool-headers pb-4"
+      :class="{ 'pool-headers--desktop': isDesktop }"
+    >
       <v-layout align-center>
         <pool-tabs />
 
@@ -50,6 +54,10 @@ class PoolList extends Vue {
   @Prop({ type: Boolean, default: true })
   hideSearch!: boolean;
 
+  get isDesktop() {
+    return this.$vuetify.breakpoint.mdAndUp;
+  }
+
   get components() {
     return this.tabIndex === 0
       ? { dimension: "asset-dimensions", list: "asset-list" }
@@ -66,8 +74,12 @@ export default PoolList;
 <style lang="scss" scoped>
 .pool-headers {
   position: sticky;
-  top: 64px;
+  top: 44px;
   background-color: var(--v-greyscale_7-base);
   z-index: 11;
+
+  &.pool-headers--desktop {
+    top: 64px;
+  }
 }
 </style>

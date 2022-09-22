@@ -4,7 +4,6 @@
     app
     flat
     center
-    :height="64"
     :title="appbar.title"
     :back="appbar.back"
     :class="{ 'appbar--shadow': appbar.extension }"

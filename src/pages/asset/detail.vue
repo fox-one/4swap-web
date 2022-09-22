@@ -6,7 +6,10 @@
       :asset="meta.asset"
     />
 
-    <asset-tabs class="asset-tabs mt-6" />
+    <asset-tabs
+      class="asset-tabs mt-6"
+      :class="{ 'asset-tabs--desktop': isDesktop }"
+    />
     <f-divider />
 
     <div class="pa-4">
@@ -63,6 +66,10 @@ class AssetDetail extends Mixins(mixins.page) {
     return this.briefActive ? "" : this.meta.symbol;
   }
 
+  get isDesktop() {
+    return this.$vuetify.breakpoint.mdAndUp;
+  }
+
   get htmlTitle() {
     return this.meta.symbol;
   }
@@ -112,8 +119,12 @@ export default AssetDetail;
 <style lang="scss" scoped>
 .asset-tabs {
   position: sticky;
-  top: 64px;
+  top: 44px;
   background-color: var(--v-greyscale_7-base);
   z-index: 11;
+
+  &--desktop {
+    top: 64px;
+  }
 }
 </style>
