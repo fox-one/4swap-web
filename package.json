@@ -15,8 +15,8 @@
     "precommit": "yarn lint",
     "dev": "nuxt",
     "dev:prod": "APP_ENV=prod nuxt",
-    "build": "nuxt-ts build",
-    "build:prod": "APP_ENV=prod nuxt build",
+    "build": "nuxt-ts build --analyze",
+    "build:prod": "APP_ENV=prod nuxt build --analyze",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "ts-mocha src/**/*.spec.ts"

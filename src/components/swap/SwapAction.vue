@@ -79,29 +79,19 @@ class SwapAction extends Vue {
 
     this.loading = true;
     try {
-      await this.$utils.payment.swap(
-        this,
-        params,
-        {
-          symbol: this.inputAsset?.symbol ?? "",
-          logo: this.inputAsset?.logo,
-          amount: this.inputAmount,
+      await this.$utils.payment.swap(this, params, {
+        onSuccess: () => {
+          this.$uikit.toast.success({
+            message: this.$t("swap.sccuess") as string,
+          });
         },
-        {
-          onSuccess: () => {
-            this.$uikit.toast.success({
-              message: this.$t("swap.sccuess") as string,
-            });
-          },
-          onError: () => {
-            this.$utils.helper.errorHandler(this, {
-              message: this.$t("rejected") as string,
-            });
-          },
-        }
-      );
+        onError: () => {
+          this.$utils.helper.errorHandler(this, {
+            message: this.$t("rejected") as string,
+          });
+        },
+      });
     } catch (error) {
-      console.log(error);
       this.$utils.helper.errorHandler(this, error);
     }
     this.loading = false;

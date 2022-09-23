@@ -20,8 +20,7 @@ function getBaseParams(vm: Vue) {
 export async function addLiquidity(
   vm: Vue,
   params: API.DepositParams,
-  isBase: boolean,
-  info
+  isBase: boolean
 ) {
   const baseParams = getBaseParams(vm);
   const slippage = "0.001";
@@ -38,7 +37,6 @@ export async function addLiquidity(
 
   await vm.$passport.payment({
     code,
-    info,
     multisig: true,
     hideCheckingModal: false,
     checker: () => {
@@ -50,8 +48,7 @@ export async function addLiquidity(
 export async function removeLiquidity(
   vm: Vue,
   params: API.RemoveParams,
-  options: { baseId: string; quoteId: string },
-  info
+  options: { baseId: string; quoteId: string }
 ) {
   const baseParams = getBaseParams(vm);
   const memo = `2,${baseParams.userId},${params.follow_id}`;
@@ -65,7 +62,6 @@ export async function removeLiquidity(
 
   await vm.$passport.payment({
     code,
-    info,
     multisig: true,
     checker: () => {
       return checkTransaction(vm, options.baseId, options.quoteId, follow_id);
@@ -73,12 +69,7 @@ export async function removeLiquidity(
   });
 }
 
-export async function swap(
-  vm: Vue,
-  params: API.SwapParams,
-  info,
-  cbs: Callbacks
-) {
+export async function swap(vm: Vue, params: API.SwapParams, cbs: Callbacks) {
   const baseParams = getBaseParams(vm);
   const memo = `3,${baseParams.userId},${params.follow_id},${params.fill_asset_id},${params.routes},${params.minimum}`;
   const data = {
@@ -91,7 +82,6 @@ export async function swap(
 
   await vm.$passport.payment({
     code,
-    info,
     multisig: true,
     checker: () => {
       return checkSwapOrder(vm, follow_id, cbs);
@@ -113,11 +103,6 @@ export async function createPool(vm: Vue, params: API.CreatePoolParams) {
     recipient: vm.$config.MIXIN_CLIENT_ID,
     traceId: params.trace_id,
     memo,
-    info: {
-      amount: CREATE_FEE.amount,
-      logo: CREATE_FEE.logo,
-      symbol: CREATE_FEE.symbol,
-    },
     checker: () => {
       return checkApplieOrder(vm, params.trace_id);
     },

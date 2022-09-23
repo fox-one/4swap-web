@@ -48,11 +48,7 @@ class PaymentAction extends Vue {
     this.loading = true;
 
     try {
-      await this.$utils.payment.addLiquidity(this, params, this.isBase, {
-        symbol: this.data?.asset?.symbol,
-        logo: this.data?.asset?.logo,
-        amount: this.data.amount,
-      });
+      await this.$utils.payment.addLiquidity(this, params, this.isBase);
       this.$emit("paid");
     } catch (error) {
       this.$utils.helper.errorHandler(this, error);

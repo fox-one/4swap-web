@@ -46,13 +46,16 @@ const plugin: Plugin = ({ app }) => {
       pkce: true,
     },
   });
+
   Vue.use(Passport, {
     origin: app.$config.CHANNEL_NAME,
     config: { infuraId: "a018fa2f735a435f9a7917f0d429c61a" },
+    JWTPayload: { from: "pando-leaf" },
     onDisconnect: () => {
       app.$utils.account.logout({ $store: app.store });
     },
   });
+
   Vue.use(PandoUI, app.vuetify);
   Vue.use(InfiniteScroll);
 
