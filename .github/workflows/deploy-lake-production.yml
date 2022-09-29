@@ -58,7 +58,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-region: ${{ env.AWS_REGION }}
-          aws-access-key-id: ${{ secrets.GLOBAL_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.GLOBAL_AWS_ACCESS_KEY_SECRET }}
+          aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.PROD_AWS_ACCESS_KEY_SECRET }}
       - run: aws s3 cp --recursive dist ${{ secrets.S3_URL_LAKE }} --acl public-read --cache-control "max-age=604800"
       - run: aws s3 cp dist/index.html ${{ secrets.S3_URL_LAKE }} --cache-control "no-cache" --acl public-read
