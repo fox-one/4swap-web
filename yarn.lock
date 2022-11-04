@@ -1445,15 +1445,15 @@
   dependencies:
     "@foxone/fennec-base" "0.5.4"
 
-"@foxone/icons@^3.1.6":
-  version "3.1.6"
-  resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.1.6.tgz#9911d7146904a7a7bb51cdad91319d3e6f32e602"
-  integrity sha512-QhIDsr8EswjTu126nwweCR3bBmSt/WUJ2vE85XS/1JSAma3bY1WI0k09arfQBtCetf6h0uXMXHS22FoEmyr1TQ==
+"@foxone/icons@3":
+  version "3.1.9"
+  resolved "https://registry.npmjs.org/@foxone/icons/-/icons-3.1.9.tgz#2dce28e0917041d6bcf7f58c24a425ba61d2abb7"
+  integrity sha512-W1x9UxZjpTeeqiQQN7LxTg4UD9uij6aLdQd0NHedy1IwZrwohjoKMrBs5TQZzU+8kgkjj0cUsKkFMsFY6erOhg==
 
-"@foxone/mixin-api@0.1.24", "@foxone/mixin-api@^0.1.24":
-  version "0.1.24"
-  resolved "https://registry.npmjs.org/@foxone/mixin-api/-/mixin-api-0.1.24.tgz#d800479850e229a4fa50655a26067b37f5855d9b"
-  integrity sha512-QoFqdJo4hyrC2OEj7fkf5Nq9YZNBMleYDgqBeX6CWlAQIPCCfkjd+MQT3wQrCfwe7flWEwOked+naOWR1PIOXg==
+"@foxone/mixin-api@0.1.26", "@foxone/mixin-api@^0.1.26":
+  version "0.1.26"
+  resolved "https://registry.npmjs.org/@foxone/mixin-api/-/mixin-api-0.1.26.tgz#ea2315c50ba28c068c52bfb00a3fd49b57dda636"
+  integrity sha512-KR5RTWGPDJiIIPBtxf4+75oG7o4I6f+C6IYap+lHCPClejpUPKnAqJW8OBU3TtpxliS2ZvtXZUtaTZ41CJNKjA==
   dependencies:
     axios "^0.21.1"
     browser-passworder "^2.0.3"
@@ -1461,32 +1461,32 @@
     jsonwebtoken "^8.5.1"
     node-forge "^0.10.0"
 
-"@foxone/mixin-passport@^0.1.24":
-  version "0.1.24"
-  resolved "https://registry.npmjs.org/@foxone/mixin-passport/-/mixin-passport-0.1.24.tgz#75625d0fcd25467c402e059ec05fe040f0d5e5de"
-  integrity sha512-hxJj2rzagcxB0Yn5WzMCKYmce2Xl311NPHYfis6MYaCGKi44/opcHbJoH+evd3Lhc3dt2OCjKMfn8eCoOx2c6Q==
+"@foxone/mixin-passport@^0.1.26":
+  version "0.1.26"
+  resolved "https://registry.npmjs.org/@foxone/mixin-passport/-/mixin-passport-0.1.26.tgz#d3b13fc76d5aea5170d3c80876b7c2cebab79ff3"
+  integrity sha512-ctoXB+Cz9mbAmfhxpm7Cpag4z+kcCp4IfWwk4nWbtv/naOjcBk432bb6OkCd9g5gujSi4MgKKLtPUy2IyPlx1w==
   dependencies:
     "@foxone/fennec-dapp" "^0.5.4"
-    "@foxone/mixin-api" "0.1.24"
-    "@foxone/mvm" "0.1.24"
+    "@foxone/mixin-api" "0.1.26"
+    "@foxone/mvm" "0.1.26"
     "@foxone/utils" "^0.2.6"
 
-"@foxone/mvm@0.1.24":
-  version "0.1.24"
-  resolved "https://registry.npmjs.org/@foxone/mvm/-/mvm-0.1.24.tgz#05603b1cfc17cd6fcf618708678ca675fea9bd38"
-  integrity sha512-8WBnwgjkYoWmmXk8f2P7DJjr0fZheo2k9jJvgRJ2JBnjmb848tDjqCEUlYnEbWjIBgRsrjcJW8JSSFrLfk3URg==
+"@foxone/mvm@0.1.26":
+  version "0.1.26"
+  resolved "https://registry.npmjs.org/@foxone/mvm/-/mvm-0.1.26.tgz#5ed91cc4ad3fa2ef34152159b4715f06fd1ab55a"
+  integrity sha512-ouT4mfp5RbcUmcQlJ1F7IrCew2MKuwTJevryBVTes1vQFfEjo/Ih8CxvJYudrAal1kO7laZi+BFGWkP9rEWr1g==
   dependencies:
-    "@foxone/mixin-api" "^0.1.24"
+    "@foxone/mixin-api" "^0.1.26"
     "@metamask/detect-provider" "^1.2.0"
     "@walletconnect/web3-provider" "^1.7.8"
     bignumber.js "^9.0.1"
     ethers "^5.6.9"
     uuid "^8.3.2"
 
-"@foxone/pando-ui@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.8.tgz#809682ddfb59fa1f9f143f112ebabf93af35fc23"
-  integrity sha512-+HtdsZ8H+6cYOp6Lqrh6eLb6Frg/4/OH5KI55DRmM2+7j/b5QDdpZ5qyzI+OBdq1hfxTy1zjMiRtG3IZi2uGSg==
+"@foxone/pando-ui@^0.0.9-3":
+  version "0.0.9-3"
+  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.9-3.tgz#563adcff210cf8b461c4113291c14c43c2b92e9b"
+  integrity sha512-uVykd5iuXc5uD915XeMhoEcihDJKF1peuxwPHBpHvZIhQO03lgj2J6rXGUUAU2r+C2IZ+WKZy4oAN5LtO2ooAQ==
   dependencies:
     "@multiavatar/multiavatar" "^1.0.7"
 
@@ -1495,10 +1495,10 @@
   resolved "https://registry.npmjs.org/@foxone/pandoseed/-/pandoseed-1.0.3.tgz#dd9f7fd624a5dbf2a6889584168be02c0ade2a5b"
   integrity sha512-CeMTLbRtFa1xBgltZrGwKZdiwpWnuoqJBFdDsWW6ntzHpbxWaXE+BV3riuTwMxcYO6yrp0an9V+QL5I/pU9ooA==
 
-"@foxone/uikit@^3.2.9-0":
-  version "3.2.9-0"
-  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.2.9-0.tgz#536c78ca64039711a251f4642bc6538d12283240"
-  integrity sha512-sOPzlLF/H3l26MaKbcCMOXJQRQex1VfUPT3qm2kCunLYFaMFGs1gWHdzvnhmblGQAH1ScWy6lVMSOxsg65pF+w==
+"@foxone/uikit@^3.2.9-11":
+  version "3.2.9-11"
+  resolved "https://registry.npmjs.org/@foxone/uikit/-/uikit-3.2.9-11.tgz#f4f4a6a63831bb17fee0d78555f0710cb14a0a67"
+  integrity sha512-8LfnDxUwilHJjJCrm4LUcm2eJ72/fQVNdumzDFc03t3CGIF8ffLIwUHvlXNUBmkkoTegTfSa0orFqzUkVg2j8Q==
   dependencies:
     "@nuxt/types" "^2.15.8"
     axios "^0.26.0"

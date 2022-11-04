@@ -1,4 +1,4 @@
-import UIKit from "@foxone/uikit";
+import { preset } from "@foxone/uikit";
 import icons from "@/utils/icons";
 import { mergeDeep } from "vuetify/lib/util/helpers";
 
@@ -68,5 +68,5 @@ export default function ({ store, $config }) {
     },
   };
 
-  return mergeDeep(UIKit.preset, options);
+  return mergeDeep(preset, options);
 }

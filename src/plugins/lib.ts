@@ -40,7 +40,7 @@ const plugin: Plugin = ({ app }) => {
     dialog: { flat: true },
     toast: { top: false, centered: true },
     auth: {
-      wallets: ["fennec", "mixin", "metamask"],
+      wallets: ["fennec", "mixin", "metamask", "onekey", "walletconnect"],
       clientId: app.$config.MIXIN_CLIENT_ID,
       scope: "PROFILE:READ ASSETS:READ",
       pkce: true,
@@ -50,7 +50,7 @@ const plugin: Plugin = ({ app }) => {
   Vue.use(Passport, {
     origin: app.$config.CHANNEL_NAME,
     config: { infuraId: "a018fa2f735a435f9a7917f0d429c61a" },
-    JWTPayload: { from: "pando-leaf" },
+    JWTPayload: { from: "pando-lake" },
     onDisconnect: () => {
       app.$utils.account.logout({ $store: app.store });
     },
