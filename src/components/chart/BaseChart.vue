@@ -7,9 +7,19 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
-import * as echarts from "echarts";
+import * as echarts from "echarts/core";
+import { BarChart, LineChart } from "echarts/charts";
+import {
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  DatasetComponent,
+  TransformComponent,
+} from "echarts/components";
+import { LabelLayout, UniversalTransition } from "echarts/features";
+import { CanvasRenderer } from "echarts/renderers";
 
-import type { ECharts, EChartsOption } from "echarts";
+import type { EChartsOption } from "echarts";
 
 export function getBaseOption(vm, data, colors): EChartsOption {
   return {
@@ -76,9 +86,22 @@ class Chart extends Vue {
 
   @Ref("root") root;
 
-  instance: ECharts | null = null;
+  instance: any | null = null;
 
   mounted() {
+    echarts.use([
+      TitleComponent,
+      TooltipComponent,
+      GridComponent,
+      DatasetComponent,
+      TransformComponent,
+      BarChart,
+      LineChart,
+      LabelLayout,
+      UniversalTransition,
+      CanvasRenderer,
+    ]);
+
     this.instance = echarts.init(this.root);
     this.$emit("after-init", this.instance);
     window.addEventListener("resize", this.resize);

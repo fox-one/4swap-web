@@ -1,35 +1,18 @@
-import { GlobalMutations, GlobalActions, GlobalGetters } from "@/store/types";
+import { GlobalActions, GlobalGetters } from "@/store/types";
 import { loadAccountData, sync } from "./account";
 import { TERMS_VERSION, GLOBAL_EVENTS } from "@/constants";
 
 export async function init(vm: Vue) {
-  const { commit, dispatch } = vm.$store;
+  const { dispatch } = vm.$store;
 
-  commit(GlobalMutations.SET_APP_INITING, true);
+  dispatch(GlobalActions.LOAD_POOL_DATA, { brokerId: vm.$config.BROKER_ID });
 
   try {
-    // load public application data
-    await Promise.all([
-      dispatch(GlobalActions.LOAD_APP_INFO),
-      dispatch(GlobalActions.LOAD_FIATS, { token: vm.$config.FIAT_TOKEN }),
-      dispatch(GlobalActions.LOAD_POOL_ASSETS),
-      dispatch(GlobalActions.LOAD_MULTISIG_ASSETS),
-      dispatch(GlobalActions.LOAD_POOL_PAIRS, {
-        brokerId: vm.$config.BROKER_ID,
-      }),
-    ]);
-
-    try {
-      await sync(vm);
-      await loadAccountData(vm);
-    } catch (error) {
-      // ignore 401
-      console.log(error);
-    }
-
-    commit(GlobalMutations.SET_APP_INITING, false);
+    await sync(vm);
+    await loadAccountData(vm);
   } catch (error) {
-    vm.$utils.helper.errorHandler(vm, error);
+    // ignore 401
+    console.log(error);
   }
 }
 

@@ -1,21 +1,14 @@
-import { GlobalActions, GlobalGetters, GlobalMutations } from "~/store/types";
+import { GlobalActions, GlobalMutations } from "~/store/types";
 
 export async function loadAccountData(vm: Vue) {
+  vm.$store.commit(GlobalMutations.SET_ACCOUNT_LOADING, true);
+
   await Promise.all([
     vm.$store.dispatch(GlobalActions.LOAD_PROFILE),
     vm.$utils.assets.getAssets(vm),
   ]);
 
-  const shared = vm.$store.getters[GlobalGetters.ACCOUNT_PAIRS](vm);
-
-  shared.forEach((pair) => {
-    const { base_asset_id, quote_asset_id } = pair;
-
-    vm.$store.dispatch(GlobalActions.LOAD_PROFIT, {
-      base: base_asset_id,
-      quote: quote_asset_id,
-    });
-  });
+  vm.$store.commit(GlobalMutations.SET_ACCOUNT_LOADING, false);
 }
 
 export async function openAuth(vm: Vue) {

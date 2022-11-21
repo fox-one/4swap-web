@@ -28,7 +28,7 @@ class CreateFee extends Vue {
     const chainLogo = asset?.chain?.logo ?? "";
     const symbol = asset?.symbol ?? "";
     const price = asset?.price ?? 0;
-    const fiatText = toFiat(this, { n: +price * CREATE_FEE.amount });
+    const fiatText = toFiat(this, { n: +price * +CREATE_FEE.amount });
 
     return {
       logo,

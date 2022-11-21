@@ -9,6 +9,7 @@ const state: State.AccountState = {
   profile: null,
   assets: [],
   profits: {},
+  loading: false,
 };
 
 const getters: GetterTree<State.AccountState, any> = {
@@ -44,6 +45,10 @@ const getters: GetterTree<State.AccountState, any> = {
 
 const mutations = {
   ...make.mutations(state),
+
+  [MutationTypes.SET_ACCOUNT_LOADING](state, value) {
+    state.loading = value;
+  },
 
   [MutationTypes.SET_WALLET_ASSETS](state, data) {
     state.assets = data;

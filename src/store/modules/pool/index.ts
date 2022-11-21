@@ -14,10 +14,15 @@ const state: State.PoolState = {
   assetsBlackLists: [PRSID],
   fiats: [],
   cache: [],
+  loading: false,
 };
 
 const mutations = {
   ...make.mutations(state),
+
+  [MutationTypes.SET_POOL_LOADING](state, value) {
+    state.loading = value;
+  },
 
   [MutationTypes.PUT_CACHE](state, key) {
     updateCache(state.cache, key);
@@ -207,7 +212,37 @@ const getters = {
   },
 };
 
-const actions: ActionTree<State.AuthState, any> = {
+const actions: ActionTree<State.PoolState, any> = {
+  async [ActionTypes.LOAD_POOL_DATA](
+    { commit, state, dispatch },
+    { brokerId }
+  ) {
+    commit(MutationTypes.SET_POOL_LOADING, true);
+
+    const syncActions: Promise<any>[] = [
+      dispatch(ActionTypes.LOAD_POOL_PAIRS, { brokerId }),
+    ];
+
+    const loadFiatsAction = dispatch(ActionTypes.LOAD_FIATS);
+    if (!state.fiats.length) {
+      syncActions.push(loadFiatsAction);
+    }
+
+    const loadAssetsAction = dispatch(ActionTypes.LOAD_POOL_ASSETS);
+    if (!state.assets.length) {
+      syncActions.push(loadAssetsAction);
+    }
+
+    const loadMultisigAssetsAction = dispatch(ActionTypes.LOAD_MULTISIG_ASSETS);
+    if (!state.multisigAssets.length) {
+      syncActions.push(loadMultisigAssetsAction);
+    }
+
+    await Promise.all(syncActions);
+
+    commit(MutationTypes.SET_POOL_LOADING, false);
+  },
+
   async [ActionTypes.LOAD_POOL_ASSETS]({ commit }) {
     const resp = await this.$http.getAssets();
 
@@ -226,8 +261,8 @@ const actions: ActionTree<State.AuthState, any> = {
     commit(MutationTypes.SET_MULTISIG_ASSETS, resp);
   },
 
-  async [ActionTypes.LOAD_FIATS]({ commit }, { token }) {
-    const resp = await this.$http.getFiats({ token });
+  async [ActionTypes.LOAD_FIATS]({ commit }) {
+    const resp = await this.$http.getFiats();
 
     commit(MutationTypes.SET_FIATS, resp);
   },

@@ -45,6 +45,10 @@ class PairTransactions extends Vue {
 
   source: any = null;
 
+  mounted() {
+    this.requstTransactions(true);
+  }
+
   @Watch("pair.route_id")
   handlePairChange() {
     this.requstTransactions(true);

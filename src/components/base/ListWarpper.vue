@@ -7,9 +7,8 @@
   >
     <slot />
 
-    <div v-if="loading" class="d-flex justify-center pa-5">
-      <f-loading size="28" color="primary" />
-    </div>
+    <base-loading v-if="loading" />
+
     <div
       v-else-if="error"
       class="d-flex caption error--text justify-center align-center pa-5"
@@ -18,6 +17,7 @@
       <span>{{ $t("error.ocurred") }}</span>
       <v-icon size="12" class="ml-1">$FIconRefresh4P</v-icon>
     </div>
+
     <div
       v-else-if="!empty"
       class="empty-hint text-secondary caption text-center pa-5"

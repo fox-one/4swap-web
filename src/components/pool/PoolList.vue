@@ -20,7 +20,9 @@
       </div>
     </div>
 
-    <keep-alive>
+    <base-loading v-if="loading" />
+
+    <keep-alive v-else>
       <component :is="components.list" v-bind="$attrs" />
     </keep-alive>
   </div>
@@ -33,7 +35,7 @@ import AssetList from "./AssetList.vue";
 import PairDimensions from "./PairDimensions.vue";
 import PoolTabs from "@/components/pool/PoolTabs.vue";
 import PairList from "./PairList.vue";
-import { Sync } from "vuex-pathify";
+import { Sync, Get } from "vuex-pathify";
 
 @Component({
   inheritAttrs: false,
@@ -47,6 +49,8 @@ import { Sync } from "vuex-pathify";
 })
 class PoolList extends Vue {
   @Sync("page/pool@tabIndex") tabIndex;
+
+  @Get("pool/loading") loading;
 
   @Prop({ type: Boolean, default: false })
   hideHeaders!: boolean;

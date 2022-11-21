@@ -33,6 +33,7 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { AccountPair } from "@/utils/pair/helper";
 import PoolItemInformations from "./PoolItemInformations.vue";
+import { GlobalActions } from "@/store/types";
 
 @Component({
   components: {
@@ -65,6 +66,15 @@ class PoolItem extends Vue {
       symbol,
       sharedText: "",
     };
+  }
+
+  mounted() {
+    const { base_asset_id, quote_asset_id } = this.pair;
+
+    this.$store.dispatch(GlobalActions.LOAD_PROFIT, {
+      base: base_asset_id,
+      quote: quote_asset_id,
+    });
   }
 
   handleToDetail() {

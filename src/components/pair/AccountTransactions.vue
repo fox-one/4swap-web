@@ -36,6 +36,10 @@ class AccountTransactions extends Vue {
 
   transactions: API.Transaction[] = [];
 
+  mounted() {
+    this.requstTransactions();
+  }
+
   async requstTransactions() {
     if (this.loading || !this.pagination.has_next) {
       return;

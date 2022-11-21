@@ -1,12 +1,8 @@
 <template>
   <v-app id="app">
-    <f-loading v-if="initing" :loading="initing" color="primary" fullscreen />
-
-    <template v-else>
-      <pando-banner v-if="isHome" app="4swap" :dev="dev" />
-      <mobile-layout />
-      <modals />
-    </template>
+    <pando-banner v-if="isHome" app="4swap" :dev="dev" />
+    <mobile-layout />
+    <modals />
   </v-app>
 </template>
 

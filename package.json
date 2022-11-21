@@ -16,7 +16,7 @@
     "dev": "nuxt",
     "dev:prod": "APP_ENV=prod nuxt",
     "build": "nuxt-ts build",
-    "build:prod": "APP_ENV=prod nuxt build --analyze",
+    "build:prod": "APP_ENV=prod nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "ts-mocha src/**/*.spec.ts"
@@ -42,7 +42,7 @@
     "animate.css": "^3.7.2",
     "bignumber.js": "^9.0.0",
     "dayjs": "^1.10.7",
-    "echarts": "^5.2.1",
+    "echarts": "^5.4.0",
     "front-matter": "^4.0.2",
     "hashids": "^2.2.1",
     "markdown-it": "^13.0.1",

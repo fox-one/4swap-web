@@ -37,6 +37,7 @@ import AccountProfitInformations from "./AccountProfitInformations.vue";
 import AccountTransactions from "./AccountTransactions.vue";
 import AccountProfitsChart from "./AccountProfitsChart.vue";
 import AccountLiquidityPlaceholder from "./AccountLiquidityPlaceholder.vue";
+import { GlobalActions } from "@/store/types";
 
 @Component({
   components: {
@@ -67,6 +68,15 @@ class AccountPanel extends Vue {
       format({ n: shared?.balance ?? "" }) + " " + liquidityAsset?.symbol ?? "";
 
     return { totalValueParts, shareText, isAdded, symbol, liquidityAsset };
+  }
+
+  mounted() {
+    const { base_asset_id, quote_asset_id } = this.pair;
+
+    this.$store.dispatch(GlobalActions.LOAD_PROFIT, {
+      base: base_asset_id,
+      quote: quote_asset_id,
+    });
   }
 }
 export default AccountPanel;

@@ -42,7 +42,7 @@ class AddFormInformations extends Vue {
     if (!hasLiquidity) {
       shares = "100%";
     } else {
-      const k = Math.sqrt(+base_amount * +quote_amount);
+      const k = Math.sqrt(Number(base_amount) * Number(quote_amount));
       const v = Math.sqrt(+asset1Amount * +asset2Amount);
 
       shares = toPercent({ n: (v + k && v / (v + k)) || 0 });
@@ -59,8 +59,8 @@ class AddFormInformations extends Vue {
       } else {
         lpAmount =
           Math.min(
-            inputBaseAmount / +base_amount,
-            inputQuoteAmount / +quote_amount
+            inputBaseAmount / Number(base_amount),
+            inputQuoteAmount / Number(quote_amount)
           ) * +(liquidity || 0);
       }
     }

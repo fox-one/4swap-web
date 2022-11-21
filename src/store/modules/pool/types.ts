@@ -7,6 +7,7 @@ export const MutationTypes = {
   SET_ASSETS_WHITE_LISTS: "SET_ASSETS_WHITE_LISTS",
   SET_FIATS: "SET_FIATS",
   SET_MULTISIG_ASSETS: "SET_MULTISIG_ASSETS",
+  SET_POOL_LOADING: "SET_POOL_LOADING",
 };
 
 export const ActionTypes = {
@@ -14,6 +15,7 @@ export const ActionTypes = {
   LOAD_FIATS: "LOAD_FIATS",
   LOAD_POOL_PAIRS: "LOAD_PAIRS",
   LOAD_MULTISIG_ASSETS: "LOAD_MULTISIG_ASSETS",
+  LOAD_POOL_DATA: "LOAD_POOL_DATA",
 };
 
 export const GetterTypes = {

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="!meta.logged" class="text-center">
-      <base-connect v-if="!meta.logged" />
-    </div>
+    <base-connect v-if="!meta.logged" class="text-center" />
+
+    <base-loading v-else-if="loading" />
 
     <liquidity-empty-placeholder v-else-if="meta.empty" />
 
@@ -31,6 +31,7 @@ import { GlobalGetters } from "@/store/types";
 import LiquidityEmptyPlaceholder from "@/components/account/LiquidityEmptyPlaceholder.vue";
 import AccountOverview from "@/components/account/AccountOverview.vue";
 import AccountPoolList from "@/components/account/PoolList.vue";
+import { Get } from "vuex-pathify";
 
 @Component({
   components: {
@@ -40,7 +41,15 @@ import AccountPoolList from "@/components/account/PoolList.vue";
   },
 })
 class MePage extends Mixins(mixins.page) {
+  @Get("account/loading") accountLoading;
+
+  @Get("pool/loading") poolLoading;
+
   filter = "";
+
+  get loading() {
+    return this.accountLoading || this.poolLoading;
+  }
 
   get htmlTitle() {
     return this.$t("me") as string;

@@ -23,11 +23,15 @@ const config: NuxtConfig = {
         type: "image/x-icon",
         href: `/${process.env.CHANNEL}.png`,
       },
-      { rel: "stylesheet", href: "/fonts/inter/style.css" },
+      {
+        rel: "stylesheet",
+        href: "https://static.fox.one/font/inter/style.css",
+      },
     ],
     script: [
       {
         src: "https://polyfill.io/v3/polyfill.min.js?features=Intl",
+        defer: true,
       },
     ],
   },
@@ -72,7 +76,7 @@ const config: NuxtConfig = {
     optionsPath: "./vuetify.options.ts",
   },
   build: {
-    analyze: true,
+    extractCSS: true,
     transpile: ["vuetify", "@foxone/uikit"],
   },
   publicRuntimeConfig: {

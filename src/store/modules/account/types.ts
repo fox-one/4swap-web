@@ -13,6 +13,7 @@ export const MutationTypes = {
   SET_WALLET_ASSETS: "SET_WALLET_ASSETS",
   CLEAR_ACCOUNT: "CLEAR_ACCOUNT",
   SET_PROFIT: "SET_PROFIT",
+  SET_ACCOUNT_LOADING: "SET_ACCOUNT_LOADING",
 };
 
 export const ActionTypes = {
