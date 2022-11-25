@@ -17,7 +17,11 @@ class MvmAction extends Vue {
   get show() {
     const channel = this.$store.state.auth.channel;
 
-    return channel === "metamask" || channel === "walletconnect";
+    return (
+      channel === "metamask" ||
+      channel === "walletconnect" ||
+      channel === "onekey"
+    );
   }
 
   handleAddAsset() {
