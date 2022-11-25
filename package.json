@@ -28,7 +28,7 @@
     "@foxone/fennec-dapp": "^0.4.5-2",
     "@foxone/icons": "3",
     "@foxone/mixin-passport": "^0.1.26",
-    "@foxone/pando-ui": "^0.0.9-3",
+    "@foxone/pando-ui": "^0.0.9-4",
     "@foxone/pandoseed": "^1.0.3",
     "@foxone/uikit": "^3.2.9-11",
     "@foxone/utils": "^0.2.18",

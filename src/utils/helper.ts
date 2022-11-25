@@ -4,15 +4,22 @@ import { GlobalGetters } from "~/store/types";
 
 export function errorHandler(vm: Vue, error) {
   const code = error.code || "";
+  let message = "";
 
   let locale = "";
   if (code && vm.$t(`errorcode.${code}`) !== code) {
     locale = vm.$t(`errorcode.${code}`) as string;
   }
 
-  const message = error.message || error.msg || locale || "Unknown Error";
+  message = `${code} ${
+    error.message || error.msg || locale || "Unknown Error"
+  }`;
 
-  vm.$uikit.toast.error({ message: `${code} ${message}` });
+  if (error.data) {
+    message += ` ${JSON.stringify(error.data)}`;
+  }
+
+  vm.$uikit.toast.error({ message });
 }
 
 export function getDurationData(

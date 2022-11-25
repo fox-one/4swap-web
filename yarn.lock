@@ -1483,10 +1483,10 @@
     ethers "^5.6.9"
     uuid "^8.3.2"
 
-"@foxone/pando-ui@^0.0.9-3":
-  version "0.0.9-3"
-  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.9-3.tgz#563adcff210cf8b461c4113291c14c43c2b92e9b"
-  integrity sha512-uVykd5iuXc5uD915XeMhoEcihDJKF1peuxwPHBpHvZIhQO03lgj2J6rXGUUAU2r+C2IZ+WKZy4oAN5LtO2ooAQ==
+"@foxone/pando-ui@^0.0.9-4":
+  version "0.0.9-4"
+  resolved "https://registry.npmjs.org/@foxone/pando-ui/-/pando-ui-0.0.9-4.tgz#9f88a85869484a915e02af41f7cf1bee635eb907"
+  integrity sha512-G0H0SwHSbuJ2Df5w8dIRV79aZb2PhDZU1g1vK9/r8w9GiJ0c4bavhuNFKvlZpgUmy2CSqbTV3tVuHdk8H0xsjw==
   dependencies:
     "@multiavatar/multiavatar" "^1.0.7"
 
