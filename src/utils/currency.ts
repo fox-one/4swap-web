@@ -14,6 +14,7 @@ export const CURRENCY = {
   MYR: { name: "MYR", symbol: "RM" },
   PHP: { name: "PHP", symbol: "₱" },
   AED: { name: "AED", symbol: "AED" },
+  TWD: { name: "TWD", symbol: "NT$" },
 };
 
 export function toFiat(
