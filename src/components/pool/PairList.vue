@@ -50,7 +50,7 @@ class PairList extends Vue {
 
   get meta() {
     const { getters } = this.$store;
-    const pairs = this.pairs || getters[GlobalGetters.AVALIABLE_PAIRS];
+    const pairs = this.pairs || getters[GlobalGetters.AVALIABLE_CALC_PAIRS];
 
     let items = pairs.map((x) => getPairMeta(this, x)!);
 

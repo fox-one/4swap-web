@@ -1,6 +1,6 @@
 import { make } from "vuex-pathify";
 import { MutationTypes, ActionTypes, GetterTypes } from "./types";
-import { PRSID } from "@/constants";
+import { HIDE_ASSET_LIST, BLACK_ASSET_LIST } from "@/constants";
 import { updateCache } from "@/utils/cache";
 import BigNumber from "bignumber.js";
 
@@ -11,7 +11,8 @@ const state: State.PoolState = {
   assets: [],
   multisigAssets: [],
   assetsWhiteLists: [],
-  assetsBlackLists: [PRSID],
+  assetsBlackLists: BLACK_ASSET_LIST,
+  assetsHideLists: HIDE_ASSET_LIST,
   fiats: [],
   cache: [],
   loading: false,
@@ -56,8 +57,8 @@ const getters = {
     return avaliables;
   },
 
-  // filter pairs only contain assets in avaliable assets
-  [GetterTypes.AVALIABLE_PAIRS](state, getters) {
+  // pair which can be swap
+  [GetterTypes.AVALIABLE_SWAP_PAIRS](state, getters) {
     const pairs = state.pairs;
     const assets = getters[GetterTypes.AVALIABLE_ASSETS];
 
@@ -69,8 +70,26 @@ const getters = {
     });
   },
 
-  [GetterTypes.AVALIABLE_ASSETS_META](state, getters) {
-    const pairs: API.Pair[] = getters[GetterTypes.AVALIABLE_PAIRS];
+  // pairs which can be calculated liquidity (visiable in pair list)
+  [GetterTypes.AVALIABLE_CALC_PAIRS](state, getters) {
+    const pairs = state.pairs;
+    const { assetsHideLists: hidelists } = state;
+
+    let assets: API.Asset[] = getters[GetterTypes.AVALIABLE_ASSETS];
+
+    assets = assets.filter(({ id }) => !hidelists.find((x) => id === x));
+
+    return pairs.filter(({ base_asset_id, quote_asset_id }) => {
+      return (
+        assets.find(({ id }) => id === base_asset_id) &&
+        assets.find(({ id }) => id === quote_asset_id)
+      );
+    });
+  },
+
+  // assets which can be calculated (visiable asset list)
+  [GetterTypes.AVALIABLE_CALC_ASSETS_META](state, getters) {
+    const pairs: API.Pair[] = getters[GetterTypes.AVALIABLE_CALC_PAIRS];
     const empty = { liquidity: 0, volume_24h: 0, liquidity_amount: 0 };
     const assetMap = new Map<string, typeof empty>();
 
@@ -114,10 +133,11 @@ const getters = {
     });
   },
 
-  // only assets appear in pairs can be swapped
+  // only assets appear in avaliable swap pairs can be swapped
   [GetterTypes.AVALIABLE_SWAP_ASSETS](state, getters) {
     const assets: API.Asset[] = getters[GetterTypes.AVALIABLE_ASSETS];
-    const avaliablePairs: API.Pair[] = getters[GetterTypes.AVALIABLE_PAIRS];
+    const avaliablePairs: API.Pair[] =
+      getters[GetterTypes.AVALIABLE_SWAP_PAIRS];
 
     const set = new Set<string>();
     const map = new Map<string, API.Asset>();
@@ -143,7 +163,7 @@ const getters = {
   },
 
   [GetterTypes.POOL_OVERVIEW](_, getters) {
-    const pairs = getters[GetterTypes.AVALIABLE_PAIRS];
+    const pairs = getters[GetterTypes.AVALIABLE_CALC_PAIRS];
     const { totalUSDValue, volume24h, fee24h, transactions } = pairs.reduce(
       ({ totalUSDValue, volume24h, fee24h, transactions }, p) => {
         return {
@@ -202,7 +222,7 @@ const getters = {
   },
 
   [GetterTypes.GET_PAIRS_BY_ASSET](state, getters) {
-    const pairs = getters[GetterTypes.AVALIABLE_PAIRS];
+    const pairs = getters[GetterTypes.AVALIABLE_SWAP_PAIRS];
 
     return (id: string) => {
       return pairs.filter((x) => {

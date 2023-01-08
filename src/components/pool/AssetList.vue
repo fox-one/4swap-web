@@ -40,7 +40,7 @@ class AssetList extends Vue {
   @Prop({ type: String, default: "" }) filter!: string;
 
   get meta() {
-    let items = this.$store.getters[GlobalGetters.AVALIABLE_ASSETS_META];
+    let items = this.$store.getters[GlobalGetters.AVALIABLE_CALC_ASSETS_META];
 
     if (this.sortable) {
       items = items.sort((a, b) => {

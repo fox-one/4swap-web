@@ -323,7 +323,7 @@ export function getPriceChangeInDuration(
 }
 
 export function getMostLiquidityPair(vm: Vue) {
-  return vm.$store.getters[GlobalGetters.AVALIABLE_PAIRS].sort((a, b) => {
+  return vm.$store.getters[GlobalGetters.AVALIABLE_CALC_PAIRS].sort((a, b) => {
     const va = getPairMeta(vm, a)?.volume ?? 0;
     const vb = getPairMeta(vm, b)?.volume ?? 0;
 

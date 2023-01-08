@@ -38,3 +38,12 @@ export const GLOBAL_EVENTS = {
   OPEN_AUTH: "OPEN_AUTH",
   OPEN_TERMS_MODAL: "OPEN_TERMS_MODAL",
 };
+
+// disable any pair which contain the asset
+export const BLACK_ASSET_LIST = [PRSID];
+
+// can swap but not show in pair/asset list
+export const HIDE_ASSET_LIST = [
+  "384fa667-397f-3d05-a60c-70d1f61c1159", // MVP
+  "5f363928-dcee-3708-838d-b5d3852d1569", // TWBTC
+];
