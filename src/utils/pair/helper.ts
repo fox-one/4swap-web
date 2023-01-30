@@ -300,7 +300,7 @@ export function getNetRORInDuration(
  * get price change in duration
  *
  * @export
- * @param {{ kline: API.KlineData[]; market: API.MarketData[] }} data
+ * @param {API.KlineData[]} kline
  * @param {number} days
  * @return {*}
  */

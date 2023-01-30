@@ -42,7 +42,7 @@ export default {
   },
 
   [GetterTypes.ACCOUNT_PAIRS](state, getters) {
-    const pairs = getters[GlobalGetters.AVALIABLE_CALC_PAIRS];
+    const pairs = getters[GlobalGetters.AVALIABLE_SWAP_PAIRS];
 
     return (vm: Vue) => {
       return pairs
