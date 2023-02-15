@@ -27,7 +27,7 @@ class RouteToCreateAction extends Vue {
       text: support
         ? this.$t("liquidity.create.new-liquidity-pool")
         : this.$t("liquidity.create.not-support"),
-      disabed: !support,
+      disabled: !support,
       hide: this.hideWhileNotSupport && !support,
     };
   }
