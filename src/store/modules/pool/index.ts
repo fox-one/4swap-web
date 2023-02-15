@@ -253,11 +253,6 @@ const actions: ActionTree<State.PoolState, any> = {
       syncActions.push(loadAssetsAction);
     }
 
-    const loadMultisigAssetsAction = dispatch(ActionTypes.LOAD_MULTISIG_ASSETS);
-    if (!state.multisigAssets.length) {
-      syncActions.push(loadMultisigAssetsAction);
-    }
-
     await Promise.all(syncActions);
 
     commit(MutationTypes.SET_POOL_LOADING, false);

@@ -1,5 +1,4 @@
 import { GlobalGetters, GlobalMutations } from "@/store/types";
-import { EOSID, ETHID } from "~/constants";
 
 export interface Asset {
   id: string;
@@ -25,8 +24,7 @@ export interface Asset {
 export function getAvaliableAddAssets(
   assets: API.Asset[],
   mixinAssets: API.MixinAsset[],
-  blacklist: string[],
-  multisigAssets: API.MixinAsset[]
+  blacklist: string[]
 ) {
   const assetsMap = new Map<string, Asset>();
 
@@ -35,17 +33,7 @@ export function getAvaliableAddAssets(
       return;
     }
 
-    if (asset.name.includes("LP Token")) {
-      return;
-    }
-
-    // asset should be a ERC20 Token or eosio.token,
-    // otherwise it should be supported with multisignature API.
-    if (
-      asset.chainId !== ETHID &&
-      asset.chainId !== EOSID &&
-      !multisigAssets.find(({ asset_id }) => asset_id === asset.id)
-    ) {
+    if (asset.name.toLowerCase().includes("lp token")) {
       return;
     }
 

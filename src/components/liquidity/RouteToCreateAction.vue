@@ -16,7 +16,9 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 class RouteToCreateAction extends Vue {
   @Prop({ type: Boolean, default: false }) hideWhileNotSupport!: boolean;
 
-  @Prop() pair;
+  @Prop() asset1;
+
+  @Prop() asset2;
 
   get meta() {
     const support = this.$config.CHANNEL === "4swap";
@@ -34,8 +36,8 @@ class RouteToCreateAction extends Vue {
     this.$router.push({
       name: "liquidity-create",
       query: {
-        base: this.pair?.base_asset_id ?? "",
-        quote: this.pair?.quote_asset_id ?? "",
+        base: this.asset1?.id ?? "",
+        quote: this.asset2?.id ?? "",
       },
     });
   }

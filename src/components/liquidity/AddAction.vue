@@ -12,7 +12,11 @@
         {{ $t("liquidity.create.pair.not-support") }}
       </div>
 
-      <route-to-create-action hide-while-not-support :pair="pair" />
+      <route-to-create-action
+        hide-while-not-support
+        :asset1="asset1.asset"
+        :asset2="asset2.asset"
+      />
     </template>
 
     <template v-else>
