@@ -258,7 +258,7 @@ class MarketChartPanel extends Vue {
 
       const [market, kline] = await Promise.all([
         this.$http.getMarketData(params),
-        this.$http.getKlineData(params),
+        this.isGlobal ? Promise.resolve([]) : this.$http.getKlineData(params),
       ]);
 
       this.data.market = market;
