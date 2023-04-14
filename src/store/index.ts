@@ -25,6 +25,7 @@ export default function () {
           "app.termsAccepted",
           "app.termsVersion",
           "auth",
+          "account.profile",
           "page.pairDetail.pair_information_expand",
           "page.swap.input.asset",
           "page.swap.output.asset",

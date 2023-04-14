@@ -33,6 +33,9 @@ const config: NuxtConfig = {
         src: "https://polyfill.io/v3/polyfill.min.js?features=Intl",
         defer: true,
       },
+      {
+        src: "https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.31/dist/mvm.min.js",
+      },
     ],
   },
   loading: { color: "#fff" },
@@ -76,7 +79,7 @@ const config: NuxtConfig = {
     optionsPath: "./vuetify.options.ts",
   },
   build: {
-    extractCSS: true,
+    // extractCSS: true,
     transpile: ["vuetify", "@foxone/uikit"],
   },
   publicRuntimeConfig: {

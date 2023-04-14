@@ -15,3 +15,8 @@ const DurationMeta: Meta<API.Duration> = {
 export function getDurationMeta(t: API.Duration) {
   return DurationMeta[t];
 }
+
+export enum AuthMethod {
+  MixinToken = "mixin_token",
+  MVM = "mvm",
+}

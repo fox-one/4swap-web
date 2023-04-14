@@ -4,6 +4,7 @@ import { MutationTypes, GetterTypes } from "./types";
 import type { ActionTree, GetterTree } from "vuex";
 
 const state: State.AuthState = {
+  mixin_token: "",
   token: "",
   scope: "",
   channel: "",
@@ -17,6 +18,10 @@ const getters: GetterTree<State.AuthState, any> = {
 
 const mutations = {
   ...make.mutations(state),
+
+  [MutationTypes.SET_MIXIN_TOKEN](state, data) {
+    state.mixin_token = data;
+  },
 
   [MutationTypes.SET_TOKEN](state, data) {
     state.token = data.token;

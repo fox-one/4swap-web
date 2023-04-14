@@ -1,10 +1,10 @@
-import { GlobalActions, GlobalMutations } from "~/store/types";
+import { GlobalMutations } from "~/store/types";
 
 export async function loadAccountData(vm: Vue) {
   vm.$store.commit(GlobalMutations.SET_ACCOUNT_LOADING, true);
 
   await Promise.all([
-    vm.$store.dispatch(GlobalActions.LOAD_PROFILE),
+    // vm.$store.dispatch(GlobalActions.LOAD_PROFILE),
     vm.$utils.assets.getAssets(vm),
   ]);
 
@@ -19,7 +19,7 @@ export async function openAuth(vm: Vue) {
 
     await loadAccountData(vm);
   } catch (error: any) {
-    vm.$uikit.toast.error({ message: error.message });
+    vm.$uikit.toast.error({ message: error.message || error.msg });
   }
 }
 
@@ -27,6 +27,7 @@ export async function sync(vm: Vue) {
   try {
     const tokenLocale = vm.$store.state.auth.token;
     const channelLocale = vm.$store.state.auth.channel;
+    const mixinTokenLocale = vm.$store.state.auth.mixin_token;
 
     if (!channelLocale) {
       logout(vm);
@@ -37,6 +38,7 @@ export async function sync(vm: Vue) {
     const auth = await vm.$passport.sync({
       channel: channelLocale,
       token: tokenLocale,
+      mixin_token: mixinTokenLocale,
     });
 
     vm.$store.commit(GlobalMutations.SET_TOKEN, auth);

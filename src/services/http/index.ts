@@ -4,7 +4,7 @@ import { MIXIN_HOST } from "@/constants";
 
 export default function (http: Http) {
   return {
-    auth(data: API.AuthParams): Promise<any> {
+    auth(data: API.AuthParams): Promise<API.AuthResult> {
       return http.post("/oauth", { data });
     },
 

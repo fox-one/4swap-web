@@ -8,7 +8,7 @@ export const GA = "G-3DQQE9G478";
 
 export const TERMS_VERSION = "0.0.1";
 
-export const MIXIN_HOST = "https://mixin-api.zeromesh.net";
+export const MIXIN_HOST = "https://api.mixin.one";
 
 export const DEFAULT_ASSET_ID = "c94ac88f-4671-3976-b60a-09064f1811e8";
 

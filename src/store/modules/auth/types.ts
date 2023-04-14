@@ -5,6 +5,7 @@ export const GetterTypes = {
 };
 
 export const MutationTypes = {
+  SET_MIXIN_TOKEN: "SET_MIXIN_TOKEN",
   SET_TOKEN: "SET_TOKEN",
   CLEAR_AUTH: "CLEAR_AUTH",
 };
