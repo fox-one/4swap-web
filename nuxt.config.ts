@@ -35,6 +35,7 @@ const config: NuxtConfig = {
       },
       {
         src: "https://cdn.jsdelivr.net/npm/@foxone/mvm@0.1.31/dist/mvm.min.js",
+        defer: true,
       },
     ],
   },
