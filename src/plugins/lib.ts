@@ -30,7 +30,7 @@ const plugin: Plugin = ({ app, store }) => {
   Vue.use(Passport, {
     origin: app.$config.CHANNEL_NAME,
     config: { infuraId: "a018fa2f735a435f9a7917f0d429c61a" },
-    chainId: 73927,
+    chainId: "0x120c7",
     customizeToken: true,
     signMessage: true,
     hooks: {
