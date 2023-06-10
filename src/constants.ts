@@ -22,7 +22,7 @@ export const ETHID = "43d61dcd-e413-450d-80b8-101d5e903357";
 
 export const EOSID = "6cfe566e-4aad-470b-8c9a-2fd35b49c68d";
 
-export const PANDO_DOC = "https://docs.pando.im/docs/lake/intro";
+export const PANDO_DOC = "https://docs.pando.im/manual/trade.html";
 
 export const SUP_CHART_SCHEMES = ["SCHEME_A", "SCHEME_B"];
 
