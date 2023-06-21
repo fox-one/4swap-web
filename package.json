@@ -48,7 +48,7 @@
     "markdown-it": "^13.0.1",
     "mockjs": "^1.0.1-beta3",
     "msgpack5": "^4.5.1",
-    "nuxt": "2.15.8",
+    "nuxt": "3.4.3",
     "nuxt-i18n": "^6.4.1",
     "parse-duration": "^0.4.4",
     "sticksy": "^0.2.0",
